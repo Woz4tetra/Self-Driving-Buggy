@@ -1,0 +1,152 @@
+import serial
+import time
+import os
+from sys import platform as _platform
+
+
+class Arduino(object):
+    maxCommand = 2 ** 16
+
+    def __init__(self, address=None, baud=115200, timeout=0.1, disabled=False, **commands):
+        self.address = address
+        self.baud = baud
+        self.timeout = timeout
+        self.disabled = disabled
+
+        if self.disabled == False:
+            self.initializeSerial(address, baud, timeout)
+
+        self.commands = {}
+        for (commandName, reservation) in commands.items():
+            self.addCommand(commandName, reservation)
+
+        self.lastCommands = {}
+        for command in list(self.commands.keys()):
+            self.lastCommands[command] = None
+
+        if self.disabled == False:
+            time.sleep(1)
+
+    def initializeSerial(self, address, baud, timeout):
+        if address is None:
+            for possibleAddress in Arduino.possibleAddresses():
+                try:
+                    self.serialReference = serial.Serial(possibleAddress, baud, timeout=timeout)
+                    self.address = possibleAddress
+                except:
+                    pass
+            if self.address is None:
+                raise Exception("No Arduinos could be found! Did you plug it in? Try entering the address manually.")
+        else:
+            self.serialReference = serial.Serial(address, baud, timeout=timeout)
+
+    @staticmethod
+    def possibleAddresses():
+        if _platform == "darwin":  # OS X
+            devices = os.listdir("/dev/")
+            arduinoDevices = []
+            for device in devices:
+                if device.find("cu.usbmodem") > -1:
+                    arduinoDevices.append("/dev/" + device)
+            return arduinoDevices
+        elif _platform == "linux" or _platform == "linux2":  # linux
+            return []
+        elif _platform == "win32":  # Windows
+            return []
+
+    def __getitem__(self, item):
+        return self.commands[item]
+
+    def disableArduino(self):
+        self.disabled = False
+        self.serialReference = None
+
+    def enableArduino(self):
+        self.disabled = True
+        self.initializeSerial(self.address, self.baud, self.timeout)
+
+    def addCommand(self, name, reservation):
+        commandMin = 0
+        commandLength = reservation[1] - reservation[0]
+        numUnreserved = 0
+        for index in range(Arduino.maxCommand):
+            if (commandMin + commandLength) > Arduino.maxCommand:
+                raise Exception("Out of commands! An impressive feat! Max number is " + str(Arduino.maxCommand))
+            if self.isCommandReserved(index) == False:
+                numUnreserved += 1
+            else:
+                numUnreserved = 0
+                commandMin = index + 1
+
+            if numUnreserved == commandLength:
+                self.commands[name] = (commandMin, commandLength + commandMin, reservation)
+                break
+
+    def isCommandReserved(self, commandNumber):
+        for (commandName, reservation) in self.commands.items():
+            if reservation[0] <= commandNumber <= reservation[1]:
+                return True
+        return False
+
+    def generateCpp(self, includeFunctionsStubs=False):
+        arduinoCode = ""
+        for (commandName, reservation) in self.commands.items():
+            if arduinoCode == "":
+                arduinoCode += "if "
+            else:
+                arduinoCode += "else if "
+            arduinoCode += "(" + str(reservation[0]) + " <= data && data <= " + str(
+                reservation[1]) + ") {\n"  # example: if (0 <= data && data <= 100) {
+            if reservation[0] > 0:
+                arduinoCode += "    set_" + commandName + "(data - " + str(reservation[0]) + ");\n}\n"
+            else:
+                arduinoCode += "    set_" + commandName + "(data);\n}\n"
+
+        if includeFunctionsStubs == True:
+            arduinoCode += "\n// function stubs:\n\n"
+            for commandName in list(self.commands.keys()):
+                arduinoCode += "void " + commandName + "(int input)\n{\n    \n}\n"
+
+        with open("Commands for ino file.txt", "w") as inoFile:
+            inoFile.write(arduinoCode)
+
+    @staticmethod
+    def decimalToChar(commandNumber):
+        upperByte = commandNumber / 0x100
+        lowerByte = commandNumber % 0x100
+        return chr(upperByte) + chr(lowerByte)
+
+    def sendCommand(self, name, command):
+        if self.disabled == False:
+            commandRange = self[name][2]
+            if commandRange[0] <= command <= commandRange[1]:
+                self.serialReference.write(Arduino.decimalToChar(command + self[name][0] + abs(self[name][2][0])))
+                # self[name][0]: the command's minimum value
+                # abs(self[name][2][0])): if "command" has a range that is negative,
+                # this adjusts it to the positive range
+                # print "writing:", command + self[name][0] + abs(self[name][2][0])
+            else:
+                raise Exception("Command out of range! " + str(command) + ", " + name + " has a range of " +
+                                str(commandRange[0]) + "..." + str(commandRange[1]) + " inclusive")
+            self.lastCommands[name] = command
+
+    def readSerial(self):
+        if self.disabled == False:
+            lowerData = self.serialReference.read()
+            upperData = self.serialReference.read()
+
+            if len(upperData) == 0:
+                upperData = 0
+            else:
+                upperData = ord(upperData)
+
+            if len(lowerData) == 0:
+                lowerData = 0
+            else:
+                lowerData = ord(lowerData)
+            data = upperData * 0x100 + lowerData
+            if data:
+                return data
+
+    def __str__(self):
+        return str(self.commands)
