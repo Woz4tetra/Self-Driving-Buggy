@@ -1,7 +1,6 @@
 import numpy
 import cv2
 import bisect
-from PlaneTracker import PlaneTracker
 
 def contrast(image, scale):
     # mask = numpy.ones_like(image, dtype=numpy.float32) * scale
@@ -43,5 +42,6 @@ def drawContours(frame):
     contours = getSignificantContours(edges, 0.001)[-3:]
     return cv2.drawContours(frame, contours, -1, (255, 100, 100), 2)
 
-
-
+def blur(frame, size):
+    # return cv2.GaussianBlur(frame, (size, size), 0)
+    return cv2.medianBlur(frame, size)

@@ -31,8 +31,9 @@ def run():
         currentFrame=0,
         writeVideo=False,
     )
-
-#    frame1 = camera1.updateFrame(readNextFrame=False)
+    
+    if captureProperties['paused'] == True:
+        frame1 = camera1.updateFrame(readNextFrame=False)
     
     while True:
         # print imu.getData()
@@ -49,8 +50,9 @@ def run():
                 camera1.writeToVideo(frame1)
 
             if captureProperties['showOriginal'] is False:
-                frame1 = tracker.update(frame1)
-#                frame1 = camera.analyzers.drawContours(frame1)
+                # frame1 = tracker.update(frame1)
+                # frame1 = camera.analyzers.drawContours(frame1)
+                frame1 = camera.analyzers.blur(frame1, 15)
 
             if captureProperties['enableDraw'] is True:
                 camera1.showFrame(frame1)

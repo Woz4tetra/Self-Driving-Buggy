@@ -170,6 +170,9 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
         self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
 
+        self.currentFrame = 0
+        self.setFrame(self.currentFrame)
+
         if self.dimensions[0] is None:
             self.dimensions[0] = 0
         if self.dimensions[1] is None:
@@ -350,7 +353,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if frameNumber >= self.camera.get(cv2.CAP_PROP_FRAME_COUNT):
             frameNumber = 0
         if type(self.camSource) == str and frameNumber >= 0:
-            self.camera.set(cv2.CAP_PROP_POS_FRAMES, frameNumber)
+            self.currentFrame = frameNumber
+            self.camera.set(cv2.CAP_PROP_POS_FRAMES, self.currentFrame)
 
     def incrementFrame(self):
         '''
@@ -358,7 +362,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         :return: None
         '''
-        self.setFrame(self.camera.get(cv2.CAP_PROP_POS_FRAMES) + 1.8)
+        self.setFrame(self.currentFrame + 1)
 
     def decrementFrame(self):
         '''
@@ -366,9 +370,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         :return: None
         '''
-        self.setFrame(self.camera.get(
-            cv2.CAP_PROP_POS_FRAMES) - 1.8)  # huh??? Refuses to go back otherwise. frames numbers aren't integers?!
-        # cv2.CAP_PROP_POS_FRAMES) - 1)
+        self.setFrame(self.currentFrame - 1)
 
     def saveFrame(self, frame):
         '''
