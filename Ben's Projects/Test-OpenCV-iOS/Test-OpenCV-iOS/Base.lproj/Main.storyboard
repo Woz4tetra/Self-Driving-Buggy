@@ -25,7 +25,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="testButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uIS-Mh-pKF"/>
+                                    <action selector="testButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M9o-8E-tjh"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -503,8 +503,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         fourcc = cv2.VideoWriter_fourcc(*format)
         self.video = cv2.VideoWriter()
         self.video.open(projectDir + "/Videos/" + videoName, fourcc, fps,
-                        (self.dimensions[2] - self.dimensions[0],
-                         self.dimensions[3] - self.dimensions[1]), True)
+                        (int(self.dimensions[2] - self.dimensions[0]),
+                         int(self.dimensions[3] - self.dimensions[1])), True)
 
         print "Initialized video named '%s'." % (videoName)
 

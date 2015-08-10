@@ -21,4 +21,9 @@
     self.camera.grayscaleMode = NO;
 }
 
+- (void) initVideoWithView: (UIImageView *) imageView
+{
+    
+}
+
 @end

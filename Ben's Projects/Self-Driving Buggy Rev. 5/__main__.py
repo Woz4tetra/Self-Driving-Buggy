@@ -16,7 +16,7 @@ def run():
     #                          camSource=1
     #                          )
     camera1 = camera.Capture(windowName="camera",
-                             camSource="Sun Jul 26 13;22;56 2015.mp4v",
+                             camSource="IMG_0575.m4v"#"Sun Jul 26 13;22;56 2015.mp4v",
                              # width=427, height=240
                              )
 
@@ -32,8 +32,10 @@ def run():
         writeVideo=False,
     )
     
-    if captureProperties['paused'] == True:
-        frame1 = camera1.updateFrame(readNextFrame=False)
+    # if captureProperties['paused'] == True:
+    frame1 = camera1.updateFrame(readNextFrame=False)
+
+    tracker = camera.analyzers.SimilarFrameTracker(frame1)
     
     while True:
         # print imu.getData()
@@ -46,13 +48,13 @@ def run():
 
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
+            if captureProperties['showOriginal'] is False:
+                frame1 = tracker.update(frame1)
+                # frame1 = camera.analyzers.drawContours(frame1)
+                # frame1 = camera.analyzers.blur(frame1, 15)
+
             if captureProperties['writeVideo'] == True:
                 camera1.writeToVideo(frame1)
-
-            if captureProperties['showOriginal'] is False:
-                # frame1 = tracker.update(frame1)
-                # frame1 = camera.analyzers.drawContours(frame1)
-                frame1 = camera.analyzers.blur(frame1, 15)
 
             if captureProperties['enableDraw'] is True:
                 camera1.showFrame(frame1)

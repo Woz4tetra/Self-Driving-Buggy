@@ -7,23 +7,24 @@
 //
 
 import UIKit
+import MediaPlayer
+import MobileCoreServices
+import AVFoundation
 
 class ViewController: UIViewController
 {
-    @IBOutlet var imageView : UIImageView?
+    @IBOutlet var imageView : UIImageView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         // Custom initialization
     }
-    
-    required init(coder aDecoder: NSCoder)
+        required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
     }
-    
-    override func viewDidLoad()
+        override func viewDidLoad()
     {
         super.viewDidLoad()
         
