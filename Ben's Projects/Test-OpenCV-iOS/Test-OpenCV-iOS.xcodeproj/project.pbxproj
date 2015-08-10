@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C9469C011B788516003E6A09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9469C001B788516003E6A09 /* AppDelegate.swift */; };
+		C9469C031B788516003E6A09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9469C021B788516003E6A09 /* ViewController.swift */; };
+		C9469C061B788516003E6A09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9469C041B788516003E6A09 /* Main.storyboard */; };
+		C9469C081B788516003E6A09 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9469C071B788516003E6A09 /* Images.xcassets */; };
+		C9469C0B1B788516003E6A09 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9469C091B788516003E6A09 /* LaunchScreen.xib */; };
+		C9469C171B788516003E6A09 /* Test_OpenCV_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9469C161B788516003E6A09 /* Test_OpenCV_iOSTests.swift */; };
+		C9469C231B788525003E6A09 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9469C221B788525003E6A09 /* UIImage+OpenCV.mm */; };
+		C9469C2B1B78854E003E6A09 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C2A1B78854E003E6A09 /* opencv2.framework */; };
+		C9469C2E1B788791003E6A09 /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9469C2D1B788791003E6A09 /* Camera.mm */; };
+		C9469C311B7887C4003E6A09 /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C9469C301B7887C4003E6A09 /* CVWrapper.mm */; };
+		C9469C351B788BBE003E6A09 /* stitching.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9469C331B788BBE003E6A09 /* stitching.cpp */; };
+		C9469C381B788C8F003E6A09 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C361B788C8F003E6A09 /* AVFoundation.framework */; };
+		C9469C391B788C8F003E6A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C371B788C8F003E6A09 /* Foundation.framework */; };
+		C9469C3C1B788C9D003E6A09 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C3A1B788C9D003E6A09 /* Accelerate.framework */; };
+		C9469C3D1B788C9D003E6A09 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C3B1B788C9D003E6A09 /* AssetsLibrary.framework */; };
+		C9469C3F1B788CA9003E6A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C3E1B788CA9003E6A09 /* UIKit.framework */; };
+		C9469C411B788CB0003E6A09 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C401B788CB0003E6A09 /* QuartzCore.framework */; };
+		C9469C431B788CBC003E6A09 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C421B788CBC003E6A09 /* CoreVideo.framework */; };
+		C9469C451B788CC2003E6A09 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C441B788CC2003E6A09 /* CoreImage.framework */; };
+		C9469C471B788CDA003E6A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C461B788CDA003E6A09 /* CoreGraphics.framework */; };
+		C9469C491B788CE1003E6A09 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9469C481B788CE1003E6A09 /* CoreMedia.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9469C111B788516003E6A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9469BF31B788516003E6A09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9469BFA1B788516003E6A09;
+			remoteInfo = "Test-OpenCV-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C9469BFB1B788516003E6A09 /* Test-OpenCV-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test-OpenCV-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9469BFF1B788516003E6A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9469C001B788516003E6A09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C9469C021B788516003E6A09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C9469C051B788516003E6A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C9469C071B788516003E6A09 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C9469C0A1B788516003E6A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C9469C101B788516003E6A09 /* Test-OpenCV-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test-OpenCV-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9469C151B788516003E6A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9469C161B788516003E6A09 /* Test_OpenCV_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_OpenCV_iOSTests.swift; sourceTree = "<group>"; };
+		C9469C201B788524003E6A09 /* Test-OpenCV-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-OpenCV-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		C9469C211B788525003E6A09 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		C9469C221B788525003E6A09 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		C9469C2A1B78854E003E6A09 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = /usr/local/lib/ios/opencv2.framework; sourceTree = "<absolute>"; };
+		C9469C2C1B788791003E6A09 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		C9469C2D1B788791003E6A09 /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
+		C9469C2F1B7887C4003E6A09 /* CVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWrapper.h; sourceTree = "<group>"; };
+		C9469C301B7887C4003E6A09 /* CVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVWrapper.mm; sourceTree = "<group>"; };
+		C9469C331B788BBE003E6A09 /* stitching.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stitching.cpp; sourceTree = "<group>"; };
+		C9469C341B788BBE003E6A09 /* stitching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stitching.h; sourceTree = "<group>"; };
+		C9469C361B788C8F003E6A09 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C9469C371B788C8F003E6A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C9469C3A1B788C9D003E6A09 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C9469C3B1B788C9D003E6A09 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C9469C3E1B788CA9003E6A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C9469C401B788CB0003E6A09 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C9469C421B788CBC003E6A09 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C9469C441B788CC2003E6A09 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		C9469C461B788CDA003E6A09 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C9469C481B788CE1003E6A09 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9469BF81B788516003E6A09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9469C491B788CE1003E6A09 /* CoreMedia.framework in Frameworks */,
+				C9469C471B788CDA003E6A09 /* CoreGraphics.framework in Frameworks */,
+				C9469C451B788CC2003E6A09 /* CoreImage.framework in Frameworks */,
+				C9469C431B788CBC003E6A09 /* CoreVideo.framework in Frameworks */,
+				C9469C411B788CB0003E6A09 /* QuartzCore.framework in Frameworks */,
+				C9469C3F1B788CA9003E6A09 /* UIKit.framework in Frameworks */,
+				C9469C3C1B788C9D003E6A09 /* Accelerate.framework in Frameworks */,
+				C9469C3D1B788C9D003E6A09 /* AssetsLibrary.framework in Frameworks */,
+				C9469C381B788C8F003E6A09 /* AVFoundation.framework in Frameworks */,
+				C9469C391B788C8F003E6A09 /* Foundation.framework in Frameworks */,
+				C9469C2B1B78854E003E6A09 /* opencv2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9469C0D1B788516003E6A09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C9469BF21B788516003E6A09 = {
+			isa = PBXGroup;
+			children = (
+				C9469C4A1B788DBC003E6A09 /* Frameworks */,
+				C9469BFD1B788516003E6A09 /* Test-OpenCV-iOS */,
+				C9469C131B788516003E6A09 /* Test-OpenCV-iOSTests */,
+				C9469BFC1B788516003E6A09 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C9469BFC1B788516003E6A09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9469BFB1B788516003E6A09 /* Test-OpenCV-iOS.app */,
+				C9469C101B788516003E6A09 /* Test-OpenCV-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9469BFD1B788516003E6A09 /* Test-OpenCV-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C9469C321B788826003E6A09 /* OpenCV Classes */,
+				C9469C001B788516003E6A09 /* AppDelegate.swift */,
+				C9469C021B788516003E6A09 /* ViewController.swift */,
+				C9469C041B788516003E6A09 /* Main.storyboard */,
+				C9469C2F1B7887C4003E6A09 /* CVWrapper.h */,
+				C9469C301B7887C4003E6A09 /* CVWrapper.mm */,
+				C9469C331B788BBE003E6A09 /* stitching.cpp */,
+				C9469C341B788BBE003E6A09 /* stitching.h */,
+				C9469C071B788516003E6A09 /* Images.xcassets */,
+				C9469C091B788516003E6A09 /* LaunchScreen.xib */,
+				C9469BFE1B788516003E6A09 /* Supporting Files */,
+				C9469C201B788524003E6A09 /* Test-OpenCV-iOS-Bridging-Header.h */,
+			);
+			path = "Test-OpenCV-iOS";
+			sourceTree = "<group>";
+		};
+		C9469BFE1B788516003E6A09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9469BFF1B788516003E6A09 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9469C131B788516003E6A09 /* Test-OpenCV-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				C9469C161B788516003E6A09 /* Test_OpenCV_iOSTests.swift */,
+				C9469C141B788516003E6A09 /* Supporting Files */,
+			);
+			path = "Test-OpenCV-iOSTests";
+			sourceTree = "<group>";
+		};
+		C9469C141B788516003E6A09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9469C151B788516003E6A09 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9469C321B788826003E6A09 /* OpenCV Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C9469C2C1B788791003E6A09 /* Camera.h */,
+				C9469C2D1B788791003E6A09 /* Camera.mm */,
+				C9469C211B788525003E6A09 /* UIImage+OpenCV.h */,
+				C9469C221B788525003E6A09 /* UIImage+OpenCV.mm */,
+			);
+			name = "OpenCV Classes";
+			sourceTree = "<group>";
+		};
+		C9469C4A1B788DBC003E6A09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9469C481B788CE1003E6A09 /* CoreMedia.framework */,
+				C9469C461B788CDA003E6A09 /* CoreGraphics.framework */,
+				C9469C441B788CC2003E6A09 /* CoreImage.framework */,
+				C9469C421B788CBC003E6A09 /* CoreVideo.framework */,
+				C9469C401B788CB0003E6A09 /* QuartzCore.framework */,
+				C9469C3E1B788CA9003E6A09 /* UIKit.framework */,
+				C9469C3A1B788C9D003E6A09 /* Accelerate.framework */,
+				C9469C3B1B788C9D003E6A09 /* AssetsLibrary.framework */,
+				C9469C361B788C8F003E6A09 /* AVFoundation.framework */,
+				C9469C371B788C8F003E6A09 /* Foundation.framework */,
+				C9469C2A1B78854E003E6A09 /* opencv2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C9469BFA1B788516003E6A09 /* Test-OpenCV-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9469C1A1B788516003E6A09 /* Build configuration list for PBXNativeTarget "Test-OpenCV-iOS" */;
+			buildPhases = (
+				C9469BF71B788516003E6A09 /* Sources */,
+				C9469BF81B788516003E6A09 /* Frameworks */,
+				C9469BF91B788516003E6A09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test-OpenCV-iOS";
+			productName = "Test-OpenCV-iOS";
+			productReference = C9469BFB1B788516003E6A09 /* Test-OpenCV-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C9469C0F1B788516003E6A09 /* Test-OpenCV-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9469C1D1B788516003E6A09 /* Build configuration list for PBXNativeTarget "Test-OpenCV-iOSTests" */;
+			buildPhases = (
+				C9469C0C1B788516003E6A09 /* Sources */,
+				C9469C0D1B788516003E6A09 /* Frameworks */,
+				C9469C0E1B788516003E6A09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9469C121B788516003E6A09 /* PBXTargetDependency */,
+			);
+			name = "Test-OpenCV-iOSTests";
+			productName = "Test-OpenCV-iOSTests";
+			productReference = C9469C101B788516003E6A09 /* Test-OpenCV-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C9469BF31B788516003E6A09 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "The Ban Hammer";
+				TargetAttributes = {
+					C9469BFA1B788516003E6A09 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					C9469C0F1B788516003E6A09 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = C9469BFA1B788516003E6A09;
+					};
+				};
+			};
+			buildConfigurationList = C9469BF61B788516003E6A09 /* Build configuration list for PBXProject "Test-OpenCV-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C9469BF21B788516003E6A09;
+			productRefGroup = C9469BFC1B788516003E6A09 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9469BFA1B788516003E6A09 /* Test-OpenCV-iOS */,
+				C9469C0F1B788516003E6A09 /* Test-OpenCV-iOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C9469BF91B788516003E6A09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9469C061B788516003E6A09 /* Main.storyboard in Resources */,
+				C9469C0B1B788516003E6A09 /* LaunchScreen.xib in Resources */,
+				C9469C081B788516003E6A09 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9469C0E1B788516003E6A09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C9469BF71B788516003E6A09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9469C031B788516003E6A09 /* ViewController.swift in Sources */,
+				C9469C311B7887C4003E6A09 /* CVWrapper.mm in Sources */,
+				C9469C231B788525003E6A09 /* UIImage+OpenCV.mm in Sources */,
+				C9469C2E1B788791003E6A09 /* Camera.mm in Sources */,
+				C9469C011B788516003E6A09 /* AppDelegate.swift in Sources */,
+				C9469C351B788BBE003E6A09 /* stitching.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9469C0C1B788516003E6A09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9469C171B788516003E6A09 /* Test_OpenCV_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9469C121B788516003E6A09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9469BFA1B788516003E6A09 /* Test-OpenCV-iOS */;
+			targetProxy = C9469C111B788516003E6A09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C9469C041B788516003E6A09 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9469C051B788516003E6A09 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C9469C091B788516003E6A09 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9469C0A1B788516003E6A09 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C9469C181B788516003E6A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C9469C191B788516003E6A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C9469C1B1B788516003E6A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/ios,
+				);
+				INFOPLIST_FILE = "Test-OpenCV-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Test-OpenCV-iOS/Test-OpenCV-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C9469C1C1B788516003E6A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/ios,
+				);
+				INFOPLIST_FILE = "Test-OpenCV-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Test-OpenCV-iOS/Test-OpenCV-iOS-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		C9469C1E1B788516003E6A09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Test-OpenCV-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test-OpenCV-iOS.app/Test-OpenCV-iOS";
+			};
+			name = Debug;
+		};
+		C9469C1F1B788516003E6A09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Test-OpenCV-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test-OpenCV-iOS.app/Test-OpenCV-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9469BF61B788516003E6A09 /* Build configuration list for PBXProject "Test-OpenCV-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9469C181B788516003E6A09 /* Debug */,
+				C9469C191B788516003E6A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9469C1A1B788516003E6A09 /* Build configuration list for PBXNativeTarget "Test-OpenCV-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9469C1B1B788516003E6A09 /* Debug */,
+				C9469C1C1B788516003E6A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C9469C1D1B788516003E6A09 /* Build configuration list for PBXNativeTarget "Test-OpenCV-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9469C1E1B788516003E6A09 /* Debug */,
+				C9469C1F1B788516003E6A09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9469BF31B788516003E6A09 /* Project object */;
+}
