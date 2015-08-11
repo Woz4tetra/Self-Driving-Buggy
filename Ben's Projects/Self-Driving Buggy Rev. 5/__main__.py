@@ -40,13 +40,14 @@ def run():
     height, width = frame1.shape[0:2]
     position = [width / 2, height / 2]
 
-    tracker = camera.analyzers.SimilarFrameTracker(frame1)
+#    tracker = camera.analyzers.SimilarFrameTracker(frame1)
+    tracker = camera.analyzers.OpticalFlowTracker(frame1)
     
     while True:
         key = camera1.getPressedKey()
 
         if captureProperties['paused'] is False or captureProperties[
-            'currentFrame'] != camera1.currentFrameNumber():
+                'currentFrame'] != camera1.currentFrameNumber():
             frame1 = camera1.updateFrame()
 
             captureProperties['currentFrame'] = camera1.currentFrameNumber()

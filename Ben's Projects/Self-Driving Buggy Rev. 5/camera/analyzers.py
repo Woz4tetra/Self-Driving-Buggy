@@ -60,8 +60,8 @@ class OpticalFlowTracker(object):
                                    qualityLevel=0.3,
                                    minDistance=7,
                                    blockSize=7)
-        self.lk_params = dict(winSize=(15, 15),
-                              maxLevel=2,
+        self.lk_params = dict(winSize=(80, 80),
+                              maxLevel=5,
                               criteria=(
                                   cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,
                                   10, 0.03))
@@ -71,7 +71,8 @@ class OpticalFlowTracker(object):
         self.old_gray = cv2.cvtColor(self.old_frame, cv2.COLOR_BGR2GRAY)
         self.p0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None,
                                           **self.feature_params)
-
+        
+        self.benchmarkP0len = len(self.p0) / 2
         self.mask = numpy.zeros_like(self.old_frame)
 
     def update(self, frame):
@@ -87,17 +88,25 @@ class OpticalFlowTracker(object):
         good_old = self.p0[st == 1]
 
         # draw the tracks
-        for i, (new, old) in enumerate(zip(good_new, good_old)):
-            a, b = new.ravel()
-            c, d = old.ravel()
-            self.mask = cv2.line(self.mask, (a, b), (c, d),
-                                 self.color[i].tolist(), 2)
-            frame = cv2.circle(frame, (a, b), 5, self.color[i].tolist(), -1)
+#        for i, (new, old) in enumerate(zip(good_new, good_old)):
+#            a, b = new.ravel()
+#            c, d = old.ravel()
+#            self.mask = cv2.line(self.mask, (a, b), (c, d),
+#                                 self.color[i].tolist(), 2)
+#            frame = cv2.circle(frame, (a, b), 5, self.color[i].tolist(), -1)
+        for i, new in enumerate(good_new):
+            new = int(new[0]), int(new[1])
+            frame = cv2.circle(frame, new, 5, self.color[i].tolist(), -1)
 
         self.old_gray = frame_gray.copy()
         self.p0 = good_new.reshape(-1, 1, 2)
+        
+        if len(self.p0) < self.benchmarkP0len:
+            newP0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None,
+                                            **self.feature_params)
+            self.p0 = numpy.append(self.p0, newP0, axis=0)[:100]
 
-        return cv2.add(frame, self.mask)
+        return cv2.add(frame, self.mask), (0, 0)
 
 
 class SimilarFrameTracker(object):
