@@ -170,9 +170,6 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
         self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
 
-        self.currentFrame = 0
-        self.setFrame(self.currentFrame)
-
         if self.dimensions[0] is None:
             self.dimensions[0] = 0
         if self.dimensions[1] is None:
@@ -309,10 +306,17 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         print "video loaded!"
 
         self.cameraFPS = self.camera.get(cv2.CAP_PROP_FPS)
+        self.lenVideoFrames = int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT))
+        self.videoLength_sec = self.lenVideoFrames / self.cameraFPS
+        self.singleFrame_sec = 1.0 / (self.cameraFPS * 1000)
+
+        print "\tfps:", self.cameraFPS
+        print "\tlength (sec):", self.videoLength_sec
+        print "\tlength (frames):", self.lenVideoFrames
 
         cv2.createTrackbar(self.trackbarName, self.windowName, 0,
-                           int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT)),
-                           self.onSlider)
+                           # int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT)),
+                           self.lenVideoFrames, self.onSlider)
 
     def findClosestRes(self, sizeByFPS):
         '''
@@ -353,8 +357,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if frameNumber >= self.camera.get(cv2.CAP_PROP_FRAME_COUNT):
             frameNumber = 0
         if type(self.camSource) == str and frameNumber >= 0:
-            self.currentFrame = frameNumber
-            self.camera.set(cv2.CAP_PROP_POS_FRAMES, self.currentFrame)
+            self.camera.set(cv2.CAP_PROP_POS_FRAMES, frameNumber)
 
     def incrementFrame(self):
         '''
@@ -362,7 +365,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         :return: None
         '''
-        self.setFrame(self.currentFrame + 1)
+        currentFrame = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
+        self.setFrame(currentFrame + 1.8)
 
     def decrementFrame(self):
         '''
@@ -370,7 +374,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         :return: None
         '''
-        self.setFrame(self.currentFrame - 1)
+        currentFrame = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
+        self.setFrame(currentFrame - 1.8)
 
     def saveFrame(self, frame):
         '''
@@ -381,11 +386,10 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :return: None
         '''
         name = time.strftime("%c").replace(":", "_") + ".png"
-        cv2.imwrite(projectDir + "/Images/" + name,frame)
+        cv2.imwrite(projectDir + "/Images/" + name, frame)
 
         print "Frame saved as " + str(name)
         print "in directory:\n" + projectDir + "/Images/"
-
 
     def increaseFPS(self):
         '''
@@ -429,7 +433,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :return: None
         '''
         if frameIndex != self.currentFrameNumber():
-            self.camera.set(cv2.CAP_PROP_POS_FRAMES, frameIndex)
+            self.setFrame(frameIndex)
             self.showFrame(self.updateFrame(False))
 
     def getPressedKey(self, delay=1):
@@ -546,7 +550,6 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         if readNextFrame is False:
             self.decrementFrame()
-
         success, frame = self.camera.read()
         if success is False or frame is None:
             if type(self.camSource) == int:
@@ -563,7 +566,6 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             x0, y0, x1, y1 = self.dimensions
             frame = frame[y0:y1, x0:x1]
 
-        # if readNextFrame is True:
         if type(self.camSource) == str:
             cv2.setTrackbarPos(self.trackbarName, self.windowName,
                                int(self.camera.get(

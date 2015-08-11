@@ -71,11 +71,11 @@ class OpticalFlowTracker(object):
         self.old_gray = cv2.cvtColor(self.old_frame, cv2.COLOR_BGR2GRAY)
         self.p0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None,
                                           **self.feature_params)
-        
+
         self.benchmarkP0len = len(self.p0) / 2
         self.mask = numpy.zeros_like(self.old_frame)
 
-    def update(self, frame):
+    def update(self, frame, enableDraw=True):
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # calculate optical flow
@@ -88,25 +88,27 @@ class OpticalFlowTracker(object):
         good_old = self.p0[st == 1]
 
         # draw the tracks
-#        for i, (new, old) in enumerate(zip(good_new, good_old)):
-#            a, b = new.ravel()
-#            c, d = old.ravel()
-#            self.mask = cv2.line(self.mask, (a, b), (c, d),
-#                                 self.color[i].tolist(), 2)
-#            frame = cv2.circle(frame, (a, b), 5, self.color[i].tolist(), -1)
-        for i, new in enumerate(good_new):
-            new = int(new[0]), int(new[1])
-            frame = cv2.circle(frame, new, 5, self.color[i].tolist(), -1)
+        #        for i, (new, old) in enumerate(zip(good_new, good_old)):
+        #            a, b = new.ravel()
+        #            c, d = old.ravel()
+        #            self.mask = cv2.line(self.mask, (a, b), (c, d),
+        #                                 self.color[i].tolist(), 2)
+        #            frame = cv2.circle(frame, (a, b), 5, self.color[i].tolist(), -1)
+        if enableDraw == True:
+            for i, new in enumerate(good_new):
+                new = int(new[0]), int(new[1])
+                frame = cv2.circle(frame, new, 5, self.color[i].tolist(), -1)
 
         self.old_gray = frame_gray.copy()
         self.p0 = good_new.reshape(-1, 1, 2)
-        
+
         if len(self.p0) < self.benchmarkP0len:
             newP0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None,
                                             **self.feature_params)
             self.p0 = numpy.append(self.p0, newP0, axis=0)[:100]
 
-        return cv2.add(frame, self.mask), (0, 0)
+        return cv2.add(frame, self.mask), tuple(
+            numpy.median(good_new - good_old, axis=0))
 
 
 class SimilarFrameTracker(object):
@@ -130,7 +132,7 @@ class SimilarFrameTracker(object):
         y = quad[:, 1]
         return numpy.average(x), numpy.average(y)
 
-    def update(self, frame):
+    def update(self, frame, enableDraw=True):
         tracked = self.tracker.track(frame)
 
         if len(tracked) == 0:
@@ -140,26 +142,51 @@ class SimilarFrameTracker(object):
             return frame, (0, 0)
         else:
             found = tracked[0]
-            # color = found.quad[0][0] % 256, found.quad[0][1] % 256, \
-            #         found.quad[1][0] % 256
-            # cv2.polylines(frame, [numpy.int32(found.quad)], True, color,
-            #               2)
-            # for (x, y) in numpy.int32(found.p1):
-            #     cv2.circle(frame, (x, y), 4, color, 2)
-
             centroid = self.centroid(found.quad)
-            # cv2.circle(frame, centroid, 4, color, 2)
-            # cv2.rectangle(frame, (self.x_boundary[0], self.y_boundary[0]),
-            #               (self.x_boundary[1], self.y_boundary[1]), color)
+            if enableDraw == True:
+                color = found.quad[0][0] % 256, found.quad[0][1] % 256, \
+                        found.quad[1][0] % 256
+                cv2.polylines(frame, [numpy.int32(found.quad)], True, color,
+                              2)
+                for (x, y) in numpy.int32(found.p1):
+                    cv2.circle(frame, (x, y), 4, color, 2)
 
-            delta = self.width / 2 - centroid[0], self.height / 2 - centroid[1]
+                cv2.circle(frame, centroid, 4, color, 2)
+                cv2.rectangle(frame, (self.x_boundary[0], self.y_boundary[0]),
+                              (self.x_boundary[1], self.y_boundary[1]), color)
+
+            delta = [self.width / 2 - centroid[0],
+                     self.height / 2 - centroid[1]]
+            # if abs(delta[0]) < 1.0:
+            #     delta[0] = 0
+            # if abs(delta[1]) < 1.0:
+            #     delta[1] = 0
+            # print(delta)
             self.tracker.clear()
             self.tracker.add_target(frame)
 
             return frame, delta
 
-def drawPosition(frame, width, height, position):
+
+# class MinMaxTracker(object):
+#     def __init__(self, initialFrame):
+
+def drawMinMax(frame):
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+
+    color = numpy.array([numpy.random.randint(0, 255),
+                         numpy.random.randint(0, 255),
+                         numpy.random.randint(0, 255)])
+    frame = cv2.circle(frame, max_loc, 4, color, 2)
+    frame = cv2.circle(frame, min_loc, 4, 255 - color, 2)
+    return frame
+
+
+def drawPosition(frame, width, height, position, reverse=True):
     color = position[0] % 256, position[1] % 256, \
             numpy.random.randint(0, 255)
-    position = width - int(position[0]), height - int(position[1])
+    if reverse == True:
+        position = width - int(position[0]), height - int(position[1])
+    else:
+        position = int(position[0]), int(position[1])
     return cv2.circle(frame, position, 4, color, 2)
