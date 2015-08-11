@@ -1,8 +1,10 @@
-import numpy
-import cv2
 import bisect
 
+import numpy
+import cv2
+
 from PlaneTracker import PlaneTracker
+
 
 def contrast(image, scale):
     # mask = numpy.ones_like(image, dtype=numpy.float32) * scale
@@ -36,17 +38,21 @@ def getSignificantContours(frame, epsilon=None):
 
     return significantContours
 
+
 def drawContours(frame):
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # edges = cv2.threshold(frame_gray, 128, 255, cv2.THRESH_BINARY_INV)[1]
-    threshVal, edges = cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    threshVal, edges = cv2.threshold(frame_gray, 0, 255,
+                                     cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
     contours = getSignificantContours(edges, 0.001)[-3:]
     return cv2.drawContours(frame, contours, -1, (255, 100, 100), 2)
 
+
 def blur(frame, size):
     # return cv2.GaussianBlur(frame, (size, size), 0)
     return cv2.medianBlur(frame, size)
+
 
 class OpticalFlowTracker(object):
     def __init__(self, initialFrame):
@@ -57,13 +63,14 @@ class OpticalFlowTracker(object):
         self.lk_params = dict(winSize=(15, 15),
                               maxLevel=2,
                               criteria=(
-                              cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,
-                              10, 0.03))
+                                  cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,
+                                  10, 0.03))
         self.color = numpy.random.randint(0, 255, (100, 3))
 
         self.old_frame = initialFrame
         self.old_gray = cv2.cvtColor(self.old_frame, cv2.COLOR_BGR2GRAY)
-        self.p0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None, **self.feature_params)
+        self.p0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None,
+                                          **self.feature_params)
 
         self.mask = numpy.zeros_like(self.old_frame)
 
@@ -71,7 +78,8 @@ class OpticalFlowTracker(object):
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # calculate optical flow
-        p1, st, err = cv2.calcOpticalFlowPyrLK(self.old_gray, frame_gray, self.p0, None,
+        p1, st, err = cv2.calcOpticalFlowPyrLK(self.old_gray, frame_gray,
+                                               self.p0, None,
                                                **self.lk_params)
 
         # Select good points
@@ -82,7 +90,8 @@ class OpticalFlowTracker(object):
         for i, (new, old) in enumerate(zip(good_new, good_old)):
             a, b = new.ravel()
             c, d = old.ravel()
-            self.mask = cv2.line(self.mask, (a, b), (c, d), self.color[i].tolist(), 2)
+            self.mask = cv2.line(self.mask, (a, b), (c, d),
+                                 self.color[i].tolist(), 2)
             frame = cv2.circle(frame, (a, b), 5, self.color[i].tolist(), -1)
 
         self.old_gray = frame_gray.copy()
@@ -90,23 +99,58 @@ class OpticalFlowTracker(object):
 
         return cv2.add(frame, self.mask)
 
+
 class SimilarFrameTracker(object):
     def __init__(self, initialFrame):
+        self.height, self.width = initialFrame.shape[0:2]
+
+        boundary = 1.0 / 3
+        self.x_boundary = int(self.width * boundary), int(
+            (1 - boundary) * self.width)
+        self.y_boundary = int(self.height * boundary), int(
+            (1 - boundary) * self.height)
+
         self.tracker = PlaneTracker()
 
         self.tracker.clear()
         self.tracker.add_target(initialFrame)
 
+    @staticmethod
+    def centroid(quad):
+        x = quad[:, 0]
+        y = quad[:, 1]
+        return numpy.average(x), numpy.average(y)
+
     def update(self, frame):
         tracked = self.tracker.track(frame)
-        for found in tracked:
-            cv2.polylines(frame, [numpy.int32(found.quad)], True, (255, 255, 255),
-                          2)
-            for (x, y) in numpy.int32(found.p1):
-                cv2.circle(frame, (x, y), 4, (255, 255, 255), 2)
+
         if len(tracked) == 0:
             self.tracker.clear()
             self.tracker.add_target(frame)
-        # else:
-        #     print(tracked[0].quad)
-        return frame
+
+            return frame, (0, 0)
+        else:
+            found = tracked[0]
+            # color = found.quad[0][0] % 256, found.quad[0][1] % 256, \
+            #         found.quad[1][0] % 256
+            # cv2.polylines(frame, [numpy.int32(found.quad)], True, color,
+            #               2)
+            # for (x, y) in numpy.int32(found.p1):
+            #     cv2.circle(frame, (x, y), 4, color, 2)
+
+            centroid = self.centroid(found.quad)
+            # cv2.circle(frame, centroid, 4, color, 2)
+            # cv2.rectangle(frame, (self.x_boundary[0], self.y_boundary[0]),
+            #               (self.x_boundary[1], self.y_boundary[1]), color)
+
+            delta = self.width / 2 - centroid[0], self.height / 2 - centroid[1]
+            self.tracker.clear()
+            self.tracker.add_target(frame)
+
+            return frame, delta
+
+def drawPosition(frame, width, height, position):
+    color = position[0] % 256, position[1] % 256, \
+            numpy.random.randint(0, 255)
+    position = width - int(position[0]), height - int(position[1])
+    return cv2.circle(frame, position, 4, color, 2)

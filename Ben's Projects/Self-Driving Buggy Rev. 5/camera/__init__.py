@@ -230,7 +230,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         video.set(cv2.CAP_PROP_FRAME_HEIGHT, 450)
 
         while True:
-            key = self.getPressedKey(5)
+            key = self.getPressedKey(1)
             if key == "left":
                 print "Loading camera. Please wait..."
                 video, capture = updateCapture(windowName, video, capture,
@@ -479,7 +479,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         return self.camera.get(cv2.CAP_PROP_FPS)
 
     def initVideoWriter(self, fps=23, name="", includeTimestamp=True,
-                        format='mp4v'):
+                        codec='mp4v', format='m4v'):
         '''
         Initialize the Capture's video writer.
 
@@ -491,7 +491,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 automatically be inserted
         :param includeTimestamp: An optional parameter specifying whether the
                 time should be included. True by default
-        :param format: The output video format. mp4v is recommended
+        :param codec: The output video codec. mp4v is recommended
         :return: None
         '''
         videoName = name
@@ -500,7 +500,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if name == "" or includeTimestamp == True:
             videoName += time.strftime("%c").replace(":", ";") + "." + format
 
-        fourcc = cv2.VideoWriter_fourcc(*format)
+        fourcc = cv2.VideoWriter_fourcc(*codec)
         self.video = cv2.VideoWriter()
         self.video.open(projectDir + "/Videos/" + videoName, fourcc, fps,
                         (int(self.dimensions[2] - self.dimensions[0]),
