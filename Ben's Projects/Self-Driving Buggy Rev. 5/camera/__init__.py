@@ -51,7 +51,7 @@ class Capture(object):
 
     def __init__(self, windowName=None, camSource=None, width=None, height=None,
                  sizeByFPS=None, cameraType=None, crop=(None,) * 4,
-                 autoSelectSource=False):
+                 autoSelectSource=False, frameSkip=0, loopVideo=True):
         '''
         The initializer for an opencv camera object. It holds all the methods
         required to read and write from a camera.
@@ -105,6 +105,8 @@ class Capture(object):
                             (0, 0, width, height)
         :param autoSelectSource: If True, Capture will launch the Camera
                 Selector mini application. Follow its instructions when prompted.
+        :param frameSkip:
+        :param loopVideo:
         '''
         time1 = time.time()
 
@@ -119,6 +121,8 @@ class Capture(object):
         self.trackbarName = "Frame"
         self.dimensions = list(crop)
         self.video = None
+        self.frameSkip = frameSkip
+        self.loopVideo = loopVideo
 
         cameraType = cameraType if cameraType is not None else "logitech"
         try:
@@ -547,17 +551,26 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if self.isRunning is False:
             self.stopCamera()
             return
-
         if readNextFrame is False:
             self.decrementFrame()
+        if self.frameSkip > 0:
+            # while int(
+            #         self.camera.get(cv2.CAP_PROP_POS_FRAMES)) % self.frameSkip:
+            #     self.camera.grab()
+                # print "skipping frame", self.frameSkip, int(self.camera.get(cv2.CAP_PROP_POS_FRAMES))
+            current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
+            self.camera.set(cv2.CAP_PROP_POS_FRAMES, current + self.frameSkip)
+
         success, frame = self.camera.read()
         if success is False or frame is None:
             if type(self.camSource) == int:
                 raise Exception("Failed to read from camera!")
-            else:
+            elif self.loopVideo == True:
                 self.setFrame(0)
                 while success is False or frame is None:
                     success, frame = self.camera.read()
+            else:
+                quit()
         if frame.shape[0:2] != (self.height, self.width):
             frame = cv2.resize(frame, (self.width, self.height),
                                interpolation=cv2.INTER_NEAREST)

@@ -56,11 +56,12 @@ def blur(frame, size):
 
 class OpticalFlowTracker(object):
     def __init__(self, initialFrame):
+        height, width = initialFrame.shape[0:2]
         self.feature_params = dict(maxCorners=100,
                                    qualityLevel=0.3,
                                    minDistance=7,
                                    blockSize=7)
-        self.lk_params = dict(winSize=(80, 80),
+        self.lk_params = dict(winSize=(width, height),
                               maxLevel=5,
                               criteria=(
                                   cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,
@@ -134,7 +135,6 @@ class SimilarFrameTracker(object):
 
     def update(self, frame, enableDraw=True):
         tracked = self.tracker.track(frame)
-
         if len(tracked) == 0:
             self.tracker.clear()
             self.tracker.add_target(frame)

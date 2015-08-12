@@ -20,9 +20,11 @@ def run():
     #                          )
     camera1 = camera.Capture(windowName="camera",
                              camSource="IMG_0582.m4v",
-                             # camSource="Sun Jul 26 13;22;56 2015.mp4v",
-                             # width=640, height=360,
+                             # camSource="Sun Jul 26 13;21;49 2015.m4v",
+                             width=640, height=360,
                              # width=427, height=240
+                             # frameSkip=5,
+                             loopVideo=False,
                              )
 
 
@@ -51,21 +53,21 @@ def run():
 
         if captureProperties['paused'] is False or captureProperties[
             'currentFrame'] != camera1.currentFrameNumber():
-            time1 = time.time()
+            # time1 = time.time()
             frame1 = camera1.updateFrame()
-            print "update:", time.time() - time1
+            # print "update:", time.time() - time1
 
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
-                frame1, delta = tracker.update(frame1, captureProperties['enableDraw'])
+                frame1, delta = tracker.update(frame1, False)
                 position[0] += delta[0]
                 position[1] += delta[1]
-                # print(position)
+                print "%s\t%s" % (position[0], position[1]),
 
                 if captureProperties['enableDraw'] is True:
                     frame1 = camera.analyzers.drawPosition(frame1, width, height,
-                                                           position, False)
+                                                           position, reverse=False)
 
             if captureProperties['writeVideo'] == True:
                 camera1.writeToVideo(frame1)
@@ -74,9 +76,9 @@ def run():
                 camera1.showFrame(frame1)
 
         if captureProperties['enableDraw'] is True:
-            time2 = time.time()
+            # time2 = time.time()
             key = camera1.getPressedKey()
-            print "key:", time.time() - time2
+            # print "key:", time.time() - time2
 
             if key == 'q' or key == "esc":
                 camera1.stopCamera()
@@ -115,7 +117,7 @@ def run():
             elif key == 'p':
                 position = [width / 2, height / 2]
 
-        print "loop:", time.time() - time0
+        print time.time() - time0, camera1.currentFrameNumber()
 
 
 if __name__ == '__main__':
