@@ -5,9 +5,6 @@ import camera
 import camera.analyzers
 import arduino
 
-import thread
-import time
-
 
 def run():
     arduino.initBoard(disabled=True, sketchDir="arduino/Serial Box")
@@ -19,12 +16,11 @@ def run():
     #                          camSource=1
     #                          )
     camera1 = camera.Capture(windowName="camera",
-                             camSource="IMG_0582.m4v",
-                             # camSource="Sun Jul 26 13;21;49 2015.m4v",
+                             camSource="",
                              width=640, height=360,
                              # width=427, height=240
                              # frameSkip=5,
-                             loopVideo=False,
+                             loopVideo=True,
                              )
 
 
@@ -32,9 +28,9 @@ def run():
     stepper = arduino.Stepper(1)
 
     captureProperties = dict(
-        paused=False,
+        paused=True,
         showOriginal=False,
-        enableDraw=False,
+        enableDraw=True,
         currentFrame=0,
         writeVideo=False,
     )
@@ -60,14 +56,17 @@ def run():
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
-                frame1, delta = tracker.update(frame1, False)
-                position[0] += delta[0]
-                position[1] += delta[1]
-                print "%s\t%s" % (position[0], position[1]),
+                # frame1, delta = tracker.update(frame1, False)
+                # position[0] += delta[0]
+                # position[1] += delta[1]
+                # print "%s\t%s" % (position[0], position[1]),
 
-                if captureProperties['enableDraw'] is True:
-                    frame1 = camera.analyzers.drawPosition(frame1, width, height,
-                                                           position, reverse=False)
+                # if captureProperties['enableDraw'] is True:
+                #     frame1 = camera.analyzers.drawPosition(frame1, width,
+                #                                            height,
+                #                                            position,
+                #                                            reverse=False)
+                frame1 = camera.analyzers.sobel_filter(frame1)
 
             if captureProperties['writeVideo'] == True:
                 camera1.writeToVideo(frame1)
@@ -117,7 +116,7 @@ def run():
             elif key == 'p':
                 position = [width / 2, height / 2]
 
-        print time.time() - time0, camera1.currentFrameNumber()
+        # print time.time() - time0, camera1.currentFrameNumber()
 
 
 if __name__ == '__main__':
