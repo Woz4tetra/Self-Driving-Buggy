@@ -15,16 +15,17 @@ def run():
     #                          camSource=1
     #                          )
     camera1 = camera.Capture(windowName="camera",
-                             camSource="Down camera, home street test 2, 120 fps.m4v",
+                             # camSource="Down camera, home street test 2, 120 fps.m4v",
+                             camSource="Tue Sep  1 13;09;34 2015.m4v",
                              # width=720, height=450,
                              width=427, height=240,
-                             frameSkip=15,
+                             # frameSkip=15,
                              loopVideo=True,
                              )
 
     captureProperties = dict(
         paused=True,
-        showOriginal=True,
+        showOriginal=False,
         enableDraw=True,
         currentFrame=0,
         writeVideo=False,
@@ -32,7 +33,7 @@ def run():
 
     # if captureProperties['paused'] == True:
     frame1 = camera1.updateFrame(readNextFrame=False)
-    frame1 = camera.analyzers.contrast(frame1, 1.5)
+    # frame1 = camera.analyzers.contrast(frame1, 1.5)
 
     height, width = frame1.shape[0:2]
     position = [width / 2, height / 2]
@@ -48,7 +49,8 @@ def run():
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
-                frame1 = camera.analyzers.contrast(frame1, 1.6)
+                # frame1 = camera.analyzers.contrast(frame1, 1.6)
+                # frame1 = camera.analyzers.sobel_filter(frame1)
                 frame1, delta = tracker.update(frame1, enableDraw=True)
                 position[0] += delta[0]
                 position[1] += delta[1]
@@ -59,9 +61,6 @@ def run():
                                                            height,
                                                            position,
                                                            reverse=True)
-                # frame1 = camera.analyzers.sobel_filter(frame1)
-
-                # frame1 = camera.analyzers.filterOutNonRoad(frame1)
 
             if captureProperties['writeVideo'] == True:
                 camera1.writeToVideo(frame1)
@@ -103,6 +102,8 @@ def run():
                     camera1.stopVideo()
                 captureProperties['writeVideo'] = not captureProperties[
                     'writeVideo']
+            elif key == 'c':
+                position = [width / 2, height / 2]
 
 
 if __name__ == '__main__':

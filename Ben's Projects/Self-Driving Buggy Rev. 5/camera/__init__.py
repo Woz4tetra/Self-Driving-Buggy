@@ -49,9 +49,11 @@ class Capture(object):
         13: "enter"
     }
 
-    def __init__(self, windowName=None, camSource=None, width=None, height=None,
-                 sizeByFPS=None, cameraType=None, crop=(None,) * 4,
-                 autoSelectSource=False, frameSkip=0, loopVideo=True):
+    def __init__(self, windowName=None, camSource=None, autoSelectSource=False,
+                 width=None, height=None, crop=(None,) * 4,
+                 sizeByFPS=None, cameraType=None,
+                 frameSkip=0,
+                 loopVideo=True):
         '''
         The initializer for an opencv camera object. It holds all the methods
         required to read and write from a camera.
@@ -73,6 +75,9 @@ class Capture(object):
         :param width: Manually set a width for the capture. Capture will scale
                 the capture to this width if specified. I'd recommend sizeByFPS,
                 however, as it optimizes size to desired FPS for you.
+
+                Note: For videos, OpenCV's resize function is used. This can
+                cause a significant drop in fps
         :param height: Same as width except for height
         :param sizeByFPS: The desired FPS for the capture. The FPS for the
                 following cameras are implemented under the following names:
@@ -105,8 +110,9 @@ class Capture(object):
                             (0, 0, width, height)
         :param autoSelectSource: If True, Capture will launch the Camera
                 Selector mini application. Follow its instructions when prompted.
-        :param frameSkip:
-        :param loopVideo:
+        :param frameSkip: Number of frames to skip in a video or camera feed.
+                This works much better for videos than cameras.
+        :param loopVideo: Whether to loop a video when it ends or not
         '''
         time1 = time.time()
 
@@ -573,17 +579,19 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 while success is False or frame is None:
                     success, frame = self.camera.read()
             else:
-                quit()
-        if frame.shape[0:2] != (self.height, self.width):
-            frame = cv2.resize(frame, (self.width, self.height),
-                               interpolation=cv2.INTER_NEAREST)
+                quit()  # it's a video. quit the program
+
+        if type(self.camSource) == str:
+            if frame.shape[0:2] != (self.height, self.width):
+                frame = cv2.resize(frame, (self.width, self.height),
+                                   interpolation=cv2.INTER_NEAREST)
+
+            cv2.setTrackbarPos(self.trackbarName, self.windowName,
+                               int(self.camera.get(
+                                   cv2.CAP_PROP_POS_FRAMES)))
 
         if self.dimensions is not None:
             x0, y0, x1, y1 = self.dimensions
             frame = frame[y0:y1, x0:x1]
 
-        if type(self.camSource) == str:
-            cv2.setTrackbarPos(self.trackbarName, self.windowName,
-                               int(self.camera.get(
-                                   cv2.CAP_PROP_POS_FRAMES)))
         return frame
