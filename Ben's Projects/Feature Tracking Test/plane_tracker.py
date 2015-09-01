@@ -28,16 +28,18 @@ import cv2
 from collections import namedtuple
 
 # local modules
-import video
-import common
+# from AnalyzerHelpers import common
 
 
-FLANN_INDEX_KDTREE = 1
-FLANN_INDEX_LSH    = 6
-flann_params= dict(algorithm = FLANN_INDEX_LSH,
-                   table_number = 6, # 12
-                   key_size = 12,     # 20
-                   multi_probe_level = 1) #2
+FLANN_INDEX_KDTREE = 0
+FLANN_INDEX_LSH = 6
+flann_params = dict(algorithm=FLANN_INDEX_LSH,
+                    table_number=12,  # 6
+                    key_size=20,  # 12
+                    multi_probe_level=2)  # 1
+# flann_params = dict(algorithm=FLANN_INDEX_KDTREE,
+#                     trees=5)
+search_params = dict()
 
 MIN_MATCH_COUNT = 10
 
@@ -59,15 +61,21 @@ PlanarTarget = namedtuple('PlaneTarget', 'image, rect, keypoints, descrs, data')
 '''
 TrackedTarget = namedtuple('TrackedTarget', 'target, p0, p1, H, quad')
 
+
 class PlaneTracker:
     def __init__(self):
-        self.detector = cv2.ORB_create( nfeatures = 1000 )
-        self.matcher = cv2.FlannBasedMatcher(flann_params, {})  # bug : need to pass empty dict (#1329)
+        self.detector = cv2.ORB_create(nfeatures=1000)
+        self.matcher = cv2.FlannBasedMatcher(flann_params, search_params)
         self.targets = []
 
-    def add_target(self, image, rect, data=None):
+    def add_target(self, image, rect=None, data=None):
         '''Add a new tracking target.'''
-        x0, y0, x1, y1 = rect
+        if rect is not None:
+            x0, y0, x1, y1 = rect
+        else:
+            height, width = image.shape[0:2]
+            x0, y0, x1, y1 = 0, 0, width, height
+            rect = x0, y0, x1, y1
         raw_points, raw_descrs = self.detect_features(image)
         points, descs = [], []
         for kp, desc in zip(raw_points, raw_descrs):
@@ -77,7 +85,7 @@ class PlaneTracker:
                 descs.append(desc)
         descs = np.uint8(descs)
         self.matcher.add([descs])
-        target = PlanarTarget(image = image, rect=rect, keypoints = points, descrs=descs, data=data)
+        target = PlanarTarget(image=image, rect=rect, keypoints=points, descrs=descs, data=data)
         self.targets.append(target)
 
     def clear(self):
@@ -90,7 +98,8 @@ class PlaneTracker:
         self.frame_points, frame_descrs = self.detect_features(frame)
         if len(self.frame_points) < MIN_MATCH_COUNT:
             return []
-        matches = self.matcher.knnMatch(frame_descrs, k = 2)
+        matches = self.matcher.knnMatch(frame_descrs, k=2)
+
         matches = [m[0] for m in matches if len(m) == 2 and m[0].distance < m[1].distance * 0.75]
         if len(matches) < MIN_MATCH_COUNT:
             return []
@@ -117,63 +126,13 @@ class PlaneTracker:
 
             track = TrackedTarget(target=target, p0=p0, p1=p1, H=H, quad=quad)
             tracked.append(track)
-        tracked.sort(key = lambda t: len(t.p0), reverse=True)
+        tracked.sort(key=lambda t: len(t.p0), reverse=True)
         return tracked
 
     def detect_features(self, frame):
         '''detect_features(self, frame) -> keypoints, descrs'''
         keypoints, descrs = self.detector.detectAndCompute(frame, None)
-        if descrs is None:  # detectAndCompute returns descs=None if not keypoints found
+        if descrs is None:  # detectAndCompute returns descs=None if no keypoints found
             descrs = []
         return keypoints, descrs
 
-
-class App:
-    def __init__(self, src):
-        self.cap = video.create_capture(src)
-        self.frame = None
-        self.paused = False
-        self.tracker = PlaneTracker()
-
-        cv2.namedWindow('plane')
-        self.rect_sel = common.RectSelector('plane', self.on_rect)
-
-    def on_rect(self, rect):
-        self.tracker.add_target(self.frame, rect)
-
-    def run(self):
-        while True:
-            playing = not self.paused and not self.rect_sel.dragging
-            if playing or self.frame is None:
-                ret, frame = self.cap.read()
-                if not ret:
-                    break
-                self.frame = frame.copy()
-
-            vis = self.frame.copy()
-            if playing:
-                tracked = self.tracker.track(self.frame)
-                for tr in tracked:
-                    cv2.polylines(vis, [np.int32(tr.quad)], True, (255, 255, 255), 2)
-                    for (x, y) in np.int32(tr.p1):
-                        cv2.circle(vis, (x, y), 2, (255, 255, 255))
-
-            self.rect_sel.draw(vis)
-            cv2.imshow('plane', vis)
-            ch = cv2.waitKey(1) & 0xFF
-            if ch == ord(' '):
-                self.paused = not self.paused
-            if ch == ord('c'):
-                self.tracker.clear()
-            if ch == 27:
-                break
-
-if __name__ == '__main__':
-    print __doc__
-
-    import sys
-    try:
-        video_src = sys.argv[1]
-    except:
-        video_src = 0
-    App(video_src).run()

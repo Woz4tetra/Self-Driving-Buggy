@@ -486,7 +486,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         '''
         return self.camera.get(cv2.CAP_PROP_FPS)
 
-    def initVideoWriter(self, fps=23, name="", includeTimestamp=True,
+    def initVideoWriter(self, fps=30, name="", includeTimestamp=True,
                         codec='mp4v', format='m4v'):
         '''
         Initialize the Capture's video writer.
@@ -554,12 +554,15 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if readNextFrame is False:
             self.decrementFrame()
         if self.frameSkip > 0:
-            # while int(
-            #         self.camera.get(cv2.CAP_PROP_POS_FRAMES)) % self.frameSkip:
-            #     self.camera.grab()
-                # print "skipping frame", self.frameSkip, int(self.camera.get(cv2.CAP_PROP_POS_FRAMES))
-            current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
-            self.camera.set(cv2.CAP_PROP_POS_FRAMES, current + self.frameSkip)
+            if type(self.camSource) == str:
+                current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
+                self.camera.set(cv2.CAP_PROP_POS_FRAMES, current + self.frameSkip)
+            else:
+                while int(
+                        self.camera.get(
+                            cv2.CAP_PROP_POS_FRAMES)) % self.frameSkip:
+                    self.camera.grab()
+                    # print "skipping frame", self.frameSkip, int(self.camera.get(cv2.CAP_PROP_POS_FRAMES))
 
         success, frame = self.camera.read()
         if success is False or frame is None:

@@ -2,8 +2,617 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86d380aa-60f3-4143-9e23-88f021f47181" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Arduino.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/HardwareSerial.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/IPAddress.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/IPAddress.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/IPAddress.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/IPAddress.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Print.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Print.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Print.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Print.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Printable.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Reset.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Reset.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Reset.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Reset.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/RingBuffer.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/RingBuffer.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/RingBuffer.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/RingBuffer.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Stream.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Stream.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Stream.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Stream.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/Tone.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/UARTClass.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/UARTClass.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/UARTClass.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/UARTClass.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USARTClass.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USARTClass.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USARTClass.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USARTClass.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/CDC.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/CDC.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/CDC.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/HID.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/HID.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/HID.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/USBAPI.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/USBCore.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/USBCore.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/USBCore.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/USBCore.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/USB/USBDesc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WCharacter.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WInterrupts.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WInterrupts.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WInterrupts.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WInterrupts.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WMath.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WMath.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WMath.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WMath.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WString.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WString.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WString.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/WString.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/abi.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/abi.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/abi.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/avr/dtostrf.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/avr/dtostrf.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/avr/dtostrf.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/avr/dtostrf.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/avr/interrupt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/avr/pgmspace.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/binary.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/cortex_handlers.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/cortex_handlers.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/cortex_handlers.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/hooks.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/hooks.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/hooks.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/iar_calls_sam3.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/iar_calls_sam3.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/iar_calls_sam3.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/itoa.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/itoa.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/itoa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/itoa.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/main.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/main.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/main.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/new.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/new.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/new.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/syscalls.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/syscalls_sam3.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/syscalls_sam3.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/syscalls_sam3.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_analog.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_analog.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_analog.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_analog.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_constants.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_digital.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_digital.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_digital.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_digital.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_private.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_pulse.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_pulse.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_pulse.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_pulse.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_shift.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_shift.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_shift.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduino/wiring_shift.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduinoVariant/variant.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduinoVariant/variant.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduinoVariant/variant.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkArduinoVariant/variant.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkCMSISInc/core_cm3.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkCMSISInc/core_cm4.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkCMSISInc/core_cm4_simd.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkCMSISInc/core_cmFunc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkCMSISInc/core_cmInstr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_pdc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/component/component_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_pioa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_piob.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_pioc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_tc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_tc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_twi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_twi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_uart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_uart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_usart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_usart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/instance/instance_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n00a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n00b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n0a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n0b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n0c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n1a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n1b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n1c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n2a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n2b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n2c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n4a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n4b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/pio/pio_sam3n4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n00a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n00b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n0a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n0b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n0c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n1a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n1b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n1c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n2a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n2b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n2c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n4a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n4b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/sam3n4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3n/include/system_sam3n.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_acc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_crccu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_pdc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_udp.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/component/component_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_acc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_crccu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_pioa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_piob.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_pioc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_tc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_tc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_twi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_twi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_uart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_uart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_udp.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_usart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_usart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/instance/instance_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s1a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s1b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s1c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s2a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s2b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s2c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s4a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s4b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/pio/pio_sam3s4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s1a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s1b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s1c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s2a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s2b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s2c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s4a.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s4b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/sam3s4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3s/include/system_sam3s.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_acc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_crccu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_pdc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_udp.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/component/component_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_acc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_crccu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_pioa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_piob.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_pioc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_tc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_tc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_twi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_twi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_uart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_uart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_udp.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_usart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_usart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_usart2.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/instance/instance_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/pio/pio_sam3s8b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/pio/pio_sam3s8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/pio/pio_sam3sd8b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/pio/pio_sam3sd8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/sam3s8b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/sam3s8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/sam3sd8.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/sam3sd8b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/sam3sd8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3sd8/include/system_sam3sd8.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_adc12b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_dmac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_pdc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_udphs.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/component/component_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_adc12b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_dmac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_efc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_efc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_pioa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_piob.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_pioc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_tc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_twi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_twi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_udphs.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_usart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_usart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_usart2.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_usart3.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/instance/instance_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/pio/pio_sam3u1c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/pio/pio_sam3u1e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/pio/pio_sam3u2c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/pio/pio_sam3u2e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/pio/pio_sam3u4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/pio/pio_sam3u4e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u1c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u1e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u2c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u2e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/sam3u4e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3u/include/system_sam3u.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_can.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_dmac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_emac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_pdc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_sdramc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_trng.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_uotghs.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/component/component_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_can0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_can1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_dmac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_efc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_efc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_emac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_pioa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_piob.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_pioc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_piod.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_pioe.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_piof.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_sdramc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_spi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_spi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_tc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_tc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_tc2.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_trng.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_twi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_twi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_uotghs.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_usart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_usart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_usart2.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_usart3.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/instance/instance_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3a4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3a8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3x4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3x4e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3x8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3x8e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/pio/pio_sam3x8h.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3a4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3a8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3x4c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3x4e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3x8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3x8e.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3x8h.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/sam3xa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam3xa/include/system_sam3xa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_acc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_crccu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_pdc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_uart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_udp.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/component/component_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_acc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_chipid.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_crccu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_hsmci.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_matrix.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_pioa.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_piob.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_pioc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_pwm.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_smc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_supc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_tc0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_tc1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_twi0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_twi1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_uart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_uart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_udp.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_usart0.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_usart1.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/instance/instance_wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/pio/pio_sam4s16b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/pio/pio_sam4s16c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/pio/pio_sam4s8b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/pio/pio_sam4s8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/sam4s.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/sam4s16b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/sam4s16c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/sam4s8b.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/sam4s8c.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkDeviceInc/sam4s/include/system_sam4s.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/chip.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/USB_device.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/USB_host.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/_spi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/adc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/can.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/dacc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/efc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/emac.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/gpbr.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/interrupt_sam_nvic.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/pio.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/pmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/pwmc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/rstc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/rtc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/rtt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/ssc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/tc.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/timetick.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/trng.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/twi.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/uotghs_device.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/uotghs_host.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/usart.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/FrameworkLibSam/include/wdt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/firmware.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/firmware.elf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/libFrameworkArduino.a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/libFrameworkArduinoVariant.a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/src/tmp_ino_to.d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/due/src/tmp_ino_to.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.pioenvs/structure.hash" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/.sconsign.dblite" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/platformio.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/Board/src/thing.ino" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/thing1.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Elyce's Projects/Sorry Attempt From Scratch/thing2.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/__init__.py" afterPath="$PROJECT_DIR$/camera/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__main__.py" afterPath="$PROJECT_DIR$/__main__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/analyzers.py" afterPath="$PROJECT_DIR$/camera/analyzers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Libraries/opencv-3.0.0 samples/plane_tracker.py" afterPath="$PROJECT_DIR$/../../Libraries/opencv-3.0.0 samples/plane_tracker.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../PyBoard Test/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../PyBoard Test/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Self-Driving Buggy Rev. 4.iws" />
@@ -29,7 +638,7 @@
         <entry file="file://$PROJECT_DIR$/__main__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+              <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -37,50 +646,74 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/camera/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.4693878">
+              <caret line="562" column="71" selection-start-line="562" selection-start-column="71" selection-end-line="562" selection-end-column="71" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#1236#4225#1" expanded="false" />
+                <element signature="e#7235#9772#0" expanded="false" />
+                <element signature="e#7235#7523#1" expanded="false" />
+                <element signature="e#7977#8455#0" expanded="false" />
+                <element signature="e#9813#10846#0" expanded="false" />
+                <element signature="e#9813#10039#1" expanded="false" />
+                <element signature="e#10891#11340#0" expanded="false" />
+                <element signature="e#10891#11097#1" expanded="false" />
+                <element signature="e#11386#12201#0" expanded="false" />
+                <element signature="e#12252#12919#0" expanded="false" />
+                <element signature="e#12252#12561#1" expanded="false" />
+                <element signature="e#12955#13195#0" expanded="false" />
+                <element signature="e#12955#13066#1" expanded="false" />
+                <element signature="e#13242#13646#0" expanded="false" />
+                <element signature="e#13242#13422#1" expanded="false" />
+                <element signature="e#13686#13900#0" expanded="false" />
+                <element signature="e#13686#13794#1" expanded="false" />
+                <element signature="e#13940#14154#0" expanded="false" />
+                <element signature="e#13940#14048#1" expanded="false" />
+                <element signature="e#14196#14616#0" expanded="false" />
+                <element signature="e#14196#14392#1" expanded="false" />
+                <element signature="e#14653#15320#0" expanded="false" />
+                <element signature="e#14653#14982#1" expanded="false" />
+                <element signature="e#15384#15796#0" expanded="false" />
+                <element signature="e#15384#15545#1" expanded="false" />
+                <element signature="e#15842#16181#0" expanded="false" />
+                <element signature="e#15842#16039#1" expanded="false" />
+                <element signature="e#16229#16845#0" expanded="false" />
+                <element signature="e#16229#16641#1" expanded="false" />
+                <element signature="e#16887#17153#0" expanded="false" />
+                <element signature="e#16887#17110#1" expanded="false" />
+                <element signature="e#17197#17404#0" expanded="false" />
+                <element signature="e#17197#17343#1" expanded="false" />
+                <element signature="e#17441#17638#0" expanded="false" />
+                <element signature="e#17441#17589#1" expanded="false" />
+                <element signature="e#17771#19064#0" expanded="false" />
+                <element signature="e#17771#18457#1" expanded="false" />
+                <element signature="e#19109#19414#0" expanded="false" />
+                <element signature="e#19109#19382#1" expanded="false" />
+                <element signature="e#19449#19726#0" expanded="false" />
+                <element signature="e#19449#19588#1" expanded="false" />
+                <element signature="e#19783#20145#1" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="analyzers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="analyzers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/camera/analyzers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45918366">
-              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
               <folding>
-                <element signature="e#112#243#0" expanded="false" />
-                <element signature="e#299#1406#0" expanded="false" />
-                <element signature="e#299#697#1" expanded="false" />
+                <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#1438#1828#0" expanded="false" />
                 <element signature="e#1858#1946#0" expanded="false" />
-                <element signature="e#1977#2280#0" expanded="false" />
-                <element signature="e#2320#4766#0" expanded="false" />
-                <element signature="e#2362#3275#0" expanded="false" />
-                <element signature="e#3331#4766#0" expanded="false" />
-                <element signature="e#4808#6683#0" expanded="false" />
-                <element signature="e#4850#5244#0" expanded="false" />
-                <element signature="e#5296#5383#0" expanded="false" />
-                <element signature="e#5439#6683#0" expanded="false" />
-                <element signature="e#6782#7167#0" expanded="false" />
-                <element signature="e#7238#7537#0" expanded="false" />
+                <element signature="e#2364#3277#0" expanded="false" />
+                <element signature="e#3333#4768#0" expanded="false" />
+                <element signature="e#5294#5381#0" expanded="false" />
+                <element signature="e#6780#7174#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlaneTracker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/camera/PlaneTracker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="73" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="73" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -118,9 +751,9 @@
         <option value="$PROJECT_DIR$/arduino/__init__.py" />
         <option value="$PROJECT_DIR$/arduino/sanity.py" />
         <option value="$PROJECT_DIR$/camera/PlaneTracker.py" />
-        <option value="$PROJECT_DIR$/camera/__init__.py" />
         <option value="$PROJECT_DIR$/camera/analyzers.py" />
         <option value="$PROJECT_DIR$/__main__.py" />
+        <option value="$PROJECT_DIR$/camera/__init__.py" />
       </list>
     </option>
   </component>
@@ -174,6 +807,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,7 +842,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -467,7 +1100,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -476,7 +1109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -509,21 +1141,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#112#243#0" expanded="false" />
-            <element signature="e#299#1406#0" expanded="false" />
-            <element signature="e#299#697#1" expanded="false" />
+            <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1438#1828#0" expanded="false" />
             <element signature="e#1858#1946#0" expanded="false" />
-            <element signature="e#1977#2280#0" expanded="false" />
-            <element signature="e#2320#4766#0" expanded="false" />
-            <element signature="e#2362#3275#0" expanded="false" />
-            <element signature="e#3331#4766#0" expanded="false" />
-            <element signature="e#4808#6683#0" expanded="false" />
-            <element signature="e#4850#5244#0" expanded="false" />
-            <element signature="e#5296#5383#0" expanded="false" />
-            <element signature="e#5439#6683#0" expanded="false" />
-            <element signature="e#6782#7167#0" expanded="false" />
-            <element signature="e#7238#7537#0" expanded="false" />
+            <element signature="e#2364#3277#0" expanded="false" />
+            <element signature="e#3333#4768#0" expanded="false" />
+            <element signature="e#5294#5381#0" expanded="false" />
+            <element signature="e#6780#7174#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -571,21 +1195,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#112#243#0" expanded="false" />
-            <element signature="e#299#1406#0" expanded="false" />
-            <element signature="e#299#697#1" expanded="false" />
+            <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1438#1828#0" expanded="false" />
             <element signature="e#1858#1946#0" expanded="false" />
-            <element signature="e#1977#2280#0" expanded="false" />
-            <element signature="e#2320#4766#0" expanded="false" />
-            <element signature="e#2362#3275#0" expanded="false" />
-            <element signature="e#3331#4766#0" expanded="false" />
-            <element signature="e#4808#6683#0" expanded="false" />
-            <element signature="e#4850#5244#0" expanded="false" />
-            <element signature="e#5296#5383#0" expanded="false" />
-            <element signature="e#5439#6683#0" expanded="false" />
-            <element signature="e#6782#7167#0" expanded="false" />
-            <element signature="e#7238#7537#0" expanded="false" />
+            <element signature="e#2364#3277#0" expanded="false" />
+            <element signature="e#3333#4768#0" expanded="false" />
+            <element signature="e#5294#5381#0" expanded="false" />
+            <element signature="e#6780#7174#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -626,21 +1242,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding>
-            <element signature="e#112#243#0" expanded="false" />
-            <element signature="e#299#1406#0" expanded="false" />
-            <element signature="e#299#697#1" expanded="false" />
+            <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1438#1828#0" expanded="false" />
             <element signature="e#1858#1946#0" expanded="false" />
-            <element signature="e#1977#2280#0" expanded="false" />
-            <element signature="e#2320#4766#0" expanded="false" />
-            <element signature="e#2362#3275#0" expanded="false" />
-            <element signature="e#3331#4766#0" expanded="false" />
-            <element signature="e#4808#6683#0" expanded="false" />
-            <element signature="e#4850#5244#0" expanded="false" />
-            <element signature="e#5296#5383#0" expanded="false" />
-            <element signature="e#5439#6683#0" expanded="false" />
-            <element signature="e#6782#7167#0" expanded="false" />
-            <element signature="e#7238#7537#0" expanded="false" />
+            <element signature="e#2364#3277#0" expanded="false" />
+            <element signature="e#3333#4768#0" expanded="false" />
+            <element signature="e#5294#5381#0" expanded="false" />
+            <element signature="e#6780#7174#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -681,21 +1289,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding>
-            <element signature="e#112#243#0" expanded="false" />
-            <element signature="e#299#1406#0" expanded="false" />
-            <element signature="e#299#697#1" expanded="false" />
+            <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1438#1828#0" expanded="false" />
             <element signature="e#1858#1946#0" expanded="false" />
-            <element signature="e#1977#2280#0" expanded="false" />
-            <element signature="e#2320#4766#0" expanded="false" />
-            <element signature="e#2362#3275#0" expanded="false" />
-            <element signature="e#3331#4766#0" expanded="false" />
-            <element signature="e#4808#6683#0" expanded="false" />
-            <element signature="e#4850#5244#0" expanded="false" />
-            <element signature="e#5296#5383#0" expanded="false" />
-            <element signature="e#5439#6683#0" expanded="false" />
-            <element signature="e#6782#7167#0" expanded="false" />
-            <element signature="e#7238#7537#0" expanded="false" />
+            <element signature="e#2364#3277#0" expanded="false" />
+            <element signature="e#3333#4768#0" expanded="false" />
+            <element signature="e#5294#5381#0" expanded="false" />
+            <element signature="e#6780#7174#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -907,16 +1507,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="73" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/camera/__init__.py">
+    <entry file="file://$PROJECT_DIR$/camera/analyzers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+          <caret line="128" column="22" selection-start-line="128" selection-start-column="22" selection-end-line="128" selection-end-column="22" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1438#1828#0" expanded="false" />
+            <element signature="e#1858#1946#0" expanded="false" />
+            <element signature="e#2364#3277#0" expanded="false" />
+            <element signature="e#3333#4768#0" expanded="false" />
+            <element signature="e#5294#5381#0" expanded="false" />
+            <element signature="e#6780#7174#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -924,33 +1529,61 @@
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/camera/analyzers.py">
+    <entry file="file://$PROJECT_DIR$/camera/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45918366">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.4693878">
+          <caret line="562" column="71" selection-start-line="562" selection-start-column="71" selection-end-line="562" selection-end-column="71" />
           <folding>
-            <element signature="e#112#243#0" expanded="false" />
-            <element signature="e#299#1406#0" expanded="false" />
-            <element signature="e#299#697#1" expanded="false" />
-            <element signature="e#1438#1828#0" expanded="false" />
-            <element signature="e#1858#1946#0" expanded="false" />
-            <element signature="e#1977#2280#0" expanded="false" />
-            <element signature="e#2320#4766#0" expanded="false" />
-            <element signature="e#2362#3275#0" expanded="false" />
-            <element signature="e#3331#4766#0" expanded="false" />
-            <element signature="e#4808#6683#0" expanded="false" />
-            <element signature="e#4850#5244#0" expanded="false" />
-            <element signature="e#5296#5383#0" expanded="false" />
-            <element signature="e#5439#6683#0" expanded="false" />
-            <element signature="e#6782#7167#0" expanded="false" />
-            <element signature="e#7238#7537#0" expanded="false" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1236#4225#1" expanded="false" />
+            <element signature="e#7235#9772#0" expanded="false" />
+            <element signature="e#7235#7523#1" expanded="false" />
+            <element signature="e#7977#8455#0" expanded="false" />
+            <element signature="e#9813#10846#0" expanded="false" />
+            <element signature="e#9813#10039#1" expanded="false" />
+            <element signature="e#10891#11340#0" expanded="false" />
+            <element signature="e#10891#11097#1" expanded="false" />
+            <element signature="e#11386#12201#0" expanded="false" />
+            <element signature="e#12252#12919#0" expanded="false" />
+            <element signature="e#12252#12561#1" expanded="false" />
+            <element signature="e#12955#13195#0" expanded="false" />
+            <element signature="e#12955#13066#1" expanded="false" />
+            <element signature="e#13242#13646#0" expanded="false" />
+            <element signature="e#13242#13422#1" expanded="false" />
+            <element signature="e#13686#13900#0" expanded="false" />
+            <element signature="e#13686#13794#1" expanded="false" />
+            <element signature="e#13940#14154#0" expanded="false" />
+            <element signature="e#13940#14048#1" expanded="false" />
+            <element signature="e#14196#14616#0" expanded="false" />
+            <element signature="e#14196#14392#1" expanded="false" />
+            <element signature="e#14653#15320#0" expanded="false" />
+            <element signature="e#14653#14982#1" expanded="false" />
+            <element signature="e#15384#15796#0" expanded="false" />
+            <element signature="e#15384#15545#1" expanded="false" />
+            <element signature="e#15842#16181#0" expanded="false" />
+            <element signature="e#15842#16039#1" expanded="false" />
+            <element signature="e#16229#16845#0" expanded="false" />
+            <element signature="e#16229#16641#1" expanded="false" />
+            <element signature="e#16887#17153#0" expanded="false" />
+            <element signature="e#16887#17110#1" expanded="false" />
+            <element signature="e#17197#17404#0" expanded="false" />
+            <element signature="e#17197#17343#1" expanded="false" />
+            <element signature="e#17441#17638#0" expanded="false" />
+            <element signature="e#17441#17589#1" expanded="false" />
+            <element signature="e#17771#19064#0" expanded="false" />
+            <element signature="e#17771#18457#1" expanded="false" />
+            <element signature="e#19109#19414#0" expanded="false" />
+            <element signature="e#19109#19382#1" expanded="false" />
+            <element signature="e#19449#19726#0" expanded="false" />
+            <element signature="e#19449#19588#1" expanded="false" />
+            <element signature="e#19783#20145#1" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -53,6 +53,7 @@ def blur(frame, size):
     # return cv2.GaussianBlur(frame, (size, size), 0)
     return cv2.medianBlur(frame, size)
 
+
 def sobel_filter(frame):
     # laplacian = cv2.Laplacian(frame, cv2.CV_64F)
     # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -61,6 +62,7 @@ def sobel_filter(frame):
     abs_sobel64f = numpy.absolute(sobelx64f)
     sobel_8u = numpy.uint8(abs_sobel64f)
     return sobel_8u
+
 
 class OpticalFlowTracker(object):
     def __init__(self, initialFrame):
@@ -124,7 +126,7 @@ class SimilarFrameTracker(object):
     def __init__(self, initialFrame):
         self.height, self.width = initialFrame.shape[0:2]
 
-        boundary = 1.0 / 3
+        boundary = 1.0
         self.x_boundary = int(self.width * boundary), int(
             (1 - boundary) * self.width)
         self.y_boundary = int(self.height * boundary), int(
@@ -180,7 +182,8 @@ class SimilarFrameTracker(object):
 #     def __init__(self, initialFrame):
 
 def drawMinMax(frame):
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(
+        cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
 
     color = numpy.array([numpy.random.randint(0, 255),
                          numpy.random.randint(0, 255),

@@ -1,5 +1,4 @@
 import sys
-import time
 
 import camera
 import camera.analyzers
@@ -16,20 +15,16 @@ def run():
     #                          camSource=1
     #                          )
     camera1 = camera.Capture(windowName="camera",
-                             camSource="",
-                             width=640, height=360,
-                             # width=427, height=240
-                             # frameSkip=5,
+                             camSource="Down camera, home street test 2, 120 fps.m4v",
+                             # width=720, height=450,
+                             width=427, height=240,
+                             frameSkip=15,
                              loopVideo=True,
                              )
 
-
-    # imu = arduino.IMU()
-    stepper = arduino.Stepper(1)
-
     captureProperties = dict(
         paused=True,
-        showOriginal=False,
+        showOriginal=True,
         enableDraw=True,
         currentFrame=0,
         writeVideo=False,
@@ -37,36 +32,36 @@ def run():
 
     # if captureProperties['paused'] == True:
     frame1 = camera1.updateFrame(readNextFrame=False)
+    frame1 = camera.analyzers.contrast(frame1, 1.5)
 
     height, width = frame1.shape[0:2]
     position = [width / 2, height / 2]
 
-    # tracker = camera.analyzers.SimilarFrameTracker(frame1)
-    tracker = camera.analyzers.OpticalFlowTracker(frame1)
+    tracker = camera.analyzers.SimilarFrameTracker(frame1)
+    # tracker = camera.analyzers.OpticalFlowTracker(frame1)
 
     while True:
-        time0 = time.time()
-
         if captureProperties['paused'] is False or captureProperties[
             'currentFrame'] != camera1.currentFrameNumber():
-            # time1 = time.time()
             frame1 = camera1.updateFrame()
-            # print "update:", time.time() - time1
 
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
-                # frame1, delta = tracker.update(frame1, False)
-                # position[0] += delta[0]
-                # position[1] += delta[1]
-                # print "%s\t%s" % (position[0], position[1]),
+                frame1 = camera.analyzers.contrast(frame1, 1.6)
+                frame1, delta = tracker.update(frame1, enableDraw=True)
+                position[0] += delta[0]
+                position[1] += delta[1]
+                print "%s\t%s" % (position[0], position[1])
 
-                # if captureProperties['enableDraw'] is True:
-                #     frame1 = camera.analyzers.drawPosition(frame1, width,
-                #                                            height,
-                #                                            position,
-                #                                            reverse=False)
-                frame1 = camera.analyzers.sobel_filter(frame1)
+                if captureProperties['enableDraw'] is True:
+                    frame1 = camera.analyzers.drawPosition(frame1, width,
+                                                           height,
+                                                           position,
+                                                           reverse=True)
+                # frame1 = camera.analyzers.sobel_filter(frame1)
+
+                # frame1 = camera.analyzers.filterOutNonRoad(frame1)
 
             if captureProperties['writeVideo'] == True:
                 camera1.writeToVideo(frame1)
@@ -108,15 +103,6 @@ def run():
                     camera1.stopVideo()
                 captureProperties['writeVideo'] = not captureProperties[
                     'writeVideo']
-            elif key == 't':
-                if stepper.position == 0:
-                    stepper.moveTo(1000)
-                else:
-                    stepper.moveTo(0)
-            elif key == 'p':
-                position = [width / 2, height / 2]
-
-        # print time.time() - time0, camera1.currentFrameNumber()
 
 
 if __name__ == '__main__':
