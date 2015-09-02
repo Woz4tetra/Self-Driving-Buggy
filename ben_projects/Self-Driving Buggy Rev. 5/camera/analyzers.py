@@ -1,9 +1,9 @@
 import bisect
+from opencv_samples.common import draw_keypoints
+from opencv_samples.plane_tracker import PlaneTracker
 
 import numpy
 import cv2
-
-from PlaneTracker import PlaneTracker
 
 
 def contrast(image, scale):
@@ -126,12 +126,6 @@ class SimilarFrameTracker(object):
     def __init__(self, initialFrame):
         self.height, self.width = initialFrame.shape[0:2]
 
-        boundary = 1.0
-        self.x_boundary = int(self.width * boundary), int(
-            (1 - boundary) * self.width)
-        self.y_boundary = int(self.height * boundary), int(
-            (1 - boundary) * self.height)
-
         self.tracker = PlaneTracker()
 
         self.tracker.clear()
@@ -151,35 +145,21 @@ class SimilarFrameTracker(object):
 
             return frame, (0, 0)
         else:
-            found = tracked[0]
-            centroid = self.centroid(found.quad)
+            tracked = tracked[0]
             if enableDraw == True:
-                color = found.quad[0][0] % 256, found.quad[0][1] % 256, \
-                        found.quad[1][0] % 256
-                cv2.polylines(frame, [numpy.int32(found.quad)], True, color,
-                              2)
-                for (x, y) in numpy.int32(found.p1):
-                    cv2.circle(frame, (x, y), 4, color, 2)
+                cv2.polylines(frame, [numpy.int32(tracked.quad)], True,
+                              (255, 255, 255), 2)
 
-                cv2.circle(frame, centroid, 4, color, 2)
-                cv2.rectangle(frame, (self.x_boundary[0], self.y_boundary[0]),
-                              (self.x_boundary[1], self.y_boundary[1]), color)
+                draw_keypoints(frame, self.tracker.frame_points)
 
-            delta = [self.width / 2 - centroid[0],
-                     self.height / 2 - centroid[1]]
-            # if abs(delta[0]) < 1.0:
-            #     delta[0] = 0
-            # if abs(delta[1]) < 1.0:
-            #     delta[1] = 0
-            # print(delta)
+            centroid = SimilarFrameTracker.centroid(tracked.quad)
+            delta = [self.width / 2 - centroid[0], self.height / 2 - centroid[1]]
+
             self.tracker.clear()
             self.tracker.add_target(frame)
 
             return frame, delta
 
-
-# class MinMaxTracker(object):
-#     def __init__(self, initialFrame):
 
 def drawMinMax(frame):
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(
