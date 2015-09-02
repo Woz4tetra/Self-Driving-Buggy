@@ -29,6 +29,7 @@ def run():
         enableDraw=True,
         currentFrame=0,
         writeVideo=False,
+        slideshow=True,
     )
 
     # if captureProperties['paused'] == True:
@@ -43,7 +44,7 @@ def run():
 
     while True:
         if captureProperties['paused'] is False or captureProperties[
-            'currentFrame'] != camera1.currentFrameNumber():
+                'currentFrame'] != camera1.currentFrameNumber():
             frame1 = camera1.updateFrame()
 
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
@@ -67,6 +68,9 @@ def run():
 
             if captureProperties['enableDraw'] is True:
                 camera1.showFrame(frame1)
+
+        if captureProperties['slideshow'] == True:
+            captureProperties['paused'] = True
 
         if captureProperties['enableDraw'] is True:
             # time2 = time.time()
