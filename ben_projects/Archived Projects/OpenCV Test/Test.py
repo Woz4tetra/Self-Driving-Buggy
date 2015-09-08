@@ -31,6 +31,32 @@ def showPlainCamera():
     cap.release()
     cv2.destroyAllWindows()
 
+def showCamera():
+    cap = cv2.VideoCapture(1)
+    
+    width, height = 640, 480
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+
+    while (True):
+        # Capture frame-by-frame
+        time0 = time.time()
+        ret, frame = cap.read()
+        print time.time() - time0
+        
+        # Display the resulting frame
+#        cv2.imshow('frame', frame)  # gray)
+        cv2.waitKey(1)
+#        if cv2.waitKey(1) & 0xFF == ord('q'):
+#            break
+
+
+    # When everything done, release the capture
+    cap.release()
+    cv2.destroyAllWindows()
+
+showCamera()
+
 resolutions = {
     8: (1920, 1080),
     12: (1440, 810),

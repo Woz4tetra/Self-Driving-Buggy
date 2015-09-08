@@ -5,7 +5,7 @@ import os
 import cv2
 import numpy
 
-projectDir = os.path.dirname(os.path.realpath(__file__))
+PROJECTDIR = os.path.dirname(os.path.realpath(__file__))
 
 
 class Capture(object):
@@ -312,7 +312,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
     def loadVideo(self, camSource):
         print "loading video into window named '" + str(
             self.windowName) + "'..."
-        self.camera = cv2.VideoCapture(projectDir + "/Videos/" + camSource)
+        self.camera = cv2.VideoCapture(PROJECTDIR + "/Videos/" + camSource)
         print "video loaded!"
 
         self.cameraFPS = self.camera.get(cv2.CAP_PROP_FPS)
@@ -396,10 +396,10 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :return: None
         '''
         name = time.strftime("%c").replace(":", "_") + ".png"
-        cv2.imwrite(projectDir + "/Images/" + name, frame)
+        cv2.imwrite(PROJECTDIR + "/Images/" + name, frame)
 
         print "Frame saved as " + str(name)
-        print "in directory:\n" + projectDir + "/Images/"
+        print "in directory:\n" + PROJECTDIR + "/Images/"
 
     def increaseFPS(self):
         '''
@@ -516,7 +516,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         fourcc = cv2.VideoWriter_fourcc(*codec)
         self.video = cv2.VideoWriter()
-        self.video.open(projectDir + "/Videos/" + videoName, fourcc, fps,
+        self.video.open(PROJECTDIR + "/Videos/" + videoName, fourcc, fps,
                         (int(self.dimensions[2] - self.dimensions[0]),
                          int(self.dimensions[3] - self.dimensions[1])), True)
 
@@ -542,7 +542,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         '''
         if self.video is not None:
             self.video.release()
-            print "Video written to:\n%s" % (projectDir + "/Videos/")
+            print "Video written to:\n%s" % (PROJECTDIR + "/Videos/")
 
     def updateFrame(self, readNextFrame=True):
         '''

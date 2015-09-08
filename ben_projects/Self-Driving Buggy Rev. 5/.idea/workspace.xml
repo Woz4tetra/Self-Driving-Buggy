@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86d380aa-60f3-4143-9e23-88f021f47181" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/position_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Capture speed test/test.o" afterPath="$PROJECT_DIR$/../Capture speed test/test.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Archived Projects/OpenCV Test/Test.py" afterPath="$PROJECT_DIR$/../Archived Projects/OpenCV Test/Test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/__init__.py" afterPath="$PROJECT_DIR$/camera/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__main__.py" afterPath="$PROJECT_DIR$/__main__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/analyzers.py" afterPath="$PROJECT_DIR$/camera/analyzers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Capture speed test/test.cpp" afterPath="$PROJECT_DIR$/../Capture speed test/test.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Self-Driving Buggy Rev. 4.iws" />
@@ -24,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="__main__.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="__main__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__main__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62222224">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -36,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="analyzers.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="analyzers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/camera/analyzers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="140" column="43" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.15555556">
+              <caret line="148" column="34" selection-start-line="148" selection-start-column="34" selection-end-line="148" selection-end-column="34" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#1502#1892#0" expanded="false" />
@@ -48,7 +56,7 @@
                 <element signature="e#2386#4832#0" expanded="false" />
                 <element signature="e#2428#3341#0" expanded="false" />
                 <element signature="e#3397#4832#0" expanded="false" />
-                <element signature="e#6009#6403#0" expanded="false" />
+                <element signature="e#6030#6424#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -58,16 +66,14 @@
         <entry file="file://$PROJECT_DIR$/camera/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="571" column="0" selection-start-line="571" selection-start-column="0" selection-end-line="571" selection-end-column="0" />
+              <caret line="318" column="51" selection-start-line="318" selection-start-column="51" selection-end-line="318" selection-end-column="51" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#7555#10092#0" expanded="false" />
                 <element signature="e#7555#7843#1" expanded="false" />
                 <element signature="e#8297#8775#0" expanded="false" />
                 <element signature="e#10133#11166#0" expanded="false" />
                 <element signature="e#10133#10359#1" expanded="false" />
                 <element signature="e#11211#11417#1" expanded="false" />
-                <element signature="e#11706#12521#0" expanded="false" />
                 <element signature="e#12572#13239#0" expanded="false" />
                 <element signature="e#12572#12881#1" expanded="false" />
                 <element signature="e#13275#13515#0" expanded="false" />
@@ -88,13 +94,11 @@
                 <element signature="e#16162#16359#1" expanded="false" />
                 <element signature="e#16549#17165#0" expanded="false" />
                 <element signature="e#16549#16961#1" expanded="false" />
-                <element signature="e#17207#17473#0" expanded="false" />
                 <element signature="e#17207#17430#1" expanded="false" />
                 <element signature="e#17517#17724#0" expanded="false" />
                 <element signature="e#17517#17663#1" expanded="false" />
                 <element signature="e#17761#17958#0" expanded="false" />
                 <element signature="e#17761#17909#1" expanded="false" />
-                <element signature="e#18091#19384#0" expanded="false" />
                 <element signature="e#18091#18777#1" expanded="false" />
                 <element signature="e#19429#19734#0" expanded="false" />
                 <element signature="e#19429#19702#1" expanded="false" />
@@ -138,11 +142,11 @@
         <option value="$PROJECT_DIR$/arduino/Serial Box/src/SerialBox.ino" />
         <option value="$PROJECT_DIR$/arduino/__init__.py" />
         <option value="$PROJECT_DIR$/arduino/sanity.py" />
-        <option value="$PROJECT_DIR$/camera/__init__.py" />
         <option value="$PROJECT_DIR$/camera/PlaneTracker.py" />
         <option value="/usr/local/lib/python2.7/site-packages/opencv_samples/plane_tracker.py" />
-        <option value="$PROJECT_DIR$/camera/analyzers.py" />
+        <option value="$PROJECT_DIR$/camera/__init__.py" />
         <option value="$PROJECT_DIR$/__main__.py" />
+        <option value="$PROJECT_DIR$/camera/analyzers.py" />
       </list>
     </option>
   </component>
@@ -196,6 +200,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -230,12 +236,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6" />
     <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -243,7 +247,7 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.null" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -489,7 +493,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -500,13 +504,11 @@
           <caret line="571" column="0" selection-start-line="571" selection-start-column="0" selection-end-line="571" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#7555#10092#0" expanded="false" />
             <element signature="e#7555#7843#1" expanded="false" />
             <element signature="e#8297#8775#0" expanded="false" />
             <element signature="e#10133#11166#0" expanded="false" />
             <element signature="e#10133#10359#1" expanded="false" />
             <element signature="e#11211#11417#1" expanded="false" />
-            <element signature="e#11706#12521#0" expanded="false" />
             <element signature="e#12572#13239#0" expanded="false" />
             <element signature="e#12572#12881#1" expanded="false" />
             <element signature="e#13275#13515#0" expanded="false" />
@@ -527,13 +529,11 @@
             <element signature="e#16162#16359#1" expanded="false" />
             <element signature="e#16549#17165#0" expanded="false" />
             <element signature="e#16549#16961#1" expanded="false" />
-            <element signature="e#17207#17473#0" expanded="false" />
             <element signature="e#17207#17430#1" expanded="false" />
             <element signature="e#17517#17724#0" expanded="false" />
             <element signature="e#17517#17663#1" expanded="false" />
             <element signature="e#17761#17958#0" expanded="false" />
             <element signature="e#17761#17909#1" expanded="false" />
-            <element signature="e#18091#19384#0" expanded="false" />
             <element signature="e#18091#18777#1" expanded="false" />
             <element signature="e#19429#19734#0" expanded="false" />
             <element signature="e#19429#19702#1" expanded="false" />
@@ -579,7 +579,7 @@
             <element signature="e#2386#4832#0" expanded="false" />
             <element signature="e#2428#3341#0" expanded="false" />
             <element signature="e#3397#4832#0" expanded="false" />
-            <element signature="e#6009#6403#0" expanded="false" />
+            <element signature="e#6030#6424#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -633,7 +633,7 @@
             <element signature="e#2386#4832#0" expanded="false" />
             <element signature="e#2428#3341#0" expanded="false" />
             <element signature="e#3397#4832#0" expanded="false" />
-            <element signature="e#6009#6403#0" expanded="false" />
+            <element signature="e#6030#6424#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -680,7 +680,7 @@
             <element signature="e#2386#4832#0" expanded="false" />
             <element signature="e#2428#3341#0" expanded="false" />
             <element signature="e#3397#4832#0" expanded="false" />
-            <element signature="e#6009#6403#0" expanded="false" />
+            <element signature="e#6030#6424#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -727,7 +727,7 @@
             <element signature="e#2386#4832#0" expanded="false" />
             <element signature="e#2428#3341#0" expanded="false" />
             <element signature="e#3397#4832#0" expanded="false" />
-            <element signature="e#6009#6403#0" expanded="false" />
+            <element signature="e#6030#6424#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -935,19 +935,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python2.7/site-packages/opencv_samples/plane_tracker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2510204">
+          <caret line="103" column="42" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/camera/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="571" column="0" selection-start-line="571" selection-start-column="0" selection-end-line="571" selection-end-column="0" />
+          <caret line="318" column="51" selection-start-line="318" selection-start-column="51" selection-end-line="318" selection-end-column="51" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#7555#10092#0" expanded="false" />
             <element signature="e#7555#7843#1" expanded="false" />
             <element signature="e#8297#8775#0" expanded="false" />
             <element signature="e#10133#11166#0" expanded="false" />
             <element signature="e#10133#10359#1" expanded="false" />
             <element signature="e#11211#11417#1" expanded="false" />
-            <element signature="e#11706#12521#0" expanded="false" />
             <element signature="e#12572#13239#0" expanded="false" />
             <element signature="e#12572#12881#1" expanded="false" />
             <element signature="e#13275#13515#0" expanded="false" />
@@ -968,13 +973,11 @@
             <element signature="e#16162#16359#1" expanded="false" />
             <element signature="e#16549#17165#0" expanded="false" />
             <element signature="e#16549#16961#1" expanded="false" />
-            <element signature="e#17207#17473#0" expanded="false" />
             <element signature="e#17207#17430#1" expanded="false" />
             <element signature="e#17517#17724#0" expanded="false" />
             <element signature="e#17517#17663#1" expanded="false" />
             <element signature="e#17761#17958#0" expanded="false" />
             <element signature="e#17761#17909#1" expanded="false" />
-            <element signature="e#18091#19384#0" expanded="false" />
             <element signature="e#18091#18777#1" expanded="false" />
             <element signature="e#19429#19734#0" expanded="false" />
             <element signature="e#19429#19702#1" expanded="false" />
@@ -985,17 +988,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python2.7/site-packages/opencv_samples/plane_tracker.py">
+    <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2510204">
-          <caret line="103" column="42" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/camera/analyzers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="140" column="43" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.15555556">
+          <caret line="148" column="34" selection-start-line="148" selection-start-column="34" selection-end-line="148" selection-end-column="34" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#1502#1892#0" expanded="false" />
@@ -1003,17 +1009,7 @@
             <element signature="e#2386#4832#0" expanded="false" />
             <element signature="e#2428#3341#0" expanded="false" />
             <element signature="e#3397#4832#0" expanded="false" />
-            <element signature="e#6009#6403#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__main__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62222224">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#6030#6424#0" expanded="false" />
           </folding>
         </state>
       </provider>
