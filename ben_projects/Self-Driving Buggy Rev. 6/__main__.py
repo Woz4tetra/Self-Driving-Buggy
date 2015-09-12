@@ -3,11 +3,9 @@ import time
 
 import camera
 from camera import analyzers
-import arduino
 
 
 def run():
-    arduino.initBoard(disabled=True, sketchDir="arduino/Serial Box")
     # camera1 = camera.Capture(windowName="camera",
     #                          cameraType="ELP",
     #                          # width=427, height=240,

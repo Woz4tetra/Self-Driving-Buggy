@@ -1,0 +1,28 @@
+- modules, functions, and variables use underscore (buggy_info, video_maker)
+- classes and methods use camel case
+- use assert statements to confirm the inputs and outputs of functions
+- put doc strings with the following at the top of the file and have them display when the program runs:
+
+Program name
+=========
+
+Description
+
+Usage
+-----
+filename parameter1 [parameter2] ('[' means optional)
+
+Keys
+----
+  1-7   - something
+  SPACE - something else
+  ESC   - exit
+
+- use python's commenting format for each function:
+def function():
+	'''
+        Description
+
+        :param something: (mention type) something interesting
+	:return: (mention type) something else interesting
+	'''

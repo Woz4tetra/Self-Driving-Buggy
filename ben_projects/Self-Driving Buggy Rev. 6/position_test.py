@@ -31,7 +31,7 @@ class EncoderSimulated(object):
         return self._current
 
     @property
-    def arclength(self):
+    def delta(self):
         self._update()
         return self._current - self.previous
 
@@ -63,8 +63,8 @@ position = [0.0, 0.0]
 for _ in xrange(300):
     # print "%s\t%s" % (time.time() - INITIAL_TICK, encoder.current)
     # print "%s\t%s" % (time.time() - INITIAL_TICK, servo.heading)
-    position[0] += math.cos(servo.heading) * encoder.arclength
-    position[1] += math.sin(servo.heading) * encoder.arclength
+    position[0] += math.cos(servo.heading) * encoder.delta
+    position[1] += math.sin(servo.heading) * encoder.delta
     print "%s\t%s\t%s\t%s\t%s" % (
         time.time() - INITIAL_TICK, position[0], position[1], servo.heading,
         encoder.current)
