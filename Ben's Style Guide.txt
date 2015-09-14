@@ -1,6 +1,6 @@
-- modules, functions, and variables use underscore (buggy_info, video_maker)
+- modules (files), functions, and variables use underscore (buggy_info, video_maker)
 - classes and methods use camel case
-- use assert statements to confirm the inputs and outputs of functions
+- use assert statements to confirm the inputs and outputs of functions (might been too slow. doc strings might be sufficient)
 - put doc strings with the following at the top of the file and have them display when the program runs:
 
 Program name

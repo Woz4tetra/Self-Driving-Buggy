@@ -1,2 +1,3 @@
 ben_projects/Self-Driving\ Buggy\ Rev.\ 5/camera/Videos/
 *.pyc
+.DS_Store*
