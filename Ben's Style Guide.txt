@@ -1,28 +1,56 @@
+
+
 - modules (files), functions, and variables use underscore (buggy_info, video_maker)
 - classes and methods use camel case
-- use assert statements to confirm the inputs and outputs of functions (might been too slow. doc strings might be sufficient)
-- put doc strings with the following at the top of the file and have them display when the program runs:
+- put a doc string with the following info at the top of a main file and have it display when the program runs. Example doc string:
 
-Program name
+'''
+Written by Ben Warwick
+
+Self-Driving Buggy Rev. 6 (__main__.py) for Self-Driving Buggy Project
+Version 9/15/2015
 =========
 
-Description
+This program controls the self-driving buggy. It manages computer vision,
+microcontroller control and data collection, PID feedback, encoder to x, y
+algorithms, path finding, GPS algorithms, and IMU algorithms. Each of these is
+implemented in its own file.
 
 Usage
 -----
-filename parameter1 [parameter2] ('[' means optional)
+python __main__.py
+
+– or – (in folder directory):
+python Self-Driving Buggy Rev. 6
 
 Keys
 ----
-  1-7   - something
-  SPACE - something else
-  ESC   - exit
+    q, ESC - exit
+    SPACE - play/pause video
+    o - toggle show original video feed
+    left - read previous frame
+    right - read next frame
+    s - save frame as image (in camera/Images/ directory)
+    v - start/stop create video (saved in camera/Videos/ directory)
+    h - toggle enable draw (hide/show video feed)
+'''
+if __name__ == '__main__':
+    print __doc__
 
-- use python's commenting format for each function:
-def function():
-	'''
-        Description
+- use python's commenting format for each function. Example function doc string:
+def initVideoWriter(self, fps=30, name="", includeTimestamp=True,
+                        codec='mp4v', format='m4v'):
+    '''
+    Initialize the Capture's video writer.
 
-        :param something: (mention type) something interesting
-	:return: (mention type) something else interesting
-	'''
+    :param fps: The playback FPS of the video. This number can be finicky as
+            the capture's current FPS may not match the video's output FPS.
+            This is because video playback takes less computation than
+            analyzing the video in this setting.
+    :param name: The name of the video. If "", a time stamp will
+            automatically be inserted
+    :param includeTimestamp: An optional parameter specifying whether the
+            time should be included. True by default
+    :param codec: The output video codec. mp4v is recommended
+    :return: None
+    '''
