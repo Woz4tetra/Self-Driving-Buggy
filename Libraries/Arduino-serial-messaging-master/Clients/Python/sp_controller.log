@@ -1,0 +1,5 @@
+2015-09-19 22:16:46,129 sp_controller.settings CRITICAL Unable to connect to serial port: /dev/ttyUSB0 with speed:115200
+2015-09-19 22:21:17,013 sp_controller.settings CRITICAL Unable to connect to serial port: /dev/ttyUSB0 with speed:115200
+2015-09-19 22:23:27,840 sp_controller.settings CRITICAL Unable to connect to serial port: /dev/ttyUSB0 with speed:115200
+2015-09-19 22:24:26,533 sp_controller.settings INFO Packet_receiver     : Connected to serial port: /dev/tty.usbmodem1412 with speed:115200
+2015-09-19 22:24:26,534 sp_controller.settings INFO Command_transmitter : Connected to serial port: /dev/tty.usbmodem1412 with speed:115200
