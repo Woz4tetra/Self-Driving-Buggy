@@ -4,9 +4,9 @@
 
 from __future__ import print_function
 from constants import PACKET_TYPES
+import sys
 
-
-class SerialParser():
+class Parser():
     """SerialParser: parser for SerialPacket data"""
 
     def __init__(self):
@@ -22,6 +22,9 @@ class SerialParser():
     def parseData(self, packet):
         """Parse the data"""
         packet_type = self.getPacketType(packet)
+        if packet_type == PACKET_TYPES['exit']:
+            sys.exit(1)
+
         return (self.getNodeID(packet),
                 self.getCommandID(packet),
                 self.getPayload(packet, packet_type))
@@ -82,7 +85,7 @@ class SerialParser():
                     packet_type == PACKET_TYPES['request data'] or
                     packet_type == PACKET_TYPES['request data array'] or
                     packet_type == PACKET_TYPES['exit']):
-            length = 2  # 4 * 2 = 8 bits
+            length = 2  # 16 * 2 = 32 bits, 8 bytes (hex character = 16 bits)
         elif packet_type == PACKET_TYPES['send 16-bit data']:
             length = 4
         elif packet_type == PACKET_TYPES['send data array']:
@@ -110,8 +113,8 @@ class SerialParser():
         return int(hexvalue, 16)
 
 
-def test_serialparser():
-    parser = SerialParser()
+def test_serial_packet():
+    parser = Parser()
 
     for number in xrange(0xff):
         assert parser.hex_to_dec(hex(number)) == number
@@ -149,9 +152,9 @@ def test_serialparser():
 
     # garbage
     packet17 = """Traceback (most recent call last):
-          File "/Users/Woz4tetra/Documents/Self-Driving-Buggy/ben_projects/PyBoard Serial Tests/PyBoard Serial Test 7/serialparser.py", line 196, in <module>
+          File "/Users/Woz4tetra/Documents/Self-Driving-Buggy/ben_projects/PyBoard Serial Tests/PyBoard Serial Test 7/serial_parser.py", line 196, in <module>
             test_serialparser()
-          File "/Users/Woz4tetra/Documents/Self-Driving-Buggy/ben_projects/PyBoard Serial Tests/PyBoard Serial Test 7/serialparser.py", line 192, in test_serialparser
+          File "/Users/Woz4tetra/Documents/Self-Driving-Buggy/ben_projects/PyBoard Serial Tests/PyBoard Serial Test 7/serial_parser.py", line 192, in test_serialparser
             assert parser.parse(packet16) == "something"
         AssertionError"""
     packet18 = 'all last):\r\nFile "'
@@ -166,7 +169,7 @@ def test_serialparser():
                                    "T", "N", "I", "P", "Q"])
 
     # ---- direct inverse ---- #
-    packet_maker = serialcommunication.SerialCommunication()
+    packet_maker = serial_comm.Communicator()
     generated_packet1 = packet_maker.makePacket(0, 0, 0)
     generated_packet2 = packet_maker.makePacket(0, 6, 0xb4)
     generated_packet3 = packet_maker.makePacket(5, 4, 0)
@@ -209,6 +212,6 @@ def test_serialparser():
 
 if __name__ == '__main__':
     import random
-    import serialcommunication
+    import serial_comm
 
-    test_serialparser()
+    test_serial_packet()

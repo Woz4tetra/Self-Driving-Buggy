@@ -24,5 +24,23 @@ PACKET_TYPES = ReversibleDict({
     'send data array': 4,
     'request data': 5,
     'request data array': 6,
-    'exit': 255
+    'exit': 0xff
 })
+
+COMMAND_IDS = ReversibleDict({
+    'Built-in LED 1': 0x00,
+    'Built-in LED 2': 0x01,
+    'Built-in LED 3': 0x02,
+    'Built-in LED 4': 0x03,
+    'Built-in Switch': 0x04,
+    'Built-in accelerometer': 0x05,
+    'Servo 1': 0x06,
+    'Servo 2': 0x07,
+    'Servo 3': 0x08,
+    'Servo 4': 0x09,
+    'GPS': 0x0A,
+    'Ultrasonic': 0x0B,
+})
+
+ON = 1
+OFF = 2
