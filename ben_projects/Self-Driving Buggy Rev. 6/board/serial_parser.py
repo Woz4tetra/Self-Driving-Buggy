@@ -44,16 +44,6 @@ class Parser():
                                  self.getCommandID(packet) ^
                                  self.getPayload(packet, packet_type)) & 0xff
 
-        # print(packet, hex(self.receivedParity), hex(self.calculatedParity))
-        # print(hex(packet_type),
-        #       hex(self.getNodeID(packet)),
-        #       hex(self.getCommandID(packet)),
-        #       hex(self.getPayload(packet, packet_type)),
-        #       hex(packet_type ^
-        #           self.getNodeID(packet) ^
-        #           self.getCommandID(packet) ^
-        #           self.getPayload(packet, packet_type) & 0xff))
-
         return self.receivedParity == self.calculatedParity
 
     def getPacketType(self, packet):
@@ -120,28 +110,28 @@ def test_serial_packet():
         assert parser.hex_to_dec(hex(number)) == number
 
     # ---- correct packets ---- #
-    packet1 = "T00N00I00P00Q00\r\n"
-    packet2 = "T00N00I06Pb4Qb2\r\n"
-    packet3 = "T05N00I04P00Q01\r\n"
-    packet4 = "T06N00I0aP00Q0c\r\n"
-    packet5 = "T06N00I05P00Q03\r\n"
+    packet1 = 'T01N01I00P00Q00\r\n'
+    packet2 = 'T01N01I06Pb4Qb2\r\n'
+    packet3 = 'T06N01I04P00Q03\r\n'
+    packet4 = 'T07N01I0aP00Q0c\r\n'
+    packet5 = 'T07N01I05P00Q03\r\n'
 
-    packet6 = "T01N01I00P01Q01\r\n"
-    packet7 = "T01N01I06Pb4Qb2\r\n"
-    packet8 = "T02N01I04P01Q06\r\n"
-    packet9 = "T04N01I10P423a4e39410e4757Q42\r\n"
-    packet10 = "T04N01I0cP4e0b30d8b648Q41\r\n"
+    packet6 = 'T02N02I00P01Q01\r\n'
+    packet7 = 'T02N02I06Pb4Qb2\r\n'
+    packet8 = 'T03N02I04P01Q04\r\n'
+    packet9 = 'T05N02I10P423a4e39410e4757Q40\r\n'
+    packet10 = 'T05N02I0cP4e0b30d8b648Q43\r\n'
 
     # ---- incorrect packets ---- #
-    # send data array length (I) is 5 instead of 12 (0x0c)
+    # send data array length (I) is 5 instead of 8
     # Note: 'I' is only length when sending data arrays
-    packet11 = "T04N01I05P4e0b30d8b648Q41\r\n"
+    packet11 = 'T05N02I05PdeadbeefQb1\r\n'
 
     # Payload not 8-bits and packet type is 'command'
-    packet12 = "T01N01I00P010Q00\r\n"
+    packet12 = 'T02N02I00P333Q01\r\n'
 
     # Missing carriage return and newline characters
-    packet13 = "T01N01I06Pb4Qb2"
+    packet13 = 'T02N02I06Pb4Qb2'
 
     # packet10 shifted 4 characters
     packet14 = "42\r\nT04N01I10P423a4e39410e4757Q"
@@ -163,32 +153,31 @@ def test_serial_packet():
     packet19 = ""
     for counter in xrange(18):
         packet19 += random.choice(["0", "1", "2", "3", "4", "5", "6", "7",
-                                   "8", "9", "a", "b", "c", "d", "e", "f"
-                                                                      "\r",
-                                   "\n",
+                                   "8", "9", "a", "b", "c", "d", "e", "f",
+                                   "\r", "\n",
                                    "T", "N", "I", "P", "Q"])
 
     # ---- direct inverse ---- #
     packet_maker = serial_comm.Communicator()
-    generated_packet1 = packet_maker.makePacket(0, 0, 0)
-    generated_packet2 = packet_maker.makePacket(0, 6, 0xb4)
-    generated_packet3 = packet_maker.makePacket(5, 4, 0)
-    generated_packet4 = packet_maker.makePacket(6, 0xa, 0)
-    generated_packet5 = packet_maker.makePacket(6, 5, 0)
+    generated_packet1 = packet_maker.makePacket(1, 0, 0)
+    generated_packet2 = packet_maker.makePacket(1, 6, 0xb4)
+    generated_packet3 = packet_maker.makePacket(6, 4, 0)
+    generated_packet4 = packet_maker.makePacket(7, 0xa, 0)
+    generated_packet5 = packet_maker.makePacket(7, 5, 0)
 
-    generated_packet6 = packet_maker.makePacket(4, 0xc, 0x4e0b30d8b648)
+    generated_packet6 = packet_maker.makePacket(5, 0xc, 0x4e0b30d8b648)
 
-    assert parser.parse(packet1) == (0, 0, 0)
-    assert parser.parse(packet2) == (0, 6, 0xb4)
-    assert parser.parse(packet3) == (0, 4, 0)
-    assert parser.parse(packet4) == (0, 0xa, 0)
-    assert parser.parse(packet5) == (0, 5, 0)
+    assert parser.parse(packet1) == (1, 0, 0)
+    assert parser.parse(packet2) == (1, 6, 180)
+    assert parser.parse(packet3) == (1, 4, 0)
+    assert parser.parse(packet4) == (1, 10, 0)
+    assert parser.parse(packet5) == (1, 5, 0)
 
-    assert parser.parse(packet6) == (1, 0, 1)
-    assert parser.parse(packet7) == (1, 6, 0xb4)
-    assert parser.parse(packet8) == (1, 4, 1)
-    assert parser.parse(packet9) == (1, 0x10, 0x423a4e39410e4757)
-    assert parser.parse(packet10) == (1, 12, 0x4e0b30d8b648)
+    assert parser.parse(packet6) == (2, 0, 1)
+    assert parser.parse(packet7) == (2, 6, 180)
+    assert parser.parse(packet8) == (2, 4, 1)
+    assert parser.parse(packet9) == (2, 16, 0x423a4e39410e4757)
+    assert parser.parse(packet10) == (2, 12, 0x4e0b30d8b648)
 
     assert parser.parse(packet11) == None
     assert parser.parse(packet12) == None
@@ -207,7 +196,7 @@ def test_serial_packet():
     assert generated_packet3 == packet3
     assert generated_packet4 == packet4
     assert generated_packet5 == packet5
-    assert generated_packet6 == "T04N00I0cP4e0b30d8b648Q40\r\n"
+    assert generated_packet6 == "T05N01I0cP4e0b30d8b648Q40\r\n"
 
 
 if __name__ == '__main__':

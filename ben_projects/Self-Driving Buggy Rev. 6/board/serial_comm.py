@@ -1,69 +1,37 @@
 import threading
-from Queue import Queue
 from constants import PACKET_TYPES
-from constants import COMMAND_IDS
+# from constants import PYBOARD_COMMAND_IDS
 import pyboard
 import serial
 import time
 from sys import platform as _platform
 import os
-import serial_parser
+import inspect
+
 
 class PyBoardThread(threading.Thread):
-    def __init__(self, address):
+    def __init__(self, address, directory="pyboard/main.py"):
         self.address = address
+        self.directory = directory
 
         super(PyBoardThread, self).__init__()
         self.daemon = True
 
     def run(self):
-        pyboard.execfile("board/main.py", device="/dev/tty.usbmodem1452")
-
-class SimulatorThread(threading.Thread):
-    def __init__(self):
-        self.led1 = False
-        self.servo1 = 0
-        self.switch = False
-        self.accelerometer = [0, 0, 0]
-
-        self.readQueue = Queue()
-        self.writeQueue = Queue()
-        self.parser = serial_parser.Parser()
-
-        super(SimulatorThread, self).__init__()
-        self.daemon = True
-
-    def write(self, packet):
-        self.readQueue.put(packet)
-
-    def readline(self):
-        self.writeQueue.get()
-
-    def run(self):
-        while True:
-            node, command_id, payload = self.parser.parse(self.readQueue.get())
-            if node != 0:
-                continue
-            if command_id == COMMAND_IDS['built-in led 1']:
-                self.led1 = not self.led1
-                Communicator.makePacket(PACKET_TYPES['command reply'],
-                                        COMMAND_IDS['built-in led 1'],
-                                        int(self.led1))
+        pyboard.execfile(self.directory, device=self.address)
 
 
 class Communicator(threading.Thread):
-    def __init__(self, address=None, delay=0.001, board_type='pyboard'):
-        if board_type != "simulation":
-            if address == None:
-                self.serialRef = self.findPort()
-            else:
-                self.serialRef = serial.Serial(port=address, baudrate=115200)
+    def __init__(self, address=None, delay=0.001, board_type='pyboard',
+                 upload=True):
+        if address == None:
+            self.serialRef = self.findPort()
         else:
-            self.serialRef = SimulatorThread()
-        time.sleep(0.25)  # ensure connection settles
+            self.serialRef = serial.Serial(port=address, baudrate=115200)
+        time.sleep(1)  # ensure connection settles
 
-        self.sendQueue = Queue()
-        self.receiveQueue = Queue()
+        self.currentPacket = ""
+        self.receivedPacket = ""
 
         self.delay = delay
 
@@ -75,14 +43,17 @@ class Communicator(threading.Thread):
             self.pyb_thread = PyBoardThread(self.serialRef)
             self.pyb_thread.start()
         elif board_type == 'arduino':
-            os.system('cd board && platformio run --target upload')
+            if upload:
+                os.system('cd arduino && platformio run --target upload')
+            self._handshake()
 
-    def findPort(self):
+    def findPort(self, baudrate=115200):
         address = None
         serial_ref = None
         for possible_address in self._possibleAddresses():
             try:
-                serial_ref = serial.Serial(port=possible_address)
+                serial_ref = serial.Serial(port=possible_address,
+                                           baudrate=baudrate)
                 address = possible_address
             except:
                 pass
@@ -117,32 +88,60 @@ entering the address manually.")
             raise NotImplementedError
             # return []
 
+    def _handshake(self):
+        readFlag = self.serialRef.read()
+
+        print("Waiting for ready flag...")
+        time.sleep(1)
+        while readFlag != 'R':
+            print repr(readFlag)
+            readFlag = self.serialRef.read()
+
+        self.serialRef.write("P")
+        self.serialRef.flushInput()
+        self.serialRef.flushOutput()
+        time.sleep(0.1)
+        print("Arduino initialized!")
+
     def run(self):
         while True:
             self.sendPacket()
-            self.getPacket()
-
-    def getPacket(self):
-        packet = self.serialRef.readline()
-        if len(packet) > 0:
-            print self.receiveQueue.qsize(),
-            print(repr(packet)),
-            self.receiveQueue.put(packet)
-            print self.receiveQueue.qsize()
-        time.sleep(self.delay)
-
-    def sendPacket(self):
-        if not self.sendQueue.empty():
-            print self.sendQueue.qsize(),
-            self.serialRef.write(self.sendQueue.get())
-            print self.sendQueue.qsize()
+            # self.getPacket()
             time.sleep(self.delay)
 
+    def getPacket(self):
+        print "in waiting:", self.serialRef.inWaiting()
+        if self.serialRef.inWaiting() > 0:
+            # char = self.serialRef.read()
+            # packet = ""
+            # while char != '\n':
+            #     packet += char
+            #     char = self.serialRef.read()
+            #     print char,
+            print time.time(), "getting packet"
+            packet = self.serialRef.readline()
+            print time.time(), "got: ", repr(packet)
+            if len(packet) > 0:
+                # print self.receiveQueue.qsize(),
+                print(repr(packet))
+                self.receivedPacket = packet
+                # print self.receiveQueue.qsize()
+            time.sleep(self.delay)
+
+    def sendPacket(self):
+        if len(self.currentPacket) > 0:
+            print time.time(), "writing: ", repr(self.currentPacket)
+            self.serialRef.write(self.currentPacket)
+            print time.time(), "wrote: ", repr(self.currentPacket)
+
     def put(self, packet):
-        self.sendQueue.put(packet)
+        print time.time(), "putting: ", repr(packet)
+        self.currentPacket = packet
+        print time.time(), "put: ", repr(packet)
 
     def get(self):
-        return self.receiveQueue.get()
+        self.getPacket()
+        return self.receivedPacket
 
     @staticmethod
     def makePacket(packet_type, command_id, payload=0):
@@ -159,13 +158,14 @@ entering the address manually.")
             length = None
         else:
             length = 0
+        node = 1
 
         T = Communicator.format_element(packet_type)
-        N = Communicator.format_element(0)
+        N = Communicator.format_element(node)
         I = Communicator.format_element(command_id)
         P = Communicator.format_element(payload, length)
         Q = Communicator.format_element(
-            (packet_type ^ 0x00 ^ command_id ^ payload) & 0xff)
+            (packet_type ^ node ^ command_id ^ payload) & 0xff)
 
         packet = "T{}N{}I{}P{}Q{}\r\n".format(T, N, I, P, Q)
 
@@ -182,3 +182,5 @@ entering the address manually.")
             return hex(packet_element)[2:]
         else:
             return hex(packet_element)[-digits:]
+
+

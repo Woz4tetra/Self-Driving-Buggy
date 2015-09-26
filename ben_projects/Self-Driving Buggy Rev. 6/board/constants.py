@@ -17,17 +17,17 @@ class ReversibleDict:  # if repeated values occur, the most recent one is used
 
 
 PACKET_TYPES = ReversibleDict({
-    'command': 0,
-    'command reply': 1,
-    'send 8-bit data': 2,
-    'send 16-bit data': 3,
-    'send data array': 4,
-    'request data': 5,
-    'request data array': 6,
-    'exit': 0xff
+    'command':            0x01,
+    'command reply':      0x02,
+    'send 8-bit data':    0x03,
+    'send 16-bit data':   0x04,
+    'send data array':    0x05,
+    'request data':       0x06,
+    'request data array': 0x07,
+    'exit':               0xff
 })
 
-COMMAND_IDS = ReversibleDict({
+PYBOARD_COMMAND_IDS = ReversibleDict({
     'built-in led 1': 0x00,
     'built-in led 2': 0x01,
     'built-in led 3': 0x02,
@@ -42,5 +42,15 @@ COMMAND_IDS = ReversibleDict({
     'ultrasonic': 0x0B,
 })
 
+ARDUINO_COMMAND_IDS = ReversibleDict({
+    'fake led': 0x01,
+    'fake sensor 8 bit': 0x02,
+    'fake sensor 16 bit': 0x03,
+    'fake gps': 0x04,
+})
+
+OFF = 0
 ON = 1
-OFF = 2
+
+NODE_PC = 1
+NODE_BOARD = 2

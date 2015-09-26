@@ -1,4 +1,0 @@
-SerialPacket  KEYWORD1
-begin KEYWORD2
-setPacketType KEYWORD2
-sendPacket  KEYWORD2
