@@ -2,62 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cfd6d4d-f37d-4034-8574-4dce964a4905" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Libraries/Arduino Library/SerialComm/SerialComm.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Libraries/Arduino Library/SerialComm/SerialComm.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/AFMotor.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/AFMotor.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/README.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/AFMotor_ConstantSpeed/AFMotor_ConstantSpeed.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/AFMotor_MultiStepper/AFMotor_MultiStepper.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/MotorParty/MotorParty.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/MotorTest/MotorTest.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/StepperTest/StepperTest.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/keywords.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/AccelStepper.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/AccelStepper.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/MANIFEST" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/README.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/AccelStepper_8h-source.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/annotated.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/classAccelStepper-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/classAccelStepper.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/doxygen.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/doxygen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/files.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/functions.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/functions_func.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tab_b.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tab_l.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tab_r.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/AFMotor_ConstantSpeed/AFMotor_ConstantSpeed.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/AFMotor_MultiStepper/AFMotor_MultiStepper.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/Blocking/Blocking.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/ConstantSpeed/ConstantSpeed.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/MultiStepper/MultiStepper.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/Overshoot/Overshoot.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/Random/Random.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/project.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/HMC5883L" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/NewPing.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/NewPing.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/NewPing15Sensors/NewPing15Sensors.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/NewPingEventTimer/NewPingEventTimer.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/NewPingExample/NewPingExample.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/TimerExample/TimerExample.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/keywords.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Ben's Style Guide.rtf" afterPath="$PROJECT_DIR$/../../../Ben's Style Guide.rtf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Serial Packet Convention 9-23-15.numbers" afterPath="$PROJECT_DIR$/Serial Packet Convention 9-23-15.numbers" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Self-Driving Buggy Rev. 5/arduino/Board/platformio.ini" afterPath="$PROJECT_DIR$/../../Self-Driving Buggy Rev. 5/arduino/Board/platformio.ini" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serial_comm.py" afterPath="$PROJECT_DIR$/serial_comm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serial_parser.py" afterPath="$PROJECT_DIR$/serial_parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_serial.py" afterPath="$PROJECT_DIR$/test_serial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PyBoard Serial Test 6.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_serial.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_serial.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_serial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="67" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.2688331">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -124,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serial_comm.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serial_comm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/serial_comm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68980795">
-              <caret line="52" column="0" selection-start-line="21" selection-start-column="14" selection-end-line="52" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="16" selection-start-line="23" selection-start-column="15" selection-end-line="26" selection-end-column="16" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -976,22 +921,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_serial.py">
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="67" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="67" />
+          <caret line="26" column="16" selection-start-line="23" selection-start-column="15" selection-end-line="26" selection-end-column="16" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+    <entry file="file://$PROJECT_DIR$/test_serial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68980795">
-          <caret line="52" column="0" selection-start-line="21" selection-start-column="14" selection-end-line="52" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2688331">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

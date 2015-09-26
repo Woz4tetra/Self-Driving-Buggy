@@ -19,47 +19,12 @@ class PyBoardThread(threading.Thread):
     def run(self):
         pyboard.execfile("board/main.py", device="/dev/tty.usbmodem1452")
 
-class SimulatorThread(threading.Thread):
-    def __init__(self):
-        self.led1 = False
-        self.servo1 = 0
-        self.switch = False
-        self.accelerometer = [0, 0, 0]
-
-        self.readQueue = Queue()
-        self.writeQueue = Queue()
-        self.parser = serial_parser.Parser()
-
-        super(SimulatorThread, self).__init__()
-        self.daemon = True
-
-    def write(self, packet):
-        self.readQueue.put(packet)
-
-    def readline(self):
-        self.writeQueue.get()
-
-    def run(self):
-        while True:
-            node, command_id, payload = self.parser.parse(self.readQueue.get())
-            if node != 0:
-                continue
-            if command_id == PYBOARD_COMMAND_IDS['built-in led 1']:
-                self.led1 = not self.led1
-                Communicator.makePacket(PACKET_TYPES['command reply'],
-                                        PYBOARD_COMMAND_IDS['built-in led 1'],
-                                        int(self.led1))
-
-
 class Communicator(threading.Thread):
     def __init__(self, address=None, delay=0.001, board_type='pyboard'):
-        if board_type != "simulation":
-            if address == None:
-                self.serialRef = self.findPort()
-            else:
-                self.serialRef = serial.Serial(port=address, baudrate=115200)
+        if address == None:
+            self.serialRef = self.findPort()
         else:
-            self.serialRef = SimulatorThread()
+            self.serialRef = serial.Serial(port=address, baudrate=115200)
         time.sleep(0.25)  # ensure connection settles
 
         self.sendQueue = Queue()
