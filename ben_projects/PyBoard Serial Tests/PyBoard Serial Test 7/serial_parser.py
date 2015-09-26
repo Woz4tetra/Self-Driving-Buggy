@@ -44,16 +44,6 @@ class Parser():
                                  self.getCommandID(packet) ^
                                  self.getPayload(packet, packet_type)) & 0xff
 
-        # print(packet, hex(self.receivedParity), hex(self.calculatedParity))
-        # print(hex(packet_type),
-        #       hex(self.getNodeID(packet)),
-        #       hex(self.getCommandID(packet)),
-        #       hex(self.getPayload(packet, packet_type)),
-        #       hex(packet_type ^
-        #           self.getNodeID(packet) ^
-        #           self.getCommandID(packet) ^
-        #           self.getPayload(packet, packet_type) & 0xff))
-
         return self.receivedParity == self.calculatedParity
 
     def getPacketType(self, packet):
@@ -163,9 +153,8 @@ def test_serial_packet():
     packet19 = ""
     for counter in xrange(18):
         packet19 += random.choice(["0", "1", "2", "3", "4", "5", "6", "7",
-                                   "8", "9", "a", "b", "c", "d", "e", "f"
-                                                                      "\r",
-                                   "\n",
+                                   "8", "9", "a", "b", "c", "d", "e", "f",
+                                   "\r", "\n",
                                    "T", "N", "I", "P", "Q"])
 
     # ---- direct inverse ---- #

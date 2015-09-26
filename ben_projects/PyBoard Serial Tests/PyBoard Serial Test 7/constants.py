@@ -27,19 +27,24 @@ PACKET_TYPES = ReversibleDict({
     'exit': 0xff
 })
 
-COMMAND_IDS = ReversibleDict({
-    'Built-in LED 1': 0x00,
-    'Built-in LED 2': 0x01,
-    'Built-in LED 3': 0x02,
-    'Built-in LED 4': 0x03,
-    'Built-in Switch': 0x04,
-    'Built-in accelerometer': 0x05,
-    'Servo 1': 0x06,
-    'Servo 2': 0x07,
-    'Servo 3': 0x08,
-    'Servo 4': 0x09,
-    'GPS': 0x0A,
-    'Ultrasonic': 0x0B,
+PYBOARD_COMMAND_IDS = ReversibleDict({
+    'built-in led 1': 0x00,
+    'built-in led 2': 0x01,
+    'built-in led 3': 0x02,
+    'built-in led 4': 0x03,
+    'built-in switch': 0x04,
+    'built-in accelerometer': 0x05,
+    'servo 1': 0x06,
+    'servo 2': 0x07,
+    'servo 3': 0x08,
+    'servo 4': 0x09,
+    'gps': 0x0A,
+    'ultrasonic': 0x0B,
+})
+
+ARDUINO_COMMAND_IDS = ReversibleDict({
+    'something interesting 1': 0x00,
+    'something interesting 2': 0x01,
 })
 
 ON = 1

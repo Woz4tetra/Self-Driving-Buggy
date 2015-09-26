@@ -46,49 +46,55 @@ def make_custom_packet(packet_type, node, command_id, payload, quality=None):
 
     return packet
 
+'''
+if __debug__:
+   if not expression: raise AssertionError
+
+- or -
+
+assert
+
+__debug__ is true if -O is not passed
+'''
 
 if __name__ == '__main__':
     import sys
 
-    address = ''
-
-    pyb_thread = serial_comm.PyBoardThread(address)
-    pyb_thread.start()
-
-    communicator = serial_comm.Communicator(address)
+    communicator = serial_comm.Communicator(board_type='simulation')
     parser = serial_parser.Parser()
 
     try:
         communicator.start()
 
+
         # ---- Command and reply LED 1 ----
         packet = communicator.makePacket(PACKET_TYPES['command'],
-                                         COMMAND_IDS['Built-in LED 1'], ON)
+                                         PYBOARD_COMMAND_IDS['built-in led 1'], ON)
         communicator.put(packet)
         time.sleep(0.001)
         assert parser.parse(communicator.get()) == \
                make_custom_packet(PACKET_TYPES['command reply'], NODE_BOARD,
-                                  COMMAND_IDS['Built-in LED 1'], ON)
+                                  PYBOARD_COMMAND_IDS['built-in led 1'], ON)
 
         # ---- Command and reply servo 1 ----
         servo_angle = 80.0
         packet = communicator.makePacket(PACKET_TYPES['command'],
-                                         COMMAND_IDS['Servo 1'],
+                                         PYBOARD_COMMAND_IDS['servo 1'],
                                          int(servo_angle * 255 / 180))
         # servos command degrees
         communicator.put(packet)
         time.sleep(1)
         assert parser.parse(communicator.get()) == \
                make_custom_packet(PACKET_TYPES['command reply'], NODE_BOARD,
-                                  COMMAND_IDS['Servo 1'],
+                                  PYBOARD_COMMAND_IDS['Servo 1'],
                                   int(servo_angle * 255 / 180))
 
         # ---- Request data from switch ----
         packet = communicator.makePacket(PACKET_TYPES['request data'],
-                                         COMMAND_IDS['Built-in Switch'])
+                                         PYBOARD_COMMAND_IDS['built-in switch'])
         expected = make_custom_packet(
             PACKET_TYPES['send 8-bit data'], NODE_BOARD,
-            COMMAND_IDS['Built-in Switch'], ON)
+            PYBOARD_COMMAND_IDS['Built-in Switch'], ON)
         received = ""
         communicator.put(packet)
         time0 = time.time()
@@ -100,13 +106,13 @@ if __name__ == '__main__':
 
         # ---- Request data from accelerometer ----
         packet = communicator.makePacket(PACKET_TYPES['request data array'],
-                                         COMMAND_IDS['Built-in accelerometer'])
+                                         PYBOARD_COMMAND_IDS['built-in accelerometer'])
         communicator.put(packet)
         received = parser.parse(communicator.get())
         assert received != None
         node, command_id, payload = received
         assert node == NODE_BOARD
-        assert command_id == COMMAND_IDS['Built-in accelerometer']
+        assert command_id == PYBOARD_COMMAND_IDS['built-in accelerometer']
         assert 0 <= payload <= 0xffffffffffff
     except Exception, err:
         communicator.serialRef.write(make_custom_packet(0xff, 0, 0, 0))

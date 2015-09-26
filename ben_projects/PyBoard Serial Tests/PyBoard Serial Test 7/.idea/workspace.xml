@@ -2,13 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cfd6d4d-f37d-4034-8574-4dce964a4905" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_serial.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/board.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/serialcommunication.py" afterPath="$PROJECT_DIR$/serial_comm.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/serialparser.py" afterPath="$PROJECT_DIR$/serial_parser.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Libraries/Arduino Library/SerialComm/SerialComm.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../../Libraries/Arduino Library/SerialComm/SerialComm.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/AFMotor.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/AFMotor.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/AFMotor_ConstantSpeed/AFMotor_ConstantSpeed.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/AFMotor_MultiStepper/AFMotor_MultiStepper.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/MotorParty/MotorParty.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/MotorTest/MotorTest.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/examples/StepperTest/StepperTest.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AFMotor/keywords.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/AccelStepper.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/AccelStepper.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/MANIFEST" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/AccelStepper_8h-source.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/annotated.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/classAccelStepper-members.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/classAccelStepper.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/doxygen.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/doxygen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/files.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/functions.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/functions_func.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tab_b.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tab_l.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tab_r.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/doc/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/AFMotor_ConstantSpeed/AFMotor_ConstantSpeed.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/AFMotor_MultiStepper/AFMotor_MultiStepper.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/Blocking/Blocking.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/ConstantSpeed/ConstantSpeed.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/MultiStepper/MultiStepper.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/Overshoot/Overshoot.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/examples/Random/Random.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/AccelStepper/project.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/HMC5883L" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/NewPing.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/NewPing.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/NewPing15Sensors/NewPing15Sensors.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/NewPingEventTimer/NewPingEventTimer.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/NewPingExample/NewPingExample.ino" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/examples/TimerExample/TimerExample.pde" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../../Libraries/Arduino Library/NewPing/keywords.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../Ben's Style Guide.rtf" afterPath="$PROJECT_DIR$/../../../Ben's Style Guide.rtf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Serial Packet Convention 9-23-15.numbers" afterPath="$PROJECT_DIR$/Serial Packet Convention 9-23-15.numbers" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__main__.py" afterPath="$PROJECT_DIR$/__main__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Self-Driving Buggy Rev. 5/arduino/Board/platformio.ini" afterPath="$PROJECT_DIR$/../../Self-Driving Buggy Rev. 5/arduino/Board/platformio.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serial_comm.py" afterPath="$PROJECT_DIR$/serial_comm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serial_parser.py" afterPath="$PROJECT_DIR$/serial_parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_serial.py" afterPath="$PROJECT_DIR$/test_serial.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PyBoard Serial Test 6.iws" />
@@ -42,13 +90,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_serial.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_serial.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_serial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8227474">
-              <caret line="111" column="69" selection-start-line="111" selection-start-column="69" selection-end-line="111" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="67" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="67" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serial_parser.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/serial_parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+              <folding>
+                <element signature="e#10#47#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,41 +118,17 @@
         <entry file="file://$PROJECT_DIR$/constants.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="27" />
+              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serial_parser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/serial_parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
-              <folding>
-                <element signature="e#10#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serial_comm.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="serial_comm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/serial_comm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.68980795">
+              <caret line="52" column="0" selection-start-line="21" selection-start-column="14" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -108,6 +144,7 @@
         <option value="Python Script" />
       </list>
     </option>
+    <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
@@ -128,11 +165,15 @@
         <option value="$PROJECT_DIR$/serial_interpreter.py" />
         <option value="$PROJECT_DIR$/serial_interpreter_board.py" />
         <option value="$PROJECT_DIR$/__main__.py" />
+        <option value="$PROJECT_DIR$/arduino.cpp" />
+        <option value="$PROJECT_DIR$/board/src/arduino.cpp" />
+        <option value="$PROJECT_DIR$/board/src/arduino.ino" />
+        <option value="$PROJECT_DIR$/board/src/serial_simulator.py" />
+        <option value="$PROJECT_DIR$/board/main.py" />
         <option value="$PROJECT_DIR$/serial_parser.py" />
         <option value="$PROJECT_DIR$/constants.py" />
-        <option value="$PROJECT_DIR$/serial_comm.py" />
         <option value="$PROJECT_DIR$/test_serial.py" />
-        <option value="$PROJECT_DIR$/board/main.py" />
+        <option value="$PROJECT_DIR$/serial_comm.py" />
       </list>
     </option>
   </component>
@@ -143,6 +184,25 @@
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="800" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Cpp Inspections</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>UnusedCppSymbol</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -167,7 +227,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -186,27 +246,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyBoard Serial Test 7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyBoard Serial Test 7" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="board" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/serialparser.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_serial.py" />
     <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -214,8 +260,9 @@
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.C / C++" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="SearchEverywhereHistoryKey" value="command_&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -223,7 +270,24 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.constants">
+    <configuration default="false" name="constants" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyBoard Serial Test 7" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/constants.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -368,8 +432,25 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PyBoard Serial Test 6" />
+      <module name="PyBoard Serial Test 7" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__main__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Test Serial" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyBoard Serial Test 7" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_serial.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -391,10 +472,17 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Test Parser" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Test Serial" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Test Parser" />
+      <item index="3" class="java.lang.String" itemvalue="Python.constants" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python.constants" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -449,6 +537,246 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#800#818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_serial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+          <folding>
+            <element signature="e#10#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="64" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#800#818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_serial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+          <folding>
+            <element signature="e#10#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="64" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#800#818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_serial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+          <folding>
+            <element signature="e#10#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="64" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#800#818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_serial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+          <folding>
+            <element signature="e#10#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="64" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -473,9 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -578,25 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15509601">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serial_comm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -610,35 +916,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/board/main.py">
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33183858">
+          <caret line="1026" column="0" selection-start-line="1026" selection-start-column="0" selection-end-line="1026" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/site-packages/serial/serialcli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.49483">
+          <caret line="251" column="10" selection-start-line="251" selection-start-column="10" selection-end-line="251" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/site-packages/serial/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/2.7.10/Frameworks/Python.framework/Versions/2.7/lib/python2.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5">
+          <caret line="739" column="17" selection-start-line="739" selection-start-column="17" selection-end-line="739" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/src/arduino.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35450518">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/serial_parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
           <folding>
             <element signature="e#10#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_serial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8227474">
-          <caret line="111" column="69" selection-start-line="111" selection-start-column="69" selection-end-line="111" selection-end-column="69" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="67" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="67" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68980795">
+          <caret line="52" column="0" selection-start-line="21" selection-start-column="14" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

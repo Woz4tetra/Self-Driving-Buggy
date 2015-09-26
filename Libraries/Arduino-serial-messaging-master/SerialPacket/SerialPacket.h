@@ -35,54 +35,54 @@
 #define SerialPacket_h
 #include <Arduino.h>
 
-class SerialPacket
-{
-  public:
-    SerialPacket();
+class SerialPacket {
 
+public:
+    SerialPacket();
+    
     void begin();
     void begin(long speed, uint8_t nodeID);
-
+    
     void sendCommand(uint8_t commandID, uint8_t payload);
     void sendCommand(uint8_t payload);
     void sendCommandReply(uint8_t commandID, uint8_t payload);
-
+    
     void sendDataRequest(uint8_t sensorID, uint8_t payload);
     void sendData(uint8_t sensorID, uint8_t payload);
     void sendData(uint8_t sensorID, int16_t payload);
-
+    
     void sendData(uint8_t payload);
     void sendData(int16_t payload);
-
+    
     void sendDataArrayRequest(uint8_t arrayID, uint8_t length);
     void sendDataArray(uint8_t *dataArray, uint8_t length);
-
+    
     boolean readSerialData();
     uint8_t getCommandID();
     uint8_t getPayload();
-
-  private:
+    
+private:
     struct packet
     {
-      uint8_t packetType;
-      uint8_t nodeID;
-      uint8_t sensorID;
-      uint8_t commandID;
-      uint8_t payload;
-      uint8_t parity;
+        uint8_t packetType;
+        uint8_t nodeID;
+        uint8_t sensorID;
+        uint8_t commandID;
+        uint8_t payload;
+        uint8_t parity;
     } incomingPacket, outgoingPacket;             //TODO: also use this struct to send packets? (todo underscore)
-
+    
     uint8_t _packetType;
     uint8_t _nodeID;
     uint8_t _sensorID;
     uint8_t _commandID;
     uint8_t _parity;
     uint8_t _checkedParity;
-
+    
     boolean _inComingPacketComplete;
     char _inputChar[20];
     uint8_t _incomingCounter;
-
+    
     void sendPacket(uint8_t& payload);
     void sendPacket(int16_t& payload);
     void setPacketType(uint8_t type);
