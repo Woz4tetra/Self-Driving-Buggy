@@ -16,7 +16,7 @@
 #define DATA_INT           0x04
 
 #define DATA_ARRAY_REQUEST 0x07
-#define DATA_ARRAY         0x06
+#define DATA_ARRAY         0x05
 #define EXIT               0xff
 
 //// Sensor Types:

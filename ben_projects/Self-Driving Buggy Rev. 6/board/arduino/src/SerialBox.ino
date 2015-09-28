@@ -9,37 +9,18 @@ uint8_t fake_sensor_8bit = 0;
 uint16_t fake_sensor_16bit = 0;
 uint8_t fake_gps[8];
 
+uint8_t command_id = 0;
+uint8_t payload = 0;
+
 void setup()
 {
-    Packet.begin();
+    Packet.begin(115200, 2);
     handshake();
 }
 
 void loop()
 {
-    uint8_t command_id = Packet.getCommandID();
-    uint8_t payload = Packet.getPayload();
-    
-    if (command_id == FAKE_LED)
-    {
-        fake_led = (bool)payload;
-        Packet.sendCommandReply(command_id, (uint8_t)(fake_led));
-    }
-    else if (command_id == FAKE_SENSOR_8BIT) {
-        Packet.sendData8bit(fake_sensor_8bit);
-        
-        fake_sensor_8bit = (fake_sensor_8bit + 1) % 256;
-    }
-//    else if (command_id == FAKE_SENSOR_16BIT) {
-//        <#statements#>
-//    }
-//    else if (command_id == FAKE_GPS) {
-//        <#statements#>
-//    }
-//    else {
-//        <#statements#>
-//    }
-    delay(1);
+    delay(3);
 }
 
 /*
@@ -51,25 +32,63 @@ void loop()
 
 void serialEvent()
 {
-    Packet.readSerialData();
-//    char in_char = Serial.read();
-//    String read_string = "";
-//    while (in_char != '\n')
+    int result = Packet.readSerialData();
+    if (result == 1)
+    {
+        command_id = Packet.getCommandID();
+        payload = Packet.getPayload();
+        
+        while (Serial.read() > 0) {  }
+        Serial.flush();
+    }
+    else if (result == 2)
+    {
+        if (command_id == FAKE_LED)
+        {
+            fake_led = (bool)payload;
+            Packet.sendCommandReply(command_id, (uint8_t)(fake_led));
+        }
+        if (command_id == FAKE_SENSOR_8BIT)
+        {
+            Packet.sendData8bit(command_id, fake_sensor_8bit);
+            
+            fake_sensor_8bit = (fake_sensor_8bit + 1) & 0xff;
+        }
+        if (command_id == FAKE_SENSOR_16BIT)
+        {
+            Packet.sendData16bit(command_id, fake_sensor_16bit);
+            
+            if (fake_sensor_16bit == 0) {
+                fake_sensor_16bit = 1;
+            }
+            else {
+                fake_sensor_16bit = (fake_sensor_16bit * 2) & 0xffff;
+            }
+        }
+    }
+//    Packet.readSerialData();
+//    if (Packet.readSerialData())
 //    {
-//        read_string += in_char;
-//        in_char = Serial.read();
+//        command_id = Packet.getCommandID();
+//        payload = Packet.getPayload();
 //    }
-//    Serial.println(read_string);
+//    Serial.print(", command_id:");
+//    Serial.print(command_id);
+//    
+//    Serial.print(", payload:");
+//    Serial.print(payload);
+//    
+//    Serial.print(", 8bit:");
+//    Serial.print(fake_sensor_8bit);
+//    
+//    Serial.print(", 16bit:");
+//    Serial.println(fake_sensor_16bit);
 }
 
 void handshake()
 {
     Serial.print("R");  // Send ready flag
-    while (Serial.available() <= 0)
-    {
-        delay(10);
-    }
+    while (Serial.available() <= 0) {  }
     
     Serial.flush();
-    delay(10);
 }

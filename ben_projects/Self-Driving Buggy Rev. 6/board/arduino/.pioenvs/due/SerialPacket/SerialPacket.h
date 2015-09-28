@@ -35,8 +35,8 @@
 #define SerialPacket_h
 #include <Arduino.h>
 
-class SerialPacket {
-    
+class SerialPacket
+{
 public:
     SerialPacket();
     
@@ -57,7 +57,7 @@ public:
     void sendDataArrayRequest(uint8_t arrayID, uint8_t length);
     void sendDataArray(uint8_t *dataArray, uint8_t length);
     
-    boolean readSerialData();
+    int readSerialData();
     uint8_t getCommandID();
     uint8_t getPayload();
     

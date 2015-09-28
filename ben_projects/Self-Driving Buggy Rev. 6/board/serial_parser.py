@@ -3,8 +3,9 @@
 """
 
 from __future__ import print_function
-from constants import PACKET_TYPES
+from constants import *
 import sys
+
 
 class Parser():
     """SerialParser: parser for SerialPacket data"""
@@ -19,15 +20,57 @@ class Parser():
         else:
             return None
 
-    def parseData(self, packet):
+    def verify(self, sent_packet, received_packet):
+        sent_type, sent_node, sent_cID, sent_load, sent_parity = \
+            self.parseData(sent_packet, verbose=True)
+        recv_type, recv_node, recv_cID, recv_load, recv_parity = \
+            self.parseData(received_packet, verbose=True)
+
+        if (sent_type == PACKET_TYPES['command'] and recv_type !=
+                PACKET_TYPES['command reply']):
+            print("packet is not reply")
+            return False
+        if (sent_type == PACKET_TYPES['request data'] and
+                (recv_type != PACKET_TYPES['send 16-bit data'] and
+                 recv_type != PACKET_TYPES['send 8-bit data'])):
+            print("packet is not 16 or 8 bit")
+            return False
+        if (sent_type == PACKET_TYPES['request data array'] and
+                 recv_type != PACKET_TYPES['send data array']):
+            print("packet is not array")
+            return False
+
+        if sent_node != NODE_PC or recv_node != NODE_BOARD:
+            print("nodes are incorrect:", sent_node, recv_node)
+            return False
+
+        if sent_cID != recv_cID:
+            print("command ids do not match")
+            return False
+
+        if sent_parity != self.getQualityCheck(sent_packet) or \
+                recv_parity != self.getQualityCheck(received_packet):
+            print("incorrect parities")
+            return False
+
+        return True
+
+    def parseData(self, packet, verbose=False):
         """Parse the data"""
         packet_type = self.getPacketType(packet)
         if packet_type == PACKET_TYPES['exit']:
             sys.exit(1)
 
-        return (self.getNodeID(packet),
-                self.getCommandID(packet),
-                self.getPayload(packet, packet_type))
+        if verbose == False:
+            return (self.getNodeID(packet),
+                    self.getCommandID(packet),
+                    self.getPayload(packet, packet_type))
+        else:
+            return (packet_type,
+                    self.getNodeID(packet),
+                    self.getCommandID(packet),
+                    self.getPayload(packet, packet_type),
+                    self.getQualityCheck(packet))
 
     def validatePacket(self, packet):
         """Validate an incoming packet using parity control"""
