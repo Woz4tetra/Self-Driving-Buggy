@@ -9,22 +9,38 @@ import sys
 
 class Parser():
     """SerialParser: parser for SerialPacket data"""
+    min_length = 16
 
     def __init__(self):
         pass
 
-    def parse(self, packet):
+    def parse(self, packet, verbose=False):
         """Parse a packet"""
         if self.validatePacket(packet):
-            return self.parseData(packet[:-2])
+            return self.parseData(self.remove_newline(packet), verbose)
         else:
             return None
+    
+    @staticmethod
+    def remove_newline(packet):
+        if packet[-2:] == '\r\n':
+            return packet[:-2]
+        else:
+            return packet
 
     def verify(self, sent_packet, received_packet):
-        sent_type, sent_node, sent_cID, sent_load, sent_parity = \
-            self.parseData(sent_packet, verbose=True)
-        recv_type, recv_node, recv_cID, recv_load, recv_parity = \
-            self.parseData(received_packet, verbose=True)
+        if len(sent_packet) == 0 or len(received_packet) == 0:
+            return True  # serial is miss timed. Trying again for new packet
+        
+        sent_parsed = self.parse(sent_packet, verbose=True)
+        recv_parsed = self.parse(received_packet, verbose=True)
+        
+        sent_type, sent_node, sent_cID, sent_load, sent_parity = sent_parsed
+        recv_type, recv_node, recv_cID, recv_load, recv_parity = recv_parsed
+            
+        
+        sent_packet = self.remove_newline(sent_packet)
+        received_packet = self.remove_newline(received_packet)
 
         if (sent_type == PACKET_TYPES['command'] and recv_type !=
                 PACKET_TYPES['command reply']):
@@ -47,7 +63,7 @@ class Parser():
         if sent_cID != recv_cID:
             print("command ids do not match")
             return False
-
+        
         if sent_parity != self.getQualityCheck(sent_packet) or \
                 recv_parity != self.getQualityCheck(received_packet):
             print("incorrect parities")
@@ -55,7 +71,7 @@ class Parser():
 
         return True
 
-    def parseData(self, packet, verbose=False):
+    def parseData(self, packet, verbose):
         """Parse the data"""
         packet_type = self.getPacketType(packet)
         if packet_type == PACKET_TYPES['exit']:
@@ -64,20 +80,20 @@ class Parser():
         if verbose == False:
             return (self.getNodeID(packet),
                     self.getCommandID(packet),
-                    self.getPayload(packet, packet_type))
+                    self.getPayload(packet))
         else:
             return (packet_type,
                     self.getNodeID(packet),
                     self.getCommandID(packet),
-                    self.getPayload(packet, packet_type),
+                    self.getPayload(packet),
                     self.getQualityCheck(packet))
 
     def validatePacket(self, packet):
         """Validate an incoming packet using parity control"""
-        if packet[-2:] != "\r\n" or len(packet) < 17:
+        if packet[-2:] != "\r\n" or len(packet) < Parser.min_length:
             return False
 
-        packet = packet[:-2]
+        packet = self.remove_newline(packet)
 
         self.receivedParity = self.getQualityCheck(packet)
 
@@ -85,15 +101,22 @@ class Parser():
         self.calculatedParity = (packet_type ^
                                  self.getNodeID(packet) ^
                                  self.getCommandID(packet) ^
-                                 self.getPayload(packet, packet_type)) & 0xff
-
-        return self.receivedParity == self.calculatedParity
+                                 self.getPayload(packet)) & 0xff
+        
+        if self.receivedParity == self.calculatedParity:
+            return True
+        else:
+            print("Parities did not match:")
+            print(repr(packet))
+            print(self.receivedParity, self.calculatedParity)
+            return False
 
     def getPacketType(self, packet):
         """Get the packet type"""
         if packet[0] == 'T':
             return self.hex_to_dec(packet[1:3])
         else:
+            print("Packet type flag 'T' not found:", repr(packet))
             return -1
 
     def getNodeID(self, packet):
@@ -101,6 +124,7 @@ class Parser():
         if packet[3] == 'N':
             return self.hex_to_dec(packet[4:6])
         else:
+            print("Node ID flag 'N' not found:", repr(packet))
             return -1
 
     def getCommandID(self, packet):
@@ -108,36 +132,27 @@ class Parser():
         if packet[6] == 'I':
             return self.hex_to_dec(packet[7:9])
         else:
+            print("Command ID flag 'I' not found:", repr(packet))
             return -1
 
-    def getPayload(self, packet, packet_type):
+    def getPayload(self, packet):
         """Get the payload"""
-        if (packet_type == PACKET_TYPES['command'] or
-                    packet_type == PACKET_TYPES['command reply'] or
-                    packet_type == PACKET_TYPES['send 8-bit data'] or
-                    packet_type == PACKET_TYPES['request data'] or
-                    packet_type == PACKET_TYPES['request data array'] or
-                    packet_type == PACKET_TYPES['exit']):
-            length = 2  # 16 * 2 = 32 bits, 8 bytes (hex character = 16 bits)
-        elif packet_type == PACKET_TYPES['send 16-bit data']:
-            length = 4
-        elif packet_type == PACKET_TYPES['send data array']:
-            length = self.getCommandID(packet)
-        else:
-            length = 0
-
         p_index = 9
+        start_index = p_index + 1
+        end_index = packet.find('Q')
         if packet[p_index] == 'P':
-            return self.hex_to_dec(packet[p_index + 1: (p_index + 1) + length])
+            return self.hex_to_dec(packet[start_index: end_index])
         else:
+            print("Payload flag 'P' not found:", repr(packet))
             return -1
 
     def getQualityCheck(self, packet):
         """Get the parity 'quality check'"""
-        q_index = len(packet) - 3
+        q_index = len(packet) - 3 # Q##
         if packet[q_index] == 'Q':
             return self.hex_to_dec(packet[q_index + 1:])
         else:
+            print("Parity/Quality flag 'Q' not found:", repr(packet), packet[q_index])
             return None
 
     @staticmethod

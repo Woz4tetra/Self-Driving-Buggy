@@ -5,7 +5,7 @@ import time
 from constants import *
 
 class Communicator():
-    def __init__(self, delay=0.006):  # corresponds to delay(3) on arduino
+    def __init__(self, delay=0.007):  # corresponds to delay(3) on arduino
         self.serialRef = self._findPort()
         self._handshake()
 
@@ -70,7 +70,7 @@ class Communicator():
             raise NotImplementedError
 
     def ping(self):
-        print "ping!"
+#        print "ping!"
         # print "in waiting send:", repr(self.serialRef.inWaiting())
 
         self.serialRef.write('x')
@@ -81,12 +81,12 @@ class Communicator():
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
 
-        print "writing current_packet:", repr(self.currentPacket)
-        print "in waiting send:", repr(self.serialRef.inWaiting())
+#        print "writing current_packet:", repr(self.currentPacket)
+#        print "in waiting send:", repr(self.serialRef.inWaiting())
 
         self.serialRef.write(self.currentPacket)
 
-        print "in waiting send:", repr(self.serialRef.inWaiting())
+#        print "in waiting send:", repr(self.serialRef.inWaiting())
         time.sleep(self.delay)
 
     def read(self, recurses=0):
@@ -95,10 +95,10 @@ class Communicator():
         self.ping()
 
         buffer = ''
-        print "in waiting read:", repr(self.serialRef.inWaiting())
+#        print "in waiting read:", repr(self.serialRef.inWaiting())
         if self.serialRef.inWaiting():
             buffer = self.serialRef.readline()
-        print repr(buffer)
+#        print repr(buffer)
         if buffer == None or len(buffer) == 0:
             self.read(recurses + 1)
         return buffer

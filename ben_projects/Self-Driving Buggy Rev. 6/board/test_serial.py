@@ -95,6 +95,62 @@ def test_pinging():
 
         print parser.parse(communicator.read())
 
+def test_verify():
+    motor_value = 0
+    led_state = True
+    
+    # ---- test led 13 ----
+    for _ in xrange(10):
+        packet = communicator.makePacket(PACKET_TYPES['command'],
+                                ARDUINO_COMMAND_IDS['led 13'],
+                                int(led_state))
+        communicator.write(packet)
+        assert parser.verify(packet, communicator.read())
+
+        led_state = not led_state
+        time.sleep(1)
+    
+    # ---- test fake led ----
+    
+    for _ in xrange(20):
+        packet = communicator.makePacket(PACKET_TYPES['command'],
+                                ARDUINO_COMMAND_IDS['fake led'],
+                                int(led_state))
+        communicator.write(packet)
+        assert parser.verify(packet, communicator.read())
+
+        led_state = not led_state
+    
+    # ---- test fake 8-bit sensor ----
+    
+    packet = communicator.makePacket(PACKET_TYPES['request data'],
+                                ARDUINO_COMMAND_IDS['fake sensor 8 bit'])
+    communicator.write(packet)
+    for _ in xrange(20):
+        assert parser.verify(packet, communicator.read())
+    
+    # ---- test fake 16-bit sensor ----
+    
+    packet = communicator.makePacket(PACKET_TYPES['request data'],
+                                ARDUINO_COMMAND_IDS['fake sensor 16 bit'])
+    communicator.write(packet)
+    
+    for _ in xrange(20):
+        assert parser.verify(packet, communicator.read())
+    
+    # ---- test fake motor ----
+    
+    for _ in xrange(255):
+        packet = communicator.makePacket(PACKET_TYPES['command'],
+                                        ARDUINO_COMMAND_IDS['fake motor'],
+                                        motor_value)
+        communicator.write(packet)
+        
+        motor_value += 1
+
+        communicator.write(packet)
+        assert parser.verify(packet, communicator.read())
+
 if __name__ == '__main__':
     parser = serial_parser.Parser()
     communicator = serial_comm.Communicator()
@@ -106,7 +162,8 @@ if __name__ == '__main__':
 
     while True:
 #        test_switching()
-        test_pinging()
+#        test_pinging()
+        test_verify()
 
         print "lets go again!!!"
         time.sleep(1)

@@ -1,3 +1,0 @@
-enter: screen /dev/tty.usbmodem*
-reset: ctrl-c, ctrl-d
-exit: ctrl-a, ctrl-\
