@@ -1,5 +1,25 @@
 """
+Written by Ben Warwick
 
+Self-Driving Buggy Rev. 6 (serial_parser.py) for Self-Driving Buggy Project
+Version 9/29/2015
+=========
+
+This module handles all packet creation and verification. The conventions for
+packets are detailed in Serial Packet Convention 9-23-15.numbers. Packets are
+a convention of data transfer over usb serial. This is to ensure all data
+arrives correctly and on time.
+
+A summary of the convention is as follows:
+T##N##I##P##Q##
+
+T - Packet type, what kind of data is being sent?
+N - Node ID, where it came from
+I - Command ID, where it's going
+P - Payload, the data
+Q - Quality/Parity, did the packet arrive intact?
+
+This module should be used in tandem with serial_comm.py and constants.py
 """
 
 from __future__ import print_function

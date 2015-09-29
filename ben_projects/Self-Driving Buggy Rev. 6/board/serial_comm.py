@@ -1,3 +1,23 @@
+"""
+Written by Ben Warwick
+
+Self-Driving Buggy Rev. 6 (serial_comm.py) for Self-Driving Buggy Project
+Version 9/29/2015
+=========
+
+This module handles all communications with a serial device (currently only
+arduino and pyboard). All communications are done through packets and pings.
+Packets follow the format detailed in Serial Packet Convention 9-23-15.numbers
+Send a packet following the guidelines and then ping for data. This opposed to
+writing a packet every time data is required.
+
+This module should be used in tandem with serial_parser.py and constants.py
+
+Dependencies
+------------
+PySerial - https://github.com/pyserial/pyserial
+"""
+
 import serial
 from sys import platform as _platform
 import os

@@ -8,8 +8,10 @@
 
 \f0\fs22 \cf0 \CocoaLigature0 \
 \
-- python modules, functions, and variables use underscore (buggy_info, video_maker)\
-- c plus plus files use capitalized camel case (SerialComm.cpp, AccelStepper.cpp, NewPing.cpp)\
+- python modules (python directories included), functions, and variables use underscore (buggy_info, video_maker)\
+- c++ files use capitalized camel case (SerialComm.cpp, AccelStepper.cpp, NewPing.cpp)\
+- Directories follow c++ convention or normally spaced words (if able)\
+- Top level project directories follow whatever the owner prefers (ex. ben_projects, chrisProjects, NatProjects)\
 - classes and methods use camel case\
 - put a doc string with the following info at the top of a main file and have it display when the program runs. Example doc string:\
 \
@@ -32,6 +34,13 @@ python __main__.py\
 \'96 or \'96 (in folder directory):\
 python Self-Driving Buggy Rev. 6\
 \
+Dependencies\
+------------\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf2 PySerial - https://github.com/pyserial/pyserial\
+OpenCV 3.0.0 (and its dependencies) - http://opencv.org\
+\pard\tx529\pardeftab529\pardirnatural
+\cf2 \
 Keys\
 ----\
     q, ESC - exit\

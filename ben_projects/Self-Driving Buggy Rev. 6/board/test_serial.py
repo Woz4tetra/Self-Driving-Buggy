@@ -1,3 +1,4 @@
+
 import serial_comm
 import serial_parser
 from constants import *
@@ -155,14 +156,9 @@ if __name__ == '__main__':
     parser = serial_parser.Parser()
     communicator = serial_comm.Communicator()
 
-    # ---- Request data from fake sensor 8 bit ----
-    
-
-    
-
     while True:
-#        test_switching()
-#        test_pinging()
+        # test_switching()
+        # test_pinging()
         test_verify()
 
         print "lets go again!!!"
