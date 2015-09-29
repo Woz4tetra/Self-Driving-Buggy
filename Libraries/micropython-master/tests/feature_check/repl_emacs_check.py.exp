@@ -1,6 +1,0 @@
-Micro Python \.\+ version
->>> # Check for emacs keys in REPL
->>> t = \.\+
->>> t == 2
-True
->>> 

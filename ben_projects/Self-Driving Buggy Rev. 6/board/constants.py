@@ -47,6 +47,9 @@ ARDUINO_COMMAND_IDS = ReversibleDict({
     'fake sensor 8 bit': 0x02,
     'fake sensor 16 bit': 0x03,
     'fake gps': 0x04,
+    'fake motor': 0x05,
+
+    'led 13': 0x0d,
 })
 
 OFF = 0

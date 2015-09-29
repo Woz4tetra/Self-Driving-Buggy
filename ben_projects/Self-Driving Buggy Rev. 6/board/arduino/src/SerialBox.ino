@@ -2,12 +2,15 @@
 #include "SerialPacket.h"
 #include "defines.h"
 
+#define LED13_PIN 13
+
 SerialPacket Packet;
 
 bool fake_led = false;
 uint8_t fake_sensor_8bit = 0;
 uint16_t fake_sensor_16bit = 0;
 uint8_t fake_gps[8];
+uint8_t fake_motor = 0;
 
 uint8_t command_id = 0;
 uint8_t payload = 0;
@@ -15,6 +18,7 @@ uint8_t payload = 0;
 void setup()
 {
     Packet.begin(115200, 2);
+    pinMode(LED13_PIN, OUTPUT);
     handshake();
 }
 
@@ -48,13 +52,13 @@ void serialEvent()
             fake_led = (bool)payload;
             Packet.sendCommandReply(command_id, (uint8_t)(fake_led));
         }
-        if (command_id == FAKE_SENSOR_8BIT)
+        else if (command_id == FAKE_SENSOR_8BIT)
         {
             Packet.sendData8bit(command_id, fake_sensor_8bit);
             
             fake_sensor_8bit = (fake_sensor_8bit + 1) & 0xff;
         }
-        if (command_id == FAKE_SENSOR_16BIT)
+        else if (command_id == FAKE_SENSOR_16BIT)
         {
             Packet.sendData16bit(command_id, fake_sensor_16bit);
             
@@ -65,24 +69,17 @@ void serialEvent()
                 fake_sensor_16bit = (fake_sensor_16bit * 2) & 0xffff;
             }
         }
+        else if (command_id == LED_13)
+        {
+            digitalWrite(LED13_PIN, payload);
+            Packet.sendCommandReply(command_id, payload);
+        }
+        else if (command_id == FAKE_MOTOR)
+        {
+            fake_motor = payload;
+            Packet.sendCommandReply(command_id, fake_motor);
+        }
     }
-//    Packet.readSerialData();
-//    if (Packet.readSerialData())
-//    {
-//        command_id = Packet.getCommandID();
-//        payload = Packet.getPayload();
-//    }
-//    Serial.print(", command_id:");
-//    Serial.print(command_id);
-//    
-//    Serial.print(", payload:");
-//    Serial.print(payload);
-//    
-//    Serial.print(", 8bit:");
-//    Serial.print(fake_sensor_8bit);
-//    
-//    Serial.print(", 16bit:");
-//    Serial.println(fake_sensor_16bit);
 }
 
 void handshake()
