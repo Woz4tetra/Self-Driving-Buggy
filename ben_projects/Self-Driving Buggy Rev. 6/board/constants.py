@@ -23,7 +23,6 @@ PACKET_TYPES = ReversibleDict({
     'send 16-bit data':   0x04,
     'send data array':    0x05,
     'request data':       0x06,
-    'request data array': 0x07,
     'exit':               0xff
 })
 
@@ -49,6 +48,7 @@ ARDUINO_COMMAND_IDS = ReversibleDict({
     'fake gps': 0x04,
     'fake motor': 0x05,
 
+    'accel': 0x06,
     'led 13': 0x0d,
 })
 
@@ -57,3 +57,12 @@ ON = 1
 
 NODE_PC = 1
 NODE_BOARD = 2
+
+def _makeParity(packet_type, node, command_id, payload):
+    main_parity = packet_type ^ node ^ command_id
+    payload_parity = payload & 0xff  # order does not matter
+    if packet_type == PACKET_TYPES['send data array']:
+        while payload > 0:
+            payload = payload >> 8
+            payload_parity ^= payload & 0xff
+    return main_parity ^ payload_parity

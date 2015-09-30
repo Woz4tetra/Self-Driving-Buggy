@@ -23,6 +23,8 @@ from sys import platform as _platform
 import os
 import time
 from constants import *
+from constants import _makeParity
+
 
 class Communicator():
     def __init__(self, delay=0.007):  # corresponds to delay(3) on arduino
@@ -90,7 +92,7 @@ class Communicator():
             raise NotImplementedError
 
     def ping(self):
-#        print "ping!"
+        #        print "ping!"
         # print "in waiting send:", repr(self.serialRef.inWaiting())
 
         self.serialRef.write('x')
@@ -101,24 +103,24 @@ class Communicator():
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
 
-#        print "writing current_packet:", repr(self.currentPacket)
-#        print "in waiting send:", repr(self.serialRef.inWaiting())
+        #        print "writing current_packet:", repr(self.currentPacket)
+        #        print "in waiting send:", repr(self.serialRef.inWaiting())
 
         self.serialRef.write(self.currentPacket)
 
-#        print "in waiting send:", repr(self.serialRef.inWaiting())
+        #        print "in waiting send:", repr(self.serialRef.inWaiting())
         time.sleep(self.delay)
 
     def read(self, recurses=0):
         if recurses > 10:
-            raise Exception("Attemped read failed!! Tried too many times")
+            raise Exception("Attempted read failed!! Tried too many times")
         self.ping()
 
         buffer = ''
-#        print "in waiting read:", repr(self.serialRef.inWaiting())
+        #        print "in waiting read:", repr(self.serialRef.inWaiting())
         if self.serialRef.inWaiting():
             buffer = self.serialRef.readline()
-#        print repr(buffer)
+        #        print repr(buffer)
         if buffer == None or len(buffer) == 0:
             self.read(recurses + 1)
         return buffer
@@ -144,7 +146,8 @@ class Communicator():
         I = Communicator.format_element(command_id)
         P = Communicator.format_element(payload, length)
         if quality == None:
-            Q = Communicator.format_element((packet_type ^ node ^ command_id ^ payload) & 0xff)
+            Q = Communicator.format_element(
+                (_makeParity(packet_type, node, command_id, payload)))
         else:
             Q = Communicator.format_element(quality)
 
@@ -158,7 +161,6 @@ class Communicator():
                     packet_type == PACKET_TYPES['command reply'] or
                     packet_type == PACKET_TYPES['send 8-bit data'] or
                     packet_type == PACKET_TYPES['request data'] or
-                    packet_type == PACKET_TYPES['request data array'] or
                     packet_type == PACKET_TYPES['exit']):
             length = 2  # 4 * 2 = 8 bits
         elif packet_type == PACKET_TYPES['send 16-bit data']:
@@ -174,7 +176,7 @@ class Communicator():
         I = Communicator.format_element(command_id)
         P = Communicator.format_element(payload, length)
         Q = Communicator.format_element(
-            (packet_type ^ node ^ command_id ^ payload) & 0xff)
+            (_makeParity(packet_type, node, command_id, payload)))
 
         packet = "T{}N{}I{}P{}Q{}\r\n".format(T, N, I, P, Q)
 

@@ -31,7 +31,6 @@ Keys
 '''
 
 import sys
-import time
 
 import camera
 from camera import analyzers
@@ -46,12 +45,12 @@ def run():
     #                          camSource=0
     #                          )
     camera1 = camera.Capture(windowName="camera",
-                             camSource="Down camera, Course Run 1, 4.5 ft, 9-2-15, 30 fps.m4v",
+                             camSource="Impulse 10-12-14 Roll 2.mov",
                              # camSource="0.33 sec, 7...8 in high, 19 in long.m4v",
                              # width=720, height=450,
                              # width=427, height=240,
                              # frameSkip=15,
-                             loopVideo=False,
+                             loopVideo=True,
                              )
 
     captureProperties = dict(
@@ -78,17 +77,18 @@ def run():
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
-                # frame1 = analyzers.sobel_filter(frame1)
-                frame1, delta = tracker.update(frame1, enableDraw=True)
-                position[0] += delta[0]
-                position[1] += delta[1]
-                print "%s\t%s" % (position[0], position[1])
+                frame1 = analyzers.sobel_filter(frame1)
 
-                if captureProperties['enableDraw'] is True:
-                    frame1 = analyzers.drawPosition(frame1, width,
-                                                           height,
-                                                           position,
-                                                           reverse=True)
+                # frame1, delta = tracker.update(frame1, enableDraw=True)
+                # position[0] += delta[0]
+                # position[1] += delta[1]
+                # print "%s\t%s" % (position[0], position[1])
+
+                # if captureProperties['enableDraw'] is True:
+                #     frame1 = analyzers.drawPosition(frame1, width,
+                #                                            height,
+                #                                            position,
+                #                                            reverse=True)
 
             if captureProperties['writeVideo'] == True:
                 camera1.writeToVideo(frame1)

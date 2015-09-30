@@ -24,7 +24,10 @@ This module should be used in tandem with serial_comm.py and constants.py
 
 from __future__ import print_function
 from constants import *
+from constants import _makeParity
 import sys
+import struct
+from math import log
 
 
 class Parser():
@@ -40,7 +43,23 @@ class Parser():
             return self.parseData(self.remove_newline(packet), verbose)
         else:
             return None
-    
+
+    def parseData(self, packet, verbose):
+        """Parse the data"""
+        packet_type = self.getPacketType(packet)
+        if packet_type == PACKET_TYPES['exit']:
+            sys.exit(1)
+
+        if verbose == False:
+            return (self.getCommandID(packet),
+                    self.getPayload(packet))
+        else:
+            return (packet_type,
+                    self.getNodeID(packet),
+                    self.getCommandID(packet),
+                    self.getPayload(packet),
+                    self.getQualityCheck(packet))
+
     @staticmethod
     def remove_newline(packet):
         if packet[-2:] == '\r\n':
@@ -51,29 +70,36 @@ class Parser():
     def verify(self, sent_packet, received_packet):
         if len(sent_packet) == 0 or len(received_packet) == 0:
             return True  # serial is miss timed. Trying again for new packet
-        
+
         sent_parsed = self.parse(sent_packet, verbose=True)
         recv_parsed = self.parse(received_packet, verbose=True)
-        
+
         sent_type, sent_node, sent_cID, sent_load, sent_parity = sent_parsed
         recv_type, recv_node, recv_cID, recv_load, recv_parity = recv_parsed
-            
-        
+
         sent_packet = self.remove_newline(sent_packet)
         received_packet = self.remove_newline(received_packet)
 
         if (sent_type == PACKET_TYPES['command'] and recv_type !=
-                PACKET_TYPES['command reply']):
-            print("packet is not reply")
+            PACKET_TYPES['command reply']):
+            print("packet is not reply:")
+            print(repr(received_packet), repr(sent_packet))
             return False
         if (sent_type == PACKET_TYPES['request data'] and
                 (recv_type != PACKET_TYPES['send 16-bit data'] and
-                 recv_type != PACKET_TYPES['send 8-bit data'])):
-            print("packet is not 16 or 8 bit")
+                         recv_type != PACKET_TYPES['send 8-bit data'] and
+                         recv_type != PACKET_TYPES['send data array'])):
+            print("packet is not data:")
+            print(repr(received_packet), repr(sent_packet))
             return False
-        if (sent_type == PACKET_TYPES['request data array'] and
-                 recv_type != PACKET_TYPES['send data array']):
-            print("packet is not array")
+
+        payload_length = self._payloadLength(received_packet)
+        if (recv_type == PACKET_TYPES['send data array'] and
+                    (recv_cID * 2) != payload_length):
+            print("data length does not match specified")
+            print("expected: ", recv_cID * 2)
+            print("received: ", payload_length)
+            print(repr(received_packet), repr(sent_packet))
             return False
 
         if sent_node != NODE_PC or recv_node != NODE_BOARD:
@@ -81,32 +107,97 @@ class Parser():
             return False
 
         if sent_cID != recv_cID:
-            print("command ids do not match")
+            print("command ids do not match:")
+            print(repr(received_packet), repr(sent_packet))
             return False
-        
+
         if sent_parity != self.getQualityCheck(sent_packet) or \
-                recv_parity != self.getQualityCheck(received_packet):
-            print("incorrect parities")
+                        recv_parity != self.getQualityCheck(received_packet):
+            print("incorrect parities:")
+            print(repr(received_packet), repr(sent_packet))
             return False
 
         return True
 
-    def parseData(self, packet, verbose):
-        """Parse the data"""
-        packet_type = self.getPacketType(packet)
-        if packet_type == PACKET_TYPES['exit']:
-            sys.exit(1)
+    @staticmethod
+    def _makePacketUnit(length):
+        packet_unit = 0
+        for unit in xrange(length):
+            packet_unit += 0xf << (4 * unit)
+        return packet_unit
 
-        if verbose == False:
-            return (self.getNodeID(packet),
-                    self.getCommandID(packet),
-                    self.getPayload(packet))
+    @staticmethod
+    def _payloadLength(input):
+        if type(input) == str:
+            start_index = input.find('P') + 1
+            end_index = input.find('Q')
+
+            return end_index - start_index
         else:
-            return (packet_type,
-                    self.getNodeID(packet),
-                    self.getCommandID(packet),
-                    self.getPayload(packet),
-                    self.getQualityCheck(packet))
+            if input > 0:
+                return int(log(input, 16)) + 1
+            else:
+                return 0
+
+    @staticmethod
+    def _formatInt(input, length, format='dec'):
+        if format == 'hex':
+            insert = "0" * (
+                length - Parser._payloadLength(input))
+            input = insert + hex(input)[2:]
+        elif format == 'float':
+            input = struct.unpack('!d', hex(input)[2:])[0]
+
+        return input
+
+    def parsePayload(self, payload, unit_size=None, markers=None, format='dec'):
+        # markers and unit_size are in units of digits of a hex number
+        assert format == 'dec' or format == 'float' or format == 'hex'
+        assert type(payload) == int
+        assert payload < sys.maxint
+
+        parsed = []
+        payload_length = self._payloadLength(payload)
+
+        if markers == None and unit_size == None:
+            parsed = [self._formatInt(payload, payload_length, format)]
+
+        elif markers != None:
+            if type(markers) == int:
+                assert 0 <= markers <= payload_length
+            else:
+                assert (0 <= markers[index] <= payload_length for index in
+                        xrange(len(markers)))
+
+            if type(markers) == int:
+                markers = [markers]
+            elif type(markers) != list:
+                markers = list(markers)
+
+            if markers[0] != 0:
+                markers.insert(0, 0)
+            if markers[-1] != payload_length:
+                markers.append(payload_length)
+            for index in xrange(1, len(markers)):
+                length = markers[index] - markers[index - 1]
+
+                parsed.insert(0, payload & self._makePacketUnit(length))
+
+                payload = payload >> (length * 4)
+
+                parsed[index - 1] = self._formatInt(parsed[index - 1], length,
+                                                    format)
+
+        elif unit_size != None:
+            assert type(unit_size) == int
+            while payload > 0:
+                parsed.insert(0, payload & self._makePacketUnit(unit_size))
+
+                payload = payload >> (unit_size * 4)
+
+                parsed[0] = self._formatInt(parsed[0], unit_size, format)
+
+        return parsed
 
     def validatePacket(self, packet):
         """Validate an incoming packet using parity control"""
@@ -118,17 +209,18 @@ class Parser():
         self.receivedParity = self.getQualityCheck(packet)
 
         packet_type = self.getPacketType(packet)
-        self.calculatedParity = (packet_type ^
-                                 self.getNodeID(packet) ^
-                                 self.getCommandID(packet) ^
-                                 self.getPayload(packet)) & 0xff
-        
+        self.calculatedParity = _makeParity(packet_type,
+                                            self.getNodeID(packet),
+                                            self.getCommandID(packet),
+                                            self.getPayload(packet))
+
         if self.receivedParity == self.calculatedParity:
             return True
         else:
             print("Parities did not match:")
             print(repr(packet))
-            print(self.receivedParity, self.calculatedParity)
+            print("Received: " + hex(self.receivedParity) +
+                  ", Calculated: " + hex(self.calculatedParity))
             return False
 
     def getPacketType(self, packet):
@@ -168,11 +260,12 @@ class Parser():
 
     def getQualityCheck(self, packet):
         """Get the parity 'quality check'"""
-        q_index = len(packet) - 3 # Q##
+        q_index = len(packet) - 3  # Q##
         if packet[q_index] == 'Q':
             return self.hex_to_dec(packet[q_index + 1:])
         else:
-            print("Parity/Quality flag 'Q' not found:", repr(packet), packet[q_index])
+            print("Parity/Quality flag 'Q' not found:", repr(packet),
+                  packet[q_index])
             return None
 
     @staticmethod
@@ -197,8 +290,8 @@ def test_serial_packet():
     packet6 = 'T02N02I00P01Q01\r\n'
     packet7 = 'T02N02I06Pb4Qb2\r\n'
     packet8 = 'T03N02I04P01Q04\r\n'
-    packet9 = 'T05N02I10P423a4e39410e4757Q40\r\n'
-    packet10 = 'T05N02I0cP4e0b30d8b648Q43\r\n'
+    packet9 = 'T05N02I10P423a4e39410e4757Q47\r\n'
+    packet10 = 'T05N02I0cP4e0b30d8b648Q58\r\n'
 
     # ---- incorrect packets ---- #
     # send data array length (I) is 5 instead of 8
@@ -236,29 +329,33 @@ def test_serial_packet():
                                    "T", "N", "I", "P", "Q"])
 
     # ---- direct inverse ---- #
-    packet_maker = serial_comm.Communicator()
-    generated_packet1 = packet_maker.makePacket(1, 0, 0)
-    generated_packet2 = packet_maker.makePacket(1, 6, 0xb4)
-    generated_packet3 = packet_maker.makePacket(6, 4, 0)
-    generated_packet4 = packet_maker.makePacket(7, 0xa, 0)
-    generated_packet5 = packet_maker.makePacket(7, 5, 0)
+    generated_packet1 = serial_comm.Communicator.makePacket(1, 0, 0)
+    generated_packet2 = serial_comm.Communicator.makePacket(1, 6, 0xb4)
+    generated_packet3 = serial_comm.Communicator.makePacket(6, 4, 0)
+    generated_packet4 = serial_comm.Communicator.makePacket(7, 0xa, 0)
+    generated_packet5 = serial_comm.Communicator.makePacket(7, 5, 0)
 
-    generated_packet6 = packet_maker.makePacket(5, 0xc, 0x4e0b30d8b648)
+    generated_packet6 = serial_comm.Communicator.makePacket(5, 0xc,
+                                                            0x4e0b30d8b648)
 
-    assert parser.parse(packet1) == (1, 0, 0)
-    assert parser.parse(packet2) == (1, 6, 180)
-    assert parser.parse(packet3) == (1, 4, 0)
-    assert parser.parse(packet4) == (1, 10, 0)
-    assert parser.parse(packet5) == (1, 5, 0)
+    assert parser.parse(packet1, verbose=True) == (1, 1, 0, 0, 0x00)
+    assert parser.parse(packet2, verbose=True) == (1, 1, 6, 180, 0xb2)
+    assert parser.parse(packet3, verbose=True) == (6, 1, 4, 0, 0x03)
+    assert parser.parse(packet4, verbose=True) == (7, 1, 10, 0, 0x0c)
+    assert parser.parse(packet5, verbose=True) == (7, 1, 5, 0, 0x03)
 
-    assert parser.parse(packet6) == (2, 0, 1)
-    assert parser.parse(packet7) == (2, 6, 180)
-    assert parser.parse(packet8) == (2, 4, 1)
-    assert parser.parse(packet9) == (2, 16, 0x423a4e39410e4757)
-    assert parser.parse(packet10) == (2, 12, 0x4e0b30d8b648)
+    assert parser.parse(packet6, verbose=True) == (2, 2, 0, 1, 0x01)
+    assert parser.parse(packet7, verbose=True) == (2, 2, 6, 180, 0xb2)
+    assert parser.parse(packet8, verbose=True) == (3, 2, 4, 1, 0x04)
+    assert parser.parse(packet9, verbose=True) == (
+    5, 2, 16, 0x423a4e39410e4757, 0x47)
+    assert parser.parse(packet10, verbose=True) == (
+    5, 2, 12, 0x4e0b30d8b648, 0x58)
 
     assert parser.parse(packet11) == None
+    print("Good!\n")
     assert parser.parse(packet12) == None
+    print("Good!")
     assert parser.parse(packet13) == None
     assert parser.parse(packet14) == None
     assert parser.parse(packet15) == None
@@ -274,7 +371,65 @@ def test_serial_packet():
     assert generated_packet3 == packet3
     assert generated_packet4 == packet4
     assert generated_packet5 == packet5
-    assert generated_packet6 == "T05N01I0cP4e0b30d8b648Q40\r\n"
+    assert generated_packet6 == "T05N01I0cP4e0b30d8b648Q5b\r\n"
+
+    # ---- payload parsing ---- #
+
+    packet20 = "T05N02I06PF02CC6ED01EAQ1D\r\n"
+    packet21 = "T05N02I06PC07AE8D618DCQ41\r\n"
+    packet22 = "T05N02I06P2D8B2ACD372DQ5A\r\n"
+
+    assert parser.parsePayload(parser.getPayload(packet20), unit_size=3,
+                               format='hex') == ['f02', 'cc6', 'ed0', '1ea']
+    assert parser.parsePayload(parser.getPayload(packet21), unit_size=3,
+                               format='hex') == ['c07', 'ae8', 'd61', '8dc']
+    assert parser.parsePayload(parser.getPayload(packet22), unit_size=3,
+                               format='hex') == ['2d8', 'b2a', 'cd3', '72d']
+
+    assert parser.parsePayload(parser.getPayload(packet20), unit_size=4,
+                               format='hex') == ['f02c', 'c6ed', '01ea']
+    assert parser.parsePayload(parser.getPayload(packet21), unit_size=4,
+                               format='hex') == ['c07a', 'e8d6', '18dc']
+    assert parser.parsePayload(parser.getPayload(packet22), unit_size=4,
+                               format='hex') == ['2d8b', '2acd', '372d']
+
+    assert parser.parsePayload(parser.getPayload(packet20), unit_size=6,
+                               format='hex') == ['f02cc6', 'ed01ea']
+    assert parser.parsePayload(parser.getPayload(packet21), unit_size=6,
+                               format='hex') == ['c07ae8', 'd618dc']
+    assert parser.parsePayload(parser.getPayload(packet22), unit_size=6,
+                               format='hex') == ['2d8b2a', 'cd372d']
+
+    assert parser.parsePayload(parser.getPayload(packet20), unit_size=7,
+                               format='hex') == ['00f02cc', '6ed01ea']
+    assert parser.parsePayload(parser.getPayload(packet21), unit_size=7,
+                               format='hex') == ['00c07ae', '8d618dc']
+    assert parser.parsePayload(parser.getPayload(packet22), unit_size=7,
+                               format='hex') == ['002d8b2', 'acd372d']
+
+    assert parser.parsePayload(parser.getPayload(packet20), unit_size=12,
+                               format='hex') == ['f02cc6ed01ea']
+    assert parser.parsePayload(parser.getPayload(packet21), unit_size=12,
+                               format='hex') == ['c07ae8d618dc']
+    assert parser.parsePayload(parser.getPayload(packet22), unit_size=12,
+                               format='hex') == ['2d8b2acd372d']
+
+    assert parser.parsePayload(parser.getPayload(packet20),
+                               format='hex') == ['f02cc6ed01ea']
+    assert parser.parsePayload(parser.getPayload(packet21),
+                               format='hex') == ['c07ae8d618dc']
+    assert parser.parsePayload(parser.getPayload(packet22),
+                               format='hex') == ['2d8b2acd372d']
+
+    assert parser.parsePayload(parser.getPayload(packet20),
+                               markers=(0, 4, 8, 12)) == \
+           parser.parsePayload(parser.getPayload(packet20), markers=(4, 8))
+    assert parser.parsePayload(parser.getPayload(packet21),
+                               markers=(0, 4, 8, 12)) == \
+           parser.parsePayload(parser.getPayload(packet21), markers=(4, 8))
+    assert parser.parsePayload(parser.getPayload(packet22),
+                               markers=(0, 4, 8, 12)) == \
+           parser.parsePayload(parser.getPayload(packet22), markers=(4, 8))
 
 
 if __name__ == '__main__':

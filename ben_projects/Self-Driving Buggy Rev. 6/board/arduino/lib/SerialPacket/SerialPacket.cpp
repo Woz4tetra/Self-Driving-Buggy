@@ -205,6 +205,7 @@ void SerialPacket::sendPacket(int16_t& payload)
 void SerialPacket::sendDataArray(uint8_t *dataArray, uint8_t length)
 {
     setCommandID(length);                            //commandID contains the length of the data array (can be used at receiving side)
+    setPacketType(DATA_ARRAY);
     _parity=_packetType^_nodeID^_commandID;
     Serial.print("T");
     hexPrinting(_packetType);

@@ -1,4 +1,8 @@
 
+//#include "I2Cdev.h"
+//#include "MPU6050.h"
+//#include "Wire.h"
+
 #include "SerialPacket.h"
 #include "defines.h"
 
@@ -15,10 +19,26 @@ uint8_t fake_motor = 0;
 uint8_t command_id = 0;
 uint8_t payload = 0;
 
+//MPU6050 accelgyro;
+int pos;
+//Servo servo1;
+int16_t ax, ay, az;
+int16_t gx, gy, gz;
+
+uint8_t accel_array[6];
+
 void setup()
 {
     Packet.begin(115200, 2);
+    
     pinMode(LED13_PIN, OUTPUT);
+    pinMode(A0, INPUT);
+//    servo1.attach(2);
+    pos = 0;
+    
+//    Wire.begin();
+//    accelgyro.initialize();
+    
     handshake();
 }
 
@@ -78,6 +98,22 @@ void serialEvent()
         {
             fake_motor = payload;
             Packet.sendCommandReply(command_id, fake_motor);
+        }
+        else if (command_id == ACCEL)
+        {
+//            accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+            ax = random(-0x8000, 0x8000 - 1);
+            ay = random(-0x8000, 0x8000 - 1);
+            az = random(-0x8000, 0x8000 - 1);
+            
+            accel_array[0] = ax >> 8;
+            accel_array[1] = ax & 0xffff;
+            accel_array[2] = ay >> 8;
+            accel_array[3] = ay & 0xffff;
+            accel_array[4] = az >> 8;
+            accel_array[5] = az & 0xffff;
+            
+            Packet.sendDataArray(accel_array, 6);
         }
     }
 }

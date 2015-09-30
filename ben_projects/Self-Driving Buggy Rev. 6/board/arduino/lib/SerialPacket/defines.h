@@ -15,7 +15,7 @@
 #define DATA_BYTE          0x03
 #define DATA_INT           0x04
 
-#define DATA_ARRAY_REQUEST 0x07
+#define DATA_ARRAY_REQUEST 0x07  // Unused
 #define DATA_ARRAY         0x05
 #define EXIT               0xff
 
@@ -46,4 +46,6 @@
 #define FAKE_GPS            0x04
 #define FAKE_MOTOR          0x05
 
+#define ACCEL               0x06
+#define SERVO               0x07
 #define LED_13              0x0D
