@@ -32,7 +32,7 @@ Keys
 
 import sys
 
-import camera
+from camera import capture
 from camera import analyzers
 
 
@@ -44,7 +44,7 @@ def run():
     #                          sizeByFPS=31,
     #                          camSource=0
     #                          )
-    camera1 = camera.Capture(windowName="camera",
+    camera1 = capture.Capture(windowName="camera",
                              camSource="Impulse 10-12-14 Roll 2.mov",
                              # camSource="0.33 sec, 7...8 in high, 19 in long.m4v",
                              # width=720, height=450,
@@ -55,7 +55,7 @@ def run():
 
     captureProperties = dict(
         paused=False,
-        showOriginal=True,
+        showOriginal=False,
         enableDraw=True,
         currentFrame=0,
         writeVideo=False,
@@ -63,9 +63,9 @@ def run():
     )
 
     frame1 = camera1.updateFrame(readNextFrame=False)
-    height, width = frame1.shape[0:2]
-    position = [width / 2, height / 2]
-    tracker = analyzers.SimilarFrameTracker(frame1)
+    # height, width = frame1.shape[0:2]
+    # position = [width / 2, height / 2]
+    # tracker = analyzers.SimilarFrameTracker(frame1)
     # tracker = analyzers.OpticalFlowTracker(frame1)
 
     while True:
@@ -77,7 +77,10 @@ def run():
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
-                frame1 = analyzers.sobel_filter(frame1)
+                # frame1 = analyzers.contrast(frame1, 2.1)
+                frame1 = analyzers.blur(frame1, 7)
+                frame1 = analyzers.threshold_filter(frame1)
+                # frame1 = analyzers.sobel_filter(frame1)
 
                 # frame1, delta = tracker.update(frame1, enableDraw=True)
                 # position[0] += delta[0]
@@ -133,8 +136,8 @@ def run():
                     camera1.stopVideo()
                 captureProperties['writeVideo'] = not captureProperties[
                     'writeVideo']
-            elif key == 'c':
-                position = [width / 2, height / 2]
+            # elif key == 'c':
+            #     position = [width / 2, height / 2]
         # print "    :", (time.time() - time0)
 
 

@@ -55,14 +55,22 @@ def blur(frame, size):
 
 
 def sobel_filter(frame):
-    # laplacian = cv2.Laplacian(frame, cv2.CV_64F)
+    # laplacian = cv2.Laplacian(frame, cv2.CV_64F, ksize=3)
     # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    frame = cv2.medianBlur(frame, 5)
+
     sobelx64f = cv2.Sobel(frame, cv2.CV_64F, 0, 1, ksize=3)
     abs_sobel64f = numpy.absolute(sobelx64f)
     sobel_8u = numpy.uint8(abs_sobel64f)
     return sobel_8u
 
+def threshold_filter(frame):
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # value, frame = cv2.threshold(frame, 0, 255, cv2.THRESH_OTSU)
+    # value, frame = cv2.threshold(frame, 18, 255, cv2.THRESH_BINARY)
+    frame = cv2.adaptiveThreshold(frame, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                  cv2.THRESH_BINARY_INV, 9, 3)
+    return frame
 
 class OpticalFlowTracker(object):
     def __init__(self, initialFrame):
