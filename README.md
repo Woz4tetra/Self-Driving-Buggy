@@ -15,24 +15,24 @@ This project aims to develop autonomous localization and navigation in a minimal
 ### Install OpenCV
 ##### Mac
 1. Install Homebrew:
-```
-$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-2. Install OpenCV3 and dependencies
-```
-$ brew update
-$ brew tap homebrew/science
-$ brew install opencv3
-$ brew install matplotlib
-```
-3. Install PySerial
-```
-pip install pyserial
-```
-4. Install PlatformIO
-```
-pip install platformio
-```
+    ```
+    $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
+1. Install OpenCV3 and dependencies
+    ```
+    $ brew update
+    $ brew tap homebrew/science
+    $ brew install opencv3
+    $ brew install matplotlib
+    ```
+1. Install PySerial
+    ```
+    pip install pyserial
+    ```
+1. Install PlatformIO
+    ```
+    pip install platformio
+    ```
 
 ## Style Guide
 - python modules (python directories included), functions, and variables use underscore (ex. buggy_info, video_maker)
