@@ -27,11 +27,11 @@ $ brew install matplotlib
 ```
 - Install PySerial
 ```
-pip install pyserial
+$ pip install pyserial
 ```
 - Install PlatformIO
 ```
-pip install platformio
+$ pip install platformio
 ```
 
 ## Style Guide
