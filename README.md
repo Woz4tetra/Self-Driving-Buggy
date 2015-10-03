@@ -58,7 +58,7 @@ Usage
 python __main__.py
 
 – or – (in folder directory):
-python Self-Driving Buggy Rev. 6
+python Self-Driving Buggy\ Rev.\ 6
 
 Dependencies
 ------------
