@@ -48,4 +48,5 @@
 
 #define ACCEL               0x06
 #define SERVO               0x07
+#define ENCODER             0x08
 #define LED_13              0x0D

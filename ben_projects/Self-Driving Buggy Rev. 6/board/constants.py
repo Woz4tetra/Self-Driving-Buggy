@@ -49,6 +49,8 @@ ARDUINO_COMMAND_IDS = ReversibleDict({
     'fake motor': 0x05,
 
     'accel': 0x06,
+    'servo': 0x07,
+    'encoder': 0x08,
     'led 13': 0x0d,
 })
 

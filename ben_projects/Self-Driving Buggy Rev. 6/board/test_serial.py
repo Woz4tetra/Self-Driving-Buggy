@@ -180,16 +180,31 @@ def test_imu():
             assert parser.verify(packet, received)
     print("Passed!")
 
+def test_encoder():
+    print("test encoder...")
+    packet = communicator.makePacket(PACKET_TYPES['request data'],
+                                     ARDUINO_COMMAND_IDS['encoder'])
+    communicator.write(packet)
+
+    for _ in xrange(20):
+        received = communicator.read()
+
+        if len(received) > 0:
+            print repr(received)
+            command_id, payload = parser.parse(received)
+            print(payload)
+            assert parser.verify(packet, received)
 
 if __name__ == '__main__':
     parser = serial_parser.Parser()
     communicator = serial_comm.Communicator()
 
     while True:
-        test_switching()
-        test_pinging()
-        test_verify()
-        test_imu()
+        # test_switching()
+        # test_pinging()
+        # test_verify()
+        # test_imu()
+        test_encoder()
 
         print("All tests passed!!!")
         print "lets go again!!!"

@@ -1,4 +1,8 @@
 
+/*
+ 
+ */
+
 //#include "I2Cdev.h"
 //#include "MPU6050.h"
 //#include "Wire.h"
@@ -7,6 +11,13 @@
 #include "defines.h"
 
 #define LED13_PIN 13
+#define ENCODER_PIN A0
+
+#define THRESHOLD_HIGH 900
+#define THRESHOLD_LOW 800
+
+#define RAD_M 0.279
+#define CIR_M (RAD_M*PI)
 
 SerialPacket Packet;
 
@@ -26,6 +37,8 @@ int16_t ax, ay, az;
 int16_t gx, gy, gz;
 
 uint8_t accel_array[6];
+
+double total_distance = 0.0;
 
 void setup()
 {
@@ -114,6 +127,10 @@ void serialEvent()
             accel_array[5] = az & 0xffff;
             
             Packet.sendDataArray(accel_array, 6);
+        }
+        else if (command_id == ENCODER)
+        {
+            
         }
     }
 }
