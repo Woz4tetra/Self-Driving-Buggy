@@ -38,15 +38,3 @@
 //#define START_MOTOR_B      0x16
 //#define SET_SPEED_MOTOR_B  0x17
 //#define BRAKE_MOTOR_B      0x18
-
-// Command IDs
-#define FAKE_LED            0x01
-#define FAKE_SENSOR_8BIT    0x02
-#define FAKE_SENSOR_16BIT   0x03
-#define FAKE_GPS            0x04
-#define FAKE_MOTOR          0x05
-
-#define ACCEL               0x06
-#define SERVO               0x07
-#define ENCODER             0x08
-#define LED_13              0x0D

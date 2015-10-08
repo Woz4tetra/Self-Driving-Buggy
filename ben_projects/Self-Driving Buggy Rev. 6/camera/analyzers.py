@@ -2,13 +2,13 @@ import bisect
 
 from opencv_samples.common import draw_keypoints
 from opencv_samples.plane_tracker import PlaneTracker
-import numpy
+import numpy as np
 import cv2
 
 
 def contrast(image, scale):
-    # mask = numpy.ones_like(image, dtype=numpy.float32) * scale
-    return numpy.uint8(numpy.clip(numpy.int64(image) * scale, 0, 255))
+    # mask = np.ones_like(image, dtype=np.float32) * scale
+    return np.uint8(np.clip(np.int64(image) * scale, 0, 255))
 
 
 def getSignificantContours(frame, epsilon=None):
@@ -18,7 +18,7 @@ def getSignificantContours(frame, epsilon=None):
     :param frame: The binary image that contours are to be calculated
     :param epsilon: If specified the approxPolyDP algorithm will be applied to the result.
                     Recommended value is 0.001
-    :return: A 2D numpy array of the contours ordered from largest to smallest
+    :return: A 2D np array of the contours ordered from largest to smallest
     """
     frame, contours, hierarchy = cv2.findContours(frame, cv2.RETR_TREE,
                                                   cv2.CHAIN_APPROX_SIMPLE)
@@ -39,19 +39,15 @@ def getSignificantContours(frame, epsilon=None):
     return significantContours
 
 
-def drawContours(frame):
-    frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+def drawContours(edges, length=0, epsilon=0.001):
+    # frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # edges = cv2.threshold(frame_gray, 128, 255, cv2.THRESH_BINARY_INV)[1]
-    threshVal, edges = cv2.threshold(frame_gray, 0, 255,
-                                     cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    # threshVal, edges = cv2.threshold(frame_gray, 0, 255,
+    #                                  cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
-    contours = getSignificantContours(edges, 0.001)[-3:]
-    return cv2.drawContours(frame, contours, -1, (255, 100, 100), 2)
+    contours = getSignificantContours(edges, epsilon)[-length:]
+    return cv2.drawContours(edges, contours, -1, (255, 100, 100), 2)
 
-
-def blur(frame, size):
-    # return cv2.GaussianBlur(frame, (size, size), 0)
-    return cv2.medianBlur(frame, size)
 
 
 def sobel_filter(frame):
@@ -59,8 +55,8 @@ def sobel_filter(frame):
     # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     sobelx64f = cv2.Sobel(frame, cv2.CV_64F, 0, 1, ksize=3)
-    abs_sobel64f = numpy.absolute(sobelx64f)
-    sobel_8u = numpy.uint8(abs_sobel64f)
+    abs_sobel64f = np.absolute(sobelx64f)
+    sobel_8u = np.uint8(abs_sobel64f)
     return sobel_8u
 
 def threshold_filter(frame):
@@ -68,9 +64,23 @@ def threshold_filter(frame):
 
     # value, frame = cv2.threshold(frame, 0, 255, cv2.THRESH_OTSU)
     # value, frame = cv2.threshold(frame, 18, 255, cv2.THRESH_BINARY)
-    frame = cv2.adaptiveThreshold(frame, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                  cv2.THRESH_BINARY_INV, 9, 3)
+    frame = cv2.adaptiveThreshold(frame, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
+                                  cv2.THRESH_BINARY_INV, 9, 4)
     return frame
+
+def auto_canny(frame, sigma=0.33):
+    frame_canny = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame_canny = cv2.GaussianBlur(frame_canny, (3, 3), 0)
+
+    v = np.median(frame_canny)
+    lower = int(max(0, (1.0 - sigma) * v))
+    upper = int(min(255, (1.0 + sigma) * v))
+    frame_canny = cv2.Canny(frame_canny, lower, upper)
+    return cv2.dilate(frame_canny, (2, 2), iterations=4)
+
+def erode_filter(frame, kernel=(5, 5)):
+    kernel = np.ones(kernel, np.uint8)
+    return cv2.morphologyEx(frame, cv2.MORPH_OPEN, kernel)
 
 class OpticalFlowTracker(object):
     def __init__(self, initialFrame):
@@ -84,7 +94,7 @@ class OpticalFlowTracker(object):
                               criteria=(
                                   cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT,
                                   10, 0.03))
-        self.color = numpy.random.randint(0, 255, (100, 3))
+        self.color = np.random.randint(0, 255, (100, 3))
 
         self.old_frame = initialFrame
         self.old_gray = cv2.cvtColor(self.old_frame, cv2.COLOR_BGR2GRAY)
@@ -92,7 +102,7 @@ class OpticalFlowTracker(object):
                                           **self.feature_params)
 
         self.benchmarkP0len = len(self.p0) / 2
-        self.mask = numpy.zeros_like(self.old_frame)
+        self.mask = np.zeros_like(self.old_frame)
 
     def update(self, frame, enableDraw=True):
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -124,10 +134,10 @@ class OpticalFlowTracker(object):
         if len(self.p0) < self.benchmarkP0len:
             newP0 = cv2.goodFeaturesToTrack(self.old_gray, mask=None,
                                             **self.feature_params)
-            self.p0 = numpy.append(self.p0, newP0, axis=0)[:100]
+            self.p0 = np.append(self.p0, newP0, axis=0)[:100]
 
         return cv2.add(frame, self.mask), tuple(
-            numpy.median(good_new - good_old, axis=0))
+            np.median(good_new - good_old, axis=0))
 
 
 class SimilarFrameTracker(object):
@@ -143,7 +153,7 @@ class SimilarFrameTracker(object):
     def centroid(quad):
         x = quad[:, 0]
         y = quad[:, 1]
-        return numpy.average(x), numpy.average(y)
+        return np.average(x), np.average(y)
 
     def update(self, frame, enableDraw=True):
         tracked = self.tracker.track(frame)
@@ -155,7 +165,7 @@ class SimilarFrameTracker(object):
         else:
             tracked = tracked[0]
             if enableDraw == True:
-                cv2.polylines(frame, [numpy.int32(tracked.quad)], True,
+                cv2.polylines(frame, [np.int32(tracked.quad)], True,
                               (255, 255, 255), 2)
 
                 draw_keypoints(frame, self.tracker.frame_points)
@@ -174,22 +184,22 @@ def drawMinMax(frame):
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(
         cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
 
-    color = numpy.array([numpy.random.randint(0, 255),
-                         numpy.random.randint(0, 255),
-                         numpy.random.randint(0, 255)])
+    color = np.array([np.random.randint(0, 255),
+                         np.random.randint(0, 255),
+                         np.random.randint(0, 255)])
     frame = cv2.circle(frame, max_loc, 4, color, 2)
     frame = cv2.circle(frame, min_loc, 4, 255 - color, 2)
     return frame
 
 
 def blurriness(frame):
-    fft = numpy.fft.fft2(frame)
-    print numpy.mean(numpy.ndarray.flatten(numpy.abs(fft)))
+    fft = np.fft.fft2(frame)
+    print np.mean(np.ndarray.flatten(np.abs(fft)))
 
 
 def drawPosition(frame, width, height, position, reverse=True):
     color = position[0] % 256, position[1] % 256, \
-            numpy.random.randint(0, 255)
+            np.random.randint(0, 255)
     if reverse == True:
         position = width - int(position[0]), height - int(position[1])
     else:

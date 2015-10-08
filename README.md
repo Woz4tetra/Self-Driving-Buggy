@@ -35,6 +35,8 @@ $ pip install platformio
 ```
 
 ## Style Guide
+
+##### Python files
 - python modules (python directories included), functions, and variables use underscore (ex. buggy_info, video_maker)
 - c++ files use capitalized camel case (ex. SerialComm.cpp, AccelStepper.cpp, NewPing.cpp)
 - Directories follow c++ convention or normally spaced words (if able)
@@ -67,45 +69,65 @@ OpenCV 3.0.0 (and its dependencies) - http://opencv.org
 
 Keys
 ----
-    q, ESC - exit
-    SPACE - play/pause video
-    o - toggle show original video feed
-    left - read previous frame
-    right - read next frame
-    s - save frame as image (in camera/Images/ directory)
-    v - start/stop create video (saved in camera/Videos/ directory)
-    h - toggle enable draw (hide/show video feed)
+q, ESC - exit
+SPACE - play/pause video
+o - toggle show original video feed
+left - read previous frame
+right - read next frame
+s - save frame as image (in camera/Images/ directory)
+v - start/stop create video (saved in camera/Videos/ directory)
+h - toggle enable draw (hide/show video feed)
 ```
 
 ```python
 def run():
-    pass
+pass
 
 if __name__ == '__main__':
-    print __doc__
-    run()
+print __doc__
+run()
 ```
 - use python's commenting format for each function. Example function doc string:
 ```python
 def initVideoWriter(self, fps=30, name="", includeTimestamp=True,
-                        codec='mp4v', format='m4v'):
-    '''
-    Initialize the Capture's video writer.
+codec='mp4v', format='m4v'):
+'''
+Initialize the Capture's video writer.
 
-    :param fps: The playback FPS of the video. This number can be finicky as
-            the capture's current FPS may not match the video's output FPS.
-            This is because video playback takes less computation than
-            analyzing the video in this setting.
-    :param name: The name of the video. If "", a time stamp will
-            automatically be inserted
-    :param includeTimestamp: An optional parameter specifying whether the
-            time should be included. True by default
-    :param codec: The output video codec. mp4v is recommended
-    :return: None
-    '''
+:param fps: The playback FPS of the video. This number can be finicky as
+the capture's current FPS may not match the video's output FPS.
+This is because video playback takes less computation than
+analyzing the video in this setting.
+:param name: The name of the video. If "", a time stamp will
+automatically be inserted
+:param includeTimestamp: An optional parameter specifying whether the
+time should be included. True by default
+:param codec: The output video codec. mp4v is recommended
+:return: None
+'''
 ```
 
-
+##### Arduino INO files
+- Follow C++ standard style guide. Example (top of file):
+```c
+/** @file multiSensorTest.ino
+*  
+*  Self Driving Buggy Sensor Board Drivers
+*  
+*  @author Nat Jeffries
+*  Add yourselves to authors field upon contribution!
+*  
+*  In order to run this code you need the following libraries:
+*  https://github.com/ivanseidel/DueTimer
+*  MPU6050 drivers (built-in ?)
+*  Wire.h libary (built-in)
+*  
+*  Known Iusses:
+*  Sometimes the board issues a high-pitched buzz --weird
+*/
+//TODO: modify source code to temporarily remove Timer0 -2
+//from the DueTimer source code 
+```
 
 
 

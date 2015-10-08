@@ -559,10 +559,10 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             return
         # if readNextFrame is False:
         #     self.decrementFrame()
-        # if self.frameSkip > 0:
-        #     if type(self.camSource) == str:
-        #         current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
-        #         self.camera.set(cv2.CAP_PROP_POS_FRAMES, current + self.frameSkip)
+        if self.frameSkip > 0:
+            if type(self.camSource) == str:
+                current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
+                self.camera.set(cv2.CAP_PROP_POS_FRAMES, current + self.frameSkip)
         #     else:
         #         while int(
         #                 self.camera.get(
