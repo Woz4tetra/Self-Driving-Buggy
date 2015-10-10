@@ -8,7 +8,7 @@ Version 9/29/2015
 The modules contained here deal with all interaction with a connected serial
 device (for now, only arduino and pyboard). serial_comm.py deals with the
 transfer of data over serial. serial_parser.py handles all data interpretation
-and verification. constants.py contains information that both modules require.
+and verification. common.py contains information that both modules require.
 
 Usage
 -----

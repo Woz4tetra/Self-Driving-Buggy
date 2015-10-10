@@ -23,8 +23,8 @@ This module should be used in tandem with serial_comm.py and constants.py
 """
 
 from __future__ import print_function
-from constants import *
-from constants import _makeParity
+from common import *
+from common import _makeParity
 import sys
 import struct
 from math import log

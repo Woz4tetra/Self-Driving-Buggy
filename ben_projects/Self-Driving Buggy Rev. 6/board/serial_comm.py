@@ -11,7 +11,7 @@ Packets follow the format detailed in Serial Packet Convention 9-23-15.numbers
 Send a packet following the guidelines and then ping for data. This opposed to
 writing a packet every time data is required.
 
-This module should be used in tandem with serial_parser.py and constants.py
+This module should be used in tandem with serial_parser.py and common.py
 
 Dependencies
 ------------
@@ -22,8 +22,8 @@ import serial
 from sys import platform as _platform
 import os
 import time
-from constants import *
-from constants import _makeParity
+from common import *
+from common import _makeParity
 
 
 class Communicator():

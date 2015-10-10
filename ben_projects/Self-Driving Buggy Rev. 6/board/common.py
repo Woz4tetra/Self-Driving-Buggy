@@ -16,7 +16,7 @@ class ReversibleDict:  # if repeated values occur, the most recent one is used
         return self.dictionary[item]
 
 
-PACKET_TYPES = ReversibleDict({
+PACKET_TYPES = {
     'command':            0x01,
     'command reply':      0x02,
     'send 8-bit data':    0x03,
@@ -24,9 +24,9 @@ PACKET_TYPES = ReversibleDict({
     'send data array':    0x05,
     'request data':       0x06,
     'exit':               0xff
-})
+}
 
-PYBOARD_COMMAND_IDS = ReversibleDict({
+PYBOARD_COMMAND_IDS = {
     'built-in led 1': 0x00,
     'built-in led 2': 0x01,
     'built-in led 3': 0x02,
@@ -39,15 +39,31 @@ PYBOARD_COMMAND_IDS = ReversibleDict({
     'servo 4': 0x09,
     'gps': 0x0A,
     'ultrasonic': 0x0B,
-})
+}
 
-ARDUINO_COMMAND_IDS = ReversibleDict({
+ARDUINO_COMMAND_IDS = {
     'accel gyro': 0x00,
     'encoder': 0x01,
     'servo': 0x02,
     'gps': 0x03,
     'led 13': 0x04
-})
+}
+
+PARSE_MARKERS = {
+    'accel gyro': 4,
+    'encoder': None,
+    'servo': None,
+    'gps': [8, 16, 24, 32, 34, 36],
+    'led 13': None
+}
+
+PARSE_OUT_FORMATS = {
+    'accel gyro': 'float',
+    'encoder': 'dec',
+    'servo': 'dec',
+    'gps': ['float'] * 4 + ['dec'] * 2,
+    'led 13': 'bool'
+}
 
 OFF = 0
 ON = 1

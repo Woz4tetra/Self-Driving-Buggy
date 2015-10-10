@@ -19,16 +19,15 @@ I - Command ID, where it's going
 P - Payload, the data
 Q - Quality/Parity, did the packet arrive intact?
 
-This module should be used in tandem with serial_comm.py and constants.py
+This module should be used in tandem with serial_comm.py and common.py
 """
 
 from __future__ import print_function
-from constants import *
-from constants import _makeParity
+from common import *
+from common import _makeParity
 import sys
 import struct
 import copy
-from math import log
 
 
 class Parser():
@@ -38,15 +37,15 @@ class Parser():
     def __init__(self):
         pass
 
-    def parse(self, packet, verbose=False, markers=None, format='dec'):
+    def parse(self, packet, verbose=False, markers=None, out='dec'):
         """Parse a packet"""
         if self._validatePacket(packet):
             return self._parseData(self.remove_newline(packet), verbose,
-                                   markers, format)
+                                   markers, out)
         else:
             return None
 
-    def _parseData(self, packet, verbose, markers=None, format='dec'):
+    def _parseData(self, packet, verbose, markers=None, out='dec'):
         """Parse the data"""
         packet_type = self.getPacketType(packet)
         if packet_type == PACKET_TYPES['exit']:
@@ -55,13 +54,13 @@ class Parser():
         if verbose == False:
             return (self.getCommandID(packet),
                     self._parsePayload(self._getPayloadHex(packet), markers,
-                                       format))
+                                       out))
         else:
             return (packet_type,
                     self.getNodeID(packet),
                     self.getCommandID(packet),
                     self._parsePayload(self._getPayloadHex(packet), markers,
-                                       format),
+                                       out),
                     self.getQualityCheck(packet))
 
     def verify(self, sent_packet, received_packet):
@@ -92,7 +91,7 @@ class Parser():
             print(repr(received_packet), repr(sent_packet))
             return False
 
-        payload_length = self._payloadLength(received_packet)
+        payload_length = len(self._getPayloadHex(received_packet))
         if (recv_type == PACKET_TYPES['send data array'] and
                     (recv_cID * 2) != payload_length):
             print("data length does not match specified")
@@ -213,6 +212,8 @@ class Parser():
             return struct.unpack('!f', input_str.decode('hex'))[0]
         elif format == 'dec':
             return int(input_str, 16)
+        elif format == 'bool':
+            return bool(input_str)
         else:
             return input_str
 
@@ -235,21 +236,31 @@ class Parser():
 
         return markers
 
-    def _parsePayload(self, payload, markers=None, format='dec'):
+    @staticmethod
+    def _makeOutFormats(out, parsed_length):
+        if type(out) == str:
+            out = [out] * parsed_length
+
+        assert len(out) == parsed_length
+        return out
+
+    def _parsePayload(self, payload, markers=None, out='dec'):
         # markers and markers are in units of digits of a hex number
-        assert format == 'dec' or format == 'float' or format == 'hex'
         assert type(payload) == str
 
         parsed = []
 
         if markers == None:
-            return self._formatInt(payload, format)
+            return self._formatInt(payload, out)
         else:
             markers = self._makeMakers(markers, len(payload))
             for index in xrange(1, len(markers)):
-                formatted = self._formatInt(
-                    payload[markers[index]: markers[index - 1]], format)
-                parsed.insert(0, formatted)
+                parsed.insert(0, payload[markers[index]: markers[index - 1]])
+
+            out = self._makeOutFormats(out, len(parsed))
+
+            for index in xrange(0, len(parsed)):
+                parsed[index] = self._formatInt(parsed[index], out[index])
 
             if len(parsed) > 1:
                 return parsed
@@ -366,46 +377,46 @@ def test_serial_packet():
     packet25 = "T05N02I12P457BAD6D45F8A7FA00000000000000000601Q0C\r\n"
 
     assert parser._parsePayload(parser._getPayloadHex(packet20), markers=3,
-                                format='hex') == ['F02', 'CC6', 'ED0', '1EA']
+                                out='hex') == ['F02', 'CC6', 'ED0', '1EA']
     assert parser._parsePayload(parser._getPayloadHex(packet21), markers=3,
-                                format='hex') == ['C07', 'AE8', 'D61', '8DC']
+                                out='hex') == ['C07', 'AE8', 'D61', '8DC']
     assert parser._parsePayload(parser._getPayloadHex(packet22), markers=3,
-                                format='hex') == ['2D8', 'B2A', 'CD3', '72D']
+                                out='hex') == ['2D8', 'B2A', 'CD3', '72D']
 
     assert parser._parsePayload(parser._getPayloadHex(packet20), markers=4,
-                                format='hex') == ['F02C', 'C6ED', '01EA']
+                                out='hex') == ['F02C', 'C6ED', '01EA']
     assert parser._parsePayload(parser._getPayloadHex(packet21), markers=4,
-                                format='hex') == ['C07A', 'E8D6', '18DC']
+                                out='hex') == ['C07A', 'E8D6', '18DC']
     assert parser._parsePayload(parser._getPayloadHex(packet22), markers=4,
-                                format='hex') == ['2D8B', '2ACD', '372D']
+                                out='hex') == ['2D8B', '2ACD', '372D']
 
     assert parser._parsePayload(parser._getPayloadHex(packet20), markers=6,
-                                format='hex') == ['F02CC6', 'ED01EA']
+                                out='hex') == ['F02CC6', 'ED01EA']
     assert parser._parsePayload(parser._getPayloadHex(packet21), markers=6,
-                                format='hex') == ['C07AE8', 'D618DC']
+                                out='hex') == ['C07AE8', 'D618DC']
     assert parser._parsePayload(parser._getPayloadHex(packet22), markers=6,
-                                format='hex') == ['2D8B2A', 'CD372D']
+                                out='hex') == ['2D8B2A', 'CD372D']
 
     assert parser._parsePayload(parser._getPayloadHex(packet20), markers=7,
-                                format='hex') == ['F02CC', '6ED01EA']
+                                out='hex') == ['F02CC', '6ED01EA']
     assert parser._parsePayload(parser._getPayloadHex(packet21), markers=7,
-                                format='hex') == ['C07AE', '8D618DC']
+                                out='hex') == ['C07AE', '8D618DC']
     assert parser._parsePayload(parser._getPayloadHex(packet22), markers=7,
-                                format='hex') == ['2D8B2', 'ACD372D']
+                                out='hex') == ['2D8B2', 'ACD372D']
 
     assert parser._parsePayload(parser._getPayloadHex(packet20), markers=12,
-                                format='hex') == 'F02CC6ED01EA'
+                                out='hex') == 'F02CC6ED01EA'
     assert parser._parsePayload(parser._getPayloadHex(packet21), markers=12,
-                                format='hex') == 'C07AE8D618DC'
+                                out='hex') == 'C07AE8D618DC'
     assert parser._parsePayload(parser._getPayloadHex(packet22), markers=12,
-                                format='hex') == '2D8B2ACD372D'
+                                out='hex') == '2D8B2ACD372D'
 
     assert parser._parsePayload(parser._getPayloadHex(packet20),
-                                format='hex') == 'F02CC6ED01EA'
+                                out='hex') == 'F02CC6ED01EA'
     assert parser._parsePayload(parser._getPayloadHex(packet21),
-                                format='hex') == 'C07AE8D618DC'
+                                out='hex') == 'C07AE8D618DC'
     assert parser._parsePayload(parser._getPayloadHex(packet22),
-                                format='hex') == '2D8B2ACD372D'
+                                out='hex') == '2D8B2ACD372D'
 
     assert parser._parsePayload(parser._getPayloadHex(packet20),
                                 markers=(0, 4, 8, 12)) == \
@@ -418,16 +429,17 @@ def test_serial_packet():
            parser._parsePayload(parser._getPayloadHex(packet22), markers=(4, 8))
 
     assert parser._parsePayload(parser._getPayloadHex(packet23),
-                                markers=[8, 16, 24, 32], format='float') == \
-           [4026.839111328125, 7900.5673828125, 0.0, 0.0,
-            2.1537957396672438e-42]
+                                markers=[8, 16, 24, 32, 34, 36],
+                                out=['float'] * 4 + ['dec'] * 2) == \
+           [4026.839111328125, 7900.5673828125, 0.0, 0.0, 6, 1]
     assert parser._parsePayload(parser._getPayloadHex(packet24),
-                                markers=[8, 16, 24, 32], format='float') == \
-           [4026.839111328125, 7900.056640625, 0.0, 0.0, 2.1537957396672438e-42]
+                                markers=[8, 16, 24, 32, 34, 36],
+                                out=['float'] * 4 + ['dec'] * 2) == \
+           [4026.839111328125, 7900.056640625, 0.0, 0.0, 6, 1]
     assert parser._parsePayload(parser._getPayloadHex(packet25),
-                                markers=[8, 16, 24, 32], format='float') == \
-           [4026.839111328125, 7956.9970703125, 0.0, 0.0,
-            2.1537957396672438e-42]
+                               markers=[8, 16, 24, 32, 34, 36],
+                               out=['float'] * 4 + ['dec'] * 2) == \
+           [4026.839111328125, 7956.9970703125, 0.0, 0.0, 6, 1]
 
 
 if __name__ == '__main__':

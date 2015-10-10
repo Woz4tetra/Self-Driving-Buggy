@@ -1,6 +1,6 @@
 import serial_comm
 import serial_parser
-from constants import *
+from common import *
 import time
 
 '''
@@ -180,6 +180,7 @@ def test_imu():
             assert parser.verify(packet, received)
     print("Passed!")
 
+
 def test_encoder():
     print("test encoder...")
     packet = communicator.makePacket(PACKET_TYPES['request data'],
@@ -196,21 +197,21 @@ def test_encoder():
             if parser.verify(packet, received) == False:
                 print("Failed!!!")
 
+
 def test_gps():
     packet = communicator.makePacket(PACKET_TYPES['request data'],
                                      ARDUINO_COMMAND_IDS['gps'])
     communicator.write(packet)
-    
+
     received = communicator.read()
     if len(received) > 0:
         # print repr(received)
-        if parser.verify(packet, received) == False:
-            print("Failed!!!")
-        else:
-            command_id, payload = parser.parse(received,
-                                               markers=[8, 16, 24, 32],
-                                               format='float')
-            print(command_id, payload)
+        if parser.verify(packet, received):
+            print parser.parse(received,
+                               verbose=True,
+                               markers=PARSE_MARKERS['gps'],
+                               out=PARSE_OUT_FORMATS['gps'])
+
 
 def test_led13():
     led_state = True
@@ -225,6 +226,7 @@ def test_led13():
 
         led_state = not led_state
         time.sleep(1)
+
 
 if __name__ == '__main__':
     parser = serial_parser.Parser()
