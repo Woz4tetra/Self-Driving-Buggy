@@ -17,10 +17,10 @@
 */
 //TODO: add servo and gps support
 
-//#define ENABLE_SERVO
+#define ENABLE_SERVO
 #define ENABLE_GPS
-//#define ENABLE_ACCEL
-//#define ENABLE_ENCODER
+#define ENABLE_ACCEL
+#define ENABLE_ENCODER
 
 #include "I2Cdev.h"
 #include "MPU6050.h"
@@ -50,7 +50,7 @@ SerialPacket Packet;
 #define LED13_PIN 13
 
 /* Servo Globals */
-#ifdef ENABLE SERVO
+#ifdef ENABLE_SERVO
     Servo servo1;
 #endif
 
@@ -120,7 +120,7 @@ SerialPacket Packet;
 #ifdef ENABLE_ENCODER
     bool is_in_range; //if true, trigger when we see out-of-range value
     int last_rising_edge; //ms
-    volatile int16_t delta_distance;//inches... subject to group consensus
+    volatile int16_t distance;//inches... subject to group consensus
 
     #define HYST_TRIG_HIGH 950 //TODO: Tune these based on OBSERVED values
     #define HYST_TRIG_LOW 850
@@ -142,7 +142,8 @@ SerialPacket Packet;
         
         if (is_in_range && (hall_value > HYST_TRIG_HIGH))
         {
-            delta_distance += WHEEL_CIR;
+//            Serial.print("incrementing distance\n");
+            distance += WHEEL_CIR;
             is_in_range = false;
         }
         else if (!is_in_range && (hall_value <= HYST_TRIG_LOW)) {
@@ -162,10 +163,10 @@ void setup()
     pinMode(A0, INPUT);
     
     is_in_range = false; //make sure we don't start at > 0 distance
-    delta_distance = 0;
+    distance = 0;
     
-    Timer3.attachInterrupt(handler); //handler is a function pointer
-    Timer3.start(ADC_POLLING_PERIOD_US);
+    Timer1.attachInterrupt(handler); //handler is a function pointer
+    Timer1.start(ADC_POLLING_PERIOD_US);
     interrupts();
 #endif
     
@@ -266,8 +267,10 @@ void serialEvent()
 #ifdef ENABLE_ENCODER
         else if (command_id == ENCODER_ID)
         {
-            Packet.sendData16bit(command_id, delta_distance);
-            delta_distance = 0;
+            noInterrupts();
+            Packet.sendData16bit(command_id, distance);
+//            distance = 0;
+            interrupts();
         }
 #endif
         

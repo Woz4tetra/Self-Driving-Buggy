@@ -12,6 +12,8 @@
 #ifndef DueTimer_h
 #define DueTimer_h
 
+#define USING_SERVO_LIB
+
 #include "Arduino.h"
 
 #include <inttypes.h>

@@ -166,7 +166,7 @@ def test_verify():
 def test_imu():
     print("test imu...")
     packet = communicator.makePacket(PACKET_TYPES['request data'],
-                                     ARDUINO_COMMAND_IDS['accel'])
+                                     ARDUINO_COMMAND_IDS['accel gyro'])
     communicator.write(packet)
 
     for _ in xrange(20):
@@ -174,10 +174,10 @@ def test_imu():
 
         if len(received) > 0:
             print repr(received)
-            command_id, payload = parser.parse(received)
-            accel_x, accel_y, accel_z = parser._parsePayload(payload)
-            print (accel_x, accel_y, accel_z)
-            assert parser.verify(packet, received)
+            print parser.parse(received,
+                               verbose=True,
+                               markers=PARSE_MARKERS['accel gyro'],
+                               out=PARSE_OUT_FORMATS['accel gyro'])
     print("Passed!")
 
 
@@ -187,7 +187,7 @@ def test_encoder():
                                      ARDUINO_COMMAND_IDS['encoder'])
     communicator.write(packet)
 
-    for _ in xrange(20):
+    for _ in xrange(100):
         received = communicator.read()
 
         if len(received) > 0:
@@ -226,7 +226,31 @@ def test_led13():
             print(parser.parse(packet, out='bool'))
 
         led_state = not led_state
-        time.sleep(1)
+        time.sleep(0.01)
+
+def test_servo():
+    servo_value = 0
+    forward = True
+    
+    for _ in xrange(36):
+        packet = communicator.makePacket(PACKET_TYPES['command'],
+                                         ARDUINO_COMMAND_IDS['servo'],
+                                         servo_value)
+        communicator.write(packet)
+        recv_packet = communicator.read()
+        print(repr(recv_packet))
+        
+        if forward == True:
+            servo_value += 10
+        else:
+            servo_value -= 10
+        
+        if servo_value > 180:
+            forward = False
+        elif servo_value < 0:
+            forward = True
+        time.sleep(0.01)
+        
 
 
 if __name__ == '__main__':
@@ -237,11 +261,12 @@ if __name__ == '__main__':
         # test_switching()
         # test_pinging()
         # test_verify()
-        # test_imu()
-        # test_led13()
-        # test_encoder()
-        for _ in xrange(100):
-            test_gps()
+        test_servo()
+        test_encoder()
+#        test_imu()
+        test_led13()
+#        for _ in xrange(100):
+#            test_gps()
 
         # print("All tests passed!!!")
         # print "lets go again!!!"
