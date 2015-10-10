@@ -109,7 +109,7 @@ time should be included. True by default
 
 ##### Arduino INO files
 - Follow C++ standard style guide. Example (top of file):
-```c
+```c++
 /** @file multiSensorTest.ino
 *  
 *  Self Driving Buggy Sensor Board Drivers

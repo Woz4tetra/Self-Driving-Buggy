@@ -42,16 +42,11 @@ PYBOARD_COMMAND_IDS = ReversibleDict({
 })
 
 ARDUINO_COMMAND_IDS = ReversibleDict({
-    'fake led': 0x01,
-    'fake sensor 8 bit': 0x02,
-    'fake sensor 16 bit': 0x03,
-    'fake gps': 0x04,
-    'fake motor': 0x05,
-
-    'accel': 0x06,
-    'servo': 0x07,
-    'encoder': 0x08,
-    'led 13': 0x0d,
+    'accel gyro': 0x00,
+    'encoder': 0x01,
+    'servo': 0x02,
+    'gps': 0x03,
+    'led 13': 0x04
 })
 
 OFF = 0
@@ -61,6 +56,9 @@ NODE_PC = 1
 NODE_BOARD = 2
 
 def _makeParity(packet_type, node, command_id, payload):
+    if type(payload) == str:
+        payload = int(payload, 16)
+
     main_parity = packet_type ^ node ^ command_id
     payload_parity = payload & 0xff  # order does not matter
     if packet_type == PACKET_TYPES['send data array']:

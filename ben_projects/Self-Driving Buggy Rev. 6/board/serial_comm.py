@@ -122,6 +122,7 @@ class Communicator():
             buffer = self.serialRef.readline()
         #        print repr(buffer)
         if buffer == None or len(buffer) == 0:
+            time.sleep(0.01)
             self.read(recurses + 1)
         return buffer
 

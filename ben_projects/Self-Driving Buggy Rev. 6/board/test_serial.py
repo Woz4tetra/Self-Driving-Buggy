@@ -175,7 +175,7 @@ def test_imu():
         if len(received) > 0:
             print repr(received)
             command_id, payload = parser.parse(received)
-            accel_x, accel_y, accel_z = parser.parsePayload(payload, unit_size=4)
+            accel_x, accel_y, accel_z = parser._parsePayload(payload)
             print (accel_x, accel_y, accel_z)
             assert parser.verify(packet, received)
     print("Passed!")
@@ -193,7 +193,38 @@ def test_encoder():
             print repr(received)
             command_id, payload = parser.parse(received)
             print(payload)
-            assert parser.verify(packet, received)
+            if parser.verify(packet, received) == False:
+                print("Failed!!!")
+
+def test_gps():
+    packet = communicator.makePacket(PACKET_TYPES['request data'],
+                                     ARDUINO_COMMAND_IDS['gps'])
+    communicator.write(packet)
+    
+    received = communicator.read()
+    if len(received) > 0:
+        # print repr(received)
+        if parser.verify(packet, received) == False:
+            print("Failed!!!")
+        else:
+            command_id, payload = parser.parse(received,
+                                               markers=[8, 16, 24, 32],
+                                               format='float')
+            print(command_id, payload)
+
+def test_led13():
+    led_state = True
+    for _ in xrange(10):
+        packet = communicator.makePacket(PACKET_TYPES['command'],
+                                         ARDUINO_COMMAND_IDS['led 13'],
+                                         int(led_state))
+        communicator.write(packet)
+        recv_packet = communicator.read()
+        print(repr(recv_packet))
+        assert parser.verify(packet, recv_packet)
+
+        led_state = not led_state
+        time.sleep(1)
 
 if __name__ == '__main__':
     parser = serial_parser.Parser()
@@ -204,8 +235,10 @@ if __name__ == '__main__':
         # test_pinging()
         # test_verify()
         # test_imu()
-        test_encoder()
+        # test_led13()
+        # test_encoder()
+        test_gps()
 
-        print("All tests passed!!!")
-        print "lets go again!!!"
-        time.sleep(1)
+        # print("All tests passed!!!")
+        # print "lets go again!!!"
+        # time.sleep(1)
