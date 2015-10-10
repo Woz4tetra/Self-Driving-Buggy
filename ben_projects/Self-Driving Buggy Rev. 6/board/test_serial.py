@@ -222,7 +222,8 @@ def test_led13():
         communicator.write(packet)
         recv_packet = communicator.read()
         print(repr(recv_packet))
-        assert parser.verify(packet, recv_packet)
+        if parser.verify(packet, recv_packet):
+            print(parser.parse(packet, out='bool'))
 
         led_state = not led_state
         time.sleep(1)
@@ -239,7 +240,8 @@ if __name__ == '__main__':
         # test_imu()
         # test_led13()
         # test_encoder()
-        test_gps()
+        for _ in xrange(100):
+            test_gps()
 
         # print("All tests passed!!!")
         # print "lets go again!!!"

@@ -31,14 +31,12 @@ import copy
 
 
 class Parser():
-    """SerialParser: parser for SerialPacket data"""
     min_length = 16
 
     def __init__(self):
         pass
 
     def parse(self, packet, verbose=False, markers=None, out='dec'):
-        """Parse a packet"""
         if self._validatePacket(packet):
             return self._parseData(self.remove_newline(packet), verbose,
                                    markers, out)
@@ -46,7 +44,6 @@ class Parser():
             return None
 
     def _parseData(self, packet, verbose, markers=None, out='dec'):
-        """Parse the data"""
         packet_type = self.getPacketType(packet)
         if packet_type == PACKET_TYPES['exit']:
             sys.exit(1)
@@ -213,7 +210,7 @@ class Parser():
         elif format == 'dec':
             return int(input_str, 16)
         elif format == 'bool':
-            return bool(input_str)
+            return bool(int(input_str))
         else:
             return input_str
 
@@ -375,6 +372,8 @@ def test_serial_packet():
     packet23 = "T05N02I12P457BAD6D45F6E48A00000000000000000601Q31\r\n"
     packet24 = "T05N02I12P457BAD6D45F6E07400000000000000000601QCB\r\n"
     packet25 = "T05N02I12P457BAD6D45F8A7FA00000000000000000601Q0C\r\n"
+    packet26 = "T02N02I04P00Q04\r\n"
+    packet27 = "T02N02I04P01Q05\r\n"
 
     assert parser._parsePayload(parser._getPayloadHex(packet20), markers=3,
                                 out='hex') == ['F02', 'CC6', 'ED0', '1EA']
@@ -437,9 +436,14 @@ def test_serial_packet():
                                 out=['float'] * 4 + ['dec'] * 2) == \
            [4026.839111328125, 7900.056640625, 0.0, 0.0, 6, 1]
     assert parser._parsePayload(parser._getPayloadHex(packet25),
-                               markers=[8, 16, 24, 32, 34, 36],
-                               out=['float'] * 4 + ['dec'] * 2) == \
+                                markers=[8, 16, 24, 32, 34, 36],
+                                out=['float'] * 4 + ['dec'] * 2) == \
            [4026.839111328125, 7956.9970703125, 0.0, 0.0, 6, 1]
+
+    assert parser._parsePayload(parser._getPayloadHex(packet26),
+                                out='bool') == False
+    assert parser._parsePayload(parser._getPayloadHex(packet27),
+                                out='bool') == True
 
 
 if __name__ == '__main__':
