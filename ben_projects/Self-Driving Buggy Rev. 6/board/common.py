@@ -34,7 +34,7 @@ ARDUINO_COMMAND_IDS = {
 }
 
 PARSE_MARKERS = {
-    'accel gyro': 4,
+    'accel gyro': [4, 8, 12, 20, 28, 36], # 4,
     'encoder': None,
     'servo': None,
     'gps': [8, 16, 24, 32, 34, 36],
@@ -42,7 +42,7 @@ PARSE_MARKERS = {
 }
 
 PARSE_OUT_FORMATS = {
-    'accel gyro': 'float',
+    'accel gyro': ['dec'] * 3 + ['float'] * 3, #'dec',
     'encoder': 'dec',
     'servo': 'dec',
     'gps': ['float'] * 4 + ['dec'] * 2,

@@ -14,6 +14,7 @@ assert
 __debug__ is true if -O is not passed
 '''
 
+import random
 
 def test_switching():
     print("test switching...")
@@ -173,9 +174,7 @@ def test_imu():
         received = communicator.read()
 
         if len(received) > 0:
-            print repr(received)
             print parser.parse(received,
-                               verbose=True,
                                markers=PARSE_MARKERS['accel gyro'],
                                out=PARSE_OUT_FORMATS['accel gyro'])
     print("Passed!")
@@ -191,21 +190,18 @@ def test_encoder():
         received = communicator.read()
 
         if len(received) > 0:
-            print repr(received)
-            command_id, payload = parser.parse(received)
-            print(payload)
-            if parser.verify(packet, received) == False:
-                print("Failed!!!")
+            if parser.verify(packet, received):
+                print(parser.parse(packet, out=PARSE_OUT_FORMATS['encoder']))
 
 
 def test_gps():
+    print("test gps...")
     packet = communicator.makePacket(PACKET_TYPES['request data'],
                                      ARDUINO_COMMAND_IDS['gps'])
     communicator.write(packet)
 
     received = communicator.read()
     if len(received) > 0:
-        # print repr(received)
         if parser.verify(packet, received):
             print parser.parse(received,
                                verbose=True,
@@ -214,21 +210,23 @@ def test_gps():
 
 
 def test_led13():
-    led_state = True
-    for _ in xrange(10):
+    print("test led 13...")
+    # led_state = True
+    for _ in xrange(30):
         packet = communicator.makePacket(PACKET_TYPES['command'],
                                          ARDUINO_COMMAND_IDS['led 13'],
-                                         int(led_state))
+                                         random.randint(0, 1))
+                                         # int(led_state))
         communicator.write(packet)
         recv_packet = communicator.read()
-        print(repr(recv_packet))
         if parser.verify(packet, recv_packet):
             print(parser.parse(packet, out='bool'))
 
-        led_state = not led_state
+        # led_state = not led_state
         time.sleep(0.01)
 
 def test_servo():
+    print("test servo...")
     servo_value = 0
     forward = True
     
@@ -238,7 +236,8 @@ def test_servo():
                                          servo_value)
         communicator.write(packet)
         recv_packet = communicator.read()
-        print(repr(recv_packet))
+        if parser.verify(packet, recv_packet):
+            print(parser.parse(packet, out=PARSE_OUT_FORMATS['servo']))
         
         if forward == True:
             servo_value += 10
@@ -263,10 +262,10 @@ if __name__ == '__main__':
         # test_verify()
         test_servo()
         test_encoder()
-#        test_imu()
+        test_imu()
         test_led13()
-#        for _ in xrange(100):
-#            test_gps()
+        # for _ in xrange(100):
+        #     test_gps()
 
         # print("All tests passed!!!")
         # print "lets go again!!!"

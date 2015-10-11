@@ -44,16 +44,10 @@ class Parser():
             return None
 
     def _parseData(self, packet, verbose, markers=None, out='dec'):
-        packet_type = self.getPacketType(packet)
-        if packet_type == PACKET_TYPES['exit']:
-            sys.exit(1)
-
         if verbose == False:
-            return (self.getCommandID(packet),
-                    self._parsePayload(self._getPayloadHex(packet), markers,
-                                       out))
+            return self._parsePayload(self._getPayloadHex(packet), markers, out)
         else:
-            return (packet_type,
+            return (self.getPacketType(packet),
                     self.getNodeID(packet),
                     self.getCommandID(packet),
                     self._parsePayload(self._getPayloadHex(packet), markers,
