@@ -2,7 +2,7 @@
 Written by Ben Warwick
 
 Self-Driving Buggy Rev. 6 (serial_parser.py) for Self-Driving Buggy Project
-Version 9/29/2015
+Version 10/21/2015
 =========
 
 This module handles all packet creation and verification. The conventions for
@@ -30,7 +30,7 @@ import struct
 import copy
 
 
-class Parser():
+class Parser:
     min_length = 16
 
     def __init__(self):

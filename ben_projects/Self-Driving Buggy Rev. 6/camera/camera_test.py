@@ -5,16 +5,11 @@ Self-Driving Buggy Rev. 6 for Self-Driving Buggy PRoject
 Version 9/15/2015
 =========
 
-(temp description)
-This program controls the self-driving buggy. It manages computer vision,
-microcontroller control and data collection, PID feedback, encoder to x, y
-algorithms, path finding, GPS algorithms, and IMU algorithms. Each of these is
-implemented in its own file.
+A test of the computer vision portion of the Self-Driving Buggy project.
 
 Usage
 -----
 python __main__.py
-
 - or - (in folder directory):
 python Self-Driving\ Buggy\ Rev.\ 6
 

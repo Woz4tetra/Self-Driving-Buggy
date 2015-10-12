@@ -1,5 +1,5 @@
 
-
+# Types of data that can be sent over serial
 PACKET_TYPES = {
     'command':            0x01,
     'command reply':      0x02,
@@ -10,6 +10,7 @@ PACKET_TYPES = {
     'exit':               0xff
 }
 
+# Types of sensors and actuators on the pyboard that receive and send packets
 PYBOARD_COMMAND_IDS = {
     'built-in led 1': 0x00,
     'built-in led 2': 0x01,
@@ -25,6 +26,7 @@ PYBOARD_COMMAND_IDS = {
     'ultrasonic': 0x0B,
 }
 
+# Types of sensors and actuators on the arduino that receive and send packets
 ARDUINO_COMMAND_IDS = {
     'accel gyro': 0x00,
     'encoder': 0x01,
@@ -33,16 +35,20 @@ ARDUINO_COMMAND_IDS = {
     'led 13': 0x04
 }
 
+# Used for sensors that return data arrays. These indices mark data separation
+# in the "payload" section of the packet (rightmost index is zero)
 PARSE_MARKERS = {
-    'accel gyro': [4, 8, 12, 20, 28, 36], # 4,
+    'accel gyro': [4, 8, 12, 20, 28, 36],
     'encoder': None,
     'servo': None,
     'gps': [8, 16, 24, 32, 34, 36],
     'led 13': None
 }
 
+# The output formats for each sensor corresponding to the segmentations marked
+# by PARSE_MARKERS
 PARSE_OUT_FORMATS = {
-    'accel gyro': ['dec'] * 3 + ['float'] * 3, #'dec',
+    'accel gyro': ['dec'] * 3 + ['float'] * 3,
     'encoder': 'dec',
     'servo': 'dec',
     'gps': ['float'] * 4 + ['dec'] * 2,
@@ -55,6 +61,7 @@ ON = 1
 NODE_PC = 1
 NODE_BOARD = 2
 
+# Creates the parity of the packet. Used by serial_comm.py and serial_parser.py
 def _makeParity(packet_type, node, command_id, payload):
     if type(payload) == str:
         payload = int(payload, 16)

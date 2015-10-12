@@ -262,7 +262,7 @@ if __name__ == '__main__':
         # test_verify()
         test_servo()
         test_encoder()
-        test_imu()
+        # test_imu()
         test_led13()
         # for _ in xrange(100):
         #     test_gps()

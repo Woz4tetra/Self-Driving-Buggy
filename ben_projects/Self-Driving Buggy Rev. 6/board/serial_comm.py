@@ -2,7 +2,7 @@
 Written by Ben Warwick
 
 Self-Driving Buggy Rev. 6 (serial_comm.py) for Self-Driving Buggy Project
-Version 9/29/2015
+Version 10/12/2015
 =========
 
 This module handles all communications with a serial device (currently only
@@ -26,7 +26,7 @@ from common import *
 from common import _makeParity
 
 
-class Communicator():
+class Communicator:
     def __init__(self, delay=0.007):  # corresponds to delay(3) on arduino
         self.serialRef = self._findPort()
         self._handshake()

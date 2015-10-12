@@ -12,6 +12,8 @@ and verification. common.py contains information that both modules require.
 
 Usage
 -----
+
+# ----- without wrapper.py: -----
 from board import serial_comm
 from board import serial_parser
 
@@ -27,4 +29,18 @@ communicator.write(packet)
 received_packet = communicator.read()  # pings automatically when called
 
 assert parser.verify(packet, received_packet)
+
+# ----- with wrapper.py -----
+
+def get_imu():
+    packet = communicator.makePacket(PACKET_TYPES['request data'],
+                                     ARDUINO_COMMAND_IDS['accel gyro'])
+    communicator.write(packet)
+    received = communicator.read()
+    if parser.verify(packet, received):
+        return parser.parse(received,
+                            markers=PARSE_MARKERS['accel gyro'],
+                            out=PARSE_OUT_FORMATS['accel gyro'])
+    else:
+        return [None] * 6
 """
