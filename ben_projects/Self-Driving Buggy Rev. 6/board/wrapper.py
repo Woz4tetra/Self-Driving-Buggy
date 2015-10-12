@@ -11,9 +11,9 @@ Usage
 
 """
 
-from board import serial_comm
-from board import serial_parser
-from board.common import *
+import serial_comm
+import serial_parser
+from common import *
 
 parser = serial_parser.Parser()
 communicator = serial_comm.Communicator()
