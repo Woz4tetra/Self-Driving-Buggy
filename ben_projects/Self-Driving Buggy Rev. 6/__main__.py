@@ -18,8 +18,8 @@ python Self-Driving\ Buggy\ Rev.\ 6
 
 '''
 
-from binder import Binder
-from pid import PID
+from controllers.binder import Binder
+from controllers.pid import PID
 
 def run():
     binder = Binder()

@@ -1,10 +1,8 @@
 import csv
 import time
 
-current_file = "Tue Oct 13 20;43;26 2015"
 
-
-def get_map():
+def get_map(current_file="Tue Oct 13 20;43;26 2015"):
     with open("storage/" + current_file + ".csv", 'rb') as csvfile:
         map_reader = csv.reader(csvfile, delimiter=',', quotechar='|')
         parsed = [[int(row[0]), int(row[1])] for row in map_reader]

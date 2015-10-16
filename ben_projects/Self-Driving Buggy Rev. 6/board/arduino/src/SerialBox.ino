@@ -1,20 +1,20 @@
 
 /**
-*  @file SerialBox.ino
-*  
-*  Self Driving Buggy sensor board drivers and serial communication
-*  
-*  @author Ben Warwick
-*  @author Nat Jeffries
-*  Add yourselves to authors field upon contribution!
-*  
-*  In order to run this code you need the following libraries:
-*  https://github.com/ivanseidel/DueTimer
-*  MPU6050 drivers (built-in ?)
-*  Wire.h libary (built-in)
-*  /ben_projects/Self-Driving\ Buggy\ Rev.\ 6/board/test_serial.py
-*  
-*/
+ *  @file SerialBox.ino
+ *  
+ *  Self Driving Buggy sensor board drivers and serial communication
+ *  
+ *  @author Ben Warwick
+ *  @author Nat Jeffries
+ *  Add yourselves to authors field upon contribution!
+ *  
+ *  In order to run this code you need the following libraries:
+ *  https://github.com/ivanseidel/DueTimer
+ *  MPU6050 drivers (built-in ?)
+ *  Wire.h libary (built-in)
+ *  /ben_projects/Self-Driving\ Buggy\ Rev.\ 6/board/test_serial.py
+ *  
+ */
 //TODO: add servo and gps support
 
 #define ENABLE_SERVO
@@ -32,12 +32,13 @@
 #include "SerialPacket.h"
 #include "defines.h"
 
-/* Command IDs */
+/* Command IDs start */
 #define ACCELGYRO_ID 0x00
-#define ENCODER_ID 0x01
-#define SERVO_ID 0x02
-#define GPS_ID 0x03
+#define GPS_ID 0x01
+#define ENCODER_ID 0x02
+#define SERVO_ID 0x03
 #define LED13_ID 0x04
+/* Command IDs end */
 
 /* Serial Packet Globals */
 uint8_t command_id = 0;
@@ -51,126 +52,104 @@ SerialPacket Packet;
 
 /* Servo Globals */
 #ifdef ENABLE_SERVO
-    Servo servo1;
+Servo servo1;
 #endif
 
 /* GPS Globals */
 #ifdef ENABLE_GPS
-    // GPS power pin to Arduino Due 3.3V output.
-    // GPS ground pin to Arduino Due ground.
-    // For hardware serial 1 (recommended):
-    //   GPS TX to Arduino Due Serial1 RX pin 19
-    //   GPS RX to Arduino Due Serial1 TX pin 18
-    #define mySerial Serial1
+// GPS power pin to Arduino Due 3.3V output.
+// GPS ground pin to Arduino Due ground.
+// For hardware serial 1 (recommended):
+//   GPS TX to Arduino Due Serial1 RX pin 19
+//   GPS RX to Arduino Due Serial1 TX pin 18
+#define mySerial Serial1
 
-    Adafruit_GPS GPS(&mySerial);
+Adafruit_GPS GPS(&mySerial);
 
-    uint8_t gps_array[18]; // 4 * 4 + 2 * 1, 4 float numbers and 2 int numbers
-    // sending floats: longitude, latitude, speed, angle
-    // sendings ints: satellites, fix quality
-    
-    float gps_float_array[4];
-    
-    // this keeps track of whether we're using the interrupt
-    // off by default!
-    boolean usingInterrupt = false;
-    void useInterrupt(boolean); // Func prototype keeps Arduino 0023 happy
+uint8_t gps_array[8]; // 4 * 2, 2 float numbers | old: 4 * 4 + 2 * 1, 4 float numbers and 2 int numbers
+// sending floats: longitude, latitude, speed, angle
+// sendings ints: satellites, fix quality
 
-    #ifdef __AVR__
-    // Interrupt is called once a millisecond, looks for any new GPS data, and stores it
-    SIGNAL(TIMER0_COMPA_vect) {
-        char c = GPS.read();
-        // if you want to debug, this is a good time to do it!
-    #ifdef UDR0
-        if (GPSECHO)
+float gps_float_array[4];
+
+// this keeps track of whether we're using the interrupt
+// off by default!
+boolean usingInterrupt = false;
+void useInterrupt(boolean); // Func prototype keeps Arduino 0023 happy
+
+#ifdef __AVR__
+// Interrupt is called once a millisecond, looks for any new GPS data, and stores it
+SIGNAL(TIMER0_COMPA_vect) {
+    char c = GPS.read();
+    // if you want to debug, this is a good time to do it!
+#ifdef UDR0
+    if (GPSECHO)
         if (c) UDR0 = c;  
-        // writing direct to UDR0 is much much faster than Serial.print 
-        // but only one character can be written at a time. 
-    #endif
-    }
+    // writing direct to UDR0 is much much faster than Serial.print 
+    // but only one character can be written at a time. 
+#endif
+}
 
-    void useInterrupt(boolean v) {
-        if (v) {
-            // Timer0 is already used for millis() - we'll just interrupt somewhere
-            // in the middle and call the "Compare A" function above
-            OCR0A = 0xAF;
-            TIMSK0 |= _BV(OCIE0A);
-            usingInterrupt = true;
-        } else {
-            // do not call the interrupt function COMPA anymore
-            TIMSK0 &= ~_BV(OCIE0A);
-            usingInterrupt = false;
-        }
+void useInterrupt(boolean v)
+{
+    if (v) {
+        // Timer0 is already used for millis() - we'll just interrupt somewhere
+        // in the middle and call the "Compare A" function above
+        OCR0A = 0xAF;
+        TIMSK0 |= _BV(OCIE0A);
+        usingInterrupt = true;
+    } else {
+        // do not call the interrupt function COMPA anymore
+        TIMSK0 &= ~_BV(OCIE0A);
+        usingInterrupt = false;
     }
-    #endif
+}
+#endif
 #endif
 
 /* IMU Globals */
 #ifdef ENABLE_ACCEL
-    MPU6050 accelgyro;
-    bool blinkState = false;
+MPU6050 accelgyro;
 
-    // MPU control/status vars
-    bool dmpReady = false;  // set true if DMP init was successful
-    uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
-    uint8_t devStatus;      // return status after each device operation (0 = success, !0 = error)
-    uint16_t packetSize;    // expected DMP packet size (default is 42 bytes)
-    uint16_t fifoCount;     // count of all bytes currently in FIFO
-    uint8_t fifoBuffer[64]; // FIFO storage buffer
+int16_t ax, ay, az;
+int16_t gx, gy, gz;
 
-    // orientation/motion vars
-    Quaternion q;           // [w, x, y, z]         quaternion container
-    VectorInt16 aa;         // [x, y, z]            accel sensor measurements
-    VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
-    VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
-    VectorFloat gravity;    // [x, y, z]            gravity vector
-    float euler[3];         // [psi, theta, phi]    Euler angle container
-    float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
-    
-    volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
-    void dmpDataReady() {
-        mpuInterrupt = true;
-    }
-    
-    // accel has 3 uint16_t values (6 uint8_t values) and gyro has 3 float
-    // values (12 uint8_t values)
-    uint8_t accelgyro_array[18];
+uint8_t accelgyro_array[12];
 #endif
 
 /* Distance encoder Globals */
 #ifdef ENABLE_ENCODER
-    bool is_in_range; //if true, trigger when we see out-of-range value
-    int last_rising_edge; //ms
-    volatile uint16_t distance; // counts of the encoder
+bool is_in_range; //if true, trigger when we see out-of-range value
+int last_rising_edge; //ms
+volatile uint16_t distance; // counts of the encoder
 
-    #define HYST_TRIG_HIGH 950 //TODO: Tune these based on OBSERVED values
-    #define HYST_TRIG_LOW 850
-    //#define WHEEL_CIR (10.0 * PI)
-    #define ADC_POLLING_PERIOD_US 1000 //1KHz polling rate
-    /*
-     The following back-of-the-envelope calcultaions indicate max speed:
-     Assume we must poll at least 50x per revolution in order to 
-     ALWAYS detect the magnet (this is conservative).
-     Inches per Revolution = 31.415
-     1KHz sample rate => 20 revolutions per second at 50 samples/rev
-     628.3 inches per second => (approx) 37mph
-     */
+#define HYST_TRIG_HIGH 950 //TODO: Tune these based on OBSERVED values
+#define HYST_TRIG_LOW 850
+//#define WHEEL_CIR (10.0 * PI)
+#define ADC_POLLING_PERIOD_US 1000 //1KHz polling rate
+/*
+ The following back-of-the-envelope calcultaions indicate max speed:
+ Assume we must poll at least 50x per revolution in order to 
+ ALWAYS detect the magnet (this is conservative).
+ Inches per Revolution = 31.415
+ 1KHz sample rate => 20 revolutions per second at 50 samples/rev
+ 628.3 inches per second => (approx) 37mph
+ */
 
-    /* handler for timer interrupt during which ADC is polled */
-    void handler()
+/* handler for timer interrupt during which ADC is polled */
+void handler()
+{
+    int hall_value = analogRead(A0);
+    
+    if (is_in_range && (hall_value > HYST_TRIG_HIGH))
     {
-        int hall_value = analogRead(A0);
-        
-        if (is_in_range && (hall_value > HYST_TRIG_HIGH))
-        {
-//            Serial.print("incrementing distance\n");
-            distance += 1; //WHEEL_CIR;
-            is_in_range = false;
-        }
-        else if (!is_in_range && (hall_value <= HYST_TRIG_LOW)) {
-            is_in_range = true;
-        }
+        distance += 1; //WHEEL_CIR;
+        is_in_range = false;
     }
+    else if (!is_in_range && (hall_value <= HYST_TRIG_LOW)) {
+        is_in_range = true;
+    }
+}
 #endif
 
 
@@ -191,6 +170,17 @@ void setup()
     interrupts();
 #endif
     
+#ifdef ENABLE_ACCEL
+    Wire.begin(); //I2C library
+    accelgyro.initialize(); //IMU library
+    
+    //accelgyro.setXGyroOffset(220);
+    //accelgyro.setYGyroOffset(76);
+    //accelgyro.setZGyroOffset(-85);
+    //accelgyro.setZAccelOffset(1788);
+    
+#endif
+    
 #ifdef ENABLE_GPS
     // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
     GPS.begin(9600);
@@ -205,67 +195,24 @@ void setup()
     // Request updates on antenna status, comment out to keep quiet
     GPS.sendCommand(PGCMD_ANTENNA);
     
-    #ifdef __arm__
-        usingInterrupt = false;  //NOTE - we don't want to use interrupts on the Due
-    #else
-        useInterrupt(true);
-    #endif
+#ifdef __arm__
+    usingInterrupt = false;  //NOTE - we don't want to use interrupts on the Due
+#else
+    useInterrupt(true);
+#endif
     
     delay(1000);
     
-#endif
-    
-#ifdef ENABLE_SERVO
-    servo1.attach(2);
-    
-#endif
-    
-#ifdef ENABLE_ACCEL
-    Wire.begin(); //I2C library
-    accelgyro.initialize(); //IMU library
-    
-    devStatus = mpu.dmpInitialize();
-    
-    if (devStatus == 0)
-    {
-        // turn on the DMP, now that it's ready
-        Serial.println(F("Enabling DMP..."));
-        mpu.setDMPEnabled(true);
-
-        // enable Arduino interrupt detection
-        Serial.println(F("Enabling interrupt detection (Arduino external interrupt 0)..."));
-        attachInterrupt(0, dmpDataReady, RISING);
-        mpuIntStatus = mpu.getIntStatus();
-
-        // set our DMP Ready flag so the main loop() function knows it's okay to use it
-        Serial.println(F("DMP ready! Waiting for first interrupt..."));
-        dmpReady = true;
-
-        // get expected DMP packet size for later comparison
-        packetSize = mpu.dmpGetFIFOPacketSize();
-    }
-    else
-    {
-        // ERROR!
-        // 1 = initial memory load failed
-        // 2 = DMP configuration updates failed
-        // (if it's going to break, usually the code will be 1)
-        Serial.print(F("DMP Initialization failed (code "));
-        Serial.print(devStatus);
-        Serial.println(F(")"));
-    }
-    
-    accelgyro.setXGyroOffset(220);
-    accelgyro.setYGyroOffset(76);
-    accelgyro.setZGyroOffset(-85);
-    accelgyro.setZAccelOffset(1788);
-
 #endif
     
     pinMode(LED13_PIN, OUTPUT);
     
     Packet.begin(115200, 2);
     handshake();
+    
+#ifdef ENABLE_SERVO
+    servo1.attach(2);
+#endif
 }
 
 void loop()
@@ -274,11 +221,11 @@ void loop()
 }
 
 /*
-    SerialEvent occurs whenever a new data comes in the
-    hardware serial RX.  This routine is run between each
-    time loop() runs, so using delay inside loop can delay
-    response.  Multiple bytes of data may be available.
-*/
+ SerialEvent occurs whenever a new data comes in the
+ hardware serial RX.  This routine is run between each
+ time loop() runs, so using delay inside loop can delay
+ response.  Multiple bytes of data may be available.
+ */
 void serialEvent()
 {
     int result = Packet.readSerialData();
@@ -301,76 +248,45 @@ void serialEvent()
 #ifdef ENABLE_ACCEL
         else if (command_id == ACCELGYRO_ID)
         {
-//            ax = random(-0x8000, 0x8000 - 1);
-//            ay = random(-0x8000, 0x8000 - 1);
-//            az = random(-0x8000, 0x8000 - 1);
-//            gx = random(-0x8000, 0x8000 - 1);
-//            gy = random(-0x8000, 0x8000 - 1);
-//            gz = random(-0x8000, 0x8000 - 1);
-//            
-//            accelgyro_array[0] = ax >> 8;
-//            accelgyro_array[1] = ax & 0xffff;
-//            accelgyro_array[2] = ay >> 8;
-//            accelgyro_array[3] = ay & 0xffff;
-//            accelgyro_array[4] = az >> 8;
-//            accelgyro_array[5] = az & 0xffff;
-//            
-//            accelgyro_array[6] = gx >> 8;
-//            accelgyro_array[7] = gx & 0xffff;
-//            accelgyro_array[8] = gy >> 8;
-//            accelgyro_array[9] = gy & 0xffff;
-//            accelgyro_array[10] = gz >> 8;
-//            accelgyro_array[11] = gz & 0xffff;
-//            Packet.sendDataArray(accelgyro_array, 12);
-
-            // reset interrupt flag and get INT_STATUS byte
-            mpuInterrupt = false;
-            mpuIntStatus = mpu.getIntStatus();
-
-            // get current FIFO count
-            fifoCount = mpu.getFIFOCount();
-
-            // check for overflow (this should never happen unless our code is too inefficient)
-            if ((mpuIntStatus & 0x10) || fifoCount == 1024)
-            {
-                // reset so we can continue cleanly
-                mpu.resetFIFO();
-                Serial.println(F("FIFO overflow!"));
-
-            // otherwise, check for DMP data ready interrupt (this should happen frequently)
-            }
-            else if (mpuIntStatus & 0x02)
-            {
-                // wait for correct available data length, should be a VERY short wait
-                while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
-
-                // read a packet from FIFO
-                mpu.getFIFOBytes(fifoBuffer, packetSize);
-                
-                // track FIFO count here in case there is > 1 packet available
-                // (this lets us immediately read more without waiting for an interrupt)
-                fifoCount -= packetSize;
-                
-                accelgyro.dmpGetQuaternion(&q, fifoBuffer);
-                accelgyro.dmpGetAccel(&aa, fifoBuffer);
-                accelgyro.dmpGetGravity(&gravity, &q);
-                accelgyro.dmpGetLinearAccel(&aaReal, &aa, &gravity);
-                accelgyro.dmpGetYawPitchRoll(ypr, &q, &gravity);
-//                accelgyro.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
-                
-                accelgyro_array[0] = aaReal.x >> 8;
-                accelgyro_array[1] = aaReal.x & 0xffff;
-                accelgyro_array[2] = aaReal.y >> 8;
-                accelgyro_array[3] = aaReal.y & 0xffff;
-                accelgyro_array[4] = aaReal.z >> 8;
-                accelgyro_array[5] = aaReal.z & 0xffff;
-                
-                for (int float_index = 0; float_index < 3; float_index++) {
-                    to_hex(ypr[float_index], accelgyro_array, 3, float_index * 4 + 6);
-                }
-            }
+            //ax = random(-0x8000, 0x8000 - 1);
+            //ay = random(-0x8000, 0x8000 - 1);
+            //az = random(-0x8000, 0x8000 - 1);
+            //gx = random(-0x8000, 0x8000 - 1);
+            //gy = random(-0x8000, 0x8000 - 1);
+            //gz = random(-0x8000, 0x8000 - 1);
+            //
+            //accelgyro_array[0] = ax >> 8;
+            //accelgyro_array[1] = ax & 0xffff;
+            //accelgyro_array[2] = ay >> 8;
+            //accelgyro_array[3] = ay & 0xffff;
+            //accelgyro_array[4] = az >> 8;
+            //accelgyro_array[5] = az & 0xffff;
+            //
+            //accelgyro_array[6] = gx >> 8;
+            //accelgyro_array[7] = gx & 0xffff;
+            //accelgyro_array[8] = gy >> 8;
+            //accelgyro_array[9] = gy & 0xffff;
+            //accelgyro_array[10] = gz >> 8;
+            //accelgyro_array[11] = gz & 0xffff;
+            //Packet.sendDataArray(accelgyro_array, 12);
             
-            Packet.sendDataArray(accelgyro_array, 18);
+            accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+            
+            accelgyro_array[0] = ax >> 8;
+            accelgyro_array[1] = ax & 0xffff;
+            accelgyro_array[2] = ay >> 8;
+            accelgyro_array[3] = ay & 0xffff;
+            accelgyro_array[4] = az >> 8;
+            accelgyro_array[5] = az & 0xffff;
+            
+            accelgyro_array[6] = gx >> 8;
+            accelgyro_array[7] = gx & 0xffff;
+            accelgyro_array[8] = gy >> 8;
+            accelgyro_array[9] = gy & 0xffff;
+            accelgyro_array[10] = gz >> 8;
+            accelgyro_array[11] = gz & 0xffff;
+            
+            Packet.sendDataArray(accelgyro_array, 12);
         }
 #endif
         
@@ -379,7 +295,6 @@ void serialEvent()
         {
             noInterrupts();
             Packet.sendData16bit(command_id, distance);
-//            distance = 0;
             interrupts();
         }
 #endif
@@ -409,24 +324,23 @@ void serialEvent()
                 //Serial.println(GPS.lastNMEA());   // this also sets the newNMEAreceived() flag to false
                 
                 if (!GPS.parse(GPS.lastNMEA()))   // this also sets the newNMEAreceived() flag to false
-                return;  // we can fail to parse a sentence in which case we should just wait for another
+                    return;  // we can fail to parse a sentence in which case we should just wait for another
             }
             
             
             gps_float_array[0] = GPS.latitude;
             gps_float_array[1] = GPS.longitude;
-            gps_float_array[2] = GPS.speed;
-            gps_float_array[3] = GPS.angle;
+            //gps_float_array[2] = GPS.speed;
+            //gps_float_array[3] = GPS.angle;
             
-            for (int float_index = 0; float_index < 4; float_index++) {
-                to_hex(gps_float_array[float_index], gps_array, 4, float_index * 4);
+            for (int float_index = 0; float_index < 2; float_index++) {
+                to_hex(gps_float_array[float_index], gps_array, 2, float_index * 4);
             }
             
-            gps_array[16] = (uint8_t)GPS.satellites;
-            gps_array[17] = (uint8_t)GPS.fixquality;
+            //gps_array[16] = (uint8_t)GPS.satellites;
+            //gps_array[17] = (uint8_t)GPS.fixquality;
             
-            Packet.sendDataArray(gps_array, 18);
-            
+            Packet.sendDataArray(gps_array, 8);
         }
 #endif
     }
