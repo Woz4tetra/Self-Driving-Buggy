@@ -39,14 +39,14 @@ def getSignificantContours(frame, epsilon=None):
     return significantContours
 
 
-def drawContours(edges, length=0, epsilon=0.001):
+def drawContours(frame, edges, length=0, epsilon=0.001):
     # frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # edges = cv2.threshold(frame_gray, 128, 255, cv2.THRESH_BINARY_INV)[1]
     # threshVal, edges = cv2.threshold(frame_gray, 0, 255,
     #                                  cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
     contours = getSignificantContours(edges, epsilon)[-length:]
-    return cv2.drawContours(edges, contours, -1, (255, 100, 100), 2)
+    return cv2.drawContours(frame, contours, -1, (255, 100, 100), 2)
 
 
 
@@ -75,8 +75,7 @@ def auto_canny(frame, sigma=0.33):
     v = np.median(frame_canny)
     lower = int(max(0, (1.0 - sigma) * v))
     upper = int(min(255, (1.0 + sigma) * v))
-    frame_canny = cv2.Canny(frame_canny, lower, upper)
-    return cv2.dilate(frame_canny, (2, 2), iterations=4)
+    return cv2.Canny(frame_canny, lower, upper)
 
 def erode_filter(frame, kernel=(5, 5)):
     kernel = np.ones(kernel, np.uint8)

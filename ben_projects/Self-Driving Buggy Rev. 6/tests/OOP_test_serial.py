@@ -18,26 +18,29 @@ if __name__ == '__main__':
     encoder = Encoder()
     servo = Servo(min=0, max=180)
     led13 = Led13()
-    
-    initialize(True)
 
-    counter = 0
+    initialize(False)
+
+    # counter = 0
 
     while True:
-        imu.get()
-        print(imu.accelX, imu.accelY, imu.accelZ,
-              imu.gyroX, imu.gyroY, imu.gyroZ)
-        gps.get()
-        print(gps.longitude, gps.latitude)
-        encoder.get()
-        print(encoder.distance)
+        # imu.get()
+        # print(imu.accelX, imu.accelY, imu.accelZ,
+        #       imu.gyroX, imu.gyroY, imu.gyroZ)
+        # gps.get()
+        # print(gps.longitude, gps.latitude)
+        # encoder.get()
+        # print(encoder.distance)
 
-        if counter == 20:
-            if servo.value == servo['min']:
-                servo.set("max")
-            else:
-                servo.set("min")
-            led13.set(not led13.state)
-            counter = 0
-        counter += 1
+        servo_value = raw_input("servo (0...180):")
+
+        servo.set(int(servo_value))
+        # if counter == 20:
+        #     if servo.value == servo['min']:
+        #         servo.set("max")
+        #     else:
+        #         servo.set("min")
+        #     led13.set(not led13.state)
+        #     counter = 0
+        # counter += 1
         time.sleep(0.001)

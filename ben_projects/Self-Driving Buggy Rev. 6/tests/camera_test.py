@@ -34,18 +34,11 @@ from camera import analyzers
 
 
 def run():
-    # camera1 = camera.Capture(windowName="camera",
-    #                          cameraType="ELP",
-    #                          # width=427, height=240,
-    #                          # width=214, height=120,
-    #                          sizeByFPS=31,
-    #                          camSource=0
-    #                          )
     camera1 = capture.Capture(windowName="camera",
-                              camSource="Impulse 10-12-14 Roll 2.mov",
+                              camSource="Icarus 10-11 roll 5 (+hill 1).mov",
                               # width=720, height=450,
                               # width=427, height=240,
-                              frameSkip=200,
+                              frameSkip=25,
                               loopVideo=True,
                               )
 
@@ -73,25 +66,51 @@ def run():
             captureProperties['currentFrame'] = camera1.currentFrameNumber()
 
             if captureProperties['showOriginal'] is False:
+                # frame_thresh = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
+
+                # value, frame_thresh = cv2.threshold(frame_thresh, 150, 255, cv2.THRESH_BINARY)
+                # frame_thresh = cv2.dilate(frame_thresh, (4, 4), iterations=2)
+                # frame_thresh = analyzers.erode_filter(frame_thresh, kernel=(3, 3))
+
                 # frame_thresh = cv2.medianBlur(frame1, 5)
                 # frame_thresh = analyzers.sobel_filter(frame_thresh)
                 # frame_thresh = cv2.cvtColor(frame_thresh, cv2.COLOR_BGR2GRAY)
-                # value, frame_thresh = cv2.threshold(frame_thresh, 20, 255,
-                #                                     cv2.THRESH_BINARY)
-                # frame_thresh = cv2.dilate(frame_thresh, (4, 4), iterations=2)
-                # frame1 = analyzers.erode_filter(frame_thresh, kernel=(3, 3))
                 # frame_thresh = analyzers.auto_canny(frame_thresh)
 
-                frame1 = cv2.medianBlur(frame1, 3)
-                frame1 = analyzers.auto_canny(frame1)
-                frame1 = cv2.dilate(frame1, (4, 4), iterations=3)
+                # frame1 = cv2.medianBlur(frame1, 3)
+                # frame1 = analyzers.auto_canny(frame1)
+                # frame1 = cv2.dilate(frame1, (4, 4), iterations=3)
 
-                # frame1 = np.concatenate((frame_thresh, frame_canny), axis=0)
+                # frame1 = np.concatenate((frame_left, frame_right), axis=1)
                 # frame1 = cv2.resize(frame1, (width / 2, height))
 
                 # frame1 = cv2.bitwise_and(frame_thresh, frame_canny)
 
-                frame1 = analyzers.drawContours(frame1, 20, 0.01)
+                # frame1 = analyzers.drawContours(frame1, frame_thresh, 20, 0.01)
+
+                # frame1 = frame1[:height - 200]
+                # frame_lines = cv2.GaussianBlur(frame1, (5, 5), 1)
+                frame_lines = cv2.medianBlur(frame1, 5)
+                frame_lines = cv2.Canny(frame_lines, 1, 100)
+                # frame_lines = analyzers.auto_canny(frame_lines)
+
+                lines = cv2.HoughLines(frame_lines, rho=1, theta=np.pi / 180,
+                                       threshold=50, min_theta=-70 * np.pi / 180,
+                                       max_theta=70 * np.pi / 180)
+                for line_set in lines[:10]:
+                    for rho, theta in line_set:
+                        a = np.cos(theta)
+                        b = np.sin(theta)
+                        x0 = a * rho
+                        y0 = b * rho
+                        x1 = int(x0 + 1000 * (-b))
+                        y1 = int(y0 + 1000 * (a))
+                        x2 = int(x0 - 1000 * (-b))
+                        y2 = int(y0 - 1000 * (a))
+
+                        cv2.line(frame1, (x1, y1), (x2, y2), (0, 0, 255), 2)
+                frame1 = np.concatenate((frame1, cv2.cvtColor(
+                    np.uint8(frame_lines), cv2.COLOR_GRAY2BGR)), axis=0)
 
             if captureProperties['enableDraw'] is True:
                 camera1.showFrame(frame1)
@@ -120,7 +139,8 @@ def run():
                 captureProperties['showOriginal'] = not captureProperties[
                     'showOriginal']
                 print(
-                "Show original is " + str(captureProperties['showOriginal']))
+                    "Show original is " + str(
+                        captureProperties['showOriginal']))
                 frame1 = camera1.updateFrame(False)
             elif key == "right":
                 camera1.incrementFrame()

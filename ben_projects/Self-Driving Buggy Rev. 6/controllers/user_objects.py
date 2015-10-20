@@ -63,8 +63,12 @@ class Led13(Setter):
         self.state = value
         return self.send(int(value))
 
-def _add_defines():
+def _add_defines(): # TODO: Add "enables" editing as well as ID editing
     project_dir = os.path.dirname(os.path.realpath(__file__))
+    project_name = "Self-Driving Buggy Rev. 6"
+    project_dir = project_dir[:project_dir.rfind(project_name) + len(
+        project_name)]
+
     with open(project_dir + '/board/arduino/src/SerialBox.ino',
               'r') as serial_box_file:
         contents = serial_box_file.read()
@@ -95,6 +99,6 @@ def initialize(upload=True):
     _add_defines()
 
     if upload:
-        os.system("cd arduino && platformio run --target upload")
+        os.system("cd .. && cd board/arduino && platformio run --target upload")
 
     start()
