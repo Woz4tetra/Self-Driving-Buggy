@@ -35,7 +35,7 @@ from camera import analyzers
 
 def run():
     camera1 = capture.Capture(windowName="camera",
-                              camSource="Icarus 10-11 roll 5 (+hill 1).mov",
+                              camSource="Orca 10-11 roll 3 (stopped in chute).mov",
                               # width=720, height=450,
                               # width=427, height=240,
                               frameSkip=25,
@@ -44,7 +44,7 @@ def run():
 
     captureProperties = dict(
         paused=False,
-        showOriginal=False,
+        showOriginal=True,
         enableDraw=True,
         currentFrame=0,
         writeVideo=False,
@@ -90,6 +90,10 @@ def run():
 
                 # frame1 = frame1[:height - 200]
                 # frame_lines = cv2.GaussianBlur(frame1, (5, 5), 1)
+                # rotation_mat = cv2.getRotationMatrix2D((width / 2, height / 2),
+                #                                        30, 1)
+                # frame1 = cv2.warpAffine(frame1, rotation_mat, (width, height))
+
                 frame_lines = cv2.medianBlur(frame1, 5)
                 frame_lines = cv2.Canny(frame_lines, 1, 100)
                 # frame_lines = analyzers.auto_canny(frame_lines)
