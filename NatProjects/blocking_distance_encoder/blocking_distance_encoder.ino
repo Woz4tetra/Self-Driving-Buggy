@@ -1,5 +1,5 @@
 /*  Written by Nat Jeffries
-    Distance Encoder for Self Driving Buggy Project
+    Distnac Encoder for Self Driving Buggy Project
     Version 1.0
 */
 

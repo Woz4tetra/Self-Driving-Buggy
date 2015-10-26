@@ -18,6 +18,8 @@ Dependencies
 PySerial - https://github.com/pyserial/pyserial
 """
 
+from __future__ import print_function
+
 import serial
 from sys import platform as _platform
 import os
@@ -27,12 +29,13 @@ from common import _makeParity
 
 
 class Communicator:
-    def __init__(self, delay=0.007):  # corresponds to delay(3) on arduino
-        self.serialRef = self._findPort()
-        self._handshake()
-
+    def __init__(self, delay=0.003):
         self.currentPacket = ""
         self.delay = delay
+
+    def start(self):
+        self.serialRef = self._findPort()
+        self._handshake()
 
     def _handshake(self):
         readFlag = self.serialRef.read()
@@ -40,7 +43,7 @@ class Communicator:
         print("Waiting for ready flag...")
         time.sleep(0.5)
         while readFlag != 'R':
-            print repr(readFlag)
+            print(readFlag, end="")
             readFlag = self.serialRef.read()
 
         self.serialRef.write("P")
@@ -103,12 +106,12 @@ class Communicator:
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
 
-        #        print "writing current_packet:", repr(self.currentPacket)
-        #        print "in waiting send:", repr(self.serialRef.inWaiting())
+        # print "writing current_packet:", repr(self.currentPacket)
+        # print "in waiting send:", repr(self.serialRef.inWaiting())
 
         self.serialRef.write(self.currentPacket)
 
-        #        print "in waiting send:", repr(self.serialRef.inWaiting())
+        # print "in waiting send:", repr(self.serialRef.inWaiting())
         time.sleep(self.delay)
 
     def read(self, _recurses=0):
@@ -122,7 +125,7 @@ class Communicator:
             buffer = self.serialRef.readline()
         #        print repr(buffer)
         if buffer == None or len(buffer) == 0:
-            time.sleep(0.01)
+            time.sleep(0.2)
             self.read(_recurses + 1)
         return buffer
 

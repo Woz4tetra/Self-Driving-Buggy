@@ -187,12 +187,15 @@ def bind(track, pos, acc, prev_bind = 0):
     print len(track), "bind points"
     if prev_bind >= len(track) or prev_bind <0:
         raise Exception("bind outside track")
+    
     for i in xrange(prev_bind,len(track)):
         if close(track[i],pos,acc) == True:
             return (track[i], i)
+
     for i in xrange(len(track)):
         if close(track[i],pos,acc) == True:
             return (track[i], i)
+
     return 
 
 

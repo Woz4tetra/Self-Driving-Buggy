@@ -1,5 +1,6 @@
 import copy
 import time
+import datetime
 import os
 
 import cv2
@@ -49,19 +50,21 @@ class Capture(object):
         13: "enter"
     }
 
-    def __init__(self, windowName=None, camSource=None, autoSelectSource=False,
+    def __init__(self, window_name=None, cam_source=None,
+                 auto_select_source=False,
                  width=None, height=None, crop=(None,) * 4,
-                 sizeByFPS=None, cameraType=None,
-                 frameSkip=0,
-                 loopVideo=True):
+                 size_by_fps=None, camera_type=None,
+                 frame_skip=0,
+                 loop_video=True,
+                 start_frame=0):
         '''
         The initializer for an opencv camera object. It holds all the methods
         required to read and write from a camera.
 
-        :param windowName: The name of the window to display the camera output.
+        :param window_name: The name of the window to display the camera output.
                 If None, False, or "" (Falsey), the camera will not show its
                 output although you can still read data from it.
-        :param camSource: The camera number or the name of the video file.
+        :param cam_source: The camera number or the name of the video file.
                 If a number, Capture will attempt
                 cv2.VideoCapture(camSource). OpenCV's camera numbering system
                 is arbitrary at best, so this isn't recommended.
@@ -79,7 +82,7 @@ class Capture(object):
                 Note: For videos, OpenCV's resize function is used. This can
                 cause a significant drop in fps
         :param height: Same as width except for height
-        :param sizeByFPS: The desired FPS for the capture. The FPS for the
+        :param size_by_fps: The desired FPS for the capture. The FPS for the
                 following cameras are implemented under the following names:
 
                 ELP180: "180degree Fisheye Lens 1080p Wide Angle Pc Web USB Camera"
@@ -96,7 +99,7 @@ class Capture(object):
 
                 If None, Capture picks the default resolution for the logitech
                 camera type: (480, 270).
-        :param cameraType: Specify which camera data to use for sizeByFPS. If
+        :param camera_type: Specify which camera data to use for sizeByFPS. If
                 None, Capture selects logitech by default
         :param crop: How much to crop the resulting image by. Supply a tuple of
                 size 4. If you don't want to crop a certain dimension, set that
@@ -108,45 +111,45 @@ class Capture(object):
                             (0, 50, 100, height)
                          (None, None, None, None) crops the image to size
                             (0, 0, width, height)
-        :param autoSelectSource: If True, Capture will launch the Camera
+        :param auto_select_source: If True, Capture will launch the Camera
                 Selector mini application. Follow its instructions when prompted.
-        :param frameSkip: Number of frames to skip in a video or camera feed.
+        :param frame_skip: Number of frames to skip in a video or camera feed.
                 This works much better for videos than cameras.
-        :param loopVideo: Whether to loop a video when it ends or not
+        :param loop_video: Whether to loop a video when it ends or not
         '''
         time1 = time.time()
 
-        self.windowName = windowName
-        self.camSource = camSource
+        self.windowName = window_name
+        self.camSource = cam_source
         self.enableDraw = bool(self.windowName)
-        self.sizeByFPS = sizeByFPS
+        self.sizeByFPS = size_by_fps
         self.isRunning = True
         self.analysisApplied = False
-        self.cameraType = cameraType
+        self.cameraType = camera_type
         self.cameraFPS = None
         self.trackbarName = "Frame"
         self.dimensions = list(crop)
         self.video = None
-        self.frameSkip = frameSkip
-        self.loopVideo = loopVideo
+        self.frameSkip = frame_skip
+        self.loopVideo = loop_video
 
-        cameraType = cameraType if cameraType is not None else "logitech"
+        camera_type = camera_type if camera_type is not None else "logitech"
         try:
-            self.resolutions = Capture.resolutions[cameraType]
+            self.resolutions = Capture.resolutions[camera_type]
         except:
             raise Exception("camera data for camera type %s does not exist.\
 Please type help(Capture.resolutions) for a dictionary of available camera data.")
 
         if self.enableDraw == True:
-            cv2.namedWindow(windowName)
+            cv2.namedWindow(window_name)
 
-        if camSource is not None:
-            if type(camSource) == str:
-                self.loadVideo(camSource)
+        if cam_source is not None:
+            if type(cam_source) == str:
+                self.loadVideo(cam_source)
             else:
-                self.loadCamera(camSource)
+                self.loadCamera(cam_source)
         else:
-            if autoSelectSource is True:
+            if auto_select_source is True:
                 capture = self.searchForCamera()
             else:
                 capture = self.cameraSelector()
@@ -157,7 +160,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         elif self.sizeByFPS is not None:
             if (self.sizeByFPS in self.resolutions.keys()) is False:
-                self.sizeByFPS = self.findClosestRes(sizeByFPS)
+                self.sizeByFPS = self.findClosestRes(size_by_fps)
             self.width, self.height = self.resolutions[self.sizeByFPS]
 
         else:
@@ -193,6 +196,9 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         print str(self.camSource) + " loaded in " + str(
             time2 - time1) + " seconds. Capture size is " + \
               str(int(self.width)) + "x" + str(int(self.height))
+
+        if start_frame > 0:
+            self.setFrame(start_frame)
 
     def cameraSelector(self):
         '''
@@ -387,7 +393,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         currentFrame = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
         self.setFrame(currentFrame - 1.8)
 
-    def saveFrame(self, frame):
+    def saveFrame(self, frame, burst_mode=True):
         '''
         Write the input frame to Camera/Images
 
@@ -395,11 +401,15 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 (shape = (height, width, 3))
         :return: None
         '''
-        name = time.strftime("%c").replace(":", "_") + ".png"
-        cv2.imwrite(PROJECTDIR + "/Images/" + name, frame)
+        if not burst_mode:
+            name = time.strftime("%c").replace(":", ";") + ".png"
+            print "Frame saved as " + str(name)
+            print "in directory:\n" + PROJECTDIR + "/Images/"
+        else:
+            name = datetime.datetime.now().strftime(
+                "%a %b %d %H;%M;%S.%f %p, %Y") + ".png"
 
-        print "Frame saved as " + str(name)
-        print "in directory:\n" + PROJECTDIR + "/Images/"
+        cv2.imwrite(PROJECTDIR + "/Images/" + name, frame)
 
     def increaseFPS(self):
         '''
@@ -562,8 +572,9 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if self.frameSkip > 0:
             if type(self.camSource) == str:
                 current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
-                self.camera.set(cv2.CAP_PROP_POS_FRAMES, current + self.frameSkip)
-        #     else:
+                self.camera.set(cv2.CAP_PROP_POS_FRAMES,
+                                current + self.frameSkip)
+        # else:
         #         while int(
         #                 self.camera.get(
         #                     cv2.CAP_PROP_POS_FRAMES)) % self.frameSkip:

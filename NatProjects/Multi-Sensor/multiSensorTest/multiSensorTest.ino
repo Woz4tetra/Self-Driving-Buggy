@@ -80,8 +80,7 @@ void loop() {
   Serial.print(ax); Serial.print(",");
   Serial.print(ay); Serial.print(",");
   Serial.print(az); Serial.print("\n");
-  //Serial.print(curr_distance); Serial.print("\n");
-  //Serial.print(analogRead(A0));
+  Serial.print(curr_distance); Serial.print("\n");
   delay(100);
 #endif
 }
