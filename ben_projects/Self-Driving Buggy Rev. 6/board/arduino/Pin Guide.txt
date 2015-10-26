@@ -1,8 +1,0 @@
-Pins:
-(D = digital pin)
-D2: Servo
-D18: RX GPS (TX serial arduino)
-D19: TX GPS (RX serial arduino)
-D20: SDA (I2C) for IMU
-D21: SCL (I2C) for IMU
-A0: Encoder analog data
