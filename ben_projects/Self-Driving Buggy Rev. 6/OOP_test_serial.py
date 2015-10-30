@@ -51,12 +51,12 @@ if __name__ == '__main__':
     initialize(True)
 
     # servo_test_command()
-    servo_test_flipper()
+    # servo_test_flipper()
     # while True:
     #     led13.set(not led13.state)
         # time.sleep(1)
 
-    # imu_test()
+    imu_test()
 
     # gps.get()
     # print(gps.longitude, gps.latitude)

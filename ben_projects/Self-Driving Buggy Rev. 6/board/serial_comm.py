@@ -114,19 +114,18 @@ class Communicator:
         # print "in waiting send:", repr(self.serialRef.inWaiting())
         time.sleep(self.delay)
 
-    def read(self, _recurses=0):
-        if _recurses > 10:
-            raise Exception("Attempted read failed!! Tried too many times")
-        self.ping()
-
+    def read(self):
+        time_start = time.time()
         buffer = ''
-        #        print "in waiting read:", repr(self.serialRef.inWaiting())
-        if self.serialRef.inWaiting():
-            buffer = self.serialRef.readline()
-        #        print repr(buffer)
-        if buffer == None or len(buffer) == 0:
-            time.sleep(0.2)
-            self.read(_recurses + 1)
+        while (time.time() - time_start) < 3 and bool(buffer):
+            self.ping()
+
+            # print "in waiting read:", repr(self.serialRef.inWaiting())
+            if self.serialRef.inWaiting():
+                buffer = self.serialRef.readline()
+            # print repr(buffer)
+        if not bool(buffer):
+            raise Exception("Attempted read failed!! Tried too many times")
         return buffer
 
     @staticmethod
