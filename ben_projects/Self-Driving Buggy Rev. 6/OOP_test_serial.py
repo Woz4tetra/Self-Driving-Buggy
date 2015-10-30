@@ -22,8 +22,10 @@ def servo_test_command():
 def servo_test_flipper():
     while True:
         if servo.value == servo['min']:
+            print("max")
             servo.set("max")
         else:
+            print("min")
             servo.set("min")
 
         time.sleep(1)
@@ -46,7 +48,7 @@ if __name__ == '__main__':
     servo = Servo(min=0, max=156)
     led13 = Led13()
 
-    initialize(False)
+    initialize(True)
 
     # servo_test_command()
     servo_test_flipper()

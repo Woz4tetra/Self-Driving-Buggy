@@ -66,9 +66,9 @@ class Led13(Setter):
 
 
 def initialize(upload=True):
-    _add_defines()
-
-    if upload:
-        os.system("cd .. && cd board/arduino && platformio run --target upload")
+    # _add_defines()
+    #
+    # if upload:
+    #     os.system("cd .. && cd board/arduino && platformio run --target upload")
 
     start()
