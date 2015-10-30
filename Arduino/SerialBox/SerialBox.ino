@@ -401,12 +401,12 @@ void serialEvent()
 #ifdef ENABLE_ACCEL_SIMPLE
         else if (command_id == ACCELGYRO_ID)
         {
-            //ax = random(-0x8000, 0x8000 - 1);
-            //ay = random(-0x8000, 0x8000 - 1);
-            //az = random(-0x8000, 0x8000 - 1);
-            //gx = random(-0x8000, 0x8000 - 1);
-            //gy = random(-0x8000, 0x8000 - 1);
-            //gz = random(-0x8000, 0x8000 - 1);
+//            ax = random(-0x8000, 0x8000 - 1);
+//            ay = random(-0x8000, 0x8000 - 1);
+//            az = random(-0x8000, 0x8000 - 1);
+//            gx = random(-0x8000, 0x8000 - 1);
+//            gy = random(-0x8000, 0x8000 - 1);
+//            gz = random(-0x8000, 0x8000 - 1);
 
             accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
             accelgyro_array[0] = ax >> 8;

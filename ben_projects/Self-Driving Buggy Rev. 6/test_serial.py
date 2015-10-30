@@ -23,18 +23,31 @@ import random
 def test_imu():
     print("test imu...")
     packet = communicator.makePacket(PACKET_TYPES['request data'],
+                                     0x00)
+    communicator.write(packet)
+
+    while True:
+        communicator.ping()
+
+        print "in waiting read:", communicator.serialRef.inWaiting()
+        if communicator.serialRef.inWaiting():
+            buffer = communicator.serialRef.readline()
+            print buffer,
+
+
+def test_gps():
+    print("test imu...")
+    packet = communicator.makePacket(PACKET_TYPES['request data'],
                                      0x01)
     communicator.write(packet)
 
-    for _ in xrange(20):
-        received = communicator.read()
+    while True:
+        communicator.ping()
 
-        if len(received) > 0:
-            print parser.parse(received,
-                               markers="#### #### #### #### #### ####",
-                               out='dec')
-    print("Passed!")
-
+        print "in waiting read:", communicator.serialRef.inWaiting()
+        if communicator.serialRef.inWaiting():
+            buffer = communicator.serialRef.readline()
+            print buffer,
 
 def test_encoder():
     print("test encoder...")
@@ -46,21 +59,6 @@ def test_encoder():
         if len(received) > 0:
             if parser.verify(packet, received):
                 print(parser.parse(received, out='dec'))
-
-
-def test_gps():
-    print("test gps...")
-    packet = communicator.makePacket(PACKET_TYPES['request data'],
-                                     0x02)
-    communicator.write(packet)
-
-    received = communicator.read()
-    if len(received) > 0:
-        if parser.verify(packet, received):
-            print parser.parse(received,
-                               verbose=True,
-                               markers="######## ######## ######## ######## ## ##",
-                               out='ffffdd')
 
 
 def test_led13():
@@ -117,9 +115,8 @@ if __name__ == '__main__':
         # test_servo()
         # test_encoder()
         # test_imu()
-        test_led13()
-        # for _ in xrange(100):
-        #     test_gps()
+        test_gps()
+        # test_led13()
 
         # print("All tests passed!!!")
         # print "lets go again!!!"

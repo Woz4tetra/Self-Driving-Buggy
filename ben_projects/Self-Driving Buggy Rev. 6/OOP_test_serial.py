@@ -1,5 +1,4 @@
 import time
-import config
 from controllers.user_objects import *
 
 '''
@@ -41,6 +40,16 @@ def imu_test():
         print (imu.accelX, imu.accelY, imu.accelZ)
         # time.sleep(0.001)
 
+def led13_test():
+    while True:
+        led13.set(not led13.state)
+        time.sleep(0.01)
+
+def gps_test():
+    while True:
+        gps.get()
+        print(gps.longitude, gps.latitude)
+
 if __name__ == '__main__':
     imu = IMU()
     gps = GPS()
@@ -48,17 +57,14 @@ if __name__ == '__main__':
     servo = Servo(min=0, max=156)
     led13 = Led13()
 
-    initialize(True)
+    initialize()
 
     # servo_test_command()
     # servo_test_flipper()
-    # while True:
-    #     led13.set(not led13.state)
-        # time.sleep(1)
 
-    imu_test()
+    # led13_test()
+    # imu_test()
 
-    # gps.get()
-    # print(gps.longitude, gps.latitude)
+    gps_test()
     # encoder.get()
     # print(encoder.distance)

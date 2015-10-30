@@ -117,13 +117,13 @@ class Communicator:
     def read(self):
         time_start = time.time()
         buffer = ''
-        while (time.time() - time_start) < 3 and bool(buffer):
+        while (time.time() - time_start) <= 3 and not bool(buffer):
             self.ping()
 
-            # print "in waiting read:", repr(self.serialRef.inWaiting())
+            # print("in waiting read:", repr(self.serialRef.inWaiting()))
             if self.serialRef.inWaiting():
                 buffer = self.serialRef.readline()
-            # print repr(buffer)
+            # print(repr(buffer))
         if not bool(buffer):
             raise Exception("Attempted read failed!! Tried too many times")
         return buffer

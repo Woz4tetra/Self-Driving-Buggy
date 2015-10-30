@@ -1,20 +1,26 @@
-
 from board.arduino_object import *
 from board.arduino_object import _add_defines
 
+
 class IMU(Getter):
-    def __init__(self):
+    def __init__(self, simple_mode=True):
         self.accelX, self.accelY, self.accelZ = 0, 0, 0
         self.gyroX, self.gyroY, self.gyroZ = 0, 0, 0
-        super(IMU, self).__init__("ACCELGYRO_ID", "######## ######## ########", "float")
-        # super(IMU, self).__init__("ACCELGYRO_ID", "#### #### #### #### #### ####", "dec")
+        self.simpleMode = simple_mode
+        if self.simpleMode:
+            super(IMU, self).__init__("ACCELGYRO_ID",
+                                      "#### #### #### #### #### ####", "dec")
+        else:
+            super(IMU, self).__init__("ACCELGYRO_ID",
+                                      "######## ######## ########", "float")
 
     def get(self):
         if self.send() and self.result != None:
-            # self.accelX, self.accelY, self.accelZ, \
-            #     self.gyroX, self.gyroY, self.gyroZ = self.result
-            self.gyroX, self.gyroY, self.gyroZ = self.result
-
+            if self.simpleMode:
+                self.accelX, self.accelY, self.accelZ, \
+                    self.gyroX, self.gyroY, self.gyroZ = self.result
+            else:
+                self.gyroX, self.gyroY, self.gyroZ = self.result
 
 
 class GPS(Getter):
@@ -28,6 +34,7 @@ class GPS(Getter):
         if self.send() and self.result != None:
             self.longitude, self.latitude = self.result
 
+
 class Encoder(Getter):
     def __init__(self):
         self.distance = 0
@@ -36,6 +43,7 @@ class Encoder(Getter):
     def get(self):
         if self.send() and self.result != None:
             self.distance = self.result
+
 
 class Servo(Setter):
     def __init__(self, **positions):
@@ -54,6 +62,7 @@ class Servo(Setter):
 
     def __getitem__(self, item):
         return self.positions[item]
+
 
 class Led13(Setter):
     def __init__(self):
