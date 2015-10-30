@@ -1,1 +1,0 @@
-platformio serialports monitor --baud 115200
