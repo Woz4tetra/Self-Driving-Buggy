@@ -22,8 +22,7 @@ import random
 
 def test_imu():
     print("test imu...")
-    packet = communicator.makePacket(PACKET_TYPES['request data'],
-                                     0x00)
+    packet = communicator.makePacket(PACKET_TYPES['request data'], 0x00)
     communicator.write(packet)
 
     while True:
@@ -37,8 +36,7 @@ def test_imu():
 
 def test_gps():
     print("test imu...")
-    packet = communicator.makePacket(PACKET_TYPES['request data'],
-                                     0x01)
+    packet = communicator.makePacket(PACKET_TYPES['request data'], 0x01)
     communicator.write(packet)
 
     while True:
@@ -51,8 +49,7 @@ def test_gps():
 
 def test_encoder():
     print("test encoder...")
-    packet = communicator.makePacket(PACKET_TYPES['request data'],
-                                     0x00)
+    packet = communicator.makePacket(PACKET_TYPES['request data'], 0x00)
     communicator.write(packet)
     for _ in xrange(100):
         received = communicator.read()
@@ -65,8 +62,7 @@ def test_led13():
     print("test led 13...")
     # led_state = True
     for _ in xrange(30):
-        packet = communicator.makePacket(PACKET_TYPES['command'],
-                                         0x04,
+        packet = communicator.makePacket(PACKET_TYPES['command'], 0x04,
                                          random.randint(0, 1))
                                          # int(led_state))
         communicator.write(packet)
@@ -83,8 +79,7 @@ def test_servo():
     forward = True
     
     for _ in xrange(36):
-        packet = communicator.makePacket(PACKET_TYPES['command'],
-                                         0x03,
+        packet = communicator.makePacket(PACKET_TYPES['command'], 0x03,
                                          servo_value)
         communicator.write(packet)
         recv_packet = communicator.read()

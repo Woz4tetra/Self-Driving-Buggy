@@ -1,11 +1,10 @@
 from board import serial_comm
 from board import serial_parser
 from board.common import PACKET_TYPES
-import os
+import config
 
 communicator = serial_comm.Communicator()
 parser = serial_parser.Parser()
-
 
 def start():
     communicator.start()
@@ -30,6 +29,8 @@ class ArduinoObject(object):
         self._recvPacket = ""
 
         self.result = None
+        
+        self._currentPayload = 0
 
         self.dataLength = 0
         if markers != None:
@@ -41,12 +42,15 @@ class ArduinoObject(object):
         self._sentPacket = communicator.makePacket(self.packetType,
                                                    self.commandID,
                                                    payload)
-        communicator.write(self._sentPacket)
 
+        if self._sentPacket != communicator.currentPacket:
+            communicator.write(self._sentPacket)
+        
         self._recvPacket = communicator.read()
-
+        
         verified = parser.verify(self._sentPacket, self._recvPacket,
                                  self.dataLength)
+
         if verified:
             self.result = parser.parse(self._recvPacket,
                                        markers=self.markers,
@@ -76,13 +80,8 @@ class Setter(ArduinoObject):
 
 
 def _add_defines():  # TODO: Add "enables" editing as well as ID editing
-    project_dir = os.path.dirname(os.path.realpath(__file__))
-    project_name = "Self-Driving Buggy Rev. 6"
-    project_dir = project_dir[:project_dir.rfind(project_name) + len(
-        project_name)]
-
-    with open(project_dir + '/board/arduino/src/SerialBox.ino',
-              'r') as serial_box_file:
+    project_dir = config.get_arduino_ino()
+    with open(project_dir, 'r') as serial_box_file:
         contents = serial_box_file.read()
 
         start = contents.find("/* Command IDs start */")
@@ -102,8 +101,7 @@ def _add_defines():  # TODO: Add "enables" editing as well as ID editing
                 index] + " " + value + "\n"
 
         contents = contents[0: start] + defines + contents[end:]
-    with open(project_dir + '/board/arduino/src/SerialBox.ino',
-              'w') as serial_box_file:
+    with open(project_dir, 'w') as serial_box_file:
         serial_box_file.write(contents)
 
 # ArduinoObject.used_command_ids = ["ACCELGYRO_ID", "ENCODER_ID", "SERVO_ID",

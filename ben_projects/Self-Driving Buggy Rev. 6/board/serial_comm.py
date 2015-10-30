@@ -2,7 +2,7 @@
 Written by Ben Warwick
 
 Self-Driving Buggy Rev. 6 (serial_comm.py) for Self-Driving Buggy Project
-Version 10/12/2015
+Version 10/30/2015
 =========
 
 This module handles all communications with a serial device (currently only
@@ -29,7 +29,7 @@ from common import _makeParity
 
 
 class Communicator:
-    def __init__(self, delay=0.003):
+    def __init__(self, delay=0):  # ms between each ping to serial
         self.currentPacket = ""
         self.delay = delay
 
@@ -95,24 +95,23 @@ class Communicator:
             raise NotImplementedError
 
     def ping(self):
-        #        print "ping!"
+        # print "ping!"
         # print "in waiting send:", repr(self.serialRef.inWaiting())
 
         self.serialRef.write('x')
-        time.sleep(self.delay)
 
     def write(self, packet):
         self.currentPacket = packet
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
 
-        # print "writing current_packet:", repr(self.currentPacket)
-        # print "in waiting send:", repr(self.serialRef.inWaiting())
+        # print("writing current_packet:", repr(self.currentPacket))
+        # print("in waiting send:", repr(self.serialRef.inWaiting()))
 
         self.serialRef.write(self.currentPacket)
 
         # print "in waiting send:", repr(self.serialRef.inWaiting())
-        time.sleep(self.delay)
+        # time.sleep(self.delay)
 
     def read(self):
         time_start = time.time()
@@ -123,9 +122,10 @@ class Communicator:
             # print("in waiting read:", repr(self.serialRef.inWaiting()))
             if self.serialRef.inWaiting():
                 buffer = self.serialRef.readline()
+            time.sleep(self.delay)
             # print(repr(buffer))
         if not bool(buffer):
-            raise Exception("Attempted read failed!! Tried too many times")
+            raise Exception("Attempted read failed!! Tried too many times.")
         return buffer
 
     @staticmethod
@@ -138,9 +138,9 @@ class Communicator:
                     packet_type == PACKET_TYPES['exit']):
             length = 2  # 4 * 2 = 8 bits
         elif packet_type == PACKET_TYPES['send 16-bit data']:
-            length = 4
+            length = 4  # 4 * 4 = 16 bits
         elif packet_type == PACKET_TYPES['send data array']:
-            length = None
+            length = None  # determined by command id
         else:
             length = 0
 

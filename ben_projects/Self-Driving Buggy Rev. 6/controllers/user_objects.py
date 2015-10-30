@@ -2,25 +2,41 @@ from board.arduino_object import *
 from board.arduino_object import _add_defines
 
 
-class IMU(Getter):
+class AccelGyro(Getter):
     def __init__(self, simple_mode=True):
         self.accelX, self.accelY, self.accelZ = 0, 0, 0
         self.gyroX, self.gyroY, self.gyroZ = 0, 0, 0
         self.simpleMode = simple_mode
         if self.simpleMode:
-            super(IMU, self).__init__("ACCELGYRO_ID",
-                                      "#### #### #### #### #### ####", "dec")
+            super(AccelGyro, self).__init__("ACCELGYRO_ID",
+                                            "#### #### #### #### #### #### ####",
+                                            "dec")
         else:
-            super(IMU, self).__init__("ACCELGYRO_ID",
-                                      "######## ######## ########", "float")
+            super(AccelGyro, self).__init__("ACCELGYRO_ID",
+                                            "######## ######## ########",
+                                            "float")
 
     def get(self):
         if self.send() and self.result != None:
-            if self.simpleMode:
-                self.accelX, self.accelY, self.accelZ, \
-                    self.gyroX, self.gyroY, self.gyroZ = self.result
-            else:
-                self.gyroX, self.gyroY, self.gyroZ = self.result
+            # if self.simpleMode:
+            #     self.accelX, self.accelY, self.accelZ, \
+            #     self.gyroX, self.gyroY, self.gyroZ = self.result
+            # else:
+            #     self.gyroX, self.gyroY, self.gyroZ = self.result
+            return self.result
+
+
+class Magnet(Getter):
+    def __init__(self):
+        self.x, self.y, self.z = 0, 0, 0
+
+        super(Magnet, self).__init__("MAGNET_ID", "#### #### #### ####", "dec")
+
+
+    def get(self):
+        if self.send() and self.result != None:
+            # self.x, self.y, self.z = self.result
+            return self.result
 
 
 class GPS(Getter):
@@ -74,9 +90,9 @@ class Led13(Setter):
         return self.send(int(value))
 
 
-def initialize(upload=True):
-    # _add_defines()
-    #
+def initialize():
+    _add_defines()
+
     # if upload:
     #     os.system("cd .. && cd board/arduino && platformio run --target upload")
 

@@ -26,8 +26,9 @@ from __future__ import print_function
 from common import *
 from common import _makeParity
 import struct
+import string
 
-enable_prints = True
+enable_prints = False
 
 
 class Parser:
@@ -213,9 +214,12 @@ class Parser:
             return None
 
     @staticmethod
-    def hex_to_dec(hexvalue):
+    def hex_to_dec(hex_value):
         """Convert hex value to decimal"""
-        return int(hexvalue, 16)
+        if all(c in string.hexdigits for c in hex_value):
+            return int(hex_value, 16)
+        else:
+            return -1
 
     @staticmethod
     def _formatInt(input_str, format):

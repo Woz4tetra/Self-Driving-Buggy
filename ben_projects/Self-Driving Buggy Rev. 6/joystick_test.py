@@ -22,7 +22,7 @@ def run():
 
 
 if __name__ == '__main__':
-    imu = IMU()
+    imu = AccelGyro()
     gps = GPS()
     encoder = Encoder()
     servo = Servo(min=0, max=180)
