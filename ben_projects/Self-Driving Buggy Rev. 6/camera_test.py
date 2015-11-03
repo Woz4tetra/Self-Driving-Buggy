@@ -47,8 +47,8 @@ def run():
                               )
 
     capture_properties = dict(
-        paused=True,
-        apply_filters=False,
+        paused=False,
+        apply_filters=True,
         enable_draw=True,
         currentFrame=camera1.currentFrameNumber(),
         write_video=False,
@@ -56,27 +56,30 @@ def run():
         burst_mode=False,
     )
 
-    project_dir = os.path.dirname(os.path.realpath(__file__))
-    project_name = "Self-Driving Buggy Rev. 6"
-    project_dir = project_dir[:project_dir.rfind(project_name) + len(
-        project_name)]
-
-    scenes = []
-    for file_name in os.listdir(project_dir + "/camera/Images"):
-        if file_name.rfind(".png") != -1:
-            scenes.append(
-                cv2.imread(project_dir + "/camera/Images/" + file_name))
-
-    scene_tracker = analyzers.SceneTracker(scenes)
+#    project_dir = os.path.dirname(os.path.realpath(__file__))
+#    project_name = "Self-Driving Buggy Rev. 6"
+#    project_dir = project_dir[:project_dir.rfind(project_name) + len(
+#        project_name)]
+#
+#    scenes = []
+#    for file_name in os.listdir(project_dir + "/camera/Images"):
+#        if file_name.rfind(".png") != -1:
+#            scenes.append(
+#                cv2.imread(project_dir + "/camera/Images/" + file_name))
+#
+#    scene_tracker = analyzers.SceneTracker(scenes)
     frame1 = camera1.updateFrame(readNextFrame=False)
     height, width = frame1.shape[0:2]
 
     time_start = time.time()
 
-    while True:
+    while camera1.isRunning:
         if capture_properties['paused'] == False or capture_properties[
             'currentFrame'] != camera1.currentFrameNumber():
             frame1 = camera1.updateFrame()
+            
+            if frame1 == None:
+                continue
 
             capture_properties['currentFrame'] = camera1.currentFrameNumber()
 
@@ -94,7 +97,7 @@ def run():
                                        min_theta=-70 * np.pi / 180,
                                        max_theta=70 * np.pi / 180)
 
-                frame1 = scene_tracker.update(frame1)
+                # frame1 = scene_tracker.update(frame1)
 
                 for line_set in lines[:10]:
                     for rho, theta in line_set:

@@ -319,10 +319,13 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         print "loading video into window named '" + str(
             self.windowName) + "'..."
         self.camera = cv2.VideoCapture(PROJECTDIR + "/Videos/" + camSource)
-        print "video loaded!"
 
         self.cameraFPS = self.camera.get(cv2.CAP_PROP_FPS)
         self.lenVideoFrames = int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT))
+        if self.lenVideoFrames <= 0:
+            raise Exception(
+                "Video failed to load! Did you misspell the video name?")
+        
         self.videoLength_sec = self.lenVideoFrames / self.cameraFPS
         self.singleFrame_sec = 1.0 / (self.cameraFPS * 1000)
 
@@ -333,6 +336,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         cv2.createTrackbar(self.trackbarName, self.windowName, 0,
                            # int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT)),
                            self.lenVideoFrames, self.onSlider)
+        
+        print "video loaded!"
 
     def findClosestRes(self, sizeByFPS):
         '''
@@ -592,7 +597,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 while success is False or frame is None:
                     success, frame = self.camera.read()
             else:
-                quit()  # it's a video. quit the program
+                self.stopCamera()
+                return None # it's a video. stop the loop
 
         if type(self.camSource) == str:
             if frame.shape[0:2] != (self.height, self.width):
