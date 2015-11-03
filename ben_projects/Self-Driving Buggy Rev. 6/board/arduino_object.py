@@ -64,7 +64,7 @@ class Getter(ArduinoObject):
         super(Getter, self).__init__('request data', command_id, markers,
                                      out_formats)
 
-    def get(self):
+    def get(self, *args):
         if self.send():
             return self.result
         else:
@@ -79,15 +79,15 @@ class Setter(ArduinoObject):
         return self.send(value)
 
 
-def _add_defines():  # TODO: Add "enables" editing as well as ID editing
-    project_dir = config.get_arduino_ino()
+def _add_defines(file_name):
+    project_dir = config.get_arduino_ino(file_name)
     with open(project_dir, 'r') as serial_box_file:
         contents = serial_box_file.read()
 
-        start = contents.find("/* Command IDs start */")
-        end = contents.find("/* Command IDs end */", start)
+        start_ids = contents.find("/* Command IDs start */")
+        end_ids = contents.find("/* Command IDs end */", start_ids)
 
-        assert start != -1 and start < end
+        assert start_ids != -1 and start_ids < end_ids
 
         defines = "/* Command IDs start */\n"
 
@@ -98,9 +98,25 @@ def _add_defines():  # TODO: Add "enables" editing as well as ID editing
                 value = hex(index)[0:2]
 
             defines += "#define " + ArduinoObject.used_command_ids[
-                index] + " " + value + "\n"
+                index] + "_ID " + value + "\n"
 
-        contents = contents[0: start] + defines + contents[end:]
+        defines += "/* Command IDs end */\n"
+
+        start_enables = contents.find("/* Enables start */")
+        end_enables = contents.find("/* Enables end */", start_enables)
+
+        assert start_enables != -1 and start_enables < end_enables
+
+        enables = "/* Enables start */\n"
+
+        for index in xrange(len(ArduinoObject.used_command_ids)):
+            enables += "#define ENABLE_" + ArduinoObject.used_command_ids[
+                index] + "\n"
+
+        contents = contents[0: start_ids] + \
+                   defines + "\n\n" + \
+                   enables + \
+                   contents[end_enables:]
     with open(project_dir, 'w') as serial_box_file:
         serial_box_file.write(contents)
 

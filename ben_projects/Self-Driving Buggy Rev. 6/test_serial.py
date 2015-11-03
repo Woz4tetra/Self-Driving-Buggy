@@ -33,7 +33,6 @@ def test_imu():
             buffer = communicator.serialRef.readline()
             print buffer,
 
-
 def test_gps():
     print("test imu...")
     packet = communicator.makePacket(PACKET_TYPES['request data'], 0x01)

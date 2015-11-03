@@ -122,7 +122,7 @@ void SerialPacket::sendData8bit(uint8_t commandID, uint8_t payload)
 /// <summary>
 /// Send a single data value
 /// </summary>
-void SerialPacket::sendData16bit(uint8_t commandID, int16_t payload)
+void SerialPacket::sendData16bit(uint8_t commandID, uint16_t payload)
 {
     setPacketType(DATA_INT);
     setCommandID(commandID);
@@ -142,7 +142,7 @@ void SerialPacket::sendData8bit(uint8_t payload)
 /// <summary>
 /// Send a single 16-bit data value (Arduino 'int' type), reuses commandID from previous packets
 /// </summary>
-void SerialPacket::sendData16bit(int16_t payload)
+void SerialPacket::sendData16bit(uint16_t payload)
 {
     setPacketType(DATA_INT);
     setCommandID(incomingPacket.commandID);
@@ -177,7 +177,7 @@ void SerialPacket::sendPacket(uint8_t& payload)
 /// <summary>
 /// Send out the actual 16-bit data packet (called from other 'send' functions)
 /// </summary>
-void SerialPacket::sendPacket(int16_t& payload)
+void SerialPacket::sendPacket(uint16_t& payload)
 {
     _parity=_packetType^_nodeID^_commandID^payload;
     Serial.print("T");
@@ -254,7 +254,7 @@ void SerialPacket::hexPrinting(uint8_t& data)
 /// <summary>
 /// HexPrinting: helper function to print data with a constant field width (2 hex values)
 /// </summary>
-void SerialPacket::hexPrinting(int16_t& data)
+void SerialPacket::hexPrinting(uint16_t& data)
 {
     if(data<4096 && data>0) {
         Serial.print(0, HEX);

@@ -49,10 +49,10 @@ public:
     
     void sendDataRequest(uint8_t sensorID, uint8_t payload);
     void sendData8bit(uint8_t sensorID, uint8_t payload);
-    void sendData16bit(uint8_t sensorID, int16_t payload);
+    void sendData16bit(uint8_t sensorID, uint16_t payload);
     
     void sendData8bit(uint8_t payload);
-    void sendData16bit(int16_t payload);
+    void sendData16bit(uint16_t payload);
     
     void sendDataArrayRequest(uint8_t arrayID, uint8_t length);
     void sendDataArray(uint8_t *dataArray, uint8_t length);
@@ -84,13 +84,13 @@ private:
     uint8_t _incomingCounter;
     
     void sendPacket(uint8_t& payload);
-    void sendPacket(int16_t& payload);
+    void sendPacket(uint16_t& payload);
     void setPacketType(uint8_t type);
     void setCommandID(uint8_t& commandID);
     void setSensorID(uint8_t& sensorID);
     void setNodeID(uint8_t& nodeID);
     void hexPrinting(uint8_t& data);
-    void hexPrinting(int16_t& data);
+    void hexPrinting(uint16_t& data);
     uint8_t hex_to_dec(uint8_t in);
     boolean parseSerialData();
     void printInfo();

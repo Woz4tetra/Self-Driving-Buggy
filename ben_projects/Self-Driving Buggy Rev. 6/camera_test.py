@@ -2,7 +2,7 @@
 Written by Ben Warwick
 
 Self-Driving Buggy Rev. 6 for Self-Driving Buggy Project
-Version 9/15/2015
+Version 11/3/2015
 =========
 
 A test of the computer vision portion of the Self-Driving Buggy project.
@@ -32,15 +32,13 @@ import numpy as np
 
 import time
 
-import config  # put this before local module imports
-
 from camera import capture
 from camera import analyzers
 
 
 def run():
     camera1 = capture.Capture(window_name="camera",
-                              cam_source="Equinox 10-18 roll 3.mov",
+                              cam_source="Icarus 10-11 roll 5 (+hill 1).mov",
                               # width=720, height=450,
                               # width=427, height=240,
                               # frame_skip=25,

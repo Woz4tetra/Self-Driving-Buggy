@@ -2,7 +2,7 @@
     Written by Ben Warwick
     
     Self-Driving Buggy Rev. 6 for Self-Driving Buggy PRoject
-    Version 9/15/2015
+    Version 11/2/2015
     =========
     
     This program controls the self-driving buggy. It manages computer vision,
@@ -16,17 +16,34 @@
     - or - (in folder directory):
     python Self-Driving\ Buggy\ Rev.\ 6
     
-    '''
+'''
 
 from controllers.binder import Binder
-from controllers.pid import PID
+# from controllers.pid import PID
+from map import map_maker
+from controllers.user_objects import *
 
 def run():
-    binder = Binder()
-    pid = PID()
-    
+    gps_map = map_maker.get_map("Sun Nov  1 19;53;06 2015.csv")
+    binder = Binder(gps_map)
+    # pid = PID()
+
+    gyro = Gyroscope()
+    gps = GPS()
+    encoder = Encoder()
+    servo = Servo(min=0, max=156)
+    led13 = Led13()
+
+    initialize("SimulatedSerialBox")
+
+    encoder.position = gps.get()
+
     while True:
-        pid.update(binder.bind())
+        roll, pitch, yaw = gyro.get()
+        print encoder.get(yaw), gps.get()
+        led13.toggle()
+        servo.toggle('min', 'max')
+
 
 # bind gps and encoder to track
 # apply PID, send command to servo

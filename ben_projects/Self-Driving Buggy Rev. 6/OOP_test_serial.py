@@ -64,11 +64,14 @@ if __name__ == '__main__':
 
     initialize()
 
+    while True:
+
+
     # servo_test_command()
     # servo_test_flipper()
 
     # led13_test()
-    imu_test()
+    # imu_test()
 
     # gps_test()
     # encoder.get()

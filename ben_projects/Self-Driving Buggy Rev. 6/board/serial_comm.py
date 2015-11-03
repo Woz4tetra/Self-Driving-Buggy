@@ -29,7 +29,7 @@ from common import _makeParity
 
 
 class Communicator:
-    def __init__(self, delay=0):  # ms between each ping to serial
+    def __init__(self, delay=0.003):  # ms between each ping to serial
         self.currentPacket = ""
         self.delay = delay
 
