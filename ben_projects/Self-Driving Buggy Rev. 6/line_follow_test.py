@@ -149,19 +149,25 @@ def test_blank(frame, line_follower, frame_num):
 
 def test_binary(frame, line_follower, frame_num):
     assert_correct_result(line_follower.update(frame),
-                          frame_num * 10, math.pi / 2,
-                          0, 0)
+                          (frame_num - 1) * 10, math.pi / 2,
+                          1, 0)   # 1 px, 0 degrees of error
 
 def test_binary_blurry(frame, line_follower, frame_num):
     assert_correct_result(line_follower.update(frame),
-                          -frame_num * 10, math.pi / 2,
-                          5, math.pi / 180)
+                          -(frame_num - 1) * 10, math.pi / 2,
+                          3, math.pi / 180)  # 3 px, 1 degree of error
 
+def test_binary_angle(frame, line_follower, frame_num):
+    assert_correct_result(line_follower.updateFrame(frame,
+                          frame_num * 25,
+                          math.pi / 2 - (5 * math.pi / 180 * (frame_num - 1)),
+                          3, 3 * math.pi / 180))  # 3 px, 3 degrees of error
 
 def test_all():
     run_session("line_follow_test_blank.mov", test_blank, None, None, False)
     run_session("line_follow_test_bw1.mov", test_binary, None, None, False)
     run_session("line_follow_test_bw2.mov", test_binary_blurry, None, None, True)
+    run_session("line_follow_test_bw3.mov", test_binary_angle, None, None, True)
     
 
 if __name__ == '__main__':

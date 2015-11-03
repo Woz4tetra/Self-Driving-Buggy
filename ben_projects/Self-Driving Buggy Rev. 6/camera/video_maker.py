@@ -2,17 +2,26 @@ import time
 import cv2
 import os
 import sys
+import re
 
 projectDir = os.path.dirname(os.path.realpath(__file__))
 
+def natural_sort(l): 
+    convert = lambda text: int(text) if text.isdigit() else text.lower() 
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    return sorted(l, key = alphanum_key)
+
 def writeFromImages(fps=30, name="", includeTimestamp=True,
                           format='mp4v'):
-    files = os.listdir(projectDir + "/Images")
+    files = natural_sort(os.listdir(projectDir + "/Images"))
+    
     images = []
     width, height = None, None
-
+    
+    print "Using files:"
     for file in files:
         if file[-3:] == "png":
+            print file
             image = cv2.imread(projectDir + "/Images/" + file)
             if width is None and height is None:
                 height, width = image.shape[0:2]
@@ -20,7 +29,7 @@ def writeFromImages(fps=30, name="", includeTimestamp=True,
                 image = cv2.resize(image, (width, height))
             images.append(image)
     
-    print len(images)
+    print "Number of frames:", len(images)
     if len(images) == 0:
         print("No images found!")
         quit()
@@ -51,3 +60,4 @@ if __name__ == '__main__':
         writeFromImages(int(arguments[1]))
     else:
         writeFromImages()
+

@@ -38,7 +38,7 @@ from camera import analyzers
 
 def run():
     camera1 = capture.Capture(window_name="camera",
-                              cam_source="Icarus 10-11 roll 5 (+hill 1).mov",
+                              cam_source="line_follow_test_bw3.mov",
                               # width=720, height=450,
                               # width=427, height=240,
                               # frame_skip=25,
@@ -93,26 +93,27 @@ def run():
                 frame_lines = cv2.Canny(frame_lines, 1, 100)
 
                 lines = cv2.HoughLines(frame_lines, rho=1, theta=np.pi / 180,
-                                       threshold=50,
+                                       threshold=50,)
                                        min_theta=-70 * np.pi / 180,
                                        max_theta=70 * np.pi / 180)
 
                 # frame1 = scene_tracker.update(frame1)
+                
+                if lines != None and len(lines) > 10:
+                    for line_set in lines[:2]:
+                        for rho, theta in line_set:
+                            a = np.cos(theta)
+                            b = np.sin(theta)
+                            x0 = a * rho
+                            y0 = b * rho
+                            x1 = int(x0 + 1000 * -b)
+                            y1 = int(y0 + 1000 * a)
+                            x2 = int(x0 - 1000 * -b)
+                            y2 = int(y0 - 1000 * a)
 
-                for line_set in lines[:10]:
-                    for rho, theta in line_set:
-                        a = np.cos(theta)
-                        b = np.sin(theta)
-                        x0 = a * rho
-                        y0 = b * rho
-                        x1 = int(x0 + 1000 * -b)
-                        y1 = int(y0 + 1000 * a)
-                        x2 = int(x0 - 1000 * -b)
-                        y2 = int(y0 - 1000 * a)
-
-                        cv2.line(frame1, (x1, y1), (x2, y2), (0, 0, 255), 2)
-                        # frame1 = np.concatenate((frame1, cv2.cvtColor(
-                        #     np.uint8(frame_lines), cv2.COLOR_GRAY2BGR)), axis=0)
+                            cv2.line(frame1, (x1, y1), (x2, y2), (0, 0, 255), 2)
+                            frame1 = np.concatenate((frame1, cv2.cvtColor(
+                                np.uint8(frame_lines), cv2.COLOR_GRAY2BGR)), axis=0)
 
             if capture_properties['enable_draw'] is True:
                 camera1.showFrame(frame1)
