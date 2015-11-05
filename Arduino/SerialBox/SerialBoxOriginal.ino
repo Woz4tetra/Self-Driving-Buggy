@@ -32,15 +32,18 @@
 
 /* -------------- Command IDs start ----------------- */
 /*                                                    */
-#define ENCODER_ID 0x00
-#define LED13_ID 0x01
-#define SERVO_ID 0x02
+#define ANGLE_ID 0x00
+#define GPS_ID 0x01
+#define ENCODER_ID 0x02
+#define SERVO_ID 0x03
+#define LED13_ID 0x04
 /*                                                    */
 /* --------------- Command IDs end ------------------ */
 
+
 /* -------------- Serial Globals start -------------- */
 /*                                                    */
-const int baud = 9600;
+const int baud = 115200;
 const int node = 2;
 /*                                                    */
 /* --------------- Serial Globals end --------------- */
@@ -48,51 +51,7 @@ const int node = 2;
 
 /* --------------- Auto Globals start --------------- */
 /*                                                    */
-/* ----- ENCODER globals ----- */
-
-bool is_in_range; //if true, trigger when we see out-of-range value
-int last_rising_edge; //ms
-volatile uint16_t distance; // counts of the encoder
-
-#define HYST_TRIG_HIGH 950 //TODO: Tune these based on OBSERVED values
-#define HYST_TRIG_LOW 850
-//#define WHEEL_CIR (10.0 * PI)
-#define ADC_POLLING_PERIOD_US 1000 //1KHz polling rate
-/*
- The following back-of-the-envelope calcultaions indicate max speed:
- Assume we must poll at least 50x per revolution in order to 
- ALWAYS detect the magnet (this is conservative).
- Inches per Revolution = 31.415
- 1KHz sample rate => 20 revolutions per second at 50 samples/rev
- 628.3 inches per second => (approx) 37mph
- */
-
-/* handler for timer interrupt during which ADC is polled */
-void handler()
-{
-    int hall_value = analogRead(A0);
-    
-    if (is_in_range && (hall_value > HYST_TRIG_HIGH))
-    {
-        distance += 1; //WHEEL_CIR;
-        is_in_range = false;
-    }
-    else if (!is_in_range && (hall_value <= HYST_TRIG_LOW)) {
-        is_in_range = true;
-    }
-}
-
-
-/* ----- LED13 globals ----- */
-
-#define LED13_PIN 13
-
-
-/* ----- SERVO globals ----- */
-
-Servo servo1;
-
-
+"something"
 /*                                                    */
 /* ---------------- Auto Globals end ---------------- */
 
@@ -114,36 +73,7 @@ void setup()
     
 /* ---------------- Auto Setup start ---------------- */
 /*                                                    */
-	/* ----- ENCODER setup ----- */
-	
-	/*disable interrupts to ensure we won't receive the first timer 
-	 or I2C interrupt before we are ready*/
-	noInterrupts();
-	
-	pinMode(A0, INPUT);
-	
-	is_in_range = false; //make sure we don't start at > 0 distance
-	distance = 0;
-	
-	Timer1.attachInterrupt(handler); //handler is a function pointer
-	Timer1.start(ADC_POLLING_PERIOD_US);
-	interrupts();
-	
-	
-
-	/* ----- LED13 setup ----- */
-	
-	pinMode(LED13_PIN, OUTPUT);
-	
-	
-
-	/* ----- SERVO setup ----- */
-	
-	servo1.attach(3);
-	servo1.write(0);
-	
-	
-
+"something"
 /*                                                    */
 /* ----------------- Auto Setup end ----------------- */
     
@@ -193,22 +123,7 @@ void serialEvent()
     {
 /* ----------------- Auto Loop start ---------------- */
 /*                                                    */
-		/* ----- ENCODER loop ----- */
-		
-		noInterrupts();
-		Packet.sendData16bit(command_id, distance);
-		interrupts();
-
-		/* ----- LED13 loop ----- */
-		
-		digitalWrite(LED13_PIN, payload);
-		Packet.sendCommandReply(command_id, payload);
-
-		/* ----- SERVO loop ----- */
-		
-		servo1.write(payload);
-		Packet.sendCommandReply(command_id, payload);
-
+    "something"
 /*                                                    */
 /* ------------------ Auto Loop end ----------------- */
     }

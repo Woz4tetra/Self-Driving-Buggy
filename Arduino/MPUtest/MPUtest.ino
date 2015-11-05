@@ -73,8 +73,8 @@ void setup()
     I2CwriteByte(MAG_ADDRESS,0x0A,0x16);
     
     pinMode(13, OUTPUT);
-    Timer1.attachInterrupt(callback);  // attaches callback() as a timer overflow interrupt
-    Timer1.start(10000);         // initialize timer1, and set a 1/2 second period
+    Timer7.attachInterrupt(callback);  // attaches callback() as a timer overflow interrupt
+    Timer7.start(10000);         // initialize timer1, and set a 1/2 second period
     
     
     // Store initial time

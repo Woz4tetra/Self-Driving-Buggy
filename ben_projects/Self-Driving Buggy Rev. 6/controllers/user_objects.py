@@ -1,5 +1,5 @@
 from board.arduino_object import *
-from board.arduino_object import _add_defines
+from board import file_generator
 import math
 
 
@@ -39,12 +39,12 @@ import math
 #             # self.x, self.y, self.z = self.result
 #             return self.result
 
-class Gyroscope(Getter):
+class AngleSensor(Getter):
     def __init__(self):
         self.roll, self.pitch, self.yaw = 0, 0, 0
-        super(Gyroscope, self).__init__("GYRO",
-                                   "######## ######## ########",
-                                   "float")
+        super(AngleSensor, self).__init__("ANGLE",
+                                          "#### #### #### #### #### #### ####",
+                                          "dec")
 
     def get(self):
         if self.send() and self.result != None:
@@ -126,10 +126,13 @@ class Led13(Setter):
         return self.set(not self.state)
 
 
-def initialize(ino_file="SerialBox"):
-    _add_defines(ino_file)
+def initialize(ino_file="SerialBox", baud_rate=115200, arduino_node=2):
+    file_generator.generate_file(ino_file,
+                                 ArduinoObject.used_command_ids,
+                                 baud_rate, arduino_node)
 
-    # if upload:
-    #     os.system("cd .. && cd board/arduino && platformio run --target upload")
+    key = raw_input("Press enter (or enter q to quit): ")
+    if key == 'q':
+        quit()
 
     start()

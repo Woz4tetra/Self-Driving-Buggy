@@ -28,21 +28,22 @@ def run():
     binder = Binder(gps_map)
     # pid = PID()
 
-    gyro = Gyroscope()
+    angle_sensor = AngleSensor()
     gps = GPS()
     encoder = Encoder()
     servo = Servo(min=0, max=156)
     led13 = Led13()
 
-    initialize("SimulatedSerialBox")
+    initialize("SerialBox")
 
     encoder.position = gps.get()
 
     while True:
-        roll, pitch, yaw = gyro.get()
+        roll, pitch, yaw = angle_sensor.get()
         print encoder.get(yaw), gps.get()
         led13.toggle()
-        servo.toggle('min', 'max')
+        print gps.get()
+        # servo.toggle('min', 'max')
 
 
 # bind gps and encoder to track

@@ -80,7 +80,7 @@ class Setter(ArduinoObject):
 
 
 def _add_defines(file_name):
-    project_dir = config.get_arduino_ino(file_name)
+    project_dir = config.get_arduino_dir(file_name)
     with open(project_dir, 'r') as serial_box_file:
         contents = serial_box_file.read()
 
