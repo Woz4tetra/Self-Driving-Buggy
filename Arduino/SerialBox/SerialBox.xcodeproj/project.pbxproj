@@ -1,0 +1,80 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		C9DE740D1BEBCC3B002318FA /* code_templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = code_templates; sourceTree = "<group>"; };
+		C9DE740E1BEBCC3B002318FA /* templates_test.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = templates_test.py; sourceTree = "<group>"; };
+		C9DE740F1BEBCC3B002318FA /* SerialBox.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = SerialBox.ino; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		C9DE74101BEBCC3B002318FA /* SerialBoxOriginal.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = SerialBoxOriginal.ino; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		C9EA1F161BEBCDAB00E4C446 /* EmptyTemplate.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = EmptyTemplate.ino; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		C9DE74061BEBCC30002318FA = {
+			isa = PBXGroup;
+			children = (
+				C9DE740D1BEBCC3B002318FA /* code_templates */,
+				C9DE740E1BEBCC3B002318FA /* templates_test.py */,
+				C9DE740F1BEBCC3B002318FA /* SerialBox.ino */,
+				C9DE74101BEBCC3B002318FA /* SerialBoxOriginal.ino */,
+				C9EA1F161BEBCDAB00E4C446 /* EmptyTemplate.ino */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		C9DE74071BEBCC30002318FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+			};
+			buildConfigurationList = C9DE740A1BEBCC30002318FA /* Build configuration list for PBXProject "SerialBox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C9DE74061BEBCC30002318FA;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		C9DE740B1BEBCC30002318FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C9DE740C1BEBCC30002318FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9DE740A1BEBCC30002318FA /* Build configuration list for PBXProject "SerialBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DE740B1BEBCC30002318FA /* Debug */,
+				C9DE740C1BEBCC30002318FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9DE74071BEBCC30002318FA /* Project object */;
+}
