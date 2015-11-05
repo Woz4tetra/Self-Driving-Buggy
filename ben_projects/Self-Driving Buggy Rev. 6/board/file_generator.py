@@ -52,7 +52,7 @@ loop_marker = "/* ---------------------- Loop ---------------------- */\n"
 def insert_tabs(text, num_tabs=1):
     new_text = ""
     for line in text.split("\n"):
-        new_text += "\t" * num_tabs + line + "\n"
+        new_text += "    " * num_tabs + line + "\n"
     return new_text
 
 
@@ -117,8 +117,11 @@ def generate_file(serial_file_name, arduino_objects, baud=115200, node=2):
         new_contents.append("#define " + file_names[index] + "_ID " + value)
     new_contents.append(markers[1] + "\n")
     new_contents.append(markers[2])
+    new_contents.append("SerialPacket Packet;\n")
     new_contents.append("const int baud = " + str(baud) + ";")
-    new_contents.append("const int node = " + str(node) + ";")
+    new_contents.append("const int node = " + str(node) + ";\n")
+    new_contents.append("int payload = 0;")
+    new_contents.append("int command_id = 0;")
     # new_contents.append(markers[3])
 
     contents_index = 4
@@ -138,7 +141,7 @@ def generate_file(serial_file_name, arduino_objects, baud=115200, node=2):
                             marker_indices[contents_index]:marker_indices[
                                 contents_index + 1]])
         for file_content in file_contents_list[index]:
-            new_contents.append("\t" * num_tabs + "/* ----- " +
+            new_contents.append("    " * num_tabs + "/* ----- " +
                                 file_names[file_names_index] + " " +
                                 section + " ----- */")
             new_contents.append(file_content)

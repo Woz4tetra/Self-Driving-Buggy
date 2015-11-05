@@ -2,15 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c492bd7-527d-49d9-85a8-2a980c9d5d9a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/file_generator.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/test_file_generator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MPUtest/MPUtest.ino" afterPath="$PROJECT_DIR$/../MPUtest/MPUtest.ino" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/SerialBox.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SerialBoxOriginal.ino" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates_test.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SerialBox.ino" afterPath="$PROJECT_DIR$/SerialBox.ino" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/__main__.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/__main__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/arduino_object.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/arduino_object.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/config.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/controllers/user_objects.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/controllers/user_objects.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/file_generator.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/file_generator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/test_file_generator.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/test_file_generator.py" />
     </list>
     <ignored path="SerialBox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,21 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="templates_test.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47191012">
-              <caret line="94" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SerialBox.ino" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SerialBox.ino" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SerialBox.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+            <state vertical-scroll-proportion="-0.6741573">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -60,8 +55,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/code_templates/ANGLE.txt" />
-        <option value="$PROJECT_DIR$/SerialBox.ino" />
         <option value="$PROJECT_DIR$/templates_test.py" />
+        <option value="$PROJECT_DIR$/SerialBox.ino" />
       </list>
     </option>
   </component>
@@ -338,26 +333,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SerialBox.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47191012">
-          <caret line="94" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.6741573">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -34,7 +34,7 @@ def run():
     servo = Servo(min=0, max=156)
     led13 = Led13()
 
-    initialize("SerialBox")
+    initialize("SerialBox.ino")
 
     encoder.position = gps.get()
 

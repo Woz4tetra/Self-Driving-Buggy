@@ -15,15 +15,7 @@
  *  
  */
 
-//#include "I2Cdev.h"
-//#include "MPU6050_6Axis_MotionApps20.h"
-#include <Wire.h>
-#include <DueTimer.h>
-#include <Servo.h>
-#include <Adafruit_GPS.h>
-
-#include <SerialPacket.h>
-#include <defines.h>
+/* ----- Place includes here ----- */
 
 /* ================================================== *
  *                  Global constants                  *
@@ -32,18 +24,12 @@
 
 /* -------------- Command IDs start ----------------- */
 /*                                                    */
-#define ANGLE_ID 0x00
-#define GPS_ID 0x01
-#define ENCODER_ID 0x02
-#define SERVO_ID 0x03
-#define LED13_ID 0x04
 /*                                                    */
 /* --------------- Command IDs end ------------------ */
 
-
 /* -------------- Serial Globals start -------------- */
 /*                                                    */
-const int baud = 115200;
+const int baud = 9600;
 const int node = 2;
 /*                                                    */
 /* --------------- Serial Globals end --------------- */
@@ -51,7 +37,6 @@ const int node = 2;
 
 /* --------------- Auto Globals start --------------- */
 /*                                                    */
-"something"
 /*                                                    */
 /* ---------------- Auto Globals end ---------------- */
 
@@ -71,11 +56,10 @@ void setup()
 {
     Packet.begin(baud, node);
     
-/* ---------------- Auto Setup start ---------------- */
-/*                                                    */
-"something"
-/*                                                    */
-/* ----------------- Auto Setup end ----------------- */
+    /* ---------------- Auto Setup start ---------------- */
+    /*                                                    */
+    /*                                                    */
+    /* ----------------- Auto Setup end ----------------- */
     
     handshake();
 }
@@ -121,10 +105,9 @@ void serialEvent()
     }
     else if (result == 2)
     {
-/* ----------------- Auto Loop start ---------------- */
-/*                                                    */
-    "something"
-/*                                                    */
-/* ------------------ Auto Loop end ----------------- */
+        /* ----------------- Auto Loop start ---------------- */
+        /*                                                    */
+        /*                                                    */
+        /* ------------------ Auto Loop end ----------------- */
     }
 }
