@@ -1,10 +1,14 @@
 import csv
 import time
-import config
+import sys
 
 def get_map(file_name=None):
-    project_dir = config.get_project_dir()
-    with open(project_dir + "/map/storage/" + file_name, 'rb') as csvfile:
+    if __name__ == '__main__':
+        directory = "storage/" + file_name
+    else:
+        import config
+        directory = config.get_project_dir() + "/map/storage/" + file_name
+    with open(directory, 'rb') as csvfile:
         map_reader = csv.reader(csvfile, delimiter=',', quotechar='|')
         parsed = [[float(row[0]), float(row[1])] for row in map_reader]
         return parsed
@@ -22,7 +26,7 @@ def write_map(data, file_name=None):
             map_writer.writerow(row)
 
 def convert_gpx(file_name):
-    with open(file_name, 'r') as gpx_file:
+    with open("storage/gpx/" + file_name, 'r') as gpx_file:
         contents = gpx_file.read()
         data = []
 
@@ -43,7 +47,9 @@ def convert_gpx(file_name):
             contents = contents[lon_index_end:]
 
         data.pop(-1)
-        write_map(data)
+        write_map(data, file_name[:-4])
 
 if __name__ == '__main__':
-    print get_map()
+    arguments = sys.argv
+    
+    convert_gpx(arguments[1])

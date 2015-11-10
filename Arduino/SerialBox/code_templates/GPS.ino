@@ -1,4 +1,7 @@
 
+/* -------------------- Includes -------------------- */
+#include <Adafruit_GPS.h>
+
 /* -------------------- Globals --------------------- */
 
 // GPS power pin to Arduino Due 3.3V output.
@@ -10,8 +13,8 @@
 
 Adafruit_GPS GPS(&mySerial);
 
-const int gps_array_len = 8;
-uint8_t gps_array[gps_array_len]; // 4 * 2, 2 float numbers
+const int gps_array_len = 32;
+uint8_t gps_array[gps_array_len]; // 4 * 8, 4 float numbers
 
 const int gps_float_array_len = 4;
 float gps_float_array[gps_float_array_len];
@@ -76,6 +79,8 @@ delay(1000);
 
 /* ---------------------- Loop ---------------------- */
 
+/* --------------------- Serial --------------------- */
+
 // in case you are not using the interrupt above, you'll
 // need to 'hand query' the GPS, not suggested :(
 if (!usingInterrupt) {
@@ -92,7 +97,6 @@ if (GPS.newNMEAreceived()) {
     if (!GPS.parse(GPS.lastNMEA()))   // this also sets the newNMEAreceived() flag to false
         return;  // we can fail to parse a sentence in which case we should just wait for another
 }
-
 
 gps_float_array[0] = GPS.latitude;
 gps_float_array[1] = GPS.longitude;

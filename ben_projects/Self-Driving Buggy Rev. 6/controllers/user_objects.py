@@ -1,5 +1,4 @@
 from board.arduino_object import *
-from board import file_generator
 import math
 
 
@@ -43,12 +42,12 @@ class AngleSensor(Getter):
     def __init__(self):
         self.roll, self.pitch, self.yaw = 0, 0, 0
         super(AngleSensor, self).__init__("ANGLE",
-                                          "#### #### #### #### #### #### ####",
+                                          "#### #### #### ##",
                                           "dec")
 
     def get(self):
         if self.send() and self.result != None:
-            self.roll, self.pitch, self.yaw = self.result
+            self.roll, self.yaw, self.pitch, thing = self.result
         return self.roll, self.pitch, self.yaw
 
 
@@ -57,14 +56,15 @@ class GPS(Getter):
         self.speed = 0
         self.angle = 0
         self.coordinates = [0, 0]  # latitude, longitude
-        self.satellites, self.fix_quality = 0, 0
+        # self.satellites, self.fix_quality = 0, 0
         super(GPS, self).__init__("GPS",
-                                  "######## ########", "float")
+                                  "######## ######## ######## ########", "float")
 
     def get(self):
         if self.send() and self.result != None:
-            self.coordinates = self.result
-        return self.coordinates
+            self.coordinates[0], self.coordinates[1], self.angle, self.speed = self.result
+        
+        # return self.coordinates
 
 
 class Encoder(Getter):
@@ -94,15 +94,25 @@ class Servo(Setter):
 
     @property
     def value(self):
-        return self.result
+        if self.result != None:
+            return self.result
+        else:
+            return 0
 
     def set(self, value):
         if type(value) == str and (value in self.positions.keys()):
             self.send(int(self.positions[value]))
+        elif type(value) == int:
+            self.send(value)
         elif value.isdigit():
             self.send(int(value))
 
     def toggle(self, value1, value2):
+        if value1 in self.positions.keys():
+            value1 = self.positions[value1]
+        if value2 in self.positions.keys():
+            value2 = self.positions[value2]
+
         if self.result != value1:
             self.set(value1)
         else:
@@ -125,14 +135,3 @@ class Led13(Setter):
     def toggle(self):
         return self.set(not self.state)
 
-
-def initialize(ino_file="SerialBox", baud_rate=115200, arduino_node=2):
-    file_generator.generate_file(ino_file,
-                                 ArduinoObject.used_command_ids,
-                                 baud_rate, arduino_node)
-
-    key = raw_input("Press enter (or enter q to quit): ")
-    if key == 'q':
-        quit()
-
-    start()

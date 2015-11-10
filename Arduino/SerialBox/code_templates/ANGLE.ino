@@ -1,4 +1,8 @@
 
+/* -------------------- Includes -------------------- */
+#include <DueTimer.h>
+#include <Wire.h>
+
 /* -------------------- Globals --------------------- */
 
 #define    MPU9250_ADDRESS            0x68
@@ -13,6 +17,8 @@
 #define    ACC_FULL_SCALE_4_G        0x08
 #define    ACC_FULL_SCALE_8_G        0x10
 #define    ACC_FULL_SCALE_16_G       0x18
+
+
 
 // This function read Nbytes bytes from I2C device at address Address. 
 // Put read bytes starting at register Register in the Data array. 
@@ -41,6 +47,8 @@ void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data)
     Wire.endTransmission();
 }
 
+
+
 // Initial time
 long int ti;
 volatile bool intFlag=false;
@@ -51,11 +59,14 @@ long int cpt=0;
 void callback()
 { 
     intFlag=true;
-    //digitalWrite(13, digitalRead(13) ^ 1);
+    digitalWrite(13, digitalRead(13) ^ 1);
 }
+
+uint8_t angle_data[7];
 
 /* --------------------- Setup ---------------------- */
 
+// Arduino initializations
 Wire.begin();
 
 // Set accelerometers low pass filter at 5Hz
@@ -74,33 +85,62 @@ I2CwriteByte(MPU9250_ADDRESS,0x37,0x02);
 // Request continuous magnetometer measurements in 16 bits
 I2CwriteByte(MAG_ADDRESS,0x0A,0x16);
 
-pinMode(13, OUTPUT);
 Timer7.attachInterrupt(callback);  // attaches callback() as a timer overflow interrupt
 Timer7.start(10000);         // initialize timer1, and set a 1/2 second period
-
 
 // Store initial time
 ti=millis();
 
 /* ---------------------- Loop ---------------------- */
 
-noInterrupts();
-
 while (!intFlag);
 intFlag=false;
+
+// ____________________________________
+// :::  accelerometer and gyroscope ::: 
+
+// Read accelerometer and gyroscope
+//uint8_t Buf[14];
+//I2Cread(MPU9250_ADDRESS,0x3B,14,Buf);
+
+// Create 16 bits values from 8 bits data
+
+// Accelerometer
+//int16_t ax=-(Buf[0]<<8 | Buf[1]);
+//int16_t ay=-(Buf[2]<<8 | Buf[3]);
+//int16_t az=Buf[4]<<8 | Buf[5];
+//
+//// Gyroscope
+//int16_t gx=-(Buf[8]<<8 | Buf[9]);
+//int16_t gy=-(Buf[10]<<8 | Buf[11]);
+//int16_t gz=Buf[12]<<8 | Buf[13];
+
+
+// _____________________
+// :::  Magnetometer ::: 
+
 
 // Read register Status 1 and wait for the DRDY: Data Ready
 
 uint8_t ST1;
-do {
-    I2Cread(MAG_ADDRESS,0x02,1,&ST1);
+do
+{
+    I2Cread(MAG_ADDRESS, 0x02, 1, &ST1);
 }
 while (!(ST1&0x01));
 
 // Read magnetometer data  
-uint8_t magnet_array[7];  
-I2Cread(MAG_ADDRESS, 0x03, 7, magnet_array);
+//uint8_t Mag[7];  
+I2Cread(MAG_ADDRESS, 0x03, 7, angle_data);
 
-Packet.sendDataArray(magnet_array, 7);
 
-interrupts();
+// Create 16 bits values from 8 bits data
+
+// Magnetometer
+//int16_t mx=-(Mag[3]<<8 | Mag[2]);
+//int16_t my=-(Mag[1]<<8 | Mag[0]);
+//int16_t mz=-(Mag[5]<<8 | Mag[4]);
+
+/* --------------------- Serial --------------------- */
+
+Packet.sendDataArray(angle_data, 7);

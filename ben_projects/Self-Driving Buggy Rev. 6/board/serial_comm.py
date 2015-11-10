@@ -29,12 +29,13 @@ from common import _makeParity
 
 
 class Communicator:
-    def __init__(self, delay=0.003):  # ms between each ping to serial
+    def __init__(self):
         self.currentPacket = ""
-        self.delay = delay
 
-    def start(self):
-        self.serialRef = self._findPort()
+    def start(self, baud_rate, delay):
+        self.delay = delay  # ms between each ping to serial
+        
+        self.serialRef = self._findPort(baud_rate)
         self._handshake()
 
     def _handshake(self):
@@ -51,13 +52,13 @@ class Communicator:
         self.serialRef.flushOutput()
         print("Arduino initialized!")
 
-    def _findPort(self, baudrate=115200):
+    def _findPort(self, baud_rate):
         address = None
         serial_ref = None
         for possible_address in self._possibleAddresses():
             try:
                 serial_ref = serial.Serial(port=possible_address,
-                                           baudrate=baudrate)
+                                           baudrate=baud_rate)
                 address = possible_address
             except:
                 pass
@@ -123,7 +124,7 @@ class Communicator:
             if self.serialRef.inWaiting():
                 buffer = self.serialRef.readline()
             time.sleep(self.delay)
-            # print(repr(buffer))
+#            print(repr(buffer))
         if not bool(buffer):
             raise Exception("Attempted read failed!! Tried too many times.")
         return buffer

@@ -1,4 +1,7 @@
 
+/* -------------------- Includes -------------------- */
+#include <DueTimer.h>
+
 /* -------------------- Globals --------------------- */
 
 bool is_in_range; //if true, trigger when we see out-of-range value
@@ -49,6 +52,8 @@ Timer1.start(ADC_POLLING_PERIOD_US);
 interrupts();
 
 /* ---------------------- Loop ---------------------- */
+
+/* --------------------- Serial --------------------- */
 
 noInterrupts();
 Packet.sendData16bit(command_id, distance);

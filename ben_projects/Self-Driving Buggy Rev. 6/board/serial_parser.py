@@ -28,8 +28,7 @@ from common import _makeParity
 import struct
 import string
 
-enable_prints = False
-
+enable_prints = True
 
 class Parser:
     min_length = 16
@@ -66,7 +65,6 @@ class Parser:
             return False
         sent_type, sent_node, sent_cID, sent_load, sent_parity = sent_parsed
         recv_type, recv_node, recv_cID, recv_load, recv_parity = recv_parsed
-
         sent_packet = self.remove_newline(sent_packet)
         received_packet = self.remove_newline(received_packet)
 
@@ -84,7 +82,7 @@ class Parser:
                 print("packet is not data:")
                 print(repr(received_packet), repr(sent_packet))
             return False
-
+        
         payload_length = len(self._getPayloadHex(received_packet))
         if (recv_type == PACKET_TYPES['send data array'] and
                     (recv_cID * 2) != payload_length):

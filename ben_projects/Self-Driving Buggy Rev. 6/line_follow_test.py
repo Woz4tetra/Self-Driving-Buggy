@@ -36,7 +36,7 @@ import time
 from camera import capture
 from camera import analyzers
 
-def run_session(file, test_function, center_line_x, center_line_angle, loop_video):
+def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
     camera1 = capture.Capture(window_name="line follow test: " + file,
                               cam_source=file,
                               # width=720, height=450,
@@ -49,7 +49,7 @@ def run_session(file, test_function, center_line_x, center_line_angle, loop_vide
     capture_properties = dict(
         paused=False,
         apply_filters=True,
-        enable_draw=True,
+        enable_draw=enable_draw_global,
         currentFrame=camera1.currentFrameNumber(),
         write_video=False,
         slideshow=False,
@@ -59,12 +59,7 @@ def run_session(file, test_function, center_line_x, center_line_angle, loop_vide
     frame1 = camera1.updateFrame(readNextFrame=False)
     height, width = frame1.shape[0:2]
     
-    if center_line_x == None:
-        center_line_x = width / 2
-    if center_line_angle == None:
-        center_line_angle = math.pi / 2
-    
-    line_follower = analyzers.LineFollower(center_line_x, center_line_angle)
+    line_follower = analyzers.LineFollower(expected, y_bottom, width, height)
     
     time_start = time.time()
     
@@ -79,7 +74,12 @@ def run_session(file, test_function, center_line_x, center_line_angle, loop_vide
             capture_properties['currentFrame'] = camera1.currentFrameNumber()
 
             if capture_properties['apply_filters']:
-                test_function(frame1, line_follower, capture_properties['currentFrame'])
+                # ============================== #
+                # ===== line follower code ===== #
+                # ============================== #
+                
+                frame1, result = line_follower.update(frame1, capture_properties['enable_draw'])
+                assert_fn(result, expected, capture_properties['currentFrame'])
 
             if capture_properties['enable_draw'] is True:
                 camera1.showFrame(frame1)
@@ -134,43 +134,46 @@ def run_session(file, test_function, center_line_x, center_line_angle, loop_vide
             elif key == 'p':  # debug print
                 print "Frame #:", capture_properties['currentFrame']
 
-def assert_correct_result(result, expected_x, expected_angle,
-                          x_error=None, angle_error=None):
-    if expected_x == None and expected_angle == None:
-        assert result == (None, None)
-    else:
-        assert result[0] != None
-        assert result[1] != None
-        assert (result[0] - expected_x) == x_error
-        assert (result[1] - expected_angle) == angle_error
+def assert_result((result_angle, result_x), 
+                  (expected_angle, expected_x),
+                  (error_angle, error_x)):
+    if expected_angle != None and expected_x != None:
+        assert abs(result_angle - expected_angle) < error_angle and \
+            abs(result_x - expected_x) < error_x
 
-def test_blank(frame, line_follower, frame_num):
-    assert_correct_result(line_follower.update(frame), None, None)
+def test_blank(result, expected, frame_num):
+    assert_result(result, expected, (0, 0))
 
-def test_binary(frame, line_follower, frame_num):
-    assert_correct_result(line_follower.update(frame),
-                          (frame_num - 1) * 10, math.pi / 2,
-                          1, 0)   # 1 px, 0 degrees of error
+def test_bw1(result, expected, frame_num):
+    expected[0] -= frame_num * 10  # rho decreases by 10 each frame
+    assert_result(result, expected, (math.pi / 180, 5))
 
-def test_binary_blurry(frame, line_follower, frame_num):
-    assert_correct_result(line_follower.update(frame),
-                          -(frame_num - 1) * 10, math.pi / 2,
-                          3, math.pi / 180)  # 3 px, 1 degree of error
+def test_bw2(result, expected, frame_num):
+    expected[0] -= frame_num * 10
+    assert_result(result, expected, (5 * math.pi / 180, 10))
 
-def test_binary_angle(frame, line_follower, frame_num):
-    assert_correct_result(line_follower.updateFrame(frame,
-                          frame_num * 25,
-                          math.pi / 2 - (5 * math.pi / 180 * (frame_num - 1)),
-                          3, 3 * math.pi / 180))  # 3 px, 3 degrees of error
+def test_bw3(result, expected, frame_num):
+    expected[1] -= 5 * math.pi / 180 * frame_num  # theta decreases by 5 degrees each frame
+    assert_result(result, expected, (0, 0))
+
 
 def test_all():
-    run_session("line_follow_test_blank.mov", test_blank, None, None, False)
-    run_session("line_follow_test_bw1.mov", test_binary, None, None, False)
-    run_session("line_follow_test_bw2.mov", test_binary_blurry, None, None, True)
-    run_session("line_follow_test_bw3.mov", test_binary_angle, None, None, True)
+    run_session("line_follow_test_blank.mov", test_blank,
+                (None, None), 360)
+    run_session("line_follow_test_bw1.mov", test_blank,
+#                (640 / 2, 0), 360)
+                (None, None), 360)
+    run_session("line_follow_test_bw2.mov", test_blank,
+#                (640 / 2, 0), 360)
+                (None, None), 360)
+    run_session("line_follow_test_bw3.mov", test_blank,
+#                (640 / 2, 0), 360, True)
+                (None, None), 360)
     
 
 if __name__ == '__main__':
     print __doc__
+    
+    enable_draw_global = True
     
     test_all()
