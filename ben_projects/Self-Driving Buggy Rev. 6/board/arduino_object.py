@@ -77,7 +77,7 @@ class ArduinoObject(object):
 
 
 class Getter(ArduinoObject):
-    def __init__(self, command_id, markers=None, out_formats='dec'):
+    def __init__(self, command_id, markers=None, out_formats='uint'):
         super(Getter, self).__init__('request data', command_id, markers,
                                      out_formats)
 

@@ -38,16 +38,48 @@ import math
 #             # self.x, self.y, self.z = self.result
 #             return self.result
 
-class AngleSensor(Getter):
+class Accelerometer(Getter):
     def __init__(self):
-        self.roll, self.pitch, self.yaw = 0, 0, 0
-        super(AngleSensor, self).__init__("ANGLE",
-                                          "#### #### #### ##",
-                                          "dec")
+        self.x, self.y, self.z = 0, 0, 0
+        super(Accelerometer, self).__init__("ACCEL",
+                                            "#### #### ####",
+                                            "int")
 
     def get(self):
         if self.send() and self.result != None:
-            self.roll, self.yaw, self.pitch, thing = self.result
+            # for index in xrange(len(self.result)):
+            #     self.result[index] = float(self.result[index]) / 16384
+            self.x, self.y, self.z = self.result
+        return self.x, self.y, self.z
+
+
+class Gyroscope(Getter):
+    def __init__(self):
+        self.roll, self.pitch, self.yaw = 0, 0, 0
+        super(Gyroscope, self).__init__("GYRO",
+                                        "#### #### ####",
+                                        "int")
+
+    def get(self):
+        if self.send() and self.result != None:
+            # for index in xrange(len(self.result)):
+            #     self.result[index] = float(self.result[index]) * 250 / 32768
+            self.roll, self.yaw, self.pitch = self.result
+        return self.roll, self.pitch, self.yaw
+
+
+class Magnetometer(Getter):
+    def __init__(self):
+        self.roll, self.pitch, self.yaw = 0, 0, 0
+        super(Magnetometer, self).__init__("MAGNET",
+                                           "#### #### ####",
+                                           "int")
+
+    def get(self):
+        if self.send() and self.result != None:
+            # for index in xrange(len(self.result)):
+            #     self.result[index] = float(self.result[index]) * 1200 / 4096
+            self.roll, self.yaw, self.pitch = self.result
         return self.roll, self.pitch, self.yaw
 
 
@@ -58,13 +90,15 @@ class GPS(Getter):
         self.coordinates = [0, 0]  # latitude, longitude
         # self.satellites, self.fix_quality = 0, 0
         super(GPS, self).__init__("GPS",
-                                  "######## ######## ######## ########", "float")
+                                  "######## ######## ######## ########",
+                                  "float")
 
     def get(self):
         if self.send() and self.result != None:
-            self.coordinates[0], self.coordinates[1], self.angle, self.speed = self.result
-        
-        # return self.coordinates
+            self.coordinates[0], self.coordinates[
+                1], self.angle, self.speed = self.result
+
+            # return self.coordinates
 
 
 class Encoder(Getter):
@@ -134,4 +168,3 @@ class Led13(Setter):
 
     def toggle(self):
         return self.set(not self.state)
-

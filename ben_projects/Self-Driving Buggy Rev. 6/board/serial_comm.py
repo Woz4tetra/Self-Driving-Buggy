@@ -39,13 +39,13 @@ class Communicator:
         self._handshake()
 
     def _handshake(self):
-        readFlag = self.serialRef.read()
+        read_flag = self.serialRef.read()
 
         print("Waiting for ready flag...")
         time.sleep(0.5)
-        while readFlag != 'R':
-            print(readFlag, end="")
-            readFlag = self.serialRef.read()
+        while read_flag != 'R':
+            print(read_flag, end="")
+            read_flag = self.serialRef.read()
 
         self.serialRef.write("P")
         self.serialRef.flushInput()
@@ -103,8 +103,8 @@ class Communicator:
 
     def write(self, packet):
         self.currentPacket = packet
-        self.serialRef.flushInput()
-        self.serialRef.flushOutput()
+        # self.serialRef.flushInput()
+        # self.serialRef.flushOutput()
 
         # print("writing current_packet:", repr(self.currentPacket))
         # print("in waiting send:", repr(self.serialRef.inWaiting()))
@@ -124,7 +124,7 @@ class Communicator:
             if self.serialRef.inWaiting():
                 buffer = self.serialRef.readline()
             time.sleep(self.delay)
-#            print(repr(buffer))
+            # print(repr(buffer))
         if not bool(buffer):
             raise Exception("Attempted read failed!! Tried too many times.")
         return buffer
