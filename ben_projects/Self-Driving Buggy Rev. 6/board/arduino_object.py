@@ -55,7 +55,6 @@ class ArduinoObject(object):
             self._sentPacket = communicator.makePacket(self.packetType,
                                                        command_id,
                                                        payload)
-
             if self._sentPacket != communicator.currentPacket:
                 communicator.write(self._sentPacket)
             self._recvPacket = communicator.read()

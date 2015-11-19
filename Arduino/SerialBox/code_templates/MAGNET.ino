@@ -2,21 +2,30 @@
 
 /* -------------------- Globals --------------------- */
 
-I2Cdev I2C_M;
+uint8_t magnet_array[6];
 
-const int mag_data_length = 6;
-
-uint8_t magnet_uint8[mag_data_length];
+uint8_t Mag[7];
 
 /* --------------------- Setup ---------------------- */
 
 /* ---------------------- Loop ---------------------- */
 
-I2C_M.writeByte(MPU9150_RA_MAG_ADDRESS, 0x0A, 0x01); //enable the magnetometer
-delay(10);
-I2C_M.readBytes(MPU9150_RA_MAG_ADDRESS, MPU9150_RA_MAG_XOUT_L,
-                mag_data_length, magnet_uint8);
+// Read register Status 1 and wait for the DRDY: Data Ready
+
+uint8_t ST1;
+do
+{
+    I2Cread(MAG_ADDRESS,0x02,1,&ST1);
+}
+while (!(ST1&0x01));
+
+// Read magnetometer data
+I2Cread(MAG_ADDRESS,0x03,7,Mag);
 
 /* --------------------- Serial --------------------- */
 
-Packet.sendDataArray(magnet_uint8, mag_data_length);
+for (int index = 0; index < 6; index++) {
+    magnet_array[index] = Mag[index];
+}
+
+Packet.sendDataArray(magnet_array, 6);

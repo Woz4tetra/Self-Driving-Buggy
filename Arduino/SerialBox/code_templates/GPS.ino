@@ -13,8 +13,11 @@
 
 Adafruit_GPS GPS(&mySerial);
 
-const int gps_array_len = 32;
-uint8_t gps_array[gps_array_len]; // 4 * 8, 4 float numbers
+const int gps_array_len = 18;
+
+// = 4 * 8 / 2, 4 float numbers, 2 hex digits for every uint8
+// + 2 for fix and satelittes
+uint8_t gps_array[gps_array_len]; 
 
 const int gps_float_array_len = 4;
 float gps_float_array[gps_float_array_len];
@@ -79,8 +82,6 @@ delay(1000);
 
 /* ---------------------- Loop ---------------------- */
 
-/* --------------------- Serial --------------------- */
-
 // in case you are not using the interrupt above, you'll
 // need to 'hand query' the GPS, not suggested :(
 if (!usingInterrupt) {
@@ -103,11 +104,13 @@ gps_float_array[1] = GPS.longitude;
 gps_float_array[2] = GPS.speed;
 gps_float_array[3] = GPS.angle;
 
+gps_array[16] = (uint8_t)GPS.satellites;
+gps_array[17] = (uint8_t)GPS.fixquality;
+
+/* --------------------- Serial --------------------- */
+
 for (int float_index = 0; float_index < gps_float_array_len; float_index++) {
     to_hex(gps_float_array[float_index], gps_array, float_index);
 }
-
-//gps_array[16] = (uint8_t)GPS.satellites;
-//gps_array[17] = (uint8_t)GPS.fixquality;
 
 Packet.sendDataArray(gps_array, gps_array_len);

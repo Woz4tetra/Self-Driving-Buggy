@@ -2,12 +2,16 @@
 
 /* -------------------- Globals --------------------- */
 
+uint8_t gyro_array[6];
+
 /* --------------------- Setup ---------------------- */
 
 /* ---------------------- Loop ---------------------- */
 
 /* --------------------- Serial --------------------- */
 
-int16_to_uint8(gyro_int16, data_length, gyro_uint8);
+for (int index = 7; index < 13; index++) {
+    gyro_array[index] = Buf[index];
+}
 
-Packet.sendDataArray(gyro_uint8, data_length * 2);
+Packet.sendDataArray(gyro_array, 6);

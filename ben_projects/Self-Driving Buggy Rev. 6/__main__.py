@@ -40,29 +40,30 @@ def run():
     # magnet.disable()
     # accel.disable()
     # gyro.disable()
-    gps.disable()
-    encoder.disable()
-    servo.disable()
-    led13.disable()
+    # gps.disable()
+    # encoder.disable()
+    # servo.disable()
+    # led13.disable()
 
     # Available baud rates:
     # 9600, 19200, 38400, 57600, 74880, 115200, 230400, 250000
-    initialize("SerialBox.ino", baud_rate=38400, delay=0.004)
+    initialize("SerialBox.ino", baud_rate=38400, delay=0.01)
     
-    encoder.position = gps.get()
+    # encoder.position = gps.get()
 
     while True:
-        roll, pitch, yaw = magnet.get()
-        v_roll, v_pitch, v_yaw = gyro.get()
-        x, y, z = accel.get()
-        print (roll, pitch, yaw),
-        print (v_roll, v_pitch, v_yaw),
-        print (x, y, z)
-
-        # print encoder.get(yaw)
+        # roll, pitch, yaw = magnet.get()
+        # v_roll, v_pitch, v_yaw = gyro.get()
+        # x, y, z = accel.get()
+        # print (roll, pitch, yaw),
+        # print magnet._recvPacket
+        # print (v_roll, v_pitch, v_yaw),
+        # print (x, y, z)
+        yaw = 0
+        print encoder.get(yaw)
         led13.toggle()
-        # gps.get()
-        # print gps.coordinates, gps.angle, gps.speed
+        gps.get()
+        print gps.coordinates, gps.angle, gps.speed, gps.fix_quality, gps.satellites
         # servo.set((servo.value + 1) % 156)
         # servo.toggle('min', 'max')
         # time.sleep(0.01)

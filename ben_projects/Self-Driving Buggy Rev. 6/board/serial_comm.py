@@ -34,7 +34,7 @@ class Communicator:
 
     def start(self, baud_rate, delay):
         self.delay = delay  # ms between each ping to serial
-        
+
         self.serialRef = self._findPort(baud_rate)
         self._handshake()
 
@@ -96,15 +96,15 @@ class Communicator:
             raise NotImplementedError
 
     def ping(self):
-        # print "ping!"
-        # print "in waiting send:", repr(self.serialRef.inWaiting())
+        # print("ping!")
+        # print("in waiting send:", repr(self.serialRef.inWaiting()))
 
         self.serialRef.write('x')
 
     def write(self, packet):
         self.currentPacket = packet
-        # self.serialRef.flushInput()
-        # self.serialRef.flushOutput()
+        self.serialRef.flushInput()
+        self.serialRef.flushOutput()
 
         # print("writing current_packet:", repr(self.currentPacket))
         # print("in waiting send:", repr(self.serialRef.inWaiting()))
