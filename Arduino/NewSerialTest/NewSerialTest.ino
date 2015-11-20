@@ -1,5 +1,5 @@
 
-//#include <MPU9250.h>
+#include <MPU9250.h>
 //#include <HallEncoder.h>
 //#include <MyGPS.h>
 #include <SerialParser.h>
@@ -15,7 +15,7 @@ uint8_t object_id = 0;
 uint64_t* payload = new uint64_t;
 
 uint8_t accelgyro_buffer[14];
-//uint8_t magnet_buffer[7];
+uint8_t magnet_buffer[7];
 
 void imu_update(uint8_t* data, void* new_data, const int size)
 {
@@ -78,22 +78,20 @@ void setup()
 {
     begin_serial(baud);
     
-    char sensor_ids[5] = {3, 2, 1, 5, 4};//{'a', 'b', 'c', 'd', 'e'};//{0, 1, 2, 3, 4};
-    char command_ids[2] = {6, 7};
     
-//    accel = sensor_new(node, sensor_ids[0], 6, &imu_update);
-//    gyro = sensor_new(node, sensor_ids[1], 6, &imu_update);
-//    magnet = sensor_new(node, sensor_ids[2], 6, &imu_update);
+    accel = sensor_new(node, 1, 6, &imu_update);
+    gyro = sensor_new(node, 2, 6, &imu_update);
+    magnet = sensor_new(node, 3, 6, &imu_update);
     
-    encoder = sensor_new(node, sensor_ids[3], 4, &encoder_update);
-//    gps = sensor_new(node, sensor_ids[4], 18, &gps_update);
+    encoder = sensor_new(node, 4, 4, &encoder_update);
+//    gps = sensor_new(node, 5, 18, &gps_update);
     
-//    servo1_command = command_new(node, command_ids[0]);
-    led13_command = command_new(node, command_ids[1]);
+//    servo1_command = command_new(node, 6);
+    led13_command = command_new(node, 7);
     
 //    encoder_setup();
 //    gps_setup();
-//    mpu_setup();
+    mpu_setup();
     
     pinMode(LED13_PIN, OUTPUT);
     
@@ -109,7 +107,7 @@ void setup()
 
 void loop()
 {
-//    mpu_update(accelgyro_buffer, magnet_buffer);
+    mpu_update(accelgyro_buffer, magnet_buffer);
     object_id = read_serial(payload);
     
 //    if (object_id != '\0')
@@ -129,27 +127,26 @@ void loop()
 ////        accelgyro_buffer[5] = 0x6;
 //    }
     
-//    if (sensor_ids_equal(accel, object_id))
-//    {
-//        sensor_update(accel, accelgyro_buffer);
-//        sensor_toserial(accel);
-//    }
-//    
-//    else if (sensor_ids_equal(gyro, object_id))
-//    {
-////        for (int index = 0; index < 6; index++) {
-////            accelgyro_buffer[index] = accelgyro_buffer[index + 7];
-////        }
-//        sensor_update(gyro, accelgyro_buffer);
-//        sensor_toserial(gyro);
-//    }
-//    
-//    else if (sensor_ids_equal(magnet, object_id))
-//    {
-////        sensor_update(magnet, magnet_buffer);
-//        sensor_update(magnet, accelgyro_buffer);
-//        sensor_toserial(magnet);
-//    }
+    if (sensor_ids_equal(accel, object_id))
+    {
+        sensor_update(accel, accelgyro_buffer);
+        sensor_toserial(accel);
+    }
+    
+    else if (sensor_ids_equal(gyro, object_id))
+    {
+        for (int index = 0; index < 6; index++) {
+            accelgyro_buffer[index] = accelgyro_buffer[index + 7];
+        }
+        sensor_update(gyro, accelgyro_buffer);
+        sensor_toserial(gyro);
+    }
+    
+    else if (sensor_ids_equal(magnet, object_id))
+    {
+        sensor_update(magnet, magnet_buffer);
+        sensor_toserial(magnet);
+    }
     
     if (sensor_ids_equal(encoder, object_id))
     {

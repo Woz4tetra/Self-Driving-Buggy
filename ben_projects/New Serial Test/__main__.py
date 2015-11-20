@@ -22,32 +22,35 @@ import time
 
 
 def run():
-    magnet = arduino_object.Sensor("MAGNET",
-                                   "#### #### ####",
-                                   "int")
-    gyro = arduino_object.Sensor("GYRO",
-                                 "#### #### ####",
-                                 "int")
-    accel = arduino_object.Sensor("ACCEL",
-                                  "#### #### ####",
-                                  "int")
-    gps = arduino_object.Sensor("GPS",
-                                "######## ######## ######## ######## ## ##",
-                                "ffffuu")
+    # magnet = arduino_object.Sensor("MAGNET",
+    #                                "#### #### ####",
+    #                                "int")
+    # gyro = arduino_object.Sensor("GYRO",
+    #                              "#### #### ####",
+    #                              "int")
+    # accel = arduino_object.Sensor("ACCEL",
+    #                               "#### #### ####",
+    #                               "int")
+    # gps = arduino_object.Sensor("GPS",
+    #                             "######## ######## ######## ######## ## ##",
+    #                             "ffffuu")
     encoder = arduino_object.Sensor("ENCODER",
-                                    "####")
-    servo = arduino_object.Command("SERVO")
+                                    "########")
+    # servo = arduino_object.Command("SERVO")
     led13 = arduino_object.Command("LED13")
 
-    serial_ref = serial_comm.SerialRef(115200, 0.005)
+    encoder.sensor_ids["ENCODER"] = 5
+    led13.command_ids["LED13"] = 7
+
+    serial_ref = serial_comm.SerialRef(115200, 0)
     # serial_ref = serial_comm.SimulatedSerial(0.5)
     commander = serial_comm.CommandThread(serial_ref)
-    receiver = serial_comm.DataThread(serial_ref, [magnet, gyro, accel, gps, encoder])
+    receiver = serial_comm.DataThread(serial_ref, [encoder])#[magnet, gyro, accel, gps, encoder])
 
     commander.start()
     receiver.start()
 
-    servo_value = 0
+    # servo_value = 0
     led13_value = True
 
     try:
@@ -55,12 +58,13 @@ def run():
             # commander.put(servo, servo_value)
             # servo_value += 1
 
-            # commander.put(servo, int(led13_value))
-            # led13_value = not led13_value
+            commander.put(led13, int(led13_value))
+            led13_value = not led13_value
 
-            print("gps:", gps.data)
-            print("accel:", accel.data)
-            print("encoder:", encoder.data)
+            # print("encoder:", encoder.data)
+            # print("gps:", gps.data)
+            # print("accel:", accel.data)
+            # print("encoder:", encoder.data)
 
             time.sleep(0.5)
     except KeyboardInterrupt:

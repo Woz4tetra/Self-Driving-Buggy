@@ -133,6 +133,7 @@ entering the address manually.")
             raise NotImplementedError
 
     def write(self, data):
+        print("writing:", repr(data))
         self.serialRef.write(data)
 
         if self.delay > 0:

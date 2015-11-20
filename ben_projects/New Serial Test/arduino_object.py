@@ -170,10 +170,17 @@ class Command(ArduinoObject):
         super(Command, self).__init__(name)
 
     def set(self, value):
-        self.data = str(value)
+        self.data = value
 
     def __str__(self):
-        return "\t".join([self.command_ids[self.name],
-                          self.data[::-1],  # send data in reverse order
-                          self.command_ids[self.name] ^ self.data,
+        parity = self.command_ids[self.name] ^ int(self.data)
+        if parity <= 0xf:
+            parity = "0" + hex(parity)[2:]
+        else:
+            parity = hex(parity)[2:]
+
+        data = hex(self.data)[2:]
+        return "\t".join([chr(self.command_ids[self.name]),
+                          data[::-1],  # send data in reverse order
+                          parity,
                           "\n"])
