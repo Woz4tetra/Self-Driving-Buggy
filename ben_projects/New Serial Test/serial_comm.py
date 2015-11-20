@@ -68,6 +68,7 @@ class SimulatedSerial():
 
 class SerialRef():
     def __init__(self, baud_rate, delay):
+        self.address = None
         self.serialRef = self._findPort(baud_rate)
 
         self._handshake()
@@ -75,16 +76,16 @@ class SerialRef():
         self.delay = delay
 
     def _findPort(self, baud_rate):
-        address = None
+
         serial_ref = None
         for possible_address in self._possibleAddresses():
             try:
                 serial_ref = serial.Serial(port=possible_address,
                                            baudrate=baud_rate)
-                address = possible_address
+                self.address = possible_address
             except:
                 pass
-        if address is None:
+        if self.address is None:
             raise Exception(
                 "No boards could be found! Did you plug it in? Try \
 entering the address manually.")
@@ -103,7 +104,7 @@ entering the address manually.")
         self.serialRef.write("P")
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
-        print("Arduino initialized!")
+        print("Arduino initialized on port '%s'!" % self.address)
 
     @staticmethod
     def _possibleAddresses():
@@ -132,7 +133,7 @@ entering the address manually.")
             raise NotImplementedError
 
     def write(self, data):
-        self.serialRef.write(str(data))
+        self.serialRef.write(data)
 
         if self.delay > 0:
             time.sleep(self.delay)
@@ -143,6 +144,7 @@ entering the address manually.")
         # while time.time() - time_start < timeout and ('\n' not in data):
         #     data += self.serialRef.read()
         data = self.serialRef.readline()
+
         if self.delay > 0:
             time.sleep(self.delay)
 
@@ -193,9 +195,10 @@ class DataThread(threading.Thread):
 
     def run(self):
         while True:
-            self.serialRef.write(str(self.sensors[self.index]))
+            self.serialRef.write(self.sensors[self.index].sensor_id)
 
             packet = self.serialRef.readline()
+            print(repr(packet))
 
             for index in xrange(len(self.sensors)):
                 data = self.sensors[index].parse(packet)

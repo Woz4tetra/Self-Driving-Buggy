@@ -11,7 +11,7 @@
 
 typedef struct packet_node_header packet_node;
 struct packet_node_header {
-    char data;
+    uint8_t data;
     packet_node* next;
 };
 
@@ -23,13 +23,13 @@ struct packet_header {
 };
 
 packet_t packet_new();
+void packet_free(packet_t packet);
+
 bool packet_empty(packet_t packet);
 unsigned int packet_size(packet_t packet);
 
-void enq(packet_t packet, char new_data);
-char deq(packet_t packet);
-
-void packet_free(packet_t packet);
+void enq(packet_t packet, uint8_t new_data);
+uint8_t deq(packet_t packet);
 
 void packet_print(packet_t packet);
 

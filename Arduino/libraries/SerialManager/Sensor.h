@@ -12,11 +12,11 @@
 #include <Arduino.h>
 
 typedef struct sensor_header *sensor_t;
-typedef void sensor_convert_fn(char* data, void* new_data, const int size);
+typedef void sensor_convert_fn(uint8_t* data, void* new_data, const int size);
 
-sensor_t sensor_new(int node, char sensor_id, char size,
+sensor_t sensor_new(int node, uint8_t sensor_id, uint8_t size,
                     sensor_convert_fn* convert_fn);
-bool sensor_ids_equal(sensor_t sensor, char sensor_id);
+bool sensor_ids_equal(sensor_t sensor, uint8_t sensor_id);
 void sensor_update(sensor_t sensor, void* new_data);
 void sensor_toserial(sensor_t sensor);
 

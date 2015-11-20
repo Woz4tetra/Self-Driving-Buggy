@@ -72,22 +72,19 @@ void mpu_setup()
     Timer7.start(10000);         // initialize timer1, and set a 1/2 second period
 }
 
-void mpu_update(unsigned char* accelgyro_buf, unsigned char* magnet_buf)
+void mpu_update(uint8_t* accelgyro_buf, uint8_t* magnet_buf)
 {
     while (!intFlag);
     intFlag = false;
     
-    char accelgyro_buffer[14];
     I2Cread(MPU9250_ADDRESS, 0x3B, 14, accelgyro_buf);
     
     uint8_t ST1;
     do {
-        Serial.println("something");
         I2Cread(MAG_ADDRESS, 0x02, 1, &ST1);
     }
     while (!(ST1&0x01));
     
-    // Read magnetometer data  
-    uint8_t magnet_buffer[7];  
+    // Read magnetometer data    
     I2Cread(MAG_ADDRESS, 0x03, 7, magnet_buf);
 }

@@ -10,10 +10,10 @@
 #include "Sensor.h"
 
 struct sensor_header {
-    char node;
-    char sensor_id;
-    char* data;
-    char size;
+    uint8_t node;
+    uint8_t sensor_id;
+    uint8_t* data;
+    uint8_t size;
     sensor_convert_fn* convert;
 };
 
@@ -30,7 +30,7 @@ bool is_sensor(sensor_t sensor)
 }
 
 // size is number of unsigned 8-bit integers this sensor requires
-sensor_t sensor_new(int node, char sensor_id, char size,
+sensor_t sensor_new(int node, uint8_t sensor_id, uint8_t size,
                     sensor_convert_fn* convert_fn)
 //@ensures is_sensor(\result);
 {
@@ -46,7 +46,7 @@ sensor_t sensor_new(int node, char sensor_id, char size,
     new_sensor->size = size;
     new_sensor->convert = convert_fn;
     
-    new_sensor->data = new char[size];
+    new_sensor->data = new uint8_t[size];
     
     if (new_sensor->data == NULL)
     {
@@ -57,7 +57,7 @@ sensor_t sensor_new(int node, char sensor_id, char size,
     return new_sensor;
 }
 
-bool sensor_ids_equal(sensor_t sensor, char sensor_id)
+bool sensor_ids_equal(sensor_t sensor, uint8_t sensor_id)
 {
     return sensor->sensor_id == sensor_id;
 }
@@ -68,9 +68,9 @@ void sensor_update(sensor_t sensor, void* new_data)
     // !!!size remains unchanged!!!
 }
 
-int sensor_parity(sensor_t sensor)
+uint16_t sensor_parity(sensor_t sensor)
 {
-    int parity = sensor->sensor_id;
+    uint16_t parity = sensor->sensor_id ^ sensor->node;
     
     for (int index = 0; index < sensor->size; index++) {
         parity ^= sensor->data[index];
@@ -81,14 +81,19 @@ int sensor_parity(sensor_t sensor)
 
 void sensor_toserial(sensor_t sensor)
 {
-    Serial.print(sensor->node, HEX);
-    Serial.print('\t');
-    Serial.print(sensor->sensor_id, HEX);
-    Serial.print('\t');
-    for (int index = 0; index < sensor->size; index++) {
+    Serial.write(sensor->node);
+    Serial.write('\t');
+    Serial.write(sensor->sensor_id);
+    Serial.write('\t');
+    for (int index = 0; index < sensor->size; index++)
+    {
+        if (sensor->data[index] <= 0xf) {
+            Serial.print("0");
+        }
         Serial.print(sensor->data[index], HEX);
     }
-    Serial.print('\t');
-    Serial.println(sensor_parity(sensor), HEX);
+    Serial.write('\t');
+    Serial.print(sensor_parity(sensor), HEX);
+    Serial.write('\n');
 }
 

@@ -58,9 +58,9 @@ def run():
             # commander.put(servo, int(led13_value))
             # led13_value = not led13_value
 
-            # print("gps:", gps.data)
-            # print("accel:", accel.data)
-            # print("encoder:", encoder.data)
+            print("gps:", gps.data)
+            print("accel:", accel.data)
+            print("encoder:", encoder.data)
 
             time.sleep(0.5)
     except KeyboardInterrupt:

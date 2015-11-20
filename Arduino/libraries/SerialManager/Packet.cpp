@@ -27,9 +27,9 @@ unsigned int packet_size(packet_t packet) {
     return packet->size;
 }
 
-void enq(packet_t packet, char new_data)
+void enq(packet_t packet, uint8_t new_data)
 {
-    // the end of the queue is at end   
+    // the end of the queue is at end
     packet->end->data = new_data;
     
     packet->end->next = new struct packet_node_header; // end is dummy node
@@ -39,40 +39,41 @@ void enq(packet_t packet, char new_data)
     packet->size += 1;
 }
 
-char deq(packet_t packet)
+uint8_t deq(packet_t packet)
 {
     // the beginning of the queue is at start
     if (!packet_empty(packet))
     {
-        char deqd = packet->start->data;
+        uint8_t deqd = packet->start->data;
         
-        packet->start = packet->start->next;
+        packet_node* next_node = packet->start->next;
+        
+        delete packet->start;
+        
+        packet->start = next_node;
         
         packet->size -= 1;
         
         return deqd;
     }
     else {
-        return '\0';
+        return 0;
     }
-}
-
-void packet_free(packet_t packet)
-{
-    for (packet_node* node = packet->start; node != packet->end; node = node->next) {
-        free(node);
-    }
-    free(packet);
 }
 
 void packet_print(packet_t packet)
 {
+    Serial.print('[');
     if (!packet_empty(packet))
     {
         for (packet_node* node = packet->start; node != packet->end; node = node->next) {
-            Serial.print((char)node->data); Serial.print('\t');
+            Serial.print((char)node->data);
+            if (node->next != packet->end) {
+                Serial.print(',');
+            }
         }
-        Serial.println();
     }
+    Serial.println(']');
+    delay(50);
 }
 

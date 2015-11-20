@@ -29,6 +29,6 @@ void I2Cread(uint8_t Address, uint8_t Register, uint8_t Nbytes, uint8_t* Data);
 void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data);
 
 void mpu_setup();
-void mpu_update(unsigned char* accelgyro_buf, unsigned char* magnet_buf);
+void mpu_update(uint8_t* accelgyro_buf, uint8_t* magnet_buf);
 
 #endif /* MPU9250_h */

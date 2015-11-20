@@ -106,8 +106,8 @@ gps_data get_gps()
     
     gps_data result = new struct gps_data_header;
     result->data = gps_float_array;
-    result->quality[0] = (char)GPS.satellites;
-    result->quality[1] = (char)GPS.fixquality;
+    result->quality[0] = (uint8_t)GPS.satellites;
+    result->quality[1] = (uint8_t)GPS.fixquality;
     
     return result;
 }

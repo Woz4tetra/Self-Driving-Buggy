@@ -14,7 +14,7 @@
 typedef struct gps_data_header *gps_data;
 struct gps_data_header {
     float* data;
-    char* quality;
+    uint8_t* quality;
 };
 
 void gps_setup();

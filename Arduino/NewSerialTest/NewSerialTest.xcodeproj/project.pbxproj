@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		C92469B41BFD50B800D2CCAC /* SerialParser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SerialParser.cpp; sourceTree = "<group>"; };
-		C92469B51BFD50B800D2CCAC /* SerialParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialParser.h; sourceTree = "<group>"; };
-		C92469B61BFD526D00D2CCAC /* Packet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Packet.cpp; sourceTree = "<group>"; };
-		C92469B71BFD527900D2CCAC /* Packet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Packet.h; sourceTree = "<group>"; };
 		C99F95051BFC3B0E00D133B5 /* NewSerialTest.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = NewSerialTest.ino; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		C99F95161BFC3D3F00D133B5 /* Adafruit_GPS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Adafruit_GPS.cpp; sourceTree = "<group>"; };
 		C99F95171BFC3D3F00D133B5 /* Adafruit_GPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Adafruit_GPS.h; sourceTree = "<group>"; };
@@ -74,24 +70,28 @@
 		C99F956B1BFC3D3F00D133B5 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C99F956C1BFC3D3F00D133B5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C99F956D1BFC3D3F00D133B5 /* TimerCounter.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TimerCounter.md; sourceTree = "<group>"; };
-		C99F956F1BFC3D3F00D133B5 /* HallEncoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HallEncoder.cpp; sourceTree = "<group>"; };
-		C99F95701BFC3D3F00D133B5 /* HallEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HallEncoder.h; sourceTree = "<group>"; };
-		C99F95721BFC3D3F00D133B5 /* MPU9250.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MPU9250.cpp; sourceTree = "<group>"; };
-		C99F95731BFC3D3F00D133B5 /* MPU9250.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPU9250.h; sourceTree = "<group>"; };
 		C99F95741BFC3D3F00D133B5 /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
-		C99F95761BFC3D3F00D133B5 /* Command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
-		C99F95771BFC3D3F00D133B5 /* Command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
-		C99F95781BFC3D3F00D133B5 /* Sensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sensor.cpp; sourceTree = "<group>"; };
-		C99F95791BFC3D3F00D133B5 /* Sensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
-		C99F957D1BFC415100D133B5 /* MyGPS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MyGPS.cpp; path = ../libraries/MyGPS/MyGPS.cpp; sourceTree = "<group>"; };
-		C99F957E1BFC415100D133B5 /* MyGPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyGPS.h; path = ../libraries/MyGPS/MyGPS.h; sourceTree = "<group>"; };
-		C99F95881BFC443F00D133B5 /* __main__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __main__.py; sourceTree = "<group>"; };
-		C99F95891BFC443F00D133B5 /* arduino_object.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = arduino_object.py; sourceTree = "<group>"; };
+		C99F95881BFC443F00D133B5 /* __main__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; lineEnding = 0; path = __main__.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
+		C99F95891BFC443F00D133B5 /* arduino_object.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; lineEnding = 0; path = arduino_object.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
 		C99F958B1BFC443F00D133B5 /* common.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = common.py; sourceTree = "<group>"; };
 		C99F958D1BFC443F00D133B5 /* config.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = config.py; sourceTree = "<group>"; };
 		C99F958F1BFC443F00D133B5 /* file_generator.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = file_generator.py; sourceTree = "<group>"; };
-		C99F95911BFC443F00D133B5 /* serial_comm.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = serial_comm.py; sourceTree = "<group>"; };
+		C99F95911BFC443F00D133B5 /* serial_comm.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; lineEnding = 0; path = serial_comm.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
 		C99F95931BFC443F00D133B5 /* user_objects.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = user_objects.py; sourceTree = "<group>"; };
+		C9A2087F1BFE97CD00C5CE32 /* HallEncoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HallEncoder.cpp; sourceTree = "<group>"; };
+		C9A208801BFE97CD00C5CE32 /* HallEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HallEncoder.h; sourceTree = "<group>"; };
+		C9A208821BFE97CD00C5CE32 /* MPU9250.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = MPU9250.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		C9A208831BFE97CD00C5CE32 /* MPU9250.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPU9250.h; sourceTree = "<group>"; };
+		C9A208851BFE97CD00C5CE32 /* MyGPS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = MyGPS.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		C9A208861BFE97CD00C5CE32 /* MyGPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGPS.h; sourceTree = "<group>"; };
+		C9A208881BFE97CD00C5CE32 /* Command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Command.cpp; sourceTree = "<group>"; };
+		C9A208891BFE97CD00C5CE32 /* Command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		C9A2088A1BFE97CD00C5CE32 /* Packet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Packet.cpp; sourceTree = "<group>"; };
+		C9A2088B1BFE97CD00C5CE32 /* Packet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Packet.h; sourceTree = "<group>"; };
+		C9A2088C1BFE97CD00C5CE32 /* Sensor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Sensor.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		C9A2088D1BFE97CD00C5CE32 /* Sensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
+		C9A2088E1BFE97CD00C5CE32 /* SerialParser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = SerialParser.cpp; sourceTree = "<group>"; };
+		C9A2088F1BFE97CD00C5CE32 /* SerialParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialParser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -107,12 +107,12 @@
 		C99F95141BFC3D3F00D133B5 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
-				C99F957C1BFC413400D133B5 /* MyGPS */,
+				C9A2087E1BFE97CD00C5CE32 /* HallEncoder */,
+				C9A208811BFE97CD00C5CE32 /* MPU9250 */,
+				C9A208841BFE97CD00C5CE32 /* MyGPS */,
+				C9A208871BFE97CD00C5CE32 /* SerialManager */,
 				C99F95151BFC3D3F00D133B5 /* Adafruit-GPS */,
 				C99F95591BFC3D3F00D133B5 /* DueTimer */,
-				C99F956E1BFC3D3F00D133B5 /* HallEncoder */,
-				C99F95711BFC3D3F00D133B5 /* MPU9250 */,
-				C99F95751BFC3D3F00D133B5 /* SerialManager */,
 				C99F95741BFC3D3F00D133B5 /* readme.txt */,
 			);
 			name = libraries;
@@ -395,49 +395,6 @@
 			path = SimpleTimer;
 			sourceTree = "<group>";
 		};
-		C99F956E1BFC3D3F00D133B5 /* HallEncoder */ = {
-			isa = PBXGroup;
-			children = (
-				C99F956F1BFC3D3F00D133B5 /* HallEncoder.cpp */,
-				C99F95701BFC3D3F00D133B5 /* HallEncoder.h */,
-			);
-			path = HallEncoder;
-			sourceTree = "<group>";
-		};
-		C99F95711BFC3D3F00D133B5 /* MPU9250 */ = {
-			isa = PBXGroup;
-			children = (
-				C99F95731BFC3D3F00D133B5 /* MPU9250.h */,
-				C99F95721BFC3D3F00D133B5 /* MPU9250.cpp */,
-			);
-			path = MPU9250;
-			sourceTree = "<group>";
-		};
-		C99F95751BFC3D3F00D133B5 /* SerialManager */ = {
-			isa = PBXGroup;
-			children = (
-				C92469B51BFD50B800D2CCAC /* SerialParser.h */,
-				C92469B41BFD50B800D2CCAC /* SerialParser.cpp */,
-				C92469B71BFD527900D2CCAC /* Packet.h */,
-				C92469B61BFD526D00D2CCAC /* Packet.cpp */,
-				C99F95771BFC3D3F00D133B5 /* Command.h */,
-				C99F95761BFC3D3F00D133B5 /* Command.cpp */,
-				C99F95791BFC3D3F00D133B5 /* Sensor.h */,
-				C99F95781BFC3D3F00D133B5 /* Sensor.cpp */,
-			);
-			path = SerialManager;
-			sourceTree = "<group>";
-		};
-		C99F957C1BFC413400D133B5 /* MyGPS */ = {
-			isa = PBXGroup;
-			children = (
-				C99F957D1BFC415100D133B5 /* MyGPS.cpp */,
-				C99F957E1BFC415100D133B5 /* MyGPS.h */,
-			);
-			name = MyGPS;
-			path = ../NewSerialTest;
-			sourceTree = "<group>";
-		};
 		C99F957F1BFC443F00D133B5 /* New Serial Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +408,48 @@
 			);
 			name = "New Serial Test";
 			path = "../../ben_projects/New Serial Test";
+			sourceTree = "<group>";
+		};
+		C9A2087E1BFE97CD00C5CE32 /* HallEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				C9A2087F1BFE97CD00C5CE32 /* HallEncoder.cpp */,
+				C9A208801BFE97CD00C5CE32 /* HallEncoder.h */,
+			);
+			path = HallEncoder;
+			sourceTree = "<group>";
+		};
+		C9A208811BFE97CD00C5CE32 /* MPU9250 */ = {
+			isa = PBXGroup;
+			children = (
+				C9A208821BFE97CD00C5CE32 /* MPU9250.cpp */,
+				C9A208831BFE97CD00C5CE32 /* MPU9250.h */,
+			);
+			path = MPU9250;
+			sourceTree = "<group>";
+		};
+		C9A208841BFE97CD00C5CE32 /* MyGPS */ = {
+			isa = PBXGroup;
+			children = (
+				C9A208851BFE97CD00C5CE32 /* MyGPS.cpp */,
+				C9A208861BFE97CD00C5CE32 /* MyGPS.h */,
+			);
+			path = MyGPS;
+			sourceTree = "<group>";
+		};
+		C9A208871BFE97CD00C5CE32 /* SerialManager */ = {
+			isa = PBXGroup;
+			children = (
+				C9A2088C1BFE97CD00C5CE32 /* Sensor.cpp */,
+				C9A2088D1BFE97CD00C5CE32 /* Sensor.h */,
+				C9A208881BFE97CD00C5CE32 /* Command.cpp */,
+				C9A208891BFE97CD00C5CE32 /* Command.h */,
+				C9A2088A1BFE97CD00C5CE32 /* Packet.cpp */,
+				C9A2088B1BFE97CD00C5CE32 /* Packet.h */,
+				C9A2088E1BFE97CD00C5CE32 /* SerialParser.cpp */,
+				C9A2088F1BFE97CD00C5CE32 /* SerialParser.h */,
+			);
+			path = SerialManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

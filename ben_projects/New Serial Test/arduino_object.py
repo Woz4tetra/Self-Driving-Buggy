@@ -1,6 +1,6 @@
 import struct
 
-next_id = 0
+next_id = 1
 
 class ArduinoObject(object):
     formats = {
@@ -72,7 +72,6 @@ class Sensor(ArduinoObject):
         Sensor.sensor_ids[name] = next_id
         next_id += 1
         if (chr(next_id) == '\n' or
-                chr(next_id) == '\r' or
                 chr(next_id) == '\t'):
             next_id += 1
 
@@ -151,8 +150,9 @@ class Sensor(ArduinoObject):
     def get(self):
         return self.data
 
-    def __str__(self):
-        return chr(self.sensor_ids[self.name]) + "\r\n"
+    @property
+    def sensor_id(self):
+        return chr(self.sensor_ids[self.name]) + "\n"
 
 
 class Command(ArduinoObject):
@@ -164,7 +164,6 @@ class Command(ArduinoObject):
         Command.command_ids[name] = next_id
         next_id += 1
         if (chr(next_id) == '\n' or
-                chr(next_id) == '\r' or
                 chr(next_id) == '\t'):
             next_id += 1
 
@@ -175,6 +174,6 @@ class Command(ArduinoObject):
 
     def __str__(self):
         return "\t".join([self.command_ids[self.name],
-                          self.data,
+                          self.data[::-1],  # send data in reverse order
                           self.command_ids[self.name] ^ self.data,
-                          "\r\n"])
+                          "\n"])

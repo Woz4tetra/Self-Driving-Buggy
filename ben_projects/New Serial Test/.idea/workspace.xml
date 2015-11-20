@@ -2,158 +2,301 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3924fc27-b80e-4023-a0b7-de9765ae6095" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.ino" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.pbxproj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MPU9250/MPU9250.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MPU9250/MPU9250.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/New Serial Test.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/AFMotor.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/AFMotor.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/README.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/examples/AFMotor_ConstantSpeed/AFMotor_ConstantSpeed.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/examples/AFMotor_MultiStepper/AFMotor_MultiStepper.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/examples/MotorParty/MotorParty.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/examples/MotorTest/MotorTest.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/examples/StepperTest/StepperTest.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/AFMotor/keywords.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/README.adoc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/AdvancedChatServer/AdvancedChatServer.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/BarometricPressureWebServer/BarometricPressureWebServer.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/ChatServer/ChatServer.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/DhcpAddressPrinter/DhcpAddressPrinter.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/DhcpChatServer/DhcpChatServer.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/TelnetClient/TelnetClient.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/UDPSendReceiveString/UDPSendReceiveString.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/UdpNtpClient/UdpNtpClient.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/WebClient/WebClient.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/WebClientRepeating/WebClientRepeating.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/examples/WebServer/WebServer.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/keywords.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/library.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/Dhcp.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/Dhcp.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/Dns.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/Dns.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/Ethernet.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/Ethernet.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/EthernetClient.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/EthernetClient.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/EthernetServer.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/EthernetServer.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/EthernetUdp.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/EthernetUdp.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/utility/socket.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/utility/socket.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/utility/util.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/utility/w5100.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Ethernet/src/utility/w5100.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/Boards.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/Firmata.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/Firmata.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/AllInputsFirmata/AllInputsFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/AnalogFirmata/AnalogFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/EchoString/EchoString.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/OldStandardFirmata/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/OldStandardFirmata/OldStandardFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/ServoFirmata/ServoFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/SimpleAnalogFirmata/SimpleAnalogFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/SimpleDigitalFirmata/SimpleDigitalFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmata/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmata/StandardFirmata.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataChipKIT/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataChipKIT/StandardFirmataChipKIT.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataEthernet/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataEthernet/StandardFirmataEthernet.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataEthernetPlus/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataEthernetPlus/StandardFirmataEthernetPlus.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataPlus/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/examples/StandardFirmataPlus/StandardFirmataPlus.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/extras/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/extras/revisions.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/keywords.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/library.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/release.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/test/firmata_test/firmata_test.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/test/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/utility/EthernetClientStream.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/utility/EthernetClientStream.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/utility/firmataDebug.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/Firmata/utility/serialUtils.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/HMC5883L/Examples/HMC5883L_raw/HMC5883L_raw.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/HMC5883L/HMC5883L.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/HMC5883L/HMC5883L.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/HMC5883L/library.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/I2Cdev.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/I2Cdev.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/dmpKey.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/dmpmap.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/example/AvrCopter.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/freeram.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/inv_mpu.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/inv_mpu.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/inv_mpu_dmp_motion_driver.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/inv_mpu_dmp_motion_driver.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/mpu.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/InvMPU/mpu.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/Examples/MPU6050_DMP6/MPU6050_DMP6.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/Examples/MPU6050_DMP6/Processing/MPUTeapot/MPUTeapot.pde" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/Examples/MPU6050_raw/MPU6050_raw.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/MPU6050.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/MPU6050.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/MPU6050_6Axis_MotionApps20.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/MPU6050_9Axis_MotionApps41.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/helper_3dmath.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU6050/library.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/Protocol.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/SerialPacket.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/SerialPacket.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/build.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/defines.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/defines.h.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/ArduinoActions/ArduinoActions.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/ArduinoActions/SConstruct" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/ReceivePackets/ReceivePackets.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/ReceivePackets/SConstruct" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/SendAnalogInput/SConstruct" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/SendAnalogInput/SendAnalogInput.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/SendPackets/SConstruct" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/SendPackets/SendPackets.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/SendPacketsOnRequest/SConstruct" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/SendPacketsOnRequest/SendPacketsOnRequest.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/examples/nose_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/keywords.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/resources/COPYING" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/resources/COPYING.LESSER" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/resources/bcpp_indenter.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/resources/errors.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/resources/lastbuild.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialPacket/resources/succes.log" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Adafruit ATmega32U4 (USBtinyISP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Uno (USBtinyISP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Yun (WiFi Ethernet).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Intel Edison (WiFi).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Protostack ATmega328 (USBASP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Protostack ATmega328 (USBtinyISP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT Uno32 (PGM).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/LittleRobotFriends_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/TemplateIcon.icns" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/embedXcode_check" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/embedXcode_chrono" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/embedXcode_prepare" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Adafruit ATmega32U4 (USBtinyISP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Uno (USBtinyISP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Yun (WiFi Ethernet).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Intel Edison (WiFi).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Protostack ATmega328 (USBASP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Protostack ATmega328 (USBtinyISP).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT Uno32 (PGM).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/LittleRobotFriends_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/TemplateIcon.icns" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/embedXcode_check" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/embedXcode_chrono" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/embedXcode_prepare" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/project.pbxproj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/All.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Boards.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Build.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Index.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Serial.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Upload.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/About/About.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/4D Systems PICadillo 35T.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Adafruit Pro Trinket 3V-12MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Adafruit Pro Trinket 5V-16MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Adafruit Trinket 3V-8MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Adafruit Trinket 5V-16MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Due (Native USB Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Due (Programming Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Duemilanove.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Leonardo.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Mega 2560.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Micro.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Mini ATmega168.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Mini ATmega328.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Nano ATmega168.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Nano ATmega328.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Pro ATmega328-3.3V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Pro ATmega328-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Robot Control.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Robot Motor.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Uno.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Arduino Yun.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/ArduinoORG M0 Pro (Native USB Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/ArduinoORG M0 Pro (Programming Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/DFRobot BLuno.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/DFRobot Wido.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Digispark Tiny Core.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/ESP8266.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Experimeter Board MSP430FR5739.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Intel Edison.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Intel Galileo Gen2.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Intel Galileo.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad CC3200 WiFi EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad CC3200 WiFi.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad LM4F120 Stellaris.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430F5529.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430FR4133.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430FR5969.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430FR6989.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430G2231.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430G2452.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP430G2553.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad MSP432P401 EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad TM4C123 Tiva C.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/LaunchPad TM4C129 Connected.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Little Robot Friends.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Maple Flash revision 3+.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Maple RAM revision 3+.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Microduino Core ATmega328-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Microduino Core STM32 Flash.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Microduino Core STM32 RAM.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Microduino Core USB ATmega328U4-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Microduino Core+ ATmega644-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/NodeMCU 0.9 ESP-12.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/NodeMCU 1.0 ESP-12E.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/RedBearLab BLE Nano.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/RedBearLab WiFi CC3200 EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/RedBearLab WiFi CC3200.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/RedBearLab WiFi Mini CC3200 EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/RedBearLab WiFi Mini CC3200.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/RedBearLab nRF51822.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Teensy 2.0.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Teensy 3.0.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Teensy 3.1.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Teensy LC.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/Wiring S.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT DP32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT Max32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT Uno32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT WF32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT WiFire.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/chipKIT uC32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/panStamp AVR.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/panStamp NRG 1.0.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Configurations/panStamp NRG 1.1.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/About.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/AdafruitAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ArduinoAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ArduinoAVR_177.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ArduinoSAMD_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ArduinoSAMD_177.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ArduinoSAM_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ArduinoSAM_177.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Avrdude.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/DigisparkAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/ESP8266_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Edison_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/EnergiaCC3200.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/EnergiaCC3200EMT.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/EnergiaLM4F.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/EnergiaMSP430.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/EnergiaMSP432EMT.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Galileo_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/MapleIDE.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Microduino_16.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Mpide.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/RedBearLabAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/RedBearLabNRF_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Step1.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Step2.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Teensy.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Teensy2.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Teensy3.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/Wiring.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/panStampAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Makefiles/panStampNRG_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/NewSerialTest2.ino" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/ReadMe.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Sketchbook/HallEncoder/HallEncoder.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Sketchbook/HallEncoder/HallEncoder.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Sketchbook/Sketchbook.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/reset_1200.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/reset_maple.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/Utilities/uploader_izmir.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/NewSerialTest2/NewSerialTest2/main.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/project.pbxproj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/All.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Boards.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Build.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Index.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Serial.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/Upload.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/About/About.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/4D Systems PICadillo 35T.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Adafruit Pro Trinket 3V-12MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Adafruit Pro Trinket 5V-16MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Adafruit Trinket 3V-8MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Adafruit Trinket 5V-16MHz.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Due (Native USB Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Due (Programming Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Duemilanove.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Leonardo.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Mega 2560.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Micro.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Mini ATmega168.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Mini ATmega328.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Nano ATmega168.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Nano ATmega328.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Pro ATmega328-3.3V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Pro ATmega328-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Robot Control.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Robot Motor.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Uno.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Arduino Yun.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/ArduinoORG M0 Pro (Native USB Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/ArduinoORG M0 Pro (Programming Port).xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/DFRobot BLuno.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/DFRobot Wido.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Digispark Tiny Core.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/ESP8266.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Experimeter Board MSP430FR5739.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Intel Edison.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Intel Galileo Gen2.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Intel Galileo.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad CC3200 WiFi EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad CC3200 WiFi.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad LM4F120 Stellaris.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430F5529.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430FR4133.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430FR5969.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430FR6989.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430G2231.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430G2452.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP430G2553.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad MSP432P401 EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad TM4C123 Tiva C.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/LaunchPad TM4C129 Connected.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Little Robot Friends.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Maple Flash revision 3+.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Maple RAM revision 3+.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Microduino Core ATmega328-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Microduino Core STM32 Flash.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Microduino Core STM32 RAM.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Microduino Core USB ATmega328U4-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Microduino Core+ ATmega644-5V.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/NodeMCU 0.9 ESP-12.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/NodeMCU 1.0 ESP-12E.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/RedBearLab BLE Nano.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/RedBearLab WiFi CC3200 EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/RedBearLab WiFi CC3200.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/RedBearLab WiFi Mini CC3200 EMT.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/RedBearLab WiFi Mini CC3200.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/RedBearLab nRF51822.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Teensy 2.0.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Teensy 3.0.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Teensy 3.1.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Teensy LC.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/Wiring S.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT DP32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT Max32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT Uno32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT WF32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT WiFire.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/chipKIT uC32.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/panStamp AVR.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/panStamp NRG 1.0.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Configurations/panStamp NRG 1.1.xcconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/About.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/AdafruitAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ArduinoAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ArduinoAVR_177.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ArduinoSAMD_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ArduinoSAMD_177.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ArduinoSAM_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ArduinoSAM_177.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Avrdude.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/DigisparkAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/ESP8266_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Edison_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/EnergiaCC3200.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/EnergiaCC3200EMT.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/EnergiaLM4F.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/EnergiaMSP430.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/EnergiaMSP432EMT.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Galileo_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/MapleIDE.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Microduino_16.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Mpide.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/RedBearLabAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/RedBearLabNRF_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Step1.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Step2.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Teensy.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Teensy2.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Teensy3.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/Wiring.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/panStampAVR_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Makefiles/panStampNRG_165.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/ReadMe.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Sketchbook/Sketchbook.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/reset_1200.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/reset_maple.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/Utilities/uploader_izmir.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/main.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../embedXcode/thing/thing/thing.ino" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS.cpp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/SerialBox/SerialBox.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../../Arduino/SerialBox/SerialBox.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/MPUtest/Backups/MPUtest 11-10-15.ino" afterPath="$PROJECT_DIR$/../../Arduino/MPUtest/Backups/MPUtest 11-10-15.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/MPUtest/MPUtest.ino" afterPath="$PROJECT_DIR$/../../Arduino/MPUtest/MPUtest.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/SerialBox/SerialBox.ino" afterPath="$PROJECT_DIR$/../../Arduino/SerialBox/SerialBox.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/ACCEL.ino" afterPath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/ACCEL.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/GPS.ino" afterPath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/GPS.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/GYRO.ino" afterPath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/GYRO.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/MAGNET.ino" afterPath="$PROJECT_DIR$/../../Arduino/SerialBox/code_templates/MAGNET.ino" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.ino" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.ino" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU9250/MPU9250.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MPU9250/MPU9250.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MPU9250/MPU9250.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MPU9250/MPU9250.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Command.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Command.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Command.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Command.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Packet.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Packet.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Packet.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Packet.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Sensor.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Sensor.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Sensor.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Sensor.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/SerialParser.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/SerialParser.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__main__.py" afterPath="$PROJECT_DIR$/__main__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arduino_object.py" afterPath="$PROJECT_DIR$/arduino_object.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serial_comm.py" afterPath="$PROJECT_DIR$/serial_comm.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/__main__.py" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/__main__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/board/arduino_object.py" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/board/arduino_object.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/board/serial_comm.py" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/board/serial_comm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/controllers/user_objects.py" afterPath="$PROJECT_DIR$/../Self-Driving Buggy Rev. 6/controllers/user_objects.py" />
     </list>
     <ignored path="New Serial Test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -178,7 +321,7 @@
         <entry file="file://$PROJECT_DIR$/__main__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
               <folding>
                 <element signature="e#377#398#0" expanded="true" />
               </folding>
@@ -189,12 +332,13 @@
       <file leaf-file-name="serial_comm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/serial_comm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0427928">
-              <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+            <state vertical-scroll-proportion="1.4874446">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
-                <element signature="e#3009#3905#0" expanded="false" />
-                <element signature="e#3009#3244#1" expanded="false" />
-                <element signature="e#4650#4671#0" expanded="false" />
+                <element signature="e#222#259#0" expanded="true" />
+                <element signature="e#3053#3949#0" expanded="false" />
+                <element signature="e#3053#3288#1" expanded="false" />
+                <element signature="e#4690#4711#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -204,7 +348,7 @@
         <entry file="file://$PROJECT_DIR$/arduino_object.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="101" column="32" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
+              <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -240,9 +384,9 @@
         <option value="$PROJECT_DIR$/serial_comm/__init__.py" />
         <option value="$PROJECT_DIR$/user_objects.py" />
         <option value="$PROJECT_DIR$/serial_parser.py" />
+        <option value="$PROJECT_DIR$/__main__.py" />
         <option value="$PROJECT_DIR$/arduino_object.py" />
         <option value="$PROJECT_DIR$/serial_comm.py" />
-        <option value="$PROJECT_DIR$/__main__.py" />
       </list>
     </option>
   </component>
@@ -276,8 +420,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -298,6 +440,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -491,25 +635,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33049646" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33049646" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -525,11 +669,89 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding>
+            <element signature="e#377#398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arduino_object.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <folding>
+            <element signature="e#377#398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arduino_object.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="32" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -545,9 +767,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -583,9 +806,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -621,9 +845,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -666,9 +891,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -718,9 +944,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -770,9 +997,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -832,7 +1060,7 @@
     <entry file="file://$PROJECT_DIR$/arduino_object.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="32" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
+          <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -840,7 +1068,7 @@
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
           <folding>
             <element signature="e#377#398#0" expanded="true" />
           </folding>
@@ -849,12 +1077,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/serial_comm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0427928">
-          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+        <state vertical-scroll-proportion="1.4874446">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
           <folding>
-            <element signature="e#3009#3905#0" expanded="false" />
-            <element signature="e#3009#3244#1" expanded="false" />
-            <element signature="e#4650#4671#0" expanded="false" />
+            <element signature="e#222#259#0" expanded="true" />
+            <element signature="e#3053#3949#0" expanded="false" />
+            <element signature="e#3053#3288#1" expanded="false" />
+            <element signature="e#4690#4711#0" expanded="false" />
           </folding>
         </state>
       </provider>
