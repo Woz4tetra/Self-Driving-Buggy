@@ -1,9 +1,9 @@
 
 #include <MPU9250.h>
-//#include <HallEncoder.h>
-//#include <MyGPS.h>
+#include <HallEncoder.h>
+#include <MyGPS.h>
 #include <SerialParser.h>
-//#include <Servo.h>
+#include <Servo.h>
 
 #include <Sensor.h>
 #include <Command.h>
@@ -16,6 +16,8 @@ uint64_t* payload = new uint64_t;
 
 uint8_t accelgyro_buffer[14];
 uint8_t magnet_buffer[7];
+
+gps_data* GPS_data;
 
 void imu_update(uint8_t* data, void* new_data, const int size)
 {
@@ -34,29 +36,29 @@ void encoder_update(uint8_t* data, void* new_data, const int size)
         deref_data = deref_data >> 8;
     }
 }
-//
-//
-//void to_hex(float input, uint8_t *array, int start)
-//{
-//    byte* bytearray = (byte*) &input;
-//    short float_length = 4;
-//    start *= float_length;
-//    
-//    for (int index = float_length - 1; index >= 0; index--) {
-//        array[((float_length - 1) - index) + start] = bytearray[index];
-//    }
-//}
-//void gps_update(uint8_t* data, void* new_data, const int size)
-//{
-//    gps_data deref_data = (gps_data)(new_data);
-//    float* float_array = deref_data->data;
-//    
-//    for (int float_index = 0; float_index < (size - 2) / 4; float_index++) {
-//        to_hex(float_array[float_index], data, float_index);
-//    }
-//    data[16] = (deref_data->quality)[0];
-//    data[17] = (deref_data->quality)[1];
-//}
+
+
+void to_hex(float input, uint8_t *array, int start)
+{
+    byte* bytearray = (byte*) &input;
+    short float_length = 4;
+    start *= float_length;
+    
+    for (int index = float_length - 1; index >= 0; index--) {
+        array[((float_length - 1) - index) + start] = bytearray[index];
+    }
+}
+void gps_update(uint8_t* data, void* new_data, const int size)
+{
+    gps_data* deref_data = (gps_data*)(new_data);
+    float* float_array = deref_data->data;
+    
+    for (int float_index = 0; float_index < (size - 2) / 4; float_index++) {
+        to_hex(float_array[float_index], data, float_index);
+    }
+    data[16] = (deref_data->quality)[0];
+    data[17] = (deref_data->quality)[1];
+}
 
 #define LED13_PIN 13
 
@@ -71,8 +73,7 @@ void handshake()
     Serial.flush();
 }
 
-uint64_t* fake_distance = new uint64_t;
-//Servo servo1;
+Servo servo1;
 
 void setup()
 {
@@ -84,30 +85,31 @@ void setup()
     magnet = sensor_new(node, 3, 6, &imu_update);
     
     encoder = sensor_new(node, 4, 4, &encoder_update);
-//    gps = sensor_new(node, 5, 18, &gps_update);
+    gps = sensor_new(node, 5, 18, &gps_update);
     
-//    servo1_command = command_new(node, 6);
+    servo1_command = command_new(node, 6);
     led13_command = command_new(node, 7);
     
-//    encoder_setup();
-//    gps_setup();
+    encoder_setup();
+    gps_setup();
     mpu_setup();
     
     pinMode(LED13_PIN, OUTPUT);
     
-//    servo1.attach(3);
-//    servo1.write(0);
+    servo1.attach(3);
+    servo1.write(0);
     
     *payload = 0;
-    *fake_distance = 0;
+    GPS_data = new gps_data;
     
     handshake();
-//    Serial.println("Ready!");
+    Serial.println("Ready!");
 }
 
 void loop()
 {
-    mpu_update(accelgyro_buffer, magnet_buffer);
+//    mpu_update(accelgyro_buffer, magnet_buffer);
+    GPS_data = get_gps();
     object_id = read_serial(payload);
     
 //    if (object_id != '\0')
@@ -150,28 +152,23 @@ void loop()
     
     if (sensor_ids_equal(encoder, object_id))
     {
-//        sensor_update(encoder, (void*)(encoder_distance()));
-        
-        *fake_distance = *fake_distance + 1;
-        sensor_update(encoder, (void*)(fake_distance));
+        sensor_update(encoder, (void*)(encoder_distance()));
         sensor_toserial(encoder);
     }
     
-//    else if (command_ids_equal(servo1_command, object_id)) {
-//        servo1.write(*(uint8_t*)payload);
-//    }
-//    
+    else if (command_ids_equal(servo1_command, object_id)) {
+        servo1.write(*(uint8_t*)payload);
+    }
+    
     else if (command_ids_equal(led13_command, object_id)) {
         digitalWrite(LED13_PIN, *payload);
     }
-//    
-//    else if (sensor_ids_equal(gps, object_id))
-//    {
-////        sensor_update(gps, (void*)(get_gps()));
-////        sensor_toserial(gps);
-//        sensor_update(magnet, accelgyro_buffer);
-//        sensor_toserial(magnet);
-//    }
+    
+    else if (sensor_ids_equal(gps, object_id))
+    {
+        sensor_update(gps, (void*)(GPS_data));
+        sensor_toserial(gps);
+    }
 }
 
 

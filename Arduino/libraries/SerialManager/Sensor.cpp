@@ -93,7 +93,12 @@ void sensor_toserial(sensor_t sensor)
         Serial.print(sensor->data[index], HEX);
     }
     Serial.write('\t');
-    Serial.print(sensor_parity(sensor), HEX);
+    
+    int parity = sensor_parity(sensor);
+    if (parity <= 0xf) {
+        Serial.print("0");
+    }
+    Serial.print(parity, HEX);
     Serial.write('\n');
 }
 

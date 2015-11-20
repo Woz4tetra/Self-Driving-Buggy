@@ -70,6 +70,8 @@ void mpu_setup()
     pinMode(13, OUTPUT);
     Timer7.attachInterrupt(callback);  // attaches callback() as a timer overflow interrupt
     Timer7.start(10000);         // initialize timer1, and set a 1/2 second period
+    
+    Serial.println("MPU initialized");
 }
 
 void mpu_update(uint8_t* accelgyro_buf, uint8_t* magnet_buf)
