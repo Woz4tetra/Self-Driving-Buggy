@@ -1,4 +1,3 @@
-
 #include <MPU9250.h>
 #include <HallEncoder.h>
 #include <MyGPS.h>
