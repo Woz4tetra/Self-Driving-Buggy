@@ -169,8 +169,6 @@ uint8_t read_serial(uint64_t* payload) // command payloads limited by unsigned 6
             is_valid_packet = true;
         }
         
-//        packet = packet_new();
-        
 //        Serial.print("is_valid_packet: ");
 //        Serial.println(is_valid_packet);
 //        

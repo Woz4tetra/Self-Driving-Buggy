@@ -3,8 +3,9 @@ import struct
 import string
 import time
 
-serialRef = serial.Serial(port="/dev/cu.usbmodem1421",
-                                           baudrate=115200)
+address = "/dev/cu.usbmodem1411"#"/dev/cu.usbmodem1421"
+
+serialRef = serial.Serial(port=address, baudrate=115200)
 
 def makeParity(node, object_id, data):
     parity = int(node, 16) ^ int(object_id, 16)
@@ -31,14 +32,13 @@ def parseData(data, markers, out_formats):
     result = []
     if markers != None:
         data = splitMarkers(data, markers)
-
+    
+    
     for index in xrange(len(data)):
         if type(out_formats) == str:
-            result.append(formatInt(data[index],
-                                         out_formats))
+            result.append(formatInt(data[index], out_formats))
         else:
-            result.append(formatInt(data[index],
-                                         out_formats[index]))
+            result.append(formatInt(data[index], out_formats[index]))
     if len(result) == 1:
         result = result[0]
     return result
@@ -60,9 +60,9 @@ def formatInt(input_str, format):
     else:
         return input_str
 
-def get_sensor(sensor_id, markers=None, out_formats='uint'):
+def get_sensor(sensor_id, markers, out_formats):
     serialRef.write(chr(sensor_id) + "\n")
-    print repr(chr(sensor_id) + "\n")
+#    print repr(chr(sensor_id) + "\n")
     
     packet = []
     data = ""
@@ -78,7 +78,7 @@ def get_sensor(sensor_id, markers=None, out_formats='uint'):
             packet.append(data)
             data = ""
     
-    print repr(data)
+#    print repr(packet)
     if len(packet) != 4: return None
     if int(packet[0], 16) != 2: return None
     if int(packet[1], 16) != sensor_id: return None
@@ -93,42 +93,76 @@ def send_command(command_id, data):
         parity = "0" + hex(parity)[2:]
     else:
         parity = hex(parity)[2:]
-    packet = chr(command_id) + "\t" + str(data) + "\t" + parity + "\n"
+    packet = chr(command_id) + "\t" + (hex(data)[2:])[::-1] + "\t" + parity + "\n"
+#    print(repr(packet))
     serialRef.write(packet)
 
-read_flag = serialRef.read()
-print("Waiting for ready flag...")
-time.sleep(0.5)
-while read_flag != 'R':
-    print read_flag,
-    read_flag = serialRef.read()
-serialRef.write(" ");
-serialRef.flushInput()
-serialRef.flushOutput()
-print("Arduino initialized!")
-time.sleep(0.5)
-serialRef.write("\n")  # packets begin and end with \n. Send this first to start the flow of data
+formats = {
+    'u': 'uint',
+    'i': 'int',
+    'h': 'hex',
+    'f': 'float',
+    'b': 'bool'
+}
 
-sensor_id = 5
-led13_state = True
-while True:
-    if sensor_id <= 3:
-        markers = "#### #### ####"
-        out_formats = "int"
-    elif sensor_id == 4:
-        markers = "########"
-        out_formats = "uint"
-    else:
-        markers = "######## ######## ######## ######## ## ##"
-        out_formats = 'ffffuu'
-    result = get_sensor(sensor_id, markers, out_formats)
-    if result == None:
-        while True:
-            print serialRef.read()
+def convertOuts(out_formats):
+    if out_formats == None:
+        return 'uint'
+    if out_formats in formats.values():
+        return out_formats
     
-#    sensor_id = (sensor_id % 4) + 1
+    out_list = []
+    for character in out_formats:
+        if character in formats:
+            out_list.append(formats[character])
+        else:
+            raise Exception("""Invalid format: %s
+                Valid characters:
+                %s
+                """ % (character, formats))
+    return out_list
+
+if __name__ == '__main__':
+    read_flag = serialRef.read()
+    print("Waiting for ready flag...")
+    time.sleep(0.5)
+    while read_flag != 'R':
+        print read_flag,
+        read_flag = serialRef.read()
+    serialRef.write(" ");
+    serialRef.flushInput()
+    serialRef.flushOutput()
+    print("Arduino initialized!")
+    time.sleep(0.5)
+    serialRef.write("\n")  # packets begin and end with \n. Send this first to start the flow of data
     
-    send_command(7, int(led13_state))
-    led13_state = not led13_state
-    time.sleep(0.01)
+    servo_value = 0
+    
+    sensor_id = 4
+    led13_state = True
+    while True:
+        if sensor_id <= 3:
+            markers = "#### #### ####"
+            out_formats = "int"
+        elif sensor_id == 4:
+            markers = "########"
+            out_formats = "uint"
+        else:
+            markers = "######## ######## ######## ######## ## ##"
+            out_formats = 'ffffuu'
+        out_formats = convertOuts(out_formats)
+        result = get_sensor(sensor_id, markers, out_formats)
+        print result
+#        sensor_id = (sensor_id % 5) + 1
+        if sensor_id == 4:
+            sensor_id = 5
+        else:
+            sensor_id = 4
+        
+        send_command(6, servo_value)
+        servo_value = (servo_value + 1) % 125
+
+        send_command(7, int(led13_state))
+        led13_state = not led13_state
+        time.sleep(0.01)
 

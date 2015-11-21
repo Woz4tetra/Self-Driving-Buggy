@@ -84,8 +84,11 @@ void mpu_update(uint8_t* accelgyro_buf, uint8_t* magnet_buf)
     uint8_t ST1;
     do {
         I2Cread(MAG_ADDRESS, 0x02, 1, &ST1);
+//        if (!(ST1 & 0x01)) {
+//            Serial.println("Magnet read failure...");
+//        }
     }
-    while (!(ST1&0x01));
+    while (!(ST1 & 0x01));
     
     // Read magnetometer data    
     I2Cread(MAG_ADDRESS, 0x03, 7, magnet_buf);

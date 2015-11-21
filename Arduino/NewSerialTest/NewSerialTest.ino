@@ -79,7 +79,6 @@ void setup()
 {
     begin_serial(baud);
     
-    
     accel = sensor_new(node, 1, 6, &imu_update);
     gyro = sensor_new(node, 2, 6, &imu_update);
     magnet = sensor_new(node, 3, 6, &imu_update);
@@ -103,7 +102,7 @@ void setup()
     GPS_data = new gps_data;
     
     handshake();
-    Serial.println("Ready!");
+//    Serial.println("Ready!");
 }
 
 void loop()
@@ -150,10 +149,16 @@ void loop()
         sensor_toserial(magnet);
     }
     
-    if (sensor_ids_equal(encoder, object_id))
+    else if (sensor_ids_equal(encoder, object_id))
     {
         sensor_update(encoder, (void*)(encoder_distance()));
         sensor_toserial(encoder);
+    }
+    
+    else if (sensor_ids_equal(gps, object_id))
+    {
+        sensor_update(gps, (void*)(GPS_data));
+        sensor_toserial(gps);
     }
     
     else if (command_ids_equal(servo1_command, object_id)) {
@@ -162,12 +167,6 @@ void loop()
     
     else if (command_ids_equal(led13_command, object_id)) {
         digitalWrite(LED13_PIN, *payload);
-    }
-    
-    else if (sensor_ids_equal(gps, object_id))
-    {
-        sensor_update(gps, (void*)(GPS_data));
-        sensor_toserial(gps);
     }
 }
 

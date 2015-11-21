@@ -72,6 +72,9 @@ void gps_setup()
 #endif
     
     result = new gps_data;
+    result->data = new float[gps_float_array_len];
+    result->quality = new uint8_t[2];
+    
     delay(1000);
 }
 
@@ -94,21 +97,35 @@ gps_data* get_gps()
 //            return;  // we can fail to parse a sentence in which case we should just wait for another
     }
     
-//    gps_float_array[0] = GPS.latitude;
-//    gps_float_array[1] = GPS.longitude;
-//    gps_float_array[2] = GPS.speed;
-//    gps_float_array[3] = GPS.angle;
+//    Serial.println("something 1");
+//    delay(50);
     
-    result->data = new float[gps_float_array_len];
-    result->quality = new uint8_t[2];
+//    if (result != NULL)
+//    {
+//        if (result->data != NULL) {
+//            delete result->data;
+//        }
+//        if (result->quality != NULL) {
+//            delete result->quality;
+//        }
+//    }
+    
+//    Serial.println("something 3");
+//    delay(50);
     
     result->data[0] = GPS.latitude;
     result->data[1] = GPS.longitude;
     result->data[2] = GPS.speed;
     result->data[3] = GPS.angle;
     
+//    Serial.println("something 4");
+//    delay(50);
+    
     result->quality[0] = (uint8_t)GPS.satellites;
     result->quality[1] = (uint8_t)GPS.fixquality;
+    
+//    Serial.println("something 5");
+//    delay(50);
     
     return result;
 }

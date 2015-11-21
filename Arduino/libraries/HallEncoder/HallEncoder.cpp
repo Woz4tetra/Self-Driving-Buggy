@@ -12,6 +12,8 @@ bool is_in_range; //if true, trigger when we see out-of-range value
 int last_rising_edge; //ms
 volatile unsigned long enc_distance; // counts of the encoder
 
+unsigned long *distance_ptr;
+
 #define HYST_TRIG_HIGH 950 //TODO: Tune these based on OBSERVED values
 #define HYST_TRIG_LOW 850
 //#define WHEEL_CIR (10.0 * PI)
@@ -51,12 +53,13 @@ void encoder_setup()
     
     Timer1.attachInterrupt(handler); //handler is a function pointer
     Timer1.start(ADC_POLLING_PERIOD_US);
+    
+    distance_ptr = new unsigned long;
     interrupts();
 }
 
 unsigned long* encoder_distance()
 {
-    unsigned long *distance_ptr = new unsigned long;
     *distance_ptr = enc_distance;
     return distance_ptr;
 }
