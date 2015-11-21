@@ -34,43 +34,44 @@ import math
 
 def joystick_angle(position):
     if math.sqrt(position[0] ** 2 + position[1] ** 2) > 0.6:
-#        angle = -math.degrees(math.atan2(position[1], position[0])) * 125 / 180
-    
-#        return int(angle) + 125
         return -int(math.degrees(math.atan2(position[1], position[0])) * 125 / 180)
     else:
         return -1
+
+enable_file_write = True
 
 def run():
     pygame.display.init()
     pygame.joystick.init()
     joystick = BuggyJoystick()
     
-    course = map_maker.get_map("Sun Nov  1 19;53;06 2015.csv")
-    binder = Binder(course)
-    pid = PID()
-    
-    recorder = Recorder()
+#    course = map_maker.get_map("Sun Nov  1 19;53;06 2015.csv")
+#    binder = Binder(course)
+#    pid = PID()
     
     angle = 90
     send_command(6, angle)
     
-    enc_distance = 0
+    enc_distance = ['2', 'a', '0', '-1']
     imu_data = [0, 0, 0]
     gps_data = [0.0, 0.0, 0.0, 0.0, 0, 0]
     
 #    coordinates = [0, 0]
+    time0 = time.time()
+    
+    recorder = Recorder()
     data = []
+    
     try:
         while joystick.done is False:
             joystick.update()
-            for sensor_id in xrange(4, 6):
+            for sensor_id in ['a', 'b']:
                 if sensor_id <= 3:
                     imu_data[sensor_id - 1] = get_sensor(sensor_id, "#### #### ####", "int")
-                elif sensor_id == 4:
-                    enc_distance = get_sensor(sensor_id, "########", "uint")
+                elif sensor_id == 'a':
+                    enc_distance = get_sensor(ord(sensor_id), "########", "uint")
                 else:
-                    gps_data = get_sensor(sensor_id, "######## ######## ######## ######## ## ##", 'ffffuu')
+                    gps_data = get_sensor(ord(sensor_id), "######## ######## ######## ######## ## ##", 'ffffuu')
             if enc_distance == None:
                 enc_distance = "-"
             if imu_data == None:
@@ -78,33 +79,38 @@ def run():
             if gps_data == None:
                 gps_data = ["-", "-", "-", "-", "-", "-"]
             
-            data.append([enc_distance] + imu_data + gps_data)
-            
-            if len(data) > 50:
-                while len(data) > 0:
-                    recorder.add_data(data.pop(0))
             angle = joystick_angle(joystick.mainStick)
-            print angle
+            
+            data_row = [time.time() - time0, angle] + enc_distance + gps_data
+            print data_row
+            if enable_file_write:
+                data.append(data_row)
+            
+                if len(data) > 50:
+                    while len(data) > 0:
+                        recorder.add_data(data.pop(0))
+            #print angle
             if 0 <= angle <= 125:
                 send_command(6, angle)
-        
-#        binder = Binder(course)
-#        index_of_next = binder.bind(gps.coordinates)
-#        
-#        pid = PID()
-#        lng, lat = coordinates
-#        current_pos = (lng, lat, angle)
-#        next_pos = course[index_of_next]
-#        new_servo_angle = pid.update(current_pos,next_pos)
-#        
-#        angle = new_servo_angle
-    except:
+            
+#                binder = Binder(course)
+#                index_of_next = binder.bind(gps.coordinates)
+#                
+#                pid = PID()
+#                lng, lat = coordinates
+#                current_pos = (lng, lat, angle)
+#                next_pos = course[index_of_next]
+#                new_servo_angle = pid.update(current_pos,next_pos)
+#                
+#                angle = new_servo_angle
+    except KeyboardInterrupt:
         pass
     finally:
-        if len(data) > 0:
-            for row in data:
-                recorder.add_data(row)
-        recorder.close()
+        if enable_file_write:
+            if len(data) > 0:
+                for row in data:
+                    recorder.add_data(row)
+            recorder.close()
 
 if __name__ == '__main__':
     print __doc__

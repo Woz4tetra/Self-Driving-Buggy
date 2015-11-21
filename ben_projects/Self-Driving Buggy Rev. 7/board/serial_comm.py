@@ -3,7 +3,9 @@ import struct
 import string
 import time
 
-address = "/dev/cu.usbmodem1411"#"/dev/cu.usbmodem1421"
+address = "/dev/cu.usbmodem1411"
+#"/dev/cu.usbmodem1421"
+#"/dev/cu.usbmodem1411"
 
 serialRef = serial.Serial(port=address, baudrate=115200)
 
@@ -80,14 +82,14 @@ def get_sensor(sensor_id, markers, out_formats):
             packet.append(data)
             data = ""
     
-#    print repr(packet)
-    if len(packet) != 4: return None
-    if int(packet[0], 16) != 2: return None
-    if int(packet[1], 16) != sensor_id: return None
-    if int(packet[3], 16) != makeParity(*packet[0:3]):
-        return None
-    
-    return parseData(packet[2], markers, out_formats)
+    print repr(packet)
+#    if len(packet) != 4: return None
+#    if int(packet[0], 16) != 2: return None
+#    if int(packet[1], 16) != sensor_id: return None
+#    if int(packet[3], 16) != makeParity(*packet[0:3]):
+#        return None
+    return packet
+    #parseData(packet[2], markers, out_formats)
 
 def send_command(command_id, data):
     parity = command_id ^ data
