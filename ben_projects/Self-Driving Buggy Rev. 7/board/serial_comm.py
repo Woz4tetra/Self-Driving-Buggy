@@ -61,6 +61,8 @@ def formatInt(input_str, format):
         return input_str
 
 def get_sensor(sensor_id, markers, out_formats):
+    out_formats = convertOuts(out_formats)
+    
     serialRef.write(chr(sensor_id) + "\n")
 #    print repr(chr(sensor_id) + "\n")
     
@@ -122,7 +124,7 @@ def convertOuts(out_formats):
                 """ % (character, formats))
     return out_list
 
-if __name__ == '__main__':
+def handshake():
     read_flag = serialRef.read()
     print("Waiting for ready flag...")
     time.sleep(0.5)
@@ -135,34 +137,3 @@ if __name__ == '__main__':
     print("Arduino initialized!")
     time.sleep(0.5)
     serialRef.write("\n")  # packets begin and end with \n. Send this first to start the flow of data
-    
-    servo_value = 0
-    
-    sensor_id = 4
-    led13_state = True
-    while True:
-        if sensor_id <= 3:
-            markers = "#### #### ####"
-            out_formats = "int"
-        elif sensor_id == 4:
-            markers = "########"
-            out_formats = "uint"
-        else:
-            markers = "######## ######## ######## ######## ## ##"
-            out_formats = 'ffffuu'
-        out_formats = convertOuts(out_formats)
-        result = get_sensor(sensor_id, markers, out_formats)
-        print result
-#        sensor_id = (sensor_id % 5) + 1
-        if sensor_id == 4:
-            sensor_id = 5
-        else:
-            sensor_id = 4
-        
-        send_command(6, servo_value)
-        servo_value = (servo_value + 1) % 125
-
-        send_command(7, int(led13_state))
-        led13_state = not led13_state
-        time.sleep(0.01)
-

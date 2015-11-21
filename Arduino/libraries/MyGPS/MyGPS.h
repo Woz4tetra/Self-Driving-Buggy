@@ -17,6 +17,7 @@ struct gps_data_header {
     uint8_t* quality;
 };
 
+gps_data* gps_data_new();
 void gps_setup();
 gps_data* get_gps();
 

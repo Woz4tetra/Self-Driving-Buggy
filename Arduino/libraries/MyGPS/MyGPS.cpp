@@ -49,6 +49,23 @@ void useInterrupt(boolean v)
 }
 #endif
 
+gps_data* gps_data_new()
+{
+    gps_data* new_gps_data = new gps_data;
+    new_gps_data->data = new float[gps_float_array_len];
+    new_gps_data->quality = new uint8_t[2];
+    
+    new_gps_data->data[0] = 0.0;
+    new_gps_data->data[1] = 0.0;
+    new_gps_data->data[2] = 0.0;
+    new_gps_data->data[3] = 0.0;
+    
+    new_gps_data->quality[0] = 0;
+    new_gps_data->quality[1] = 0;
+    
+    return new_gps_data;
+}
+
 void gps_setup()
 {
     // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
@@ -71,9 +88,7 @@ void gps_setup()
     useInterrupt(true);
 #endif
     
-    result = new gps_data;
-    result->data = new float[gps_float_array_len];
-    result->quality = new uint8_t[2];
+    result = gps_data_new();
     
     delay(1000);
 }
@@ -97,35 +112,13 @@ gps_data* get_gps()
 //            return;  // we can fail to parse a sentence in which case we should just wait for another
     }
     
-//    Serial.println("something 1");
-//    delay(50);
-    
-//    if (result != NULL)
-//    {
-//        if (result->data != NULL) {
-//            delete result->data;
-//        }
-//        if (result->quality != NULL) {
-//            delete result->quality;
-//        }
-//    }
-    
-//    Serial.println("something 3");
-//    delay(50);
-    
     result->data[0] = GPS.latitude;
     result->data[1] = GPS.longitude;
     result->data[2] = GPS.speed;
     result->data[3] = GPS.angle;
     
-//    Serial.println("something 4");
-//    delay(50);
-    
     result->quality[0] = (uint8_t)GPS.satellites;
     result->quality[1] = (uint8_t)GPS.fixquality;
-    
-//    Serial.println("something 5");
-//    delay(50);
     
     return result;
 }

@@ -63,12 +63,7 @@ uint8_t read_serial(uint64_t* payload) // command payloads limited by unsigned 6
     
     if (incomming_char == '\n' && !packet_empty(packet))
     {
-        object_id = deq(packet);// - '0';
-//        Serial.print("object_id 0: ");
-//        Serial.print(object_id == 1);
-//        Serial.print("(");
-//        Serial.print(object_id);
-//        Serial.println(")");
+        object_id = deq(packet);
         
         char next_char = (char)deq(packet);
         

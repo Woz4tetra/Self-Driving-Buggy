@@ -35,11 +35,6 @@ sensor_t sensor_new(int node, uint8_t sensor_id, uint8_t size,
 //@ensures is_sensor(\result);
 {
     sensor_t new_sensor = new struct sensor_header;
-    if (new_sensor == NULL)
-    {
-        Serial.println("allocation failed");
-        abort();
-    }
     
     new_sensor->node = node;
     new_sensor->sensor_id = sensor_id;
@@ -47,12 +42,6 @@ sensor_t sensor_new(int node, uint8_t sensor_id, uint8_t size,
     new_sensor->convert = convert_fn;
     
     new_sensor->data = new uint8_t[size];
-    
-    if (new_sensor->data == NULL)
-    {
-        Serial.println("allocation failed");
-        abort();
-    }
     
     return new_sensor;
 }

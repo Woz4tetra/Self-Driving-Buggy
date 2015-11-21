@@ -99,10 +99,9 @@ void setup()
     servo1.write(0);
     
     *payload = 0;
-    GPS_data = new gps_data;
+    GPS_data = gps_data_new();
     
     handshake();
-//    Serial.println("Ready!");
 }
 
 void loop()
@@ -110,23 +109,6 @@ void loop()
 //    mpu_update(accelgyro_buffer, magnet_buffer);
     GPS_data = get_gps();
     object_id = read_serial(payload);
-    
-//    if (object_id != '\0')
-//    {
-//        accelgyro_buffer[0] = random(0, 0xff);
-//        accelgyro_buffer[1] = random(0, 0xff);
-//        accelgyro_buffer[2] = random(0, 0xff);
-//        accelgyro_buffer[3] = random(0, 0xff);
-//        accelgyro_buffer[4] = random(0, 0xff);
-//        accelgyro_buffer[5] = random(0, 0xff);
-//        
-////        accelgyro_buffer[0] = 0x1;
-////        accelgyro_buffer[1] = 0x2;
-////        accelgyro_buffer[2] = 0x3;
-////        accelgyro_buffer[3] = 0x4;
-////        accelgyro_buffer[4] = 0x5;
-////        accelgyro_buffer[5] = 0x6;
-//    }
     
     if (sensor_ids_equal(accel, object_id))
     {
