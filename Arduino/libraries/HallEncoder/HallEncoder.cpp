@@ -58,9 +58,8 @@ void encoder_setup()
     interrupts();
 }
 
-unsigned long* encoder_distance()
+unsigned long encoder_distance()
 {
-    *distance_ptr = enc_distance;
-    return distance_ptr;
+    return enc_distance;
 }
 
