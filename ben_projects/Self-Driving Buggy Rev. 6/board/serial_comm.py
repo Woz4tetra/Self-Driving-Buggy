@@ -29,35 +29,36 @@ from common import _makeParity
 
 
 class Communicator:
-    def __init__(self, delay=0.003):  # ms between each ping to serial
+    def __init__(self):
         self.currentPacket = ""
-        self.delay = delay
 
-    def start(self):
-        self.serialRef = self._findPort()
+    def start(self, baud_rate, delay):
+        self.delay = delay  # ms between each ping to serial
+
+        self.serialRef = self._findPort(baud_rate)
         self._handshake()
 
     def _handshake(self):
-        readFlag = self.serialRef.read()
+        read_flag = self.serialRef.read()
 
         print("Waiting for ready flag...")
         time.sleep(0.5)
-        while readFlag != 'R':
-            print(readFlag, end="")
-            readFlag = self.serialRef.read()
+        while read_flag != 'R':
+            print(read_flag, end="")
+            read_flag = self.serialRef.read()
 
         self.serialRef.write("P")
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
         print("Arduino initialized!")
 
-    def _findPort(self, baudrate=115200):
+    def _findPort(self, baud_rate):
         address = None
         serial_ref = None
         for possible_address in self._possibleAddresses():
             try:
                 serial_ref = serial.Serial(port=possible_address,
-                                           baudrate=baudrate)
+                                           baudrate=baud_rate)
                 address = possible_address
             except:
                 pass
@@ -95,8 +96,8 @@ class Communicator:
             raise NotImplementedError
 
     def ping(self):
-        # print "ping!"
-        # print "in waiting send:", repr(self.serialRef.inWaiting())
+        # print("ping!")
+        # print("in waiting send:", repr(self.serialRef.inWaiting()))
 
         self.serialRef.write('x')
 

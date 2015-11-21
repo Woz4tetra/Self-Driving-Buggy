@@ -15,28 +15,26 @@
  *  
  */
 
-//#include "I2Cdev.h"
-//#include "MPU6050_6Axis_MotionApps20.h"
+/* ---------------- Includes start ------------------ */
+/*                                                    */
+#include <SerialPacket.h>
 #include <Wire.h>
 #include <DueTimer.h>
-#include <Servo.h>
 #include <Adafruit_GPS.h>
+#include <Servo.h>
 
-#include <SerialPacket.h>
-#include <defines.h>
-
-/* ================================================== *
- *                  Global constants                  *
- * ================================================== */
-
+/*                                                    */
+/* ----------------- Includes end ------------------- */
 
 /* -------------- Command IDs start ----------------- */
 /*                                                    */
-#define ANGLE_ID 0x00
-#define ENCODER_ID 0x01
-#define GPS_ID 0x02
-#define LED13_ID 0x03
-#define SERVO_ID 0x04
+#define MAGNET_ID 0x00
+#define GYRO_ID 0x01
+#define ACCEL_ID 0x02
+#define GPS_ID 0x03
+#define ENCODER_ID 0x04
+#define SERVO_ID 0x05
+#define LED13_ID 0x06
 /*                                                    */
 /* --------------- Command IDs end ------------------ */
 
@@ -44,7 +42,7 @@
 /*                                                    */
 SerialPacket Packet;
 
-const int baud = 115200;
+const int baud = 38400;
 const int node = 2;
 
 int payload = 0;
@@ -55,8 +53,8 @@ int command_id = 0;
 
 /* --------------- Auto Globals start --------------- */
 /*                                                    */
-/* ----- ANGLE globals ----- */
 
+/* ----- ACCEL globals ----- */
 #define    MPU9250_ADDRESS            0x68
 #define    MAG_ADDRESS                0x0C
 
@@ -97,22 +95,19 @@ void I2CwriteByte(uint8_t Address, uint8_t Register, uint8_t Data)
     Wire.endTransmission();
 }
 
-// Initial time
-long int ti;
-volatile bool intFlag=false;
-
-// Counter
-long int cpt=0;
+volatile bool intFlag = false;
 
 void callback()
 { 
     intFlag=true;
-    //digitalWrite(13, digitalRead(13) ^ 1);
+    digitalWrite(13, digitalRead(13) ^ 1);
 }
 
+uint8_t Buf[14];
+
+uint8_t accel_array[6];
 
 /* ----- ENCODER globals ----- */
-
 bool is_in_range; //if true, trigger when we see out-of-range value
 int last_rising_edge; //ms
 volatile uint16_t distance; // counts of the encoder
@@ -145,9 +140,7 @@ void handler()
     }
 }
 
-
 /* ----- GPS globals ----- */
-
 // GPS power pin to Arduino Due 3.3V output.
 // GPS ground pin to Arduino Due ground.
 // For hardware serial 1 (recommended):
@@ -157,8 +150,11 @@ void handler()
 
 Adafruit_GPS GPS(&mySerial);
 
-const int gps_array_len = 8;
-uint8_t gps_array[gps_array_len]; // 4 * 2, 2 float numbers
+const int gps_array_len = 18;
+
+// = 4 * 8 / 2, 4 float numbers, 2 hex digits for every uint8
+// + 2 for fix and satelittes
+uint8_t gps_array[gps_array_len]; 
 
 const int gps_float_array_len = 4;
 float gps_float_array[gps_float_array_len];
@@ -197,17 +193,19 @@ void useInterrupt(boolean); // Func prototype keeps Arduino 0023 happy
     }
 #endif
 
+/* ----- GYRO globals ----- */
+uint8_t gyro_array[6];
 
 /* ----- LED13 globals ----- */
-
 #define LED13_PIN 13
 
+/* ----- MAGNET globals ----- */
+uint8_t magnet_array[6];
+
+uint8_t Mag[7];
 
 /* ----- SERVO globals ----- */
-
 Servo servo1;
-
-
 /*                                                    */
 /* ---------------- Auto Globals end ---------------- */
 
@@ -229,9 +227,12 @@ void setup()
     
 /* ---------------- Auto Setup start ---------------- */
 /*                                                    */
-    /* ----- ANGLE setup ----- */
     
+/* ----- ACCEL setup ----- */
+    // Arduino initializations
     Wire.begin();
+    
+    //    Serial.println("type c to print data");
     
     // Set accelerometers low pass filter at 5Hz
     I2CwriteByte(MPU9250_ADDRESS,29,0x06);
@@ -252,15 +253,9 @@ void setup()
     pinMode(13, OUTPUT);
     Timer7.attachInterrupt(callback);  // attaches callback() as a timer overflow interrupt
     Timer7.start(10000);         // initialize timer1, and set a 1/2 second period
-    
-    
-    // Store initial time
-    ti=millis();
-    
-    
 
-    /* ----- ENCODER setup ----- */
     
+/* ----- ENCODER setup ----- */
     /*disable interrupts to ensure we won't receive the first timer 
      or I2C interrupt before we are ready*/
     noInterrupts();
@@ -273,11 +268,9 @@ void setup()
     Timer1.attachInterrupt(handler); //handler is a function pointer
     Timer1.start(ADC_POLLING_PERIOD_US);
     interrupts();
-    
-    
 
-    /* ----- GPS setup ----- */
     
+/* ----- GPS setup ----- */
     // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
     GPS.begin(9600);
     mySerial.begin(9600);
@@ -299,21 +292,15 @@ void setup()
     #endif
     
     delay(1000);
-    
-    
 
-    /* ----- LED13 setup ----- */
     
+/* ----- LED13 setup ----- */
     pinMode(LED13_PIN, OUTPUT);
-    
-    
 
-    /* ----- SERVO setup ----- */
     
+/* ----- SERVO setup ----- */
     servo1.attach(3);
     servo1.write(0);
-    
-    
 
 /*                                                    */
 /* ----------------- Auto Setup end ----------------- */
@@ -327,7 +314,59 @@ void setup()
 
 void loop()
 {
+/* ----------------- Auto Loop start ---------------- */
+/*                                                    */
+        
+/* ----- ACCEL loop ----- */
+    while (!intFlag);
+    intFlag=false;
     
+    // Read accelerometer and gyroscope
+    I2Cread(MPU9250_ADDRESS,0x3B,14,Buf);
+
+        
+/* ----- GPS loop ----- */
+    // in case you are not using the interrupt above, you'll
+    // need to 'hand query' the GPS, not suggested :(
+    if (!usingInterrupt) {
+        // read data from the GPS in the 'main loop'
+        char c = GPS.read();
+    }
+    // if a sentence is received, we can check the checksum, parse it...
+    if (GPS.newNMEAreceived()) {
+        // a tricky thing here is if we print the NMEA sentence, or data
+        // we end up not listening and catching other sentences! 
+        // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
+        //Serial.println(GPS.lastNMEA());   // this also sets the newNMEAreceived() flag to false
+        
+        if (!GPS.parse(GPS.lastNMEA()))   // this also sets the newNMEAreceived() flag to false
+            return;  // we can fail to parse a sentence in which case we should just wait for another
+    }
+    
+    gps_float_array[0] = GPS.latitude;
+    gps_float_array[1] = GPS.longitude;
+    gps_float_array[2] = GPS.speed;
+    gps_float_array[3] = GPS.angle;
+    
+    gps_array[16] = (uint8_t)GPS.satellites;
+    gps_array[17] = (uint8_t)GPS.fixquality;
+
+        
+/* ----- MAGNET loop ----- */
+    // Read register Status 1 and wait for the DRDY: Data Ready
+    
+    uint8_t ST1;
+    do
+    {
+        I2Cread(MAG_ADDRESS,0x02,1,&ST1);
+    }
+    while (!(ST1&0x01));
+    
+    // Read magnetometer data
+    I2Cread(MAG_ADDRESS,0x03,7,Mag);
+
+/*                                                    */
+/* ------------------ Auto Loop end ----------------- */
 }
 
 void to_hex(float input, uint8_t *array, int start)
@@ -362,84 +401,85 @@ void serialEvent()
     }
     else if (result == 2)
     {
-/* ----------------- Auto Loop start ---------------- */
+/* ------------------- Serial start ----------------- */
 /*                                                    */
-        /* ----- ANGLE loop ----- */
-        
-        noInterrupts();
-        
-        while (!intFlag);
-        intFlag=false;
-        
-        // Read register Status 1 and wait for the DRDY: Data Ready
-        
-        uint8_t ST1;
-        do {
-            I2Cread(MAG_ADDRESS,0x02,1,&ST1);
-        }
-        while (!(ST1&0x01));
-        
-        // Read magnetometer data  
-        uint8_t magnet_array[7];  
-        I2Cread(MAG_ADDRESS, 0x03, 7, magnet_array);
-        
-        Packet.sendDataArray(magnet_array, 7);
-        
-        interrupts();
-        
-
-        /* ----- ENCODER loop ----- */
-        
-        noInterrupts();
-        Packet.sendData16bit(command_id, distance);
-        interrupts();
-
-        /* ----- GPS loop ----- */
-        
-        // in case you are not using the interrupt above, you'll
-        // need to 'hand query' the GPS, not suggested :(
-        if (!usingInterrupt) {
-            // read data from the GPS in the 'main loop'
-            char c = GPS.read();
-        }
-        // if a sentence is received, we can check the checksum, parse it...
-        if (GPS.newNMEAreceived()) {
-            // a tricky thing here is if we print the NMEA sentence, or data
-            // we end up not listening and catching other sentences! 
-            // so be very wary if using OUTPUT_ALLDATA and trytng to print out data
-            //Serial.println(GPS.lastNMEA());   // this also sets the newNMEAreceived() flag to false
             
-            if (!GPS.parse(GPS.lastNMEA()))   // this also sets the newNMEAreceived() flag to false
-                return;  // we can fail to parse a sentence in which case we should just wait for another
-        }
-        
-        
-        gps_float_array[0] = GPS.latitude;
-        gps_float_array[1] = GPS.longitude;
-        gps_float_array[2] = GPS.speed;
-        gps_float_array[3] = GPS.angle;
-        
-        for (int float_index = 0; float_index < gps_float_array_len; float_index++) {
-            to_hex(gps_float_array[float_index], gps_array, float_index);
-        }
-        
-        //gps_array[16] = (uint8_t)GPS.satellites;
-        //gps_array[17] = (uint8_t)GPS.fixquality;
-        
-        Packet.sendDataArray(gps_array, gps_array_len);
-        
+/* ----- ACCEL serial ----- */
+        if (command_id == ACCEL_ID)
+        {
+            for (int index = 0; index < 6; index++) {
+                accel_array[index] = Buf[index];
+            }
+            
+            Packet.sendDataArray(accel_array, 6);
 
-        /* ----- LED13 loop ----- */
-        
-        digitalWrite(LED13_PIN, payload);
-        Packet.sendCommandReply(command_id, payload);
+        }
 
-        /* ----- SERVO loop ----- */
-        
-        servo1.write(payload);
-        Packet.sendCommandReply(command_id, payload);
+            
+/* ----- ENCODER serial ----- */
+        if (command_id == ENCODER_ID)
+        {
+            noInterrupts();
+            Packet.sendData16bit(command_id, distance);
+            interrupts();
+
+        }
+
+            
+/* ----- GPS serial ----- */
+        if (command_id == GPS_ID)
+        {
+            for (int float_index = 0; float_index < gps_float_array_len; float_index++) {
+                to_hex(gps_float_array[float_index], gps_array, float_index);
+            }
+            
+            Packet.sendDataArray(gps_array, gps_array_len);
+
+        }
+
+            
+/* ----- GYRO serial ----- */
+        if (command_id == GYRO_ID)
+        {
+            for (int index = 7; index < 13; index++) {
+                gyro_array[index] = Buf[index];
+            }
+            
+            Packet.sendDataArray(gyro_array, 6);
+
+        }
+
+            
+/* ----- LED13 serial ----- */
+        if (command_id == LED13_ID)
+        {
+            digitalWrite(LED13_PIN, payload);
+            Packet.sendCommandReply(command_id, payload);
+
+        }
+
+            
+/* ----- MAGNET serial ----- */
+        if (command_id == MAGNET_ID)
+        {
+            for (int index = 0; index < 6; index++) {
+                magnet_array[index] = Mag[index];
+            }
+            
+            Packet.sendDataArray(magnet_array, 6);
+
+        }
+
+            
+/* ----- SERVO serial ----- */
+        if (command_id == SERVO_ID)
+        {
+            servo1.write(payload);
+            Packet.sendCommandReply(command_id, payload);
+
+        }
 
 /*                                                    */
-/* ------------------ Auto Loop end ----------------- */
+/* -------------------- Serial end ------------------ */
     }
 }

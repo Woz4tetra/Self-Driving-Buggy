@@ -1,5 +1,4 @@
 from board.arduino_object import *
-from board import file_generator
 import math
 
 
@@ -39,16 +38,48 @@ import math
 #             # self.x, self.y, self.z = self.result
 #             return self.result
 
-class AngleSensor(Getter):
+class Accelerometer(Getter):
     def __init__(self):
-        self.roll, self.pitch, self.yaw = 0, 0, 0
-        super(AngleSensor, self).__init__("ANGLE",
-                                          "#### #### #### #### #### #### ####",
-                                          "dec")
+        self.x, self.y, self.z = 0, 0, 0
+        super(Accelerometer, self).__init__("ACCEL",
+                                            "#### #### ####",
+                                            "int")
 
     def get(self):
         if self.send() and self.result != None:
-            self.roll, self.pitch, self.yaw = self.result
+            # for index in xrange(len(self.result)):
+            #     self.result[index] = float(self.result[index]) / 16384
+            self.x, self.y, self.z = self.result
+        return self.x, self.y, self.z
+
+
+class Gyroscope(Getter):
+    def __init__(self):
+        self.roll, self.pitch, self.yaw = 0, 0, 0
+        super(Gyroscope, self).__init__("GYRO",
+                                        "#### #### ####",
+                                        "int")
+
+    def get(self):
+        if self.send() and self.result != None:
+            # for index in xrange(len(self.result)):
+            #     self.result[index] = float(self.result[index]) * 250 / 32768
+            self.roll, self.yaw, self.pitch = self.result
+        return self.roll, self.pitch, self.yaw
+
+
+class Magnetometer(Getter):
+    def __init__(self):
+        self.roll, self.pitch, self.yaw = 0, 0, 0
+        super(Magnetometer, self).__init__("MAGNET",
+                                           "#### #### ####",
+                                           "int")
+
+    def get(self):
+        if self.send() and self.result != None:
+            # for index in xrange(len(self.result)):
+            #     self.result[index] = float(self.result[index]) * 1200 / 4096
+            self.roll, self.yaw, self.pitch = self.result
         return self.roll, self.pitch, self.yaw
 
 
@@ -59,12 +90,15 @@ class GPS(Getter):
         self.coordinates = [0, 0]  # latitude, longitude
         self.satellites, self.fix_quality = 0, 0
         super(GPS, self).__init__("GPS",
-                                  "######## ########", "float")
+                                  "######## ######## ######## ######## ## ##",
+                                  "ffffuu")
 
     def get(self):
         if self.send() and self.result != None:
-            self.coordinates = self.result
-        return self.coordinates
+            self.coordinates[0], self.coordinates[
+                1], self.angle, self.speed, self.satellites, self.fix_quality = self.result
+
+            # return self.coordinates
 
 
 class Encoder(Getter):
@@ -72,6 +106,7 @@ class Encoder(Getter):
         self.counts0 = 0
         self.counts1 = 0
         self.position = list(initial_position)
+
         super(Encoder, self).__init__("ENCODER")
 
     def get(self, angle_yaw):
@@ -94,15 +129,25 @@ class Servo(Setter):
 
     @property
     def value(self):
-        return self.result
+        if self.result != None:
+            return self.result
+        else:
+            return 0
 
     def set(self, value):
         if type(value) == str and (value in self.positions.keys()):
             self.send(int(self.positions[value]))
+        elif type(value) == int:
+            self.send(value)
         elif value.isdigit():
             self.send(int(value))
 
     def toggle(self, value1, value2):
+        if value1 in self.positions.keys():
+            value1 = self.positions[value1]
+        if value2 in self.positions.keys():
+            value2 = self.positions[value2]
+
         if self.result != value1:
             self.set(value1)
         else:
@@ -124,15 +169,3 @@ class Led13(Setter):
 
     def toggle(self):
         return self.set(not self.state)
-
-
-def initialize(ino_file="SerialBox", baud_rate=115200, arduino_node=2):
-    file_generator.generate_file(ino_file,
-                                 ArduinoObject.used_command_ids,
-                                 baud_rate, arduino_node)
-
-    key = raw_input("Press enter (or enter q to quit): ")
-    if key == 'q':
-        quit()
-
-    start()

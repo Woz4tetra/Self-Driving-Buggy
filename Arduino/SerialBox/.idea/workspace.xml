@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c492bd7-527d-49d9-85a8-2a980c9d5d9a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/SerialBox.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SerialBoxOriginal.ino" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates_test.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SerialBox.ino" afterPath="$PROJECT_DIR$/SerialBox.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/__main__.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/__main__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/file_generator.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/board/file_generator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/test_file_generator.py" afterPath="$PROJECT_DIR$/../../ben_projects/Self-Driving Buggy Rev. 6/test_file_generator.py" />
-    </list>
+    <list default="true" id="8c492bd7-527d-49d9-85a8-2a980c9d5d9a" name="Default" comment="" />
     <ignored path="SerialBox.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +24,8 @@
       <file leaf-file-name="SerialBox.ino" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SerialBox.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6741573">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.20224719">
+              <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -303,7 +288,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -335,8 +320,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/SerialBox.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6741573">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.20224719">
+          <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
           <folding />
         </state>
       </provider>

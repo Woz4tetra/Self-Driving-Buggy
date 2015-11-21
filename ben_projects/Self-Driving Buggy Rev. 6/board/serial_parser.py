@@ -28,8 +28,7 @@ from common import _makeParity
 import struct
 import string
 
-enable_prints = False
-
+enable_prints = True
 
 class Parser:
     min_length = 16
@@ -37,14 +36,14 @@ class Parser:
     def __init__(self):
         pass
 
-    def parse(self, packet, verbose=False, markers=None, out='dec'):
+    def parse(self, packet, verbose=False, markers=None, out='uint'):
         if self._validatePacket(packet):
             return self._parseData(self.remove_newline(packet), verbose,
                                    markers, out)
         else:
             return None
 
-    def _parseData(self, packet, verbose, markers=None, out='dec'):
+    def _parseData(self, packet, verbose, markers=None, out='uint'):
         if verbose == False:
             return self._parsePayload(self._getPayloadHex(packet), markers, out)
         else:
@@ -66,7 +65,6 @@ class Parser:
             return False
         sent_type, sent_node, sent_cID, sent_load, sent_parity = sent_parsed
         recv_type, recv_node, recv_cID, recv_load, recv_parity = recv_parsed
-
         sent_packet = self.remove_newline(sent_packet)
         received_packet = self.remove_newline(received_packet)
 
@@ -226,7 +224,13 @@ class Parser:
         if format == 'float':
             input_str = "0" * (8 - len(input_str)) + input_str
             return struct.unpack('!f', input_str.decode('hex'))[0]
-        elif format == 'dec':
+        elif format == 'int':
+            bin_length = len(input_str) * 4
+            raw_int = int(input_str, 16)
+            if (raw_int >> (bin_length - 1)) == 1:
+                raw_int -= 2 ** bin_length
+            return raw_int
+        elif format == 'uint':
             return int(input_str, 16)
         elif format == 'bool':
             return bool(int(input_str))
@@ -252,15 +256,17 @@ class Parser:
 
     @staticmethod
     def _makeOutFormats(out, parsed_length):
-        if out == "dec" or out == "hex" or out == "float" or out == "bool":
+        if out == "uint" or out == "int" or out == "hex" or out == "float" or out == "bool":
             out_list = [out] * parsed_length
         else:
             assert len(out) == parsed_length
 
             out_list = []
             for character in out:
-                if character == "d":
-                    out_list.append("dec")
+                if character == "u":
+                    out_list.append("uint")
+                elif character == "i":
+                    out_list.append("int")
                 elif character == "h":
                     out_list.append("hex")
                 elif character == "f":
@@ -270,7 +276,8 @@ class Parser:
                 else:
                     raise Exception("""Invalid format: %s
 Valid characters:
-d = dec
+u = uint
+i = int
 h = hex
 f = float
 b = bool
@@ -278,7 +285,7 @@ b = bool
         assert len(out_list) == parsed_length
         return out_list
 
-    def _parsePayload(self, payload, markers=None, out='dec'):
+    def _parsePayload(self, payload, markers=None, out='uint'):
         # markers and markers are in units of digits of a hex number
         assert type(payload) == str
         assert markers == None or type(markers) == str
@@ -307,7 +314,7 @@ def test_serial_packet():
     parser = Parser()
 
     for number in xrange(0xff):
-        assert parser.hex_to_dec(hex(number)) == number
+        assert parser.hex_to_dec(hex(number)[2:]) == number
 
     # ---- correct packets ---- #
     packet1 = 'T01N01I00P00Q00\r\n'
@@ -412,7 +419,9 @@ def test_serial_packet():
     packet25 = "T05N02I12P457BAD6D45F8A7FA00000000000000000601Q0C\r\n"
     packet26 = "T02N02I04P00Q04\r\n"
     packet27 = "T02N02I04P01Q05\r\n"
-    packet28 = 'T04N02I00P0073Q75\r\n'
+    packet28 = "T04N02I00P0073Q75\r\n"
+    packet29 = "T05N02I02PE2700560397CQB7"
+    packet30 = "T05N02I02PE2F005083A20Q00"
 
     assert parser._parsePayload(parser._getPayloadHex(packet20),
                                 markers="### ### ### ###",
@@ -463,15 +472,15 @@ def test_serial_packet():
 
     assert parser._parsePayload(parser._getPayloadHex(packet23),
                                 markers="######## ######## ######## ######## ## ##",
-                                out="ffffdd") == \
+                                out="ffffuu") == \
            [4026.839111328125, 7900.5673828125, 0.0, 0.0, 6, 1]
     assert parser._parsePayload(parser._getPayloadHex(packet24),
                                 markers="######## ######## ######## ######## ## ##",
-                                out="ffffdd") == \
+                                out="ffffuu") == \
            [4026.839111328125, 7900.056640625, 0.0, 0.0, 6, 1]
     assert parser._parsePayload(parser._getPayloadHex(packet25),
                                 markers="######## ######## ######## ######## ## ##",
-                                out="ffffdd") == \
+                                out="ffffuu") == \
            [4026.839111328125, 7956.9970703125, 0.0, 0.0, 6, 1]
 
     assert parser._parsePayload(parser._getPayloadHex(packet26),
@@ -480,7 +489,17 @@ def test_serial_packet():
                                 out='bool') == True
 
     assert parser._parsePayload(parser._getPayloadHex(packet28),
-                                out='dec') == 115
+                                out='uint') == 115
+
+    assert parser._parsePayload(parser._getPayloadHex(packet29),
+                                markers="#### #### ####",
+                                out='int') == [-7568, 1376, 14716]
+
+    assert parser._parsePayload(parser._getPayloadHex(packet30),
+                                markers="#### #### ####",
+                                out='int') == [-7440, 1288, 14880]
+    
+    print("All tests passed!!!")
 
 
 if __name__ == '__main__':

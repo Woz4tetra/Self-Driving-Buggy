@@ -56,6 +56,8 @@ void setup()
     Wire.begin();
     Serial.begin(115200);
     
+    //    Serial.println("type c to print data");
+    
     // Set accelerometers low pass filter at 5Hz
     I2CwriteByte(MPU9250_ADDRESS,29,0x06);
     // Set gyroscope low pass filter at 5Hz
@@ -97,10 +99,11 @@ void callback()
 // Main loop, read and display data
 void loop()
 {
+    //    if (Serial.read() == 'c') {
     while (!intFlag);
     intFlag=false;
-    
-    // Display time
+    //        
+    //        // Display time
     Serial.print (millis()-ti,DEC);
     Serial.print ("\t");
     
@@ -190,7 +193,8 @@ void loop()
     
     // End of line
     Serial.println("");
-    //  delay(100);    
+    delay(5);   
+    //    }
 }
 
 
