@@ -5,6 +5,10 @@
     Version 11/20/2015
     =========
     
+    This program is the code that was run the last day of rolls 2015
+    (November 21st, 2015, ~6am) and our first test run of data collection
+    on RoboQuasar.
+    
     This program controls the self-driving buggy. It manages computer vision,
     microcontroller control and data collection, PID feedback, encoder to x, y
     algorithms, path finding, GPS algorithms, and IMU algorithms. Each of these is
@@ -38,7 +42,7 @@ def joystick_angle(position):
     else:
         return -1
 
-enable_file_write = True
+enable_file_write = False
 
 def run():
     pygame.display.init()
@@ -59,8 +63,9 @@ def run():
 #    coordinates = [0, 0]
     time0 = time.time()
     
-    recorder = Recorder()
-    data = []
+    if enable_file_write:
+        recorder = Recorder()
+        data = []
     
     try:
         while joystick.done is False:
@@ -82,8 +87,8 @@ def run():
             angle = joystick_angle(joystick.mainStick)
             
             data_row = [time.time() - time0, angle] + enc_distance + gps_data
-            print data_row
             if enable_file_write:
+                print data_row
                 data.append(data_row)
             
                 if len(data) > 50:

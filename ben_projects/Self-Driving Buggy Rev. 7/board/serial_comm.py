@@ -82,7 +82,7 @@ def get_sensor(sensor_id, markers, out_formats):
             packet.append(data)
             data = ""
     
-    print repr(packet)
+#    print repr(packet)
 #    if len(packet) != 4: return None
 #    if int(packet[0], 16) != 2: return None
 #    if int(packet[1], 16) != sensor_id: return None
