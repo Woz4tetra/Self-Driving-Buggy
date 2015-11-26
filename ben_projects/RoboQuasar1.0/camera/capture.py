@@ -1,13 +1,10 @@
 import copy
 import time
 import datetime
-import os
 
 import cv2
 import numpy
-
-PROJECTDIR = os.path.dirname(os.path.realpath(__file__))
-
+import config
 
 class Capture(object):
     excludedSources = set()
@@ -318,7 +315,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
     def loadVideo(self, camSource):
         print "loading video into window named '" + str(
             self.windowName) + "'..."
-        self.camera = cv2.VideoCapture(PROJECTDIR + "/Videos/" + camSource)
+        self.camera = cv2.VideoCapture(config.get_dir(":videos") + camSource)
 
         self.cameraFPS = self.camera.get(cv2.CAP_PROP_FPS)
         self.lenVideoFrames = int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -409,12 +406,12 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if not burst_mode:
             name = time.strftime("%c").replace(":", ";") + ".png"
             print "Frame saved as " + str(name)
-            print "in directory:\n" + PROJECTDIR + "/Images/"
+            print "in directory:\n" + config.get_dir(":images")
         else:
             name = datetime.datetime.now().strftime(
                 "%a %b %d %H;%M;%S.%f %p, %Y") + ".png"
 
-        cv2.imwrite(PROJECTDIR + "/Images/" + name, frame)
+        cv2.imwrite(config.get_dir(":images") + name, frame)
 
     def increaseFPS(self):
         '''
@@ -507,8 +504,9 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         '''
         return self.camera.get(cv2.CAP_PROP_FPS)
 
-    def initVideoWriter(self, fps=30, name="", includeTimestamp=True,
-                        codec='mp4v', format='m4v'):
+    def initVideoWriter(self, fps=30, video_name=None, includeTimestamp=True,
+                        codec='mp4v', format='mov',
+                        output_dir=None):
         '''
         Initialize the Capture's video writer.
 
@@ -516,26 +514,33 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 the capture's current FPS may not match the video's output FPS.
                 This is because video playback takes less computation than
                 analyzing the video in this setting.
-        :param name: The name of the video. If "", a time stamp will
+        :param video_name: The name of the video. If "", a time stamp will
                 automatically be inserted
         :param includeTimestamp: An optional parameter specifying whether the
                 time should be included. True by default
         :param codec: The output video codec. mp4v is recommended
         :return: None
         '''
-        videoName = name
-        if name != "" and includeTimestamp == True:
-            videoName += " "
-        if name == "" or includeTimestamp == True:
-            videoName += time.strftime("%c").replace(":", ";") + "." + format
+        if video_name == None:
+            video_name = ""
+        elif video_name != None and includeTimestamp == True:
+            video_name += " "
 
+        if includeTimestamp == True:
+            video_name += time.strftime("%c").replace(":", ";") + "." + format
+        
+        if output_dir == None:
+            output_dir = config.get_dir(":videos") + video_name
+        else:
+            output_dir += "/" + video_name
         fourcc = cv2.VideoWriter_fourcc(*codec)
         self.video = cv2.VideoWriter()
-        self.video.open(PROJECTDIR + "/Videos/" + videoName, fourcc, fps,
+        self.video.open(output_dir, fourcc, fps,
                         (int(self.dimensions[2] - self.dimensions[0]),
                          int(self.dimensions[3] - self.dimensions[1])), True)
 
-        print "Initialized video named '%s'." % (videoName)
+        self.videoOutputDir = output_dir
+        print "Initialized video named '%s'." % (video_name)
 
     def writeToVideo(self, frame):
         '''
@@ -557,7 +562,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         '''
         if self.video is not None:
             self.video.release()
-            print "Video written to:\n%s" % (PROJECTDIR + "/Videos/")
+            print "Video written to:\n" + self.videoOutputDir
 
     def updateFrame(self, readNextFrame=True):
         '''

@@ -12,22 +12,20 @@ import csv
 import time
 import sys
 
-def get_map(file_name=None):
-    if __name__ == '__main__':
-        directory = "storage/" + file_name
-    else:
-        import config
-        directory = config.get_project_dir() + "/map/storage/" + file_name
+sys.path.insert(0, '../')
+import config
+
+def get_map(directory=None):
     with open(directory, 'rb') as csvfile:
         map_reader = csv.reader(csvfile, delimiter=',', quotechar='|')
         parsed = [[float(row[0]), float(row[1])] for row in map_reader]
         return parsed
 
 
-def write_map(data, file_name=None):
-    if file_name == None:
-        file_name = time.strftime("%c").replace(":", ";")
-    with open("storage/" + file_name + ".csv", 'wb') as csvfile:
+def write_map(data, directory=None):
+    if directory == None:
+        directory = time.strftime("%c").replace(":", ";")
+    with open(directory + ".csv", 'wb') as csvfile:
         map_writer = csv.writer(csvfile, delimiter=',',
                                 quotechar='|',
                                 quoting=csv.QUOTE_MINIMAL)
@@ -35,8 +33,9 @@ def write_map(data, file_name=None):
             assert len(row) == 2
             map_writer.writerow(row)
 
-def convert_gpx(file_name):
-    with open("storage/gpx/" + file_name, 'r') as gpx_file:
+def convert_gpx(directory):
+    directory = config.get_dir(directory)
+    with open(directory, 'r') as gpx_file:
         contents = gpx_file.read()
         data = []
 
@@ -57,7 +56,7 @@ def convert_gpx(file_name):
             contents = contents[lon_index_end:]
 
         data.pop(-1)
-        write_map(data, file_name[:-4])
+        write_map(data, directory[:-4])
 
 if __name__ == '__main__':
     arguments = sys.argv
