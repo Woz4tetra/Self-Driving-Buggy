@@ -14,6 +14,7 @@ def arduino_dir():
 directories = {
     'arduino': arduino_dir(),
     'board': CONFIGDIR + "/board/",
+    'logs': CONFIGDIR + "/board/logs/",
     'camera': CONFIGDIR + "/camera/",
     'videos': CONFIGDIR + "/camera/Videos/",
     'images': CONFIGDIR + "/camera/Images/",
