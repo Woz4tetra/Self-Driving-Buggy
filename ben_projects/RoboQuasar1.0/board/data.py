@@ -11,7 +11,7 @@ class SensorData(object):
     def init_sensor_ids(self, sensors):
         sensor_ids = {}
         for name, sensor in self.sensors.iteritems():
-            sensor_ids[sensor.sensor_id] = name
+            sensor_ids[sensor.object_id] = name
         return sensor_ids
 
     def update(self, sensor_id, data):
@@ -28,10 +28,37 @@ class SensorData(object):
         else:
             return None
 
+class CommandQueue(object):
+    def __init__(self, **commands):
+        self.commands = commands
+        self.command_ids = self.init_command_ids(self.commands)
 
-class Sensor(object):
-    next_id = 0
+        self.queue = []
 
+    def init_command_ids(self, commands):
+        command_ids = {}
+        for name, command in self.commands.iteritems():
+            command_ids[command.object_id] = name
+        return command_ids
+
+    def put(self, command, data):
+        if type(command) == Command:
+            self.queue.append(command.get_packet(data))
+        elif type(command) == int:
+            packet = self.commands[self.command_ids[command]].get_packet(data)
+            self.queue.append(packet)
+        elif type(command) == str:
+            packet = self.commands[command].get_packet(data)
+            self.queue.append(packet)
+
+    def get(self):
+        return self.queue.pop(0)
+
+    def is_empty(self):
+        return len(self.queue) == 0
+
+
+class SerialObject(object):
     short_formats = {
         'u8': 'uint8', 'u16': 'uint16', 'u32': 'uint32', 'u64': 'uint64',
         'i8': 'int8', 'i16': 'int16', 'i32': 'int32', 'i64': 'int64',
@@ -48,20 +75,21 @@ class Sensor(object):
         'hex': None, 'chr': None,
     }
 
-    def __init__(self, *formats):
-        if chr(Sensor.next_id) == '\t' or chr(Sensor.next_id) == '\n':
-            Sensor.next_id += 1
-        self.sensor_id = Sensor.next_id
-        Sensor.next_id += 1
-
+    def __init__(self, object_id, formats):
         self.formats = self.init_formats(list(formats))
-        self.data_indices = self.make_indices(self.formats)
-        self.data_len = self.data_indices[-1]
+        self.object_id = object_id
+        self.data_len = 0
 
-        assert (self.data_indices == None or
-                len(self.formats) == len(self.data_indices) - 1)
+    def init_formats(self, formats):
+        for index in xrange(len(formats)):
+            if not self.is_format(formats[index]):
+                raise Exception("Invalid format name: '%s'" % formats[index])
 
-        self.data = None
+            if (formats[index] in self.short_formats and
+                        self.get_len(formats[index]) == -1):
+                formats[index] = self.short_formats[formats[index]]
+
+        return formats
 
     def is_format(self, data_format):
         if data_format in self.short_formats.keys(): return True
@@ -87,16 +115,69 @@ class Sensor(object):
         else:
             return int(hex_format[len_start:])
 
-    def init_formats(self, formats):
-        for index in xrange(len(formats)):
-            if not self.is_format(formats[index]):
-                raise Exception("Invalid format name: '%s'" % formats[index])
 
-            if (formats[index] in self.short_formats and
-                        self.get_len(formats[index]) == -1):
-                formats[index] = self.short_formats[formats[index]]
+class Command(SerialObject):
+    def __init__(self, command_id, format):
+        super(Command, self).__init__(command_id, [format])
 
-        return formats
+        self.data_len = self.format_len[self.formats[0]]
+    
+    def to_hex(self, decimal):
+        if 0 <= decimal < 0x10:
+            return "0" + hex(decimal)[2:]
+        else:
+            return hex(decimal)[2:]
+    
+    def format_data(self, data, data_format):
+        if data_format == 'bool':
+            return str(int(bool(data)))
+
+        elif data_format[0] == 'h':
+            return data
+
+        elif data_format[0] == 'c':
+            return hex(ord(data))[2:]
+
+        elif 'uint' in data_format:
+            return hex(data)[2:]
+
+        elif 'int' in data_format:
+            int_size = int(data_format[3:])
+            if data < 0:
+                data += (2 << (int_size - 1))
+            return hex(data)[2:]
+
+        elif data_format == 'float':
+            return ''.join('%.2x' % ord(c) for c in struct.pack('>f', data))
+
+        elif data_format == 'double':
+            return ''.join('%.2x' % ord(c) for c in struct.pack('>d', data))
+    
+    def get_packet(self, data):
+        assert len(data) == self.data_len and self.data_len <= 16
+        packet = self.to_hex(self.object_id) + "\t"
+        packet += self.to_hex(self.data_len) + "\t"
+
+        if type(data) == str:
+            packet += self.data_len + "\n"
+        elif type(data) == int:
+            packet += self.to_hex(self.data_len) + "\n"
+        else:
+            raise Exception("Invalid data type: %s, %s" % str(data), type(data))
+
+        return packet
+
+class Sensor(SerialObject):
+    def __init__(self, sensor_id, *formats):
+        super(Sensor, self).__init__(sensor_id, formats)
+
+        self.data_indices = self.make_indices(self.formats)
+        self.data_len = self.data_indices[-1]
+
+        assert (self.data_indices == None or
+                len(self.formats) == len(self.data_indices) - 1)
+
+        self.data = None
 
     def make_indices(self, formats):
         indices = [0]
@@ -109,24 +190,18 @@ class Sensor(object):
 
         return indices
 
-    def hex_to_str(self, hex_string):
-        string = ""
-        for index in xrange(0, len(hex_string) - 1, 2):
-            string += chr(int(hex_string[index: index + 2], 16))
-        return string
-
     def format_hex(self, hex_string, data_format):
         if data_format == 'bool':
             return bool(int(hex_string, 16))
-
-        elif data_format == 'chr':
-            return chr(int(hex_string, 16))
 
         elif data_format[0] == 'h':
             return hex_string
 
         elif data_format[0] == 'c':
-            return self.hex_to_str(hex_string)
+            string = ""
+            for index in xrange(0, len(hex_string) - 1, 2):
+                string += chr(int(hex_string[index: index + 2], 16))
+            return string
 
         elif 'uint' in data_format:
             return int(hex_string, 16)
@@ -152,9 +227,6 @@ class Sensor(object):
     def parse(self, hex_string):
         data = []
         assert len(hex_string) == self.data_len
-
-        if self.data_indices == None:
-            return self.hex_to_str(hex_string)
 
         for index in xrange(len(self.data_indices) - 1):
             datum = hex_string[
@@ -228,24 +300,24 @@ if __name__ == '__main__':
     test_data33 = 'c76facfb43ccad3ac7448bc146ba6fa75d2f'
     test_data34 = 'c71f288bc4a82617c61e308d467f126e506a'
 
-    test_sensor0 = Sensor('u8')
-    test_sensor1 = Sensor('i8')
-    test_sensor2 = Sensor('u16')
-    test_sensor3 = Sensor('i16')
-    test_sensor4 = Sensor('u32')
-    test_sensor5 = Sensor('i32')
-    test_sensor6 = Sensor('u64')
-    test_sensor7 = Sensor('i64')
-    test_sensor8 = Sensor('f')
-    test_sensor9 = Sensor('d')
-    test_sensor10 = Sensor('b')
-    test_sensor11 = Sensor('h8')
-    test_sensor12 = Sensor('c1')
-    test_sensor13 = Sensor('c9')
-    test_sensor14 = Sensor('c21')
+    test_sensor0 = Sensor(0, 'u8')
+    test_sensor1 = Sensor(1, 'i8')
+    test_sensor2 = Sensor(2, 'u16')
+    test_sensor3 = Sensor(3, 'i16')
+    test_sensor4 = Sensor(4, 'u32')
+    test_sensor5 = Sensor(5, 'i32')
+    test_sensor6 = Sensor(6, 'u64')
+    test_sensor7 = Sensor(7, 'i64')
+    test_sensor8 = Sensor(8, 'f')
+    test_sensor9 = Sensor(9, 'd')
+    test_sensor10 = Sensor(10, 'b')
+    test_sensor11 = Sensor(11, 'h8')
+    test_sensor12 = Sensor(12, 'c1')
+    test_sensor13 = Sensor(13, 'c9')
+    test_sensor14 = Sensor(14, 'c21')
 
-    test_sensor15 = Sensor('i16', 'i16', 'i16')
-    test_sensor16 = Sensor('f', 'f', 'f', 'f', 'u8', 'u8')
+    test_sensor15 = Sensor(15, 'i16', 'i16', 'i16')
+    test_sensor16 = Sensor(16, 'f', 'f', 'f', 'f', 'u8', 'u8')
 
     assert test_sensor0.parse(test_data0) == 241
     assert test_sensor0.parse(test_data1) == 97
@@ -332,28 +404,28 @@ if __name__ == '__main__':
                          -10124.138, 16324.607,
                          80, 106])
 
-    sensor_data = SensorData(test15=test_sensor15, test16=test_sensor16)
+    sensor_data = SensorData(**dict(test15=test_sensor15, test16=test_sensor16))
 
-    sensor_data.update(test_sensor15.sensor_id, test_data21)
-    sensor_data.update(test_sensor16.sensor_id, test_data32)
+    sensor_data.update(test_sensor15.object_id, test_data21)
+    sensor_data.update(test_sensor16.object_id, test_data32)
 
-    assert sensor_data[test_sensor15.sensor_id].data == test_sensor15.parse(
+    assert sensor_data[test_sensor15.object_id].data == test_sensor15.parse(
         test_data21)
-    assert sensor_data[test_sensor16.sensor_id].data == test_sensor16.parse(
+    assert sensor_data[test_sensor16.object_id].data == test_sensor16.parse(
         test_data32)
 
-    sensor_data.update(test_sensor15.sensor_id, test_data22)
-    sensor_data.update(test_sensor16.sensor_id, test_data33)
+    sensor_data.update(test_sensor15.object_id, test_data22)
+    sensor_data.update(test_sensor16.object_id, test_data33)
 
-    assert sensor_data[test_sensor15.sensor_id].data == test_sensor15.parse(
+    assert sensor_data[test_sensor15.object_id].data == test_sensor15.parse(
         test_data22)
-    assert sensor_data[test_sensor16.sensor_id].data == test_sensor16.parse(
+    assert sensor_data[test_sensor16.object_id].data == test_sensor16.parse(
         test_data33)
 
-    sensor_data.update(test_sensor15.sensor_id, test_data23)
-    sensor_data.update(test_sensor16.sensor_id, test_data34)
+    sensor_data.update(test_sensor15.object_id, test_data23)
+    sensor_data.update(test_sensor16.object_id, test_data34)
 
-    assert sensor_data[test_sensor15.sensor_id].data == test_sensor15.parse(
+    assert sensor_data[test_sensor15.object_id].data == test_sensor15.parse(
         test_data23)
-    assert sensor_data[test_sensor16.sensor_id].data == test_sensor16.parse(
+    assert sensor_data[test_sensor16.object_id].data == test_sensor16.parse(
         test_data34)
