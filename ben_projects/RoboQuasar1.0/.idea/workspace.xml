@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16e6d1dd-6de7-4394-887b-ec86b9c41262" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.ino" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/project.pbxproj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/RoboQuasar1.0_Arduino.xcscheme" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/xcuserdata/Woz4tetra.xcuserdatad/xcschemes/xcschememanagement.plist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/libraries/Utitilies/Utilities.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Arduino/libraries/Utitilies/Utilities.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Command.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Command.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Packet.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Packet.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Sensor.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/Sensor.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/SerialParser.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Arduino/libraries/SerialManager/SerialParser.h" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/Archieved Projects/SerialBox/SerialBox.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../../Arduino/Archieved Projects/SerialBox/SerialBox.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../../Arduino/NewSerialTest/NewSerialTest.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/HallEncoder/HallEncoder.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/HallEncoder/HallEncoder.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/HallEncoder/HallEncoder.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/HallEncoder/HallEncoder.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.cpp" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.h" afterPath="$PROJECT_DIR$/../../Arduino/libraries/MyGPS/MyGPS.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/controller/maps/gpx/2015-11-08 07_58_30.csv" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../../Arduino/RoboQuasar1.0_Arduino/RoboQuasar1.0_Arduino.xcodeproj/project.xcworkspace/xcuserdata/Woz4tetra.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__main__.py" afterPath="$PROJECT_DIR$/__main__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/board/__init__.py" afterPath="$PROJECT_DIR$/board/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/board/comm.py" afterPath="$PROJECT_DIR$/board/comm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/board/data.py" afterPath="$PROJECT_DIR$/board/data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera/__init__.py" afterPath="$PROJECT_DIR$/camera/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/__init__.py" afterPath="$PROJECT_DIR$/controller/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/map.py" afterPath="$PROJECT_DIR$/controller/map.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/pid.py" afterPath="$PROJECT_DIR$/controller/pid.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/__init__.py" afterPath="$PROJECT_DIR$/scripts/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/map_maker.py" afterPath="$PROJECT_DIR$/scripts/map_maker.py" />
     </list>
     <ignored path="RoboQuasar1.0.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,17 +53,17 @@
         <entry file="file://$PROJECT_DIR$/scripts/map_maker.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="25" />
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serial_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serial_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/serial_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86410636">
-              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -87,9 +75,33 @@
         <entry file="file://$PROJECT_DIR$/board/comm.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
               <folding>
-                <element signature="e#39#76#0" expanded="true" />
+                <element signature="e#40#77#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/map.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+              <folding>
+                <element signature="e#84#95#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pid.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controller/pid.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5539143">
+              <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+              <folding>
+                <element signature="e#38#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,13 +123,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/camera/capture.py" />
-        <option value="$PROJECT_DIR$/scripts/map_maker.py" />
         <option value="$PROJECT_DIR$/scripts/video_maker.py" />
         <option value="$PROJECT_DIR$/scripts/data_recorder.py" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/board/comm.py" />
         <option value="$PROJECT_DIR$/board/data.py" />
         <option value="$PROJECT_DIR$/scripts/serial_test.py" />
+        <option value="$PROJECT_DIR$/board/objects.py" />
+        <option value="$PROJECT_DIR$/board/comm.py" />
+        <option value="$PROJECT_DIR$/scripts/map_maker.py" />
+        <option value="$PROJECT_DIR$/controller/map.py" />
+        <option value="$PROJECT_DIR$/controller/pid.py" />
       </list>
     </option>
   </component>
@@ -379,9 +394,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="800" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -430,9 +445,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding>
-            <element signature="e#149#159#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -482,27 +495,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.8833088">
           <caret line="55" column="7" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="7" />
-          <folding>
-            <element signature="e#151#166#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/map_maker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/comm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding>
-            <element signature="e#39#76#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -520,10 +513,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/serial_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86410636">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding>
             <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2407681">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#44#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/interpreter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022156574">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+          <folding>
+            <element signature="e#40#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/map_maker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/map.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+          <folding>
+            <element signature="e#84#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/pid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5539143">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding>
+            <element signature="e#38#49#0" expanded="true" />
           </folding>
         </state>
       </provider>

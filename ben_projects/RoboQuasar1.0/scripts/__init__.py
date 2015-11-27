@@ -1,7 +1,7 @@
 '''
     Written by Ben Warwick
     
-    scripts, written for the Self-Driving Buggy Project
+    scripts, written for RoboQuasar1.0
     Version 11/24/2015
     =========
     

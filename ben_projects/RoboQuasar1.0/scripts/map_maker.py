@@ -8,30 +8,13 @@
     
 '''
 
-import csv
-import time
 import sys
 
 sys.path.insert(0, '../')
+
 import config
+from controller import map
 
-def get_map(directory=None):
-    with open(directory, 'rb') as csvfile:
-        map_reader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        parsed = [[float(row[0]), float(row[1])] for row in map_reader]
-        return parsed
-
-
-def write_map(data, directory=None):
-    if directory == None:
-        directory = time.strftime("%c").replace(":", ";")
-    with open(directory + ".csv", 'wb') as csvfile:
-        map_writer = csv.writer(csvfile, delimiter=',',
-                                quotechar='|',
-                                quoting=csv.QUOTE_MINIMAL)
-        for row in data:
-            assert len(row) == 2
-            map_writer.writerow(row)
 
 def convert_gpx(directory):
     directory = config.get_dir(directory)
@@ -51,14 +34,14 @@ def convert_gpx(directory):
             longitude = contents[lon_index_start: lon_index_end]
 
             data.append([latitude, longitude])
-            # print data[-1], len(contents)
 
             contents = contents[lon_index_end:]
 
         data.pop(-1)
-        write_map(data, directory[:-4])
+        map.write_map(data, directory[:-4])
+
 
 if __name__ == '__main__':
     arguments = sys.argv
-    
+
     convert_gpx(arguments[1])
