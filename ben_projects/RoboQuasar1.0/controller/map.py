@@ -57,6 +57,10 @@ class Binder:
 
 
 if __name__ == '__main__':
+    import sys
+
+    sys.path.insert(0, '../')
+
     import config
 
     map = get_map(config.get_dir(":maps") + "2015-11-08 07_58_30.csv")
@@ -65,4 +69,4 @@ if __name__ == '__main__':
     pos = binder.bind((40.44051147069823, -79.94248582057649))
     pre_bind = binder.prevBind
     print binder.map[pre_bind]
-    print pos
+    print pos, pre_bind
