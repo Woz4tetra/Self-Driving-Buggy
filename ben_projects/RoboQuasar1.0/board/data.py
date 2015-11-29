@@ -1,7 +1,64 @@
-# handles sensor data sorting, the command queue, and raw data storage
+"""
+    Written by Ben Warwick
+
+    data.py, written for RoboQuasar1.0
+    Version 11/28/2015
+    =========
+
+    Handles sensor data sorting, the command queue, and raw data storage.
+
+    The SensorData takes a sensor ID and incoming data and updates the
+    corresponding sensor. This is because the arduino has been programmed to
+    return any data it can get. It's not certain which sensor will come in at
+    a given time, so the SensorData class accommodates. Essentially, this class
+    is a dictionary of Sensor objects which automatically sorts incoming data.
+
+    The CommandQueue takes references to Command objects and puts them on a
+    queue to be used by comm.py.
+
+    The Sensor and Command objects abide by a home-baked serial packet protocol.
+    This is a jargon-heavy way of saying it sends data in an agreed upon way.
+    However, the agreement here is being made with myself since I programmed
+    the arduino as well.
+
+    We're communicating with the arduino using usb serial. This allows for only
+    8-bits of data to be sent at a time. To get around this, we send packets of
+    data. Basically, tab separated hexidecimal characters. A single character is
+    8-bits (see the ASCII code reference). Here we use a character to represent
+    one hex digit (i.e. we're only using ASCII codes 48...57, 65...70, and
+    97...102, note: A = a, B = b, etc.). Despite the 8-bit limit, serial is
+    pretty quick, so if a stream of 8-bit values are sent in a predefined
+    packet, it can look like a lot more than 8-bits is being sent.
+
+    So what does a packet look like? Sensor data packets consist of a sensor ID
+    (an unsigned 8-bit number or 2 hex characters) and the data itself in hex.
+    An example would look like this:
+
+    02\t00000000f97a87c9\n
+
+    This means (should the client define it this way) the encoder sensor
+    (with sensor ID 2) with 4185556937 counts. This is what's given to
+    SensorData by comm.py (if the arduino is working properly... grumble
+    grumble...).
+
+    Command packets are similar except they are sent to the arduino instead of
+    being received by the PC. Command packets to be sent are put on the
+    CommandQueue object and sent when available. An example packet might look
+    like this:
+
+    00\t02\t9c\n
+
+    00 might mean a servo with a command ID of 0.
+    02 is the length of data. A standard servo requires an unsigned 8-bit of
+        data
+    9c is the data and translates to 156 in decimal
+
+    You can completely ignore all of this should the library work properly.
+    Please refer to objects.py for proper usage tips.
+"""
 import struct
 import string
-
+import random
 
 class SensorData(object):
     def __init__(self, **sensors):
@@ -14,11 +71,12 @@ class SensorData(object):
             sensor_ids[sensor.object_id] = name
         return sensor_ids
 
-    def update(self, sensor_id, data):
+    def update(self, sensor_id, data, packet=""):
         if sensor_id in self.sensor_ids:
             sensor = self.sensors[self.sensor_ids[sensor_id]]
             if sensor.data_len == len(data):
                 sensor.data = sensor.parse(data)
+                sensor.current_packet = packet
 
     def __getitem__(self, item):
         if type(item) == str:
@@ -77,8 +135,13 @@ class SerialObject(object):
 
     def __init__(self, object_id, formats):
         self.formats = self.init_formats(list(formats))
+        
         self.object_id = object_id
+        
         self.data_len = 0
+        self.data = None
+        
+        self.current_packet = ""
 
     def init_formats(self, formats):
         for index in xrange(len(formats)):
@@ -152,18 +215,19 @@ class Command(SerialObject):
 
         elif data_format == 'double':
             return ''.join('%.2x' % ord(c) for c in struct.pack('>d', data))
+        else:
+            raise Exception("Invalid data format: %s, %s" % str(data), data_format)
     
     def get_packet(self, data):
-        assert len(data) == self.data_len and self.data_len <= 16
+        self.data = data
+        
         packet = self.to_hex(self.object_id) + "\t"
         packet += self.to_hex(self.data_len) + "\t"
+        
+        hex_data = self.format_data(data, self.formats[0])
+        packet += "0" * (self.data_len - len(hex_data)) + hex_data + "\n"
 
-        if type(data) == str:
-            packet += self.data_len + "\n"
-        elif type(data) == int:
-            packet += self.to_hex(self.data_len) + "\n"
-        else:
-            raise Exception("Invalid data type: %s, %s" % str(data), type(data))
+        self.current_packet = packet
 
         return packet
 
@@ -174,10 +238,8 @@ class Sensor(SerialObject):
         self.data_indices = self.make_indices(self.formats)
         self.data_len = self.data_indices[-1]
 
-        assert (self.data_indices == None or
-                len(self.formats) == len(self.data_indices) - 1)
-
-        self.data = None
+        # assert (self.data_indices == None or
+        #         len(self.formats) == len(self.data_indices) - 1)
 
     def make_indices(self, formats):
         indices = [0]
@@ -226,7 +288,10 @@ class Sensor(SerialObject):
 
     def parse(self, hex_string):
         data = []
-        assert len(hex_string) == self.data_len
+        if len(hex_string) != self.data_len:
+            print("Data length does not match! Expected length %s, received %s"
+                  "Ignoring: %s", str(self.data_len), str(len(hex_string)),
+                  hex_string)
 
         for index in xrange(len(self.data_indices) - 1):
             datum = hex_string[
@@ -238,11 +303,21 @@ class Sensor(SerialObject):
         else:
             return data
 
+def experiment(formats, hex_string=None):
+    exp_sensor = Sensor(0, formats)
+
+    if hex_string == None:
+        hex_string = ""
+        for counter in xrange(exp_sensor.data_len):
+            hex_string += hex(random.randint(0, 15))[2:]
+        print "Using hex data:", hex_string
+
+    return exp_sensor.parse(hex_string)
 
 if __name__ == '__main__':
     def almost_equal(value1, value2, epsilon=0.0005):
         if type(value1) == list and type(value2) == list:
-            assert len(value1) == len(value2)
+            # assert len(value1) == len(value2)
             for index in xrange(len(value1)):
                 if type(value1[index]) == float or type(value2[index]) == float:
                     if abs(value1[index] - value2[index]) > epsilon:
@@ -299,6 +374,8 @@ if __name__ == '__main__':
     test_data32 = 'c1e648ca4107b783c33c1180c3be27de4cf3'
     test_data33 = 'c76facfb43ccad3ac7448bc146ba6fa75d2f'
     test_data34 = 'c71f288bc4a82617c61e308d467f126e506a'
+    
+    test_data35 = '4861707079205468616E6B73676976696E67210A'
 
     test_sensor0 = Sensor(0, 'u8')
     test_sensor1 = Sensor(1, 'i8')
@@ -318,6 +395,8 @@ if __name__ == '__main__':
 
     test_sensor15 = Sensor(15, 'i16', 'i16', 'i16')
     test_sensor16 = Sensor(16, 'f', 'f', 'f', 'f', 'u8', 'u8')
+    
+    test_sensor17 = Sensor(14, 'c20')
 
     assert test_sensor0.parse(test_data0) == 241
     assert test_sensor0.parse(test_data1) == 97
@@ -386,6 +465,8 @@ if __name__ == '__main__':
     assert test_sensor13.parse(test_data16) == "something"
 
     assert test_sensor14.parse(test_data17) == "something interesting"
+    
+    assert test_sensor17.parse(test_data35) == "Happy Thanksgiving!\n"
 
     assert test_sensor15.parse(test_data21) == [-17534, -26566, -28816]
     assert test_sensor15.parse(test_data22) == [-7141, 2736, -4963]

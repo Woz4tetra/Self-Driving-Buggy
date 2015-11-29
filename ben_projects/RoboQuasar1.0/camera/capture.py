@@ -1,3 +1,5 @@
+# handles all interfacing with OpenCV camera objects
+
 import copy
 import time
 import datetime

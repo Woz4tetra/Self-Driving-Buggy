@@ -1,3 +1,4 @@
+# applies houghlines or cascade classfier filters on an input camera frame
 
 import numpy as np
 import cv2

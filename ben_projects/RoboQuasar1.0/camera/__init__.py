@@ -5,5 +5,5 @@
     Version 11/24/2015
     =========
     
-    
+    contains all camera-based algorithms and code for controlling RoboQuasar
 '''

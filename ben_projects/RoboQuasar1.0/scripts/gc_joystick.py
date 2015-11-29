@@ -1,3 +1,5 @@
+# Allows for out-of-the-box interface with a gamecube controller (connected with the mayflash gc adapter)
+
 import pygame
 
 
@@ -104,9 +106,8 @@ class BuggyJoystick:
         elif event.button == 9:
             self.buttons["start"] = value
 
-if __name__ == '__main__':
+def init():
     pygame.display.init()
     pygame.joystick.init()
-    joystick = BuggyJoystick()
-
-    # Do stuff with joystick
+    
+    return BuggyJoystick()

@@ -73,11 +73,13 @@ void loop()
     }
     new_command_found = false;
     
+    
+    hex_print(current_sensor);
+    Serial.write('\t');
+    
     if (current_sensor == IMU_ID)
     {
         mpu_update(accelgyro_buf, magnet_buf);
-        
-        hex_print(current_sensor);
         
         for (int index = 0; index < 14; index++) {
             hex_print(accelgyro_buf[index]);
@@ -104,6 +106,9 @@ void loop()
         }
         while (hall_distance > 0);
     }
+    Serial.write('\n');
+    
+    current_sensor += 1;
 }
 
 

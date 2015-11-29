@@ -5,7 +5,8 @@
     Version 11/24/2015
     =========
     
-    
+    A little script application that allows for easy OpenCV video recording
+    and converting a collection of images to a video.
 '''
 
 import argparse
