@@ -18,16 +18,17 @@
 """
 
 from __future__ import print_function
-
 import serial
 import time
 import os
-from sys import platform as _platform
+import sys
+import glob
 import threading
-
 import random
+
 exit_flag = False
-use_simulated = True
+use_simulated = False
+
 
 class Communicator(threading.Thread):
     def __init__(self, baud_rate, command_queue, sensors_pool):
@@ -51,14 +52,14 @@ class Communicator(threading.Thread):
                 if incoming != None:
                     packet += incoming
                 incoming = self.serialRef.read()
-                
 
             for index in xrange(len(packet)):
                 sensor_id, data = packet.split('\t')
                 self.sensor_pool.update(int(sensor_id, 16), data, packet)
 
             if not self.command_queue.is_empty():
-                self.serialRef.write(self.command_queue.get())
+                command = self.command_queue.get()
+                self.serialRef.write(command)
 
     def _handshake(self):
         read_flag = self.serialRef.read()
@@ -86,21 +87,20 @@ class Communicator(threading.Thread):
                 pass
         if address is None:
             raise Exception(
-                "No boards could be found! Did you plug it in? Try \
-    entering the address manually.")
+                "No boards could be found! Did you plug it in? Try "
+                "entering the address manually.")
         else:
             return serial_ref
 
     @staticmethod
     def _possibleAddresses():
-        '''
+        """
         An internal method used by _initSerial to search all possible
         USB serial addresses.
-        Windows and Linux has not been implemented.
-
+        
         :return: A list of strings containing all likely addresses
-        '''
-        if _platform == "darwin":  # OS X
+        """
+        if sys.platform.startswith('darwin'):  # OS X
             devices = os.listdir("/dev/")
             arduino_devices = []
             for device in devices:
@@ -108,16 +108,17 @@ class Communicator(threading.Thread):
                                 device.find("tty.usbmodem") > -1:
                     arduino_devices.append("/dev/" + device)
             return arduino_devices
-        elif _platform == "linux" or _platform == "linux2":  # linux
-            raise NotImplementedError
-            # return []
-        elif _platform == "win32":  # Windows
-            devices = []
-            for counter in xrange(32):
-                devices.append("COM" + str(counter))
-            return devices
+
+        elif (sys.platform.startswith('linux') or
+                  sys.platform.startswith('cygwin')):  # linux
+
+            return glob.glob('/dev/tty[A-Za-z]*')
+
+        elif sys.platform.startswith('win'):  # Windows
+            return ['COM' + str(i + 1) for i in range(256)]
+
         else:
-            raise NotImplementedError
+            raise EnvironmentError('Unsupported platform')
 
 
 class SimulatedSerial(threading.Thread):
@@ -163,8 +164,6 @@ class SimulatedSerial(threading.Thread):
         self.encoder = 1
 
         while exit_flag == False:
-            sensor_packet = ""
-
             if len(self.input_queue) > 0:
                 packet = self.input_queue.pop(0)
                 command_id, data_len, data = packet[:-1].split("\t")
@@ -191,6 +190,6 @@ class SimulatedSerial(threading.Thread):
             self.output_queue.append(sensor_packet + "\n")
             sensor_index = random.randint(0, 2)  # (sensor_index + 1) % 3
 
-            sleep = random.random()
-            time.sleep(sleep + 1)
-            print("sleep:", sleep)
+            # sleep = random.random()
+            # time.sleep(sleep + 1)
+            # print("sleep:", sleep)

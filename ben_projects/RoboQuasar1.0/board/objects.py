@@ -16,6 +16,7 @@
     from board import comm
     from board.objects import *
 
+    # make sure the sensor (and command) ID matches on the arduino code
     imu = IMU(0)
     gps = GPS(1)
     encoder = Encoder(2)
@@ -82,6 +83,8 @@
     To represent that, we give ('f', 'f', 'f', 'f', 'u8', 'u8') to Sensor's
     constructor. If you look at a GPS packet, its length is 36 since each float
     is 8 characters and an unsigned 8-bit is 2 (8 * 4 + 2 * 2 = 36).
+    For floats, beware of nan. If all exponent bits of a floating point number
+    are 1, it represents nan. You might have to handle this in your code.
 
     For Commands, the formatting is similar except floats and doubles are
     excluded because of the limitations of the arduino code we've written
@@ -93,8 +96,10 @@
 
     since servos typically only require an unsigned 8-bit of data.
 
-    To experiment with the other data types, call data.experiment in a test
-    file. Here's a mini reference for all the data types:
+    To experiment with the other data types, call data.experiment_sensor or
+    data.experiment_command in a test file.
+
+    Here's a mini reference for all the data types:
 
     'u8' = 'uint8': 2
     'u16' = 'uint16': 4

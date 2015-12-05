@@ -1,9 +1,12 @@
 
 import time
+import traceback
 import sys
+
 sys.path.insert(0, '../')
 
 from board import comm
+from board import logger
 from board.data import *
 
 imu = Sensor(0, 'i16', 'i16', 'i16',
@@ -24,6 +27,10 @@ communicator.start()
 servo_value = 0
 led13_value = True
 
+log_data = False
+if log_data:
+    log = logger.Recorder()
+
 try:
     while True:
         print(imu.data)
@@ -36,6 +43,13 @@ try:
         command_queue.put(servo, servo_value)
         command_queue.put(led13, led13_value)
 
+        if log_data:
+            log.add_data("imu", imu)
+            log.add_data("gps", gps)
+            log.add_data("encoder", encoder)
+            log.add_data("servo", servo)
+            log.add_data("led13", led13)
+
         if servo_value == 0:
             servo_value = 156
         else:
@@ -44,5 +58,6 @@ try:
         led13_value = not led13_value
 
         time.sleep(0.25)
-except KeyboardInterrupt:
+except:
+    traceback.print_exc()
     comm.exit_flag = True

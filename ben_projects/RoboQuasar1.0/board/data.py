@@ -56,9 +56,11 @@
     You can completely ignore all of this should the library work properly.
     Please refer to objects.py for proper usage tips.
 """
+
 import struct
 import string
 import random
+from sys import maxint as MAXINT
 
 class SensorData(object):
     def __init__(self, **sensors):
@@ -85,6 +87,7 @@ class SensorData(object):
             return self.sensors[self.sensor_ids[item]]
         else:
             return None
+
 
 class CommandQueue(object):
     def __init__(self, **commands):
@@ -116,6 +119,26 @@ class CommandQueue(object):
         return len(self.queue) == 0
 
 
+def experiment_sensor(formats, hex_string=None):
+    exp_sensor = Sensor(0, formats)
+
+    if hex_string == None:
+        hex_string = ""
+        for counter in xrange(exp_sensor.data_len):
+            hex_string += hex(random.randint(0, 15))[2:]
+        print "Using hex data:", hex_string
+
+    return exp_sensor.parse(hex_string)
+
+
+def experiment_command(command_id, data_format, data=None):
+    exp_command = Command(command_id, data_format)
+    print(exp_command.data_len * 4 - 2)
+    if data == None:
+        data = random.randint(0, int((2 << (exp_command.data_len * 4 - 2)) - 1))
+
+    return exp_command.get_packet(data)
+
 class SerialObject(object):
     short_formats = {
         'u8': 'uint8', 'u16': 'uint16', 'u32': 'uint32', 'u64': 'uint64',
@@ -135,12 +158,12 @@ class SerialObject(object):
 
     def __init__(self, object_id, formats):
         self.formats = self.init_formats(list(formats))
-        
+
         self.object_id = object_id
-        
+
         self.data_len = 0
         self.data = None
-        
+
         self.current_packet = ""
 
     def init_formats(self, formats):
@@ -184,13 +207,11 @@ class Command(SerialObject):
         super(Command, self).__init__(command_id, [format])
 
         self.data_len = self.format_len[self.formats[0]]
-    
-    def to_hex(self, decimal):
-        if 0 <= decimal < 0x10:
-            return "0" + hex(decimal)[2:]
-        else:
-            return hex(decimal)[2:]
-    
+
+    def to_hex(self, decimal, length):
+        hex_data = hex(decimal)[2:]
+        return "0" * (length - len(hex_data)) + hex_data
+
     def format_data(self, data, data_format):
         if data_format == 'bool':
             return str(int(bool(data)))
@@ -202,13 +223,16 @@ class Command(SerialObject):
             return hex(ord(data))[2:]
 
         elif 'uint' in data_format:
-            return hex(data)[2:]
+            data %= MAXINT
+            return self.to_hex(data, self.data_len)
 
         elif 'int' in data_format:
             int_size = int(data_format[3:])
             if data < 0:
                 data += (2 << (int_size - 1))
-            return hex(data)[2:]
+
+            data %= MAXINT
+            return hex(int(data))[2:]
 
         elif data_format == 'float':
             return ''.join('%.2x' % ord(c) for c in struct.pack('>f', data))
@@ -216,20 +240,21 @@ class Command(SerialObject):
         elif data_format == 'double':
             return ''.join('%.2x' % ord(c) for c in struct.pack('>d', data))
         else:
-            raise Exception("Invalid data format: %s, %s" % str(data), data_format)
-    
+            raise Exception("Invalid data format: %s, %s" % str(data),
+                            data_format)
+
     def get_packet(self, data):
         self.data = data
-        
-        packet = self.to_hex(self.object_id) + "\t"
-        packet += self.to_hex(self.data_len) + "\t"
-        
-        hex_data = self.format_data(data, self.formats[0])
-        packet += "0" * (self.data_len - len(hex_data)) + hex_data + "\n"
+
+        packet = self.to_hex(self.object_id, 2) + "\t"
+        packet += self.to_hex(self.data_len, 2) + "\t"
+
+        packet += self.format_data(data, self.formats[0]) + "\n"
 
         self.current_packet = packet
 
         return packet
+
 
 class Sensor(SerialObject):
     def __init__(self, sensor_id, *formats):
@@ -273,7 +298,7 @@ class Sensor(SerialObject):
             raw_int = int(hex_string, 16)
             if (raw_int >> (bin_length - 1)) == 1:
                 raw_int -= 2 << (bin_length - 1)
-            return raw_int
+            return int(raw_int)
 
         elif data_format == 'float':
             # assure length of 8
@@ -303,16 +328,6 @@ class Sensor(SerialObject):
         else:
             return data
 
-def experiment(formats, hex_string=None):
-    exp_sensor = Sensor(0, formats)
-
-    if hex_string == None:
-        hex_string = ""
-        for counter in xrange(exp_sensor.data_len):
-            hex_string += hex(random.randint(0, 15))[2:]
-        print "Using hex data:", hex_string
-
-    return exp_sensor.parse(hex_string)
 
 if __name__ == '__main__':
     def almost_equal(value1, value2, epsilon=0.0005):
@@ -374,7 +389,7 @@ if __name__ == '__main__':
     test_data32 = 'c1e648ca4107b783c33c1180c3be27de4cf3'
     test_data33 = 'c76facfb43ccad3ac7448bc146ba6fa75d2f'
     test_data34 = 'c71f288bc4a82617c61e308d467f126e506a'
-    
+
     test_data35 = '4861707079205468616E6B73676976696E67210A'
 
     test_sensor0 = Sensor(0, 'u8')
@@ -395,7 +410,7 @@ if __name__ == '__main__':
 
     test_sensor15 = Sensor(15, 'i16', 'i16', 'i16')
     test_sensor16 = Sensor(16, 'f', 'f', 'f', 'f', 'u8', 'u8')
-    
+
     test_sensor17 = Sensor(14, 'c20')
 
     assert test_sensor0.parse(test_data0) == 241
@@ -465,7 +480,7 @@ if __name__ == '__main__':
     assert test_sensor13.parse(test_data16) == "something"
 
     assert test_sensor14.parse(test_data17) == "something interesting"
-    
+
     assert test_sensor17.parse(test_data35) == "Happy Thanksgiving!\n"
 
     assert test_sensor15.parse(test_data21) == [-17534, -26566, -28816]

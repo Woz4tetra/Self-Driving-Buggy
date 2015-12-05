@@ -49,17 +49,20 @@ class Recorder(object):
 
     def add_data(self, object_name, serial_object):
         time_stamp = time.time() - self.time0
-        if serial_object.data != None:
-            data = serial_object.data
-        elif type(serial_object.data) != list:
+
+        if type(serial_object.data) != list:
             data = [serial_object.data]
+        elif serial_object.data != None:
+            data = serial_object.data
         else:
             data = []
+
+        print(repr(serial_object.current_packet))
         self.writer.writerow(
             [str(time_stamp),
              str(object_name),
              str(serial_object.object_id),
-             str(serial_object.current_packet)] + data
+             str(serial_object.current_packet.strip("\n"))] + data
         )
 
     def close(self):

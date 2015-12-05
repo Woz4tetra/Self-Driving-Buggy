@@ -1,4 +1,4 @@
-'''
+"""
     Written by Ben Warwick
     
     map_maker.py, written for the Self-Driving Buggy Project
@@ -7,7 +7,7 @@
     
     Converts gpx files to csv. If we collect with a map gps that's not on the
     arduino, we will convert its data with this script
-'''
+"""
 
 import sys
 

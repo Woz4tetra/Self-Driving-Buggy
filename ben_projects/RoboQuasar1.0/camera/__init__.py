@@ -1,4 +1,4 @@
-'''
+"""
     Written by Ben Warwick
     
     camera, written for RoboQuasar1.0
@@ -6,4 +6,4 @@
     =========
     
     contains all camera-based algorithms and code for controlling RoboQuasar
-'''
+"""

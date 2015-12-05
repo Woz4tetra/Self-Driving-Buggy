@@ -1,7 +1,7 @@
 # mimics the script run during RoboQuasar's first coursewalk
 
 import sys
-import math
+import traceback
 
 sys.path.insert(0, '../')
 
@@ -9,15 +9,14 @@ from board import logger
 import gc_joystick
 from board import comm
 from board.data import *
+from board.objects import *
 
-imu = Sensor(0, 'i16', 'i16', 'i16',
-             'i16', 'i16', 'i16',
-             'i16', 'i16', 'i16')
-gps = Sensor(1, 'f', 'f', 'f', 'f', 'u8', 'u8')
-encoder = Sensor(2, 'u64')
+imu = IMU(0)
+gps = GPS(1)
+encoder = Encoder(2)
 
-servo = Command(0, 'u8')
-led13 = Command(1, 'b')
+servo = Servo(0)
+led13 = Led13(1)
 
 sensor_data = SensorData(imu=imu, gps=gps, encoder=encoder)
 command_queue = CommandQueue(servo=servo, led13=led13)
@@ -58,5 +57,6 @@ try:
             command_queue.put(servo, servo_value)
             # command_queue.put(led13, led13_value)
 
-except KeyboardInterrupt:
+except:
+    traceback.print_exc()
     comm.exit_flag = True
