@@ -2,7 +2,7 @@
     Written by Ben Warwick
 
     data.py, written for RoboQuasar1.0
-    Version 11/28/2015
+    Version 12/7/2015
     =========
 
     Allows for easy sensor and command data logging.

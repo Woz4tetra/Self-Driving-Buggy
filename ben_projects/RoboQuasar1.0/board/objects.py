@@ -2,7 +2,7 @@
     Written by Ben Warwick
 
     objects.py, written for RoboQuasar1.0
-    Version 11/28/2015
+    Version 12/7/2015
     =========
 
     Object wrappers for sensors and commands

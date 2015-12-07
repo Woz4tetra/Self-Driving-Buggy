@@ -2,7 +2,7 @@
     Written by Ben Warwick
 
     comm.py, written for RoboQuasar1.0
-    Version 11/28/2015
+    Version 12/7/2015
     =========
 
     Handles direct serial communications with the arduino.
@@ -29,7 +29,6 @@ import random
 exit_flag = False
 use_simulated = False
 
-
 class Communicator(threading.Thread):
     def __init__(self, baud_rate, command_queue, sensors_pool):
         if use_simulated:
@@ -52,15 +51,13 @@ class Communicator(threading.Thread):
                 if incoming != None:
                     packet += incoming
                 incoming = self.serialRef.read()
-
+            
             for index in xrange(len(packet)):
-                sensor_id, data = packet.split('\t')
-                self.sensor_pool.update(int(sensor_id, 16), data, packet)
+                self.sensor_pool.update(packet)
 
             if not self.command_queue.is_empty():
-                command = self.command_queue.get()
-                self.serialRef.write(command)
-
+                self.serialRef.write(self.command_queue.get())
+    
     def _handshake(self):
         read_flag = self.serialRef.read()
 

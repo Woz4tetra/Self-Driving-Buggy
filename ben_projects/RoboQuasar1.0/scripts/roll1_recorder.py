@@ -18,7 +18,7 @@ encoder = Encoder(2)
 servo = Servo(0)
 led13 = Led13(1)
 
-sensor_data = SensorData(imu=imu, gps=gps, encoder=encoder)
+sensor_data = SensorData(imu, gps, encoder)
 command_queue = CommandQueue(servo=servo, led13=led13)
 
 communicator = comm.Communicator(115200, command_queue, sensor_data)

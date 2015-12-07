@@ -18,8 +18,8 @@ encoder = Sensor(2, 'u64')
 servo = Command(0, 'u8')
 led13 = Command(1, 'b')
 
-sensor_data = SensorData(imu=imu, gps=gps, encoder=encoder)
-command_queue = CommandQueue(servo=servo, led13=led13)
+sensor_data = SensorData(imu, gps, encoder)
+command_queue = CommandQueue()
 
 communicator = comm.Communicator(115200, command_queue, sensor_data)
 communicator.start()

@@ -2,7 +2,7 @@
     Written by Ben Warwick
 
     data.py, written for RoboQuasar1.0
-    Version 11/28/2015
+    Version 12/7/2015
     =========
 
     Handles sensor data sorting, the command queue, and raw data storage.
@@ -62,55 +62,36 @@ import string
 import random
 from sys import maxint as MAXINT
 
+
 class SensorData(object):
-    def __init__(self, **sensors):
+    def __init__(self, *sensors):
         self.sensors = sensors
-        self.sensor_ids = self.init_sensor_ids(sensors)
-
-    def init_sensor_ids(self, sensors):
-        sensor_ids = {}
-        for name, sensor in self.sensors.iteritems():
-            sensor_ids[sensor.object_id] = name
-        return sensor_ids
-
-    def update(self, sensor_id, data, packet=""):
-        if sensor_id in self.sensor_ids:
-            sensor = self.sensors[self.sensor_ids[sensor_id]]
-            if sensor.data_len == len(data):
-                sensor.data = sensor.parse(data)
-                sensor.current_packet = packet
-
-    def __getitem__(self, item):
-        if type(item) == str:
-            return self.sensors[item]
-        elif type(item) == int:
-            return self.sensors[self.sensor_ids[item]]
-        else:
-            return None
-
+    
+    def is_packet(self, packet):
+        if len(packet) < 4: return False
+        if packet[2] != "\t": return False
+        if not all(c in string.hexdigits for c in packet[0:2] + packet[3:-1]):
+            return False
+        
+        return True
+    
+    def update(self, packet):
+        if self.is_packet(packet):
+            sensor_id, data = packet[0:2] + packet[3:]
+            if sensor_id < len(self.sensors):
+                sensor = self.sensors[sensor_id]
+                
+                if sensor.data_len == len(data):
+                    sensor.data = sensor.parse(data)
+                    sensor.current_packet = packet
 
 class CommandQueue(object):
-    def __init__(self, **commands):
-        self.commands = commands
-        self.command_ids = self.init_command_ids(self.commands)
-
+    def __init__(self):
         self.queue = []
 
-    def init_command_ids(self, commands):
-        command_ids = {}
-        for name, command in self.commands.iteritems():
-            command_ids[command.object_id] = name
-        return command_ids
-
     def put(self, command, data):
-        if type(command) == Command:
-            self.queue.append(command.get_packet(data))
-        elif type(command) == int:
-            packet = self.commands[self.command_ids[command]].get_packet(data)
-            self.queue.append(packet)
-        elif type(command) == str:
-            packet = self.commands[command].get_packet(data)
-            self.queue.append(packet)
+        assert(type(command) == Command)
+        self.queue.append(command.get_packet(data))
 
     def get(self):
         return self.queue.pop(0)
@@ -138,6 +119,7 @@ def experiment_command(command_id, data_format, data=None):
         data = random.randint(0, int((2 << (exp_command.data_len * 4 - 2)) - 1))
 
     return exp_command.get_packet(data)
+
 
 class SerialObject(object):
     short_formats = {
@@ -262,9 +244,6 @@ class Sensor(SerialObject):
 
         self.data_indices = self.make_indices(self.formats)
         self.data_len = self.data_indices[-1]
-
-        # assert (self.data_indices == None or
-        #         len(self.formats) == len(self.data_indices) - 1)
 
     def make_indices(self, formats):
         indices = [0]
