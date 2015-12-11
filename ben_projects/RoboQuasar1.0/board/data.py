@@ -100,7 +100,7 @@ class CommandQueue(object):
         return len(self.queue) == 0
 
 
-def experiment_sensor(formats, hex_string=None):
+def try_sensor(formats, hex_string=None):
     exp_sensor = Sensor(0, formats)
 
     if hex_string == None:
@@ -112,7 +112,7 @@ def experiment_sensor(formats, hex_string=None):
     return exp_sensor.parse(hex_string)
 
 
-def experiment_command(command_id, data_format, data=None):
+def try_command(command_id, data_format, data=None):
     exp_command = Command(command_id, data_format)
     print(exp_command.data_len * 4 - 2)
     if data == None:
