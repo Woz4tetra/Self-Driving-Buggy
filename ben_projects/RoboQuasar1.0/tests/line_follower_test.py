@@ -69,7 +69,7 @@ def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
             'currentFrame'] != camera1.currentFrameNumber():
             frame1 = camera1.updateFrame()
             
-            if frame1 == None:
+            if frame1 is None:
                 continue
 
             capture_properties['currentFrame'] = camera1.currentFrameNumber()

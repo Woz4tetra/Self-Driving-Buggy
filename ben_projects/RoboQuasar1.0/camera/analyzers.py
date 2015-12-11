@@ -107,7 +107,7 @@ class LineFollower:
                     # frame = np.concatenate((frame, cv2.cvtColor(
                     #     np.uint8(frame_lines), cv2.COLOR_GRAY2BGR)), axis=0)
     
-        if lines != None:
+        if lines is not None:
             averaged_line = self.findAverageLines(lines[:tolerance]) 
             (rho1, theta1) = (averaged_line)[0] 
             (rho2, theta2) = (averaged_line)[1]
