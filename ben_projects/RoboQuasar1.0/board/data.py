@@ -101,7 +101,7 @@ class CommandQueue(object):
 
 
 def try_sensor(formats, hex_string=None):
-    exp_sensor = Sensor(0, formats)
+    exp_sensor = Sensor(0, *formats)
 
     if hex_string == None:
         hex_string = ""
@@ -479,7 +479,7 @@ if __name__ == '__main__':
                          -10124.138, 16324.607,
                          80, 106])
 
-    sensor_data = SensorData(**dict(test15=test_sensor15, test16=test_sensor16))
+    sensor_data = SensorData(test_sensor15, test_sensor16)
 
     sensor_data.update(test_sensor15.object_id, test_data21)
     sensor_data.update(test_sensor16.object_id, test_data32)

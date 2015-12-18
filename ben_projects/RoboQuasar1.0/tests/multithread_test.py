@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 
 '''
 Multithreaded video processing sample.
