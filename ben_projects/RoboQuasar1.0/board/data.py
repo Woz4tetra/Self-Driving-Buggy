@@ -65,32 +65,43 @@ from sys import maxint as MAXINT
 
 class SensorData(object):
     def __init__(self, *sensors):
-        self.sensors = sensors
-    
+        self.sensors = [None] * len(sensors)
+
+        for sensor in sensors:
+            if self.sensors[sensor.object_id] != None:
+                raise Exception(
+                    "Sensor ID already taken: " + str(sensor.object_id))
+            else:
+                self.sensors[sensor.object_id] = sensor
+
     def is_packet(self, packet):
         if len(packet) < 4: return False
         if packet[2] != "\t": return False
-        if not all(c in string.hexdigits for c in packet[0:2] + packet[3:-1]):
+        if not all(c in string.hexdigits for c in packet[0:2] + packet[3:]):
             return False
-        
+
         return True
-    
+
     def update(self, packet):
         if self.is_packet(packet):
-            sensor_id, data = packet[0:2] + packet[3:]
+            sensor_id, data = int(packet[0:2], 16), packet[3:]
+
             if sensor_id < len(self.sensors):
                 sensor = self.sensors[sensor_id]
-                
+
                 if sensor.data_len == len(data):
                     sensor.data = sensor.parse(data)
                     sensor.current_packet = packet
+        else:
+            print("Invalid packet: " + repr(packet))
+
 
 class CommandQueue(object):
     def __init__(self):
         self.queue = []
 
     def put(self, command, data):
-        assert(type(command) == Command)
+        assert (type(command) == Command)
         self.queue.append(command.get_packet(data))
 
     def get(self):
