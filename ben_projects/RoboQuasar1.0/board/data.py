@@ -117,7 +117,7 @@ def try_sensor(formats, hex_string=None):
     if hex_string == None:
         hex_string = ""
         for counter in xrange(exp_sensor.data_len):
-            hex_string += hex(random.randint(0, 15))[2:]
+            hex_string += "%0x" % (random.randint(0, 15))
         print "Using hex data:", hex_string
 
     return exp_sensor.parse(hex_string)
@@ -202,8 +202,8 @@ class Command(SerialObject):
         self.data_len = self.format_len[self.formats[0]]
 
     def to_hex(self, decimal, length):
-        hex_data = hex(decimal)[2:]
-        return "0" * (length - len(hex_data)) + hex_data
+        hex_format = "0.%sx" % length 
+        return ("%" + hex_format) % decimal
 
     def format_data(self, data, data_format):
         if data_format == 'bool':
@@ -213,7 +213,7 @@ class Command(SerialObject):
             return data
 
         elif data_format[0] == 'c':
-            return hex(ord(data))[2:]
+            return "%0x" % ord(data)
 
         elif 'uint' in data_format:
             data %= MAXINT
@@ -225,7 +225,7 @@ class Command(SerialObject):
                 data += (2 << (int_size - 1))
 
             data %= MAXINT
-            return hex(int(data))[2:]
+            return "%0x" % int(data)
 
         elif data_format == 'float':
             return ''.join('%.2x' % ord(c) for c in struct.pack('>f', data))

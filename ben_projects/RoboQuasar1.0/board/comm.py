@@ -36,7 +36,7 @@ class Communicator(threading.Thread):
             self.serialRef.start()
         else:
             self.serialRef = self._findPort(baud_rate)
-            self._handshake()
+#            self._handshake()
 
         self.sensor_pool = sensors_pool
         self.command_queue = command_queue
@@ -51,7 +51,6 @@ class Communicator(threading.Thread):
                 if incoming != None:
                     packet += incoming
                 incoming = self.serialRef.read()
-            
             for index in xrange(len(packet)):
                 self.sensor_pool.update(packet)
 
