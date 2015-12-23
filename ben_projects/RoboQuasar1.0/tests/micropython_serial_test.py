@@ -19,7 +19,7 @@ servo1_val = -90
 sensor_data = SensorData(tmp36, mcp9808, builtin_accel)
 command_queue = CommandQueue()
 
-communicator = comm.Communicator(115200, command_queue, sensor_data)
+communicator = comm.Communicator(115200, command_queue, sensor_data, use_handshake=False)
 communicator.start()
 
 log_data = False

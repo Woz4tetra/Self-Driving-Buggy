@@ -30,13 +30,14 @@ exit_flag = False
 use_simulated = False
 
 class Communicator(threading.Thread):
-    def __init__(self, baud_rate, command_queue, sensors_pool):
+    def __init__(self, baud_rate, command_queue, sensors_pool, use_handshake=True):
         if use_simulated:
             self.serialRef = SimulatedSerial()
             self.serialRef.start()
         else:
             self.serialRef = self._findPort(baud_rate)
-            self._handshake()
+            if use_handshake:
+                self._handshake()
 
         self.sensor_pool = sensors_pool
         self.command_queue = command_queue
@@ -77,8 +78,7 @@ class Communicator(threading.Thread):
         for possible_address in self._possibleAddresses():
             try:
                 serial_ref = serial.Serial(port=possible_address,
-                                           baudrate=baud_rate,
-                                           timeout=0.001)
+                                           baudrate=baud_rate)
                 address = possible_address
             except:
                 pass
