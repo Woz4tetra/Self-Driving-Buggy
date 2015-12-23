@@ -13,6 +13,9 @@ tmp36 = Sensor(0, 'u16')
 mcp9808 = Sensor(1, 'i16')
 builtin_accel = Sensor(2, 'i8', 'i8', 'i8')
 
+servo1 = Command(0, 'i8')
+servo1_val = -90
+
 sensor_data = SensorData(tmp36, mcp9808, builtin_accel)
 command_queue = CommandQueue()
 
@@ -39,9 +42,15 @@ try:
         if builtin_accel.data != None:
             print builtin_accel.data
         
+        command_queue.put(servo1, servo1_val)
+        servo1_val += 5
+        if servo1_val >= 90:
+            servo1_val = -90
+        
         time.sleep(0.25)
 
-#        if log_data:
+        #if log_data:
+            # log data
 
 except:
     traceback.print_exc()

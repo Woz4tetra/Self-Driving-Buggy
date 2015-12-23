@@ -34,7 +34,7 @@
     (an unsigned 8-bit number or 2 hex characters) and the data itself in hex.
     An example would look like this:
 
-    02\t00000000f97a87c9\n
+    02\t00000000f97a87c9\r
 
     This means (should the client define it this way) the encoder sensor
     (with sensor ID 2) with 4185556937 counts. This is what's given to
@@ -46,7 +46,7 @@
     CommandQueue object and sent when available. An example packet might look
     like this:
 
-    00\t02\t9c\n
+    00\t02\t9c\r
 
     00 might mean a servo with a command ID of 0.
     02 is the length of data. A standard servo requires an unsigned 8-bit of
@@ -65,10 +65,11 @@ from sys import maxint as MAXINT
 
 class SensorData(object):
     def __init__(self, *sensors):
-        self.sensors = [None] * len(sensors)
+        self.sensor_index = 0
+        self.sensors = {}
 
         for sensor in sensors:
-            if self.sensors[sensor.object_id] != None:
+            if sensor.object_id in self.sensors.keys():
                 raise Exception(
                     "Sensor ID already taken: " + str(sensor.object_id))
             else:
@@ -155,7 +156,7 @@ class SerialObject(object):
         self.object_id = object_id
 
         self.data_len = 0
-        self.data = None
+        self.data = 0
 
         self.current_packet = ""
 
@@ -242,7 +243,7 @@ class Command(SerialObject):
         packet = self.to_hex(self.object_id, 2) + "\t"
         packet += self.to_hex(self.data_len, 2) + "\t"
 
-        packet += self.format_data(data, self.formats[0]) + "\n"
+        packet += self.format_data(data, self.formats[0]) + "\r"
 
         self.current_packet = packet
 

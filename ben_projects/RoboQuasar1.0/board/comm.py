@@ -47,7 +47,7 @@ class Communicator(threading.Thread):
         while exit_flag == False:
             packet = ""
             incoming = self.serialRef.read()
-            while incoming != '\n':
+            while incoming != '\r':
                 if incoming != None:
                     packet += incoming
                 incoming = self.serialRef.read()
@@ -66,7 +66,7 @@ class Communicator(threading.Thread):
             print(read_flag, end="")
             read_flag = self.serialRef.read()
 
-        self.serialRef.write("\n")
+        self.serialRef.write("\r")
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
         print("Arduino initialized!")
@@ -183,7 +183,7 @@ class SimulatedSerial(threading.Thread):
 
             self.encoder += 1  # overflow problems? but it's a simulator so who cares
 
-            self.output_queue.append(sensor_packet + "\n")
+            self.output_queue.append(sensor_packet + "\r")
             sensor_index = random.randint(0, 2)  # (sensor_index + 1) % 3
 
             # sleep = random.random()
