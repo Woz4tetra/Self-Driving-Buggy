@@ -1,25 +1,25 @@
 # main.py -- put your code here!
 
-from sensors import *
+import pyb
+from objects import *
+from data import *
 from comm import Communicator
 
 tmp36 = TMP36(0, pyb.Pin.board.Y12)
 mcp9808 = MCP9808(1, 1)
+accel = BuiltInAccel(2)
 
-accel = pyb.Accel()
+servo1 = Servo(0, 1)
 
-leds = [pyb.LED(index) for index in range(1, 5)]
-servo1 = pyb.Servo(1)
+#leds = [pyb.LED(index) for index in range(1, 5)]
 
-switch = pyb.Switch()
+sensor_queue = SensorQueue(tmp36, mcp9808, accel)
+command_pool = CommandPool(servo1)
 
-sensor_pool = [tmp36, mcp9808]
-sensor_index = 0
+communicator = Communicator(sensor_queue, command_pool)
 
-communicator = Communicator()
-
-toggle_index = 0
-servo_val = -90
+#toggle_index = 0
+#servo_val = -90
 
 while True:
     
@@ -27,17 +27,17 @@ while True:
 #    print(accel.x(), accel.y(), accel.z())
 #    print(switch())
     
-    communicator.write_packet(sensor_pool[sensor_index])
-    sensor_index = (sensor_index + 1) % len(sensor_pool)
+    communicator.write_packet()
+    communicator.read_command()
     
-    leds[toggle_index].toggle()
-    toggle_index = (toggle_index + 1) % 4
+#    leds[toggle_index].toggle()
+#    toggle_index = (toggle_index + 1) % 4
     
-    servo1.angle(servo_val)
-    servo_val += 5
-    
-    if servo_val > 90:
-        servo_val = -90
+#    servo1.angle(servo_val)
+#    servo_val += 5
+#    
+#    if servo_val > 90:
+#        servo_val = -90
     
     pyb.delay(50)
 

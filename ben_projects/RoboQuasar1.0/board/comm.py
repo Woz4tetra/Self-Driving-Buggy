@@ -36,7 +36,7 @@ class Communicator(threading.Thread):
             self.serialRef.start()
         else:
             self.serialRef = self._findPort(baud_rate)
-#            self._handshake()
+            self._handshake()
 
         self.sensor_pool = sensors_pool
         self.command_queue = command_queue
@@ -77,7 +77,8 @@ class Communicator(threading.Thread):
         for possible_address in self._possibleAddresses():
             try:
                 serial_ref = serial.Serial(port=possible_address,
-                                           baudrate=baud_rate)
+                                           baudrate=baud_rate,
+                                           timeout=0.001)
                 address = possible_address
             except:
                 pass
