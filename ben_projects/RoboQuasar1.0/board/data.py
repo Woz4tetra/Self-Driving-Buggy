@@ -86,8 +86,8 @@ class SensorData(object):
     def update(self, packet):
         if self.is_packet(packet):
             sensor_id, data = int(packet[0:2], 16), packet[3:]
-
-            if sensor_id < len(self.sensors):
+            
+            if sensor_id in self.sensors.keys():
                 sensor = self.sensors[sensor_id]
 
                 if sensor.data_len == len(data):
@@ -196,60 +196,6 @@ class SerialObject(object):
             return int(hex_format[len_start:])
 
 
-class Command(SerialObject):
-    def __init__(self, command_id, format):
-        super(Command, self).__init__(command_id, [format])
-
-        self.data_len = self.format_len[self.formats[0]]
-
-    def to_hex(self, decimal, length):
-        hex_format = "0.%sx" % length 
-        return ("%" + hex_format) % decimal
-
-    def format_data(self, data, data_format):
-        if data_format == 'bool':
-            return str(int(bool(data)))
-
-        elif data_format[0] == 'h':
-            return data
-
-        elif data_format[0] == 'c':
-            return "%0x" % ord(data)
-
-        elif 'uint' in data_format:
-            data %= MAXINT
-            return self.to_hex(data, self.data_len)
-
-        elif 'int' in data_format:
-            int_size = int(data_format[3:])
-            if data < 0:
-                data += (2 << (int_size - 1))
-
-            data %= MAXINT
-            return "%0x" % int(data)
-
-        elif data_format == 'float':
-            return ''.join('%.2x' % ord(c) for c in struct.pack('>f', data))
-
-        elif data_format == 'double':
-            return ''.join('%.2x' % ord(c) for c in struct.pack('>d', data))
-        else:
-            raise Exception("Invalid data format: %s, %s" % str(data),
-                            data_format)
-
-    def get_packet(self, data):
-        self.data = data
-
-        packet = self.to_hex(self.object_id, 2) + "\t"
-        packet += self.to_hex(self.data_len, 2) + "\t"
-
-        packet += self.format_data(data, self.formats[0]) + "\r"
-
-        self.current_packet = packet
-
-        return packet
-
-
 class Sensor(SerialObject):
     def __init__(self, sensor_id, *formats):
         super(Sensor, self).__init__(sensor_id, formats)
@@ -318,6 +264,59 @@ class Sensor(SerialObject):
             return data[0]
         else:
             return data
+
+class Command(SerialObject):
+    def __init__(self, command_id, format):
+        super(Command, self).__init__(command_id, [format])
+
+        self.data_len = self.format_len[self.formats[0]]
+
+    def to_hex(self, decimal, length):
+        hex_format = "0.%sx" % length 
+        return ("%" + hex_format) % decimal
+
+    def format_data(self, data, data_format):
+        if data_format == 'bool':
+            return str(int(bool(data)))
+
+        elif data_format[0] == 'h':
+            return data
+
+        elif data_format[0] == 'c':
+            return "%0x" % ord(data)
+
+        elif 'uint' in data_format:
+            data %= MAXINT
+            return self.to_hex(data, self.data_len)
+
+        elif 'int' in data_format:
+            int_size = int(data_format[3:])
+            if data < 0:
+                data += (2 << (int_size - 1))
+
+            data %= MAXINT
+            return "%0x" % int(data)
+
+        elif data_format == 'float':
+            return ''.join('%.2x' % ord(c) for c in struct.pack('>f', data))
+
+        elif data_format == 'double':
+            return ''.join('%.2x' % ord(c) for c in struct.pack('>d', data))
+        else:
+            raise Exception("Invalid data format: %s, %s" % str(data),
+                            data_format)
+
+    def get_packet(self, data):
+        self.data = data
+
+        packet = self.to_hex(self.object_id, 2) + "\t"
+        packet += self.to_hex(self.data_len, 2) + "\t"
+
+        packet += self.format_data(data, self.formats[0]) + "\r"
+
+        self.current_packet = packet
+
+        return packet
 
 
 if __name__ == '__main__':
@@ -493,26 +492,26 @@ if __name__ == '__main__':
 
     sensor_data = SensorData(test_sensor15, test_sensor16)
 
-    sensor_data.update(test_sensor15.object_id, test_data21)
-    sensor_data.update(test_sensor16.object_id, test_data32)
-
-    assert sensor_data[test_sensor15.object_id].data == test_sensor15.parse(
+    sensor_data.update("%0.2x\t%s" % (15, test_data21))
+    sensor_data.update("%0.2x\t%s" % (16, test_data32))
+    
+    assert sensor_data.sensors[test_sensor15.object_id].data == test_sensor15.parse(
         test_data21)
-    assert sensor_data[test_sensor16.object_id].data == test_sensor16.parse(
+    assert sensor_data.sensors[test_sensor16.object_id].data == test_sensor16.parse(
         test_data32)
 
-    sensor_data.update(test_sensor15.object_id, test_data22)
-    sensor_data.update(test_sensor16.object_id, test_data33)
+    sensor_data.update("%0.2x\t%s" % (15, test_data22))
+    sensor_data.update("%0.2x\t%s" % (16, test_data33))
 
-    assert sensor_data[test_sensor15.object_id].data == test_sensor15.parse(
+    assert sensor_data.sensors[test_sensor15.object_id].data == test_sensor15.parse(
         test_data22)
-    assert sensor_data[test_sensor16.object_id].data == test_sensor16.parse(
+    assert sensor_data.sensors[test_sensor16.object_id].data == test_sensor16.parse(
         test_data33)
 
-    sensor_data.update(test_sensor15.object_id, test_data23)
-    sensor_data.update(test_sensor16.object_id, test_data34)
+    sensor_data.update("%0.2x\t%s" % (15, test_data23))
+    sensor_data.update("%0.2x\t%s" % (16, test_data34))
 
-    assert sensor_data[test_sensor15.object_id].data == test_sensor15.parse(
+    assert sensor_data.sensors[test_sensor15.object_id].data == test_sensor15.parse(
         test_data23)
-    assert sensor_data[test_sensor16.object_id].data == test_sensor16.parse(
+    assert sensor_data.sensors[test_sensor16.object_id].data == test_sensor16.parse(
         test_data34)
