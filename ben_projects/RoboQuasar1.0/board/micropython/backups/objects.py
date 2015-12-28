@@ -92,7 +92,7 @@ class BuiltInAccel(Sensor):
         
         self.accel = pyb.Accel()
     
-    def get_packet(self):
+    def update_data(self):
         self.data = (self.accel.x(), self.accel.y(), self.accel.z())
 
 class GPS(Sensor):

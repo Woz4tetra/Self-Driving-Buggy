@@ -24,7 +24,7 @@ class SensorPool(object):
         for sensor in sensors:
             if sensor.object_id in list(self.sensors.keys()):
                 raise Exception(
-                    "Sensor ID already taken: " + str(sensor.object_id))
+                        "Sensor ID already taken: " + str(sensor.object_id))
             else:
                 self.sensors[sensor.object_id] = sensor
 
@@ -37,9 +37,10 @@ class SensorPool(object):
         return True
 
     def update(self, packet):
+        packet = packet.decode('ascii')
         if self.is_packet(packet):
             sensor_id, data = int(packet[0:2], 16), packet[3:]
-            
+
             if sensor_id in list(self.sensors.keys()):
                 sensor = self.sensors[sensor_id]
 
@@ -55,7 +56,7 @@ class CommandQueue(object):
         self.queue = []
 
     def put(self, command):
-        assert (type(command) == Command)
+        assert (isinstance(command, Command))
         self.queue.append(command.get_packet())
 
     def get(self):
@@ -209,21 +210,23 @@ class Sensor(SerialObject):
 
         elif data_format == 'float':
             # assure length of 8
-            input_str = "0" * (8 - len(hex_string)) + hex_string
+            # input_str = bytes("0" * (8 - len(hex_string)) + hex_string,
+            #                   encoding='ascii')
 
-            return struct.unpack('!f', input_str.decode('hex'))[0]
+            return struct.unpack('!f', bytes.fromhex(hex_string))[0]
         elif data_format == 'double':
             # assure length of 16
-            input_str = "0" * (16 - len(hex_string)) + hex_string
+            # input_str = bytes("0" * (16 - len(hex_string)) + hex_string,
+            #                   encoding='ascii')
 
-            return struct.unpack('!d', input_str.decode('hex'))[0]
+            return struct.unpack('!d', bytes.fromhex(hex_string))[0]
 
     def parse(self, hex_string):
         data = []
         if len(hex_string) != self.data_len:
             print(("Data length does not match! Expected length %s, received %s"
-                  "Ignoring: %s", str(self.data_len), str(len(hex_string)),
-                  hex_string))
+                   "Ignoring: %s", str(self.data_len), str(len(hex_string)),
+                   hex_string))
 
         for index in range(len(self.data_indices) - 1):
             datum = hex_string[
@@ -235,6 +238,7 @@ class Sensor(SerialObject):
         else:
             return data
 
+
 class Command(SerialObject):
     def __init__(self, command_id, format):
         super(Command, self).__init__(command_id, [format])
@@ -242,7 +246,7 @@ class Command(SerialObject):
         self.data_len = self.format_len[self.formats[0]]
 
     def to_hex(self, decimal, length):
-        hex_format = "0.%sx" % length 
+        hex_format = "0.%sx" % length
         return ("%" + hex_format) % decimal
 
     def format_data(self, data, data_format):
@@ -264,7 +268,7 @@ class Command(SerialObject):
             if data < 0:
                 data += (2 << (int_size - 1))
 
-            data %= MAXINT 
+            data %= MAXINT
             return self.to_hex(data, self.data_len)
 
         elif data_format == 'float':
@@ -463,24 +467,30 @@ if __name__ == '__main__':
 
     sensor_data.update("%0.2x\t%s" % (15, test_data21))
     sensor_data.update("%0.2x\t%s" % (16, test_data32))
-    
-    assert sensor_data.sensors[test_sensor15.object_id].data == test_sensor15.parse(
-        test_data21)
-    assert sensor_data.sensors[test_sensor16.object_id].data == test_sensor16.parse(
-        test_data32)
+
+    assert sensor_data.sensors[
+               test_sensor15.object_id].data == test_sensor15.parse(
+            test_data21)
+    assert sensor_data.sensors[
+               test_sensor16.object_id].data == test_sensor16.parse(
+            test_data32)
 
     sensor_data.update("%0.2x\t%s" % (15, test_data22))
     sensor_data.update("%0.2x\t%s" % (16, test_data33))
 
-    assert sensor_data.sensors[test_sensor15.object_id].data == test_sensor15.parse(
-        test_data22)
-    assert sensor_data.sensors[test_sensor16.object_id].data == test_sensor16.parse(
-        test_data33)
+    assert sensor_data.sensors[
+               test_sensor15.object_id].data == test_sensor15.parse(
+            test_data22)
+    assert sensor_data.sensors[
+               test_sensor16.object_id].data == test_sensor16.parse(
+            test_data33)
 
     sensor_data.update("%0.2x\t%s" % (15, test_data23))
     sensor_data.update("%0.2x\t%s" % (16, test_data34))
 
-    assert sensor_data.sensors[test_sensor15.object_id].data == test_sensor15.parse(
-        test_data23)
-    assert sensor_data.sensors[test_sensor16.object_id].data == test_sensor16.parse(
-        test_data34)
+    assert sensor_data.sensors[
+               test_sensor15.object_id].data == test_sensor15.parse(
+            test_data23)
+    assert sensor_data.sensors[
+               test_sensor16.object_id].data == test_sensor16.parse(
+            test_data34)

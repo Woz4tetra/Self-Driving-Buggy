@@ -84,7 +84,7 @@ class SerialObject(object):
         self.object_id = object_id
         
         self.data_len = self.get_data_len(self.formats)
-        self.data = init_data(self.formats)
+        self.data = self.init_data(self.formats)
     
     def init_data(self, formats):
         data = []
@@ -167,11 +167,12 @@ class Sensor(SerialObject):
     def format_data(self):
         hex_string = ""
         # length of data should equal number of formats
-        for index in range(len(formats)):
-            if format[0] == 'f' or format[0] == 'd':
+        for index in range(len(self.formats)):
+            if self.formats[index][0] == 'f' or self.formats[index][0] == 'd':
                 hex_string += self.float_to_hex(self.data[index])
             else:
-                hex_string += self.to_hex(data[index], self.format_len[format])
+                hex_string += self.to_hex(self.data[index],
+                                          self.format_len[self.formats[index]])
         return hex_string
     
     def update_data(self):
