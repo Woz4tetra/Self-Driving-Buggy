@@ -1,5 +1,6 @@
 
 import struct
+import array
 from sys import maxsize as MAXINT
 
 class SensorQueue(object):
@@ -8,7 +9,7 @@ class SensorQueue(object):
         self.sensors = {}
 
         for sensor in sensors:
-            if sensor.object_id in self.sensors.keys():
+            if sensor.object_id in list(self.sensors.keys()):
                 raise Exception(
                     "Sensor ID already taken: " + str(sensor.object_id))
             else:
@@ -29,7 +30,7 @@ class CommandPool(object):
         self.commands = {}
 
         for command in commands:
-            if command.object_id in self.commands.keys():
+            if command.object_id in list(self.commands.keys()):
                 raise Exception(
                     "Command ID already taken: " + str(command.object_id))
             else:
@@ -83,7 +84,20 @@ class SerialObject(object):
         self.object_id = object_id
         
         self.data_len = self.get_data_len(self.formats)
-        self.data = 0
+        self.data = init_data(self.formats)
+    
+    def init_data(self, formats):
+        data = []
+        for format in formats:
+            if format[0] == 'i' or format[0] == 'u':
+                data.append(0)
+            elif format[0] == 'f' or format[0] == 'd':
+                data.append(0.0)
+            elif format[0] == 'b':
+                data.append(False)
+            elif format[0] == 'h' or format[0] == 'c':
+                data.append('0')
+        return data
     
     def init_formats(self, formats):
         for index in range(len(formats)):
@@ -108,8 +122,8 @@ class SerialObject(object):
         return data_len
     
     def is_format(self, data_format):
-        if data_format in self.short_formats.keys(): return True
-        if data_format in self.format_len.keys(): return True
+        if data_format in list(self.short_formats.keys()): return True
+        if data_format in list(self.format_len.keys()): return True
         if self.get_len(data_format) != -1: return True
 
         return False
@@ -137,16 +151,36 @@ class Sensor(SerialObject):
         super().__init__(sensor_id, formats)
     
     def to_hex(self, data, length=0):
-        if data < 0 and length > 0:
-            data += (2 << (length * 4 - 1))
-        data %= MAXINT
+        if type(data) == int:
+            if data < 0 and length > 0:
+                data += (2 << (length * 4 - 1))
+            data %= MAXINT
+        
+            hex_format = "0.%sx" % length
+            return ("%" + hex_format) % data
+        else:
+            raise Exception("Data not int type")
     
-        hex_format = "0.%sx" % length
-        return ("%" + hex_format) % data
+    def float_to_hex(self, data):
+        return "%0.8x" % (struct.unpack('<I', bytes(array.array('f', [data]))))
+    
+    def format_data(self):
+        hex_string = ""
+        # length of data should equal number of formats
+        for index in range(len(formats)):
+            if format[0] == 'f' or format[0] == 'd':
+                hex_string += self.float_to_hex(self.data[index])
+            else:
+                hex_string += self.to_hex(data[index], self.format_len[format])
+        return hex_string
+    
+    def update_data(self):
+        pass
     
     def get_packet(self):
+        self.update_data()
         return "%s\t%s\r" % (self.to_hex(self.object_id, 2),
-                             self.to_hex(self.data, self.data_len))
+                             self.format_data())
 
 class Command(SerialObject):
     def __init__(self, command_id, format):
@@ -161,7 +195,7 @@ class Command(SerialObject):
 
         elif self.formats[0][0] == 'c':
             string = ""
-            for index in xrange(0, len(hex_string) - 1, 2):
+            for index in range(0, len(hex_string) - 1, 2):
                 string += chr(int(hex_string[index: index + 2], 16))
             return string
 

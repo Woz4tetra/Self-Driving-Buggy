@@ -17,7 +17,7 @@
     data.py for details of the sensor and command packet protocol.
 """
 
-from __future__ import print_function
+
 import serial
 import time
 import os
@@ -52,7 +52,8 @@ class Communicator(threading.Thread):
                 if incoming != None:
                     packet += incoming
                 incoming = self.serialRef.read()
-            for index in xrange(len(packet)):
+
+            for index in range(len(packet)):
                 self.sensor_pool.update(packet)
 
             if not self.command_queue.is_empty():
@@ -150,7 +151,7 @@ class SimulatedSerial(threading.Thread):
 
     def generate_hex(self, number):
         hex_data = ""
-        for counter in xrange(number):
+        for counter in range(number):
             hex_data += hex(random.randint(0, 15))[2:]
 
         return hex_data

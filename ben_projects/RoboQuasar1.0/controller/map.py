@@ -32,12 +32,12 @@ class Binder:
         if self.prevBind >= len(self.map) or self.prevBind < 0:
             raise Exception("bind outside track")
 
-        for index in xrange(self.prevBind, len(self.map)):
+        for index in range(self.prevBind, len(self.map)):
             if self.is_near(index, position):
                 self.prevBind = index
                 return index + 1
 
-        for index in xrange(len(self.map)):
+        for index in range(len(self.map)):
             if self.is_near(index, position):
                 self.prevBind = index
                 return index + 1
@@ -68,5 +68,5 @@ if __name__ == '__main__':
 
     pos = binder.bind((40.44051147069823, -79.94248582057649))
     pre_bind = binder.prevBind
-    print binder.map[pre_bind]
-    print pos, pre_bind
+    print((binder.map[pre_bind]))
+    print((pos, pre_bind))

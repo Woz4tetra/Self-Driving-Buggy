@@ -189,7 +189,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             self.width, self.height = width, height
 
         elif self.sizeByFPS is not None:
-            if (self.sizeByFPS in self.resolutions.keys()) is False:
+            if (self.sizeByFPS in list(self.resolutions.keys())) is False:
                 self.sizeByFPS = self.findClosestRes(size_by_fps)
             self.width, self.height = self.resolutions[self.sizeByFPS]
 
@@ -223,9 +223,9 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             self.dimensions[3] = self.height
 
         time2 = time.time()
-        print str(self.camSource) + " loaded in " + str(
+        print((str(self.camSource) + " loaded in " + str(
                 time2 - time1) + " seconds. Capture size is " + \
-              str(int(self.width)) + "x" + str(int(self.height))
+              str(int(self.width)) + "x" + str(int(self.height))))
 
         if start_frame > 0:
             self.setFrame(start_frame)
@@ -238,10 +238,10 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         :return: The selected camera number
         """
-        print "Welcome to the Camera Selector!\n\n"
-        print "Use the arrow keys to switch between cameras."
-        print "Enter numbers on your number pad to jump to different cameras."
-        print "Press enter to confirm and q or esc to cancel."
+        print("Welcome to the Camera Selector!\n\n")
+        print("Use the arrow keys to switch between cameras.")
+        print("Enter numbers on your number pad to jump to different cameras.")
+        print("Press enter to confirm and q or esc to cancel.")
 
         shape = None
         windowName = "camera #"
@@ -249,7 +249,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         def updateCapture(windowName, video, capture, delta=None,
                           newCapture=None):
-            print str(capture) + " ---> ",
+            print(str(capture) + " ---> ", end=' ')
 
             video.release()
 
@@ -258,7 +258,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 capture += delta
             elif newCapture is not None:
                 capture = newCapture
-            print capture
+            print(capture)
 
             video = cv2.VideoCapture(capture)
 
@@ -275,11 +275,11 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         while True:
             key = self.getPressedKey(1)
             if key == "left":
-                print "Loading camera. Please wait..."
+                print("Loading camera. Please wait...")
                 video, capture = updateCapture(windowName, video, capture,
                                                delta=-1)
             elif key == "right":
-                print "Loading camera. Please wait..."
+                print("Loading camera. Please wait...")
                 video, capture = updateCapture(windowName, video, capture,
                                                delta=+1)
             elif type(key) == str and key.isdigit():
@@ -339,15 +339,15 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :param capture: The camera number to load
         :return: None
         """
-        print "loading camera " + str(capture) + " into window named '" + str(
-                self.windowName) + "'..."
+        print("loading camera " + str(capture) + " into window named '" + str(
+                self.windowName) + "'...")
         self.camera = cv2.VideoCapture(capture)
         self.camSource = capture
         Capture.excludedSources.add(capture)
 
     def loadVideo(self, camSource):
-        print "loading video into window named '" + str(
-                self.windowName) + "'..."
+        print("loading video into window named '" + str(
+                self.windowName) + "'...")
         self.camera = cv2.VideoCapture(config.get_dir(":videos") + camSource)
 
         self.cameraFPS = self.camera.get(cv2.CAP_PROP_FPS)
@@ -359,15 +359,15 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         self.videoLength_sec = self.lenVideoFrames / self.cameraFPS
         self.singleFrame_sec = 1.0 / (self.cameraFPS * 1000)
 
-        print "\tfps:", self.cameraFPS
-        print "\tlength (sec):", self.videoLength_sec
-        print "\tlength (frames):", self.lenVideoFrames
+        print("\tfps:", self.cameraFPS)
+        print("\tlength (sec):", self.videoLength_sec)
+        print("\tlength (frames):", self.lenVideoFrames)
 
         cv2.createTrackbar(self.trackbarName, self.windowName, 0,
                            # int(self.camera.get(cv2.CAP_PROP_FRAME_COUNT)),
                            self.lenVideoFrames, self.onSlider)
 
-        print "video loaded!"
+        print("video loaded!")
 
     def findClosestRes(self, sizeByFPS):
         """
@@ -378,7 +378,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :param sizeByFPS: An integer specifying desired FPS
         :return: An integer closest to sizeByFPS in self.resolutions
         """
-        possibleFPSs = numpy.array(self.resolutions.keys())
+        possibleFPSs = numpy.array(list(self.resolutions.keys()))
         minuend = copy.copy(possibleFPSs)
         minuend.fill(sizeByFPS)
         difference = possibleFPSs - minuend
@@ -438,8 +438,8 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         """
         if not burst_mode:
             name = time.strftime("%c").replace(":", ";") + ".png"
-            print "Frame saved as " + str(name)
-            print "in directory:\n" + config.get_dir(":images")
+            print("Frame saved as " + str(name))
+            print("in directory:\n" + config.get_dir(":images"))
         else:
             name = datetime.datetime.now().strftime(
                     "%a %b %d %H;%M;%S.%f %p, %Y") + ".png"
@@ -508,7 +508,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             if 0 <= key < 0x100:
                 return chr(key)
             else:
-                print("Unrecognized key: " + str(key))
+                print(("Unrecognized key: " + str(key)))
         else:
             return key
 
@@ -576,7 +576,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                          int(self.dimensions[3] - self.dimensions[1])), True)
 
         self.videoOutputDir = output_dir
-        print "Initialized video named '%s'." % (video_name)
+        print("Initialized video named '%s'." % (video_name))
 
     def writeToVideo(self, frame):
         """
@@ -598,7 +598,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         """
         if self.video is not None:
             self.video.release()
-            print "Video written to:\n" + self.videoOutputDir
+            print("Video written to:\n" + self.videoOutputDir)
 
     def updateFrame(self, readNextFrame=True):
         """

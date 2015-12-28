@@ -1,0 +1,11 @@
+/img
+  img1.jpg
+  img2.jpg
+info.dat
+
+File info.dat:
+
+img/img1.jpg  1  140 100 45 45
+img/img2.jpg  2  100 200 50 50   50 30 25 25
+
+opencv_createsamples -img /home/user/logo.png -bg /home/user/bg.txt -info annotations.lst -maxxangle 0.1 -maxyangle 0.1 -maxzangle 0.1

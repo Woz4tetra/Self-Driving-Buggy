@@ -18,7 +18,7 @@ encoder = Sensor(2, 'u64')
 servo = Command(0, 'u8')
 led13 = Command(1, 'b')
 
-sensor_data = SensorData(imu, gps, encoder)
+sensor_data = SensorPool(imu, gps, encoder)
 command_queue = CommandQueue()
 
 communicator = comm.Communicator(115200, command_queue, sensor_data)
@@ -33,10 +33,10 @@ if log_data:
 
 try:
     while True:
-        print(imu.data)
-        print(gps.data)
-        print(encoder.data)
-        print
+        print((imu.data))
+        print((gps.data))
+        print((encoder.data))
+        print()
 
         time.sleep(0.25)
 

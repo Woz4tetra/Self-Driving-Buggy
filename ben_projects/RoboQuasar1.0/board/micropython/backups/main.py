@@ -8,36 +8,48 @@ from comm import Communicator
 tmp36 = TMP36(0, pyb.Pin.board.Y12)
 mcp9808 = MCP9808(1, 1)
 accel = BuiltInAccel(2)
+gps = GPS(3)
 
 servo1 = Servo(0, 1)
 
-#leds = [pyb.LED(index) for index in range(1, 5)]
+new_data = False
+def pps_callback(line):
+    global new_data
+    new_data = True
 
-sensor_queue = SensorQueue(tmp36, mcp9808, accel)
+uart = UART(6, 9600, read_buf_len=1000)
+pps_pin = pyb.Pin.board.X8
+extint = pyb.ExtInt(pps_pin, pyb.ExtInt.IRQ_FALLING,
+                    pyb.Pin.PULL_UP, pps_callback)
+
+leds = []
+for index in range(1, 5):
+    pyb.LED(index).off()
+    leds.append(pyb.LED(index))
+
+
+sensor_queue = SensorQueue(tmp36, mcp9808, accel, gps)
 command_pool = CommandPool(servo1)
 
 communicator = Communicator(sensor_queue, command_pool)
 
-#toggle_index = 0
+toggle_index = 0
 #servo_val = -90
 
 while True:
-    
 #    print(tmp36.read(), mcp9808.read())
 #    print(accel.x(), accel.y(), accel.z())
 #    print(switch())
+    if new_data:
+        while uart.any():
+            gps.update(chr(uart.readchar()))
+            
+    new_data = False
     
     communicator.write_packet()
     communicator.read_command()
     
-#    leds[toggle_index].toggle()
-#    toggle_index = (toggle_index + 1) % 4
+    leds[toggle_index].toggle()
+    toggle_index = (toggle_index + 1) % 4
     
-#    servo1.angle(servo_val)
-#    servo_val += 5
-#    
-#    if servo_val > 90:
-#        servo_val = -90
-    
-    pyb.delay(50)
-
+    pyb.delay(5)

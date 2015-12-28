@@ -30,11 +30,11 @@ class BuggyJoystick:
         self.done = False
 
         joysticks = [pygame.joystick.Joystick(x) for x in
-                     xrange(pygame.joystick.get_count())]
+                     range(pygame.joystick.get_count())]
 
         for joy in joysticks:
             joy.init()
-            print joy.get_name(), joy.get_id(), joy.get_init(), joy.get_numaxes()
+            print(joy.get_name(), joy.get_id(), joy.get_init(), joy.get_numaxes())
 
     def update(self):
         event = pygame.event.poll()
@@ -72,7 +72,7 @@ class BuggyJoystick:
             self._updateButtons(event, False)
 
         elif event.type == pygame.JOYHATMOTION:
-            print event.value
+            print(event.value)
 
             # elif event.type == pygame.NOEVENT:
             # if self.mainStick[0] < self.deadzoneStick:

@@ -16,7 +16,7 @@ def run():
         camera1.showFrame(frame1)
         key = camera1.getPressedKey()
         if key > -1:
-            print key
+            print(key)
 
 
 if __name__ == '__main__':

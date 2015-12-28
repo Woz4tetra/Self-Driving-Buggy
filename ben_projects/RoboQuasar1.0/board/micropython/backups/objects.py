@@ -1,8 +1,13 @@
 
 import pyb
 from pyb import I2C
+from pyb import UART
+
+from micropyGPS import MicropyGPS
 
 from data import *
+
+
 
 class MCP9808(Sensor):
     CONFIG            = 0x01
@@ -30,7 +35,7 @@ class MCP9808(Sensor):
         self.i2c_ref = I2C(self.bus, I2C.MASTER)
         
         addresses = self.i2c_ref.scan()
-        print("Scanning devices:", [hex(x) for x in addresses])
+        #print("Scanning devices:", [hex(x) for x in addresses])
         if self.addr not in addresses:
             raise Exception("MCP9808 is not detected")
         
@@ -61,11 +66,8 @@ class MCP9808(Sensor):
         
         return temperature
     
-    def get_packet(self):
-        self.data = self.get_raw()
-        
-        return "%s\t%s\r" % (self.to_hex(self.object_id, 2),
-                             self.to_hex(self.data, self.data_len))
+    def update_data(self):
+        self.data[0] = self.get_raw()
     
 
 class TMP36(Sensor):
@@ -80,11 +82,9 @@ class TMP36(Sensor):
         millivolts = self.vcc / 1024 * raw
         return (millivolts - 500) / 100
     
-    def get_packet(self):
-        self.data = self.pin_ref.read()
+    def update_data(self):
+        self.data[0] = self.pin_ref.read()
         
-        return "%s\t%s\r" % (self.to_hex(self.object_id, 2),
-                             self.to_hex(self.data, self.data_len))
 
 class BuiltInAccel(Sensor):
     def __init__(self, sensor_id):
@@ -93,11 +93,27 @@ class BuiltInAccel(Sensor):
         self.accel = pyb.Accel()
     
     def get_packet(self):
-        self.data = "%s%s%s" % (self.to_hex(self.accel.x(), 2),
-                                self.to_hex(self.accel.y(), 2),
-                                self.to_hex(self.accel.z(), 2))
-        return "%s\t%s\r" % (self.to_hex(self.object_id, 2),
-                             self.data)
+        self.data = (self.accel.x(), self.accel.y(), self.accel.z())
+
+class GPS(Sensor):
+    def __init__(self, sensor_id):
+        super().__init__(sensor_id, 'i16', 'f', 'i16', 'f', 'f', 'f', 'f')
+        
+        self.gps_ref = MicropyGPS()
+    
+    def update(self, character):
+        self.gps_ref.update(character)
+    
+    def update_data(self):
+        self.data = \
+            (self.gps_ref.latitude[0],
+             self.gps_ref.latitude[1],
+             self.gps_ref.longitude[0],
+             self.gps_ref.longitude[1],
+             
+             self.gps_ref.speed[2],
+             self.gps_ref.hdop,
+             self.gps_ref.course)
 
 class Servo(Command):
     def __init__(self, command_id, pin_num):
