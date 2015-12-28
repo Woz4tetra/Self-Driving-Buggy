@@ -41,7 +41,8 @@ Thumbs.db
 
 # Directories #
 ###############
-./idea
+.idea/
 .pioenvs/
-.sconsign.dblite
+.sconsign.dblite/
 ben_projects/Self-Driving\ Buggy\ Rev.\ 5/camera/Videos/
+__pycache__/
