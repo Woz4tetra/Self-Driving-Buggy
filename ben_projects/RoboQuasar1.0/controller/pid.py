@@ -28,8 +28,8 @@ class PID:
         time1 = time.time()
 
         # print measured_value, "measured values"
-        print measured_value[0], "\t", measured_value[1], "\t", measured_value[
-            2]
+        print(measured_value[0], "\t", measured_value[1], "\t", measured_value[
+            2])
 
         error = PID.error_finder(measured_value, set_point)
         # print error, "error"

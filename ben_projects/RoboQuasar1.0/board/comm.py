@@ -17,7 +17,6 @@
     data.py for details of the sensor and command packet protocol.
 """
 
-from __future__ import print_function
 import serial
 import time
 import os
@@ -27,15 +26,13 @@ import threading
 import random
 
 exit_flag = False
-use_simulated = False
+
 
 class Communicator(threading.Thread):
-    def __init__(self, baud_rate, command_queue, sensors_pool):
-        if use_simulated:
-            self.serialRef = SimulatedSerial()
-            self.serialRef.start()
-        else:
-            self.serialRef = self._findPort(baud_rate)
+    def __init__(self, baud_rate, command_queue, sensors_pool,
+                 use_handshake=True):
+        self.serialRef = self._findPort(baud_rate)
+        if use_handshake:
             self._handshake()
 
         self.sensor_pool = sensors_pool
@@ -45,19 +42,19 @@ class Communicator(threading.Thread):
 
     def run(self):
         while exit_flag == False:
-            packet = ""
+            packet = bytearray()
             incoming = self.serialRef.read()
-            while incoming != '\n':
+            while incoming != b'\r':
                 if incoming != None:
                     packet += incoming
                 incoming = self.serialRef.read()
-            
-            for index in xrange(len(packet)):
+            for index in range(len(packet)):
                 self.sensor_pool.update(packet)
 
             if not self.command_queue.is_empty():
-                self.serialRef.write(self.command_queue.get())
-    
+                self.serialRef.write(
+                    bytearray(self.command_queue.get(), 'ascii'))
+
     def _handshake(self):
         read_flag = self.serialRef.read()
 
@@ -67,7 +64,7 @@ class Communicator(threading.Thread):
             print(read_flag, end="")
             read_flag = self.serialRef.read()
 
-        self.serialRef.write("\n")
+        self.serialRef.write("\r")
         self.serialRef.flushInput()
         self.serialRef.flushOutput()
         print("Arduino initialized!")
@@ -84,8 +81,8 @@ class Communicator(threading.Thread):
                 pass
         if address is None:
             raise Exception(
-                "No boards could be found! Did you plug it in? Try "
-                "entering the address manually.")
+                    "No boards could be found! Did you plug it in? Try "
+                    "entering the address manually.")
         else:
             return serial_ref
 
@@ -116,77 +113,3 @@ class Communicator(threading.Thread):
 
         else:
             raise EnvironmentError('Unsupported platform')
-
-
-class SimulatedSerial(threading.Thread):
-    def __init__(self):
-
-        self.input_queue = []
-        self.output_queue = []
-
-        self.outgoing = ""
-
-        super(SimulatedSerial, self).__init__()
-
-    def write(self, string):
-        self.input_queue.append(string)
-
-    def read(self):
-        if len(self.outgoing) == 0:
-            if len(self.output_queue) > 0:
-                self.outgoing = self.output_queue.pop(0)
-            else:
-                return None
-
-        character = self.outgoing[0]
-        self.outgoing = self.outgoing[1:]
-        return character
-
-    def flushInput(self):
-        self.input_queue = []
-
-    def flushOutput(self):
-        self.output_queue = []
-
-    def generate_hex(self, number):
-        hex_data = ""
-        for counter in xrange(number):
-            hex_data += hex(random.randint(0, 15))[2:]
-
-        return hex_data
-
-    def run(self):
-        sensor_index = 0
-
-        self.encoder = 1
-
-        while exit_flag == False:
-            if len(self.input_queue) > 0:
-                packet = self.input_queue.pop(0)
-                command_id, data_len, data = packet[:-1].split("\t")
-                assert int(data_len, 16) == len(data)
-
-                command_id = int(command_id, 16)
-                if command_id == 0:
-                    print("servo:", data)
-                elif command_id == 1:
-                    print("led13:", data)
-
-            sensor_packet = "0" + hex(sensor_index)[
-                                  2:] + "\t"  # if this exceeds 15, what am I doing with my life
-            if sensor_index == 0:
-                sensor_packet += self.generate_hex(2 * 18)
-            elif sensor_index == 1:
-                sensor_packet += self.generate_hex(8 * 4 + 2 * 2)
-            elif sensor_index == 2:
-                hex_encoder = hex(self.encoder)[2:]
-                sensor_packet += "0" * (16 - len(hex_encoder)) + hex_encoder
-
-            self.encoder += 1  # overflow problems? but it's a simulator so who cares
-
-            self.output_queue.append(sensor_packet + "\n")
-            sensor_index = random.randint(0, 2)  # (sensor_index + 1) % 3
-
-            # sleep = random.random()
-            # time.sleep(sleep + 1)
-            # print("sleep:", sleep)

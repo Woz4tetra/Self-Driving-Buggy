@@ -100,20 +100,20 @@ def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
         if capture_properties['enable_draw'] is True:
             key = camera1.getPressedKey()
             if key == 'q' or key == "esc":
-                print "KEY TO STOP"
+                print("KEY TO STOP")
                 camera1.stopCamera()
             elif key == ' ':
                 if capture_properties['paused']:
-                    print time.time() - time_start, ": ...Video unpaused"
+                    print(time.time() - time_start, ": ...Video unpaused")
                 else:
-                    print time.time() - time_start, ": Video paused..."
+                    print(time.time() - time_start, ": Video paused...")
                 capture_properties['paused'] = not capture_properties['paused']
             elif key == 'o':
                 capture_properties['apply_filters'] = not capture_properties[
                     'apply_filters']
-                print(
+                print((
                     "Applying filters is " + str(
-                        capture_properties['apply_filters']))
+                        capture_properties['apply_filters'])))
                 frame1 = camera1.updateFrame(False)
             elif key == "right":
                 camera1.incrementFrame()
@@ -139,13 +139,14 @@ def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
             elif key == 'b':  # burst photo mode
                 capture_properties['burst_mode'] = not capture_properties[
                     'burst_mode']
-                print("Burst mode is " + str(capture_properties['burst_mode']))
+                print(("Burst mode is " + str(capture_properties['burst_mode'])))
             elif key == 'p':  # debug print
-                print "Frame #:", capture_properties['currentFrame']
+                print("Frame #:", capture_properties['currentFrame'])
 
-def assert_result((result_angle, result_x), 
-                  (expected_angle, expected_x),
-                  (error_angle, error_x)):
+def assert_result(xxx_todo_changeme, xxx_todo_changeme1, xxx_todo_changeme2):
+    (result_angle, result_x) = xxx_todo_changeme
+    (expected_angle, expected_x) = xxx_todo_changeme1
+    (error_angle, error_x) = xxx_todo_changeme2
     if expected_angle != None and expected_x != None:
         assert abs(result_angle - expected_angle) < error_angle and \
             abs(result_x - expected_x) < error_x

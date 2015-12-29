@@ -112,8 +112,8 @@ void loop()
     }
     else if (current_sensor == ENCODER_ID)
     {
-        hall_distance += 1;
-//        hall_distance = encoder_distance();
+//        hall_distance += 1;
+        hall_distance = encoder_distance();
         for (int digit = 0; digit < 8; digit++) {
             hex_print((hall_distance >> (8 * (8 - digit))) & 0xff);
         }

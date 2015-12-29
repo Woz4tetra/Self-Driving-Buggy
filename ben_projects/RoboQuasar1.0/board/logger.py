@@ -57,7 +57,7 @@ class Recorder(object):
         else:
             data = []
 
-        print(repr(serial_object.current_packet))
+        print((repr(serial_object.current_packet)))
         self.writer.writerow(
             [str(time_stamp),
              str(object_name),

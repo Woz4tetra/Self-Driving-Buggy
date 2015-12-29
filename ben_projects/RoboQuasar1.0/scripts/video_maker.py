@@ -43,18 +43,18 @@ def write_from_images(input_dir, output_dir, fps, video_name,
 
     images = []
 
-    print "Using files:"
+    print("Using files:")
     for file in files:
         image = cv2.imread(input_dir + "/" + file)
         if image != None:
-            print file
+            print(file)
             if width is None and height is None:
                 height, width = image.shape[0:2]
             else:
                 image = cv2.resize(image, (width, height))
             images.append(image)
 
-    print "Number of frames:", len(images)
+    print("Number of frames:", len(images))
     if len(images) == 0:
         print("No images found!")
         quit()
@@ -80,8 +80,8 @@ def write_from_images(input_dir, output_dir, fps, video_name,
     video.open(output_dir + video_name, fourcc, fps,
                (width, height), True)
 
-    print "Initialized video named '%s'.\nIt will be written to:\n%s" % (
-        video_name, output_dir)
+    print("Initialized video named '%s'.\nIt will be written to:\n%s" % (
+        video_name, output_dir))
 
     for image in images:
         video.write(image)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    print(args.input, args.output)
+    print((args.input, args.output))
 
     if args.source == None:
         write_from_images(args.input, args.output,
