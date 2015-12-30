@@ -1,637 +1,0 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		C95767CB1C08254100D30DAE /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C95767CA1C08254100D30DAE /* Utilities.cpp */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C957675B1C0815E200D30DAE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
-/* Begin PBXFileReference section */
-		C957675D1C0815E200D30DAE /* RoboQuasar1.0_Arduino */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoboQuasar1.0_Arduino; sourceTree = BUILT_PRODUCTS_DIR; };
-		C95767671C0815FA00D30DAE /* RoboQuasar1.0_Arduino.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RoboQuasar1.0_Arduino.ino; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		C95767691C081D0A00D30DAE /* Adafruit_GPS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Adafruit_GPS.cpp; sourceTree = "<group>"; };
-		C957676A1C081D0A00D30DAE /* Adafruit_GPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Adafruit_GPS.h; sourceTree = "<group>"; };
-		C957676D1C081D0A00D30DAE /* blank.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = blank.pde; sourceTree = "<group>"; };
-		C957676E1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767701C081D0A00D30DAE /* due_parsing.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = due_parsing.ino; sourceTree = "<group>"; };
-		C95767711C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767731C081D0A00D30DAE /* due_shield_sdlog.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = due_shield_sdlog.ino; sourceTree = "<group>"; };
-		C95767741C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767761C081D0A00D30DAE /* echo.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = echo.pde; sourceTree = "<group>"; };
-		C95767771C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767791C081D0A00D30DAE /* flora_dumplog.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = flora_dumplog.ino; sourceTree = "<group>"; };
-		C957677A1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C957677C1C081D0A00D30DAE /* flora_gpslog.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = flora_gpslog.ino; sourceTree = "<group>"; };
-		C957677D1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C957677F1C081D0A00D30DAE /* flora_gpstest.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = flora_gpstest.ino; sourceTree = "<group>"; };
-		C95767801C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767821C081D0A00D30DAE /* flora_parsing.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = flora_parsing.ino; sourceTree = "<group>"; };
-		C95767831C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767841C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767861C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767871C081D0A00D30DAE /* leo_echo.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = leo_echo.ino; sourceTree = "<group>"; };
-		C95767891C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C957678A1C081D0A00D30DAE /* leo_locus_dumpbasic.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = leo_locus_dumpbasic.ino; sourceTree = "<group>"; };
-		C957678C1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C957678D1C081D0A00D30DAE /* leo_locus_erase.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = leo_locus_erase.ino; sourceTree = "<group>"; };
-		C957678F1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767901C081D0A00D30DAE /* leo_locus_start.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = leo_locus_start.ino; sourceTree = "<group>"; };
-		C95767921C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767931C081D0A00D30DAE /* leo_locus_status.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = leo_locus_status.ino; sourceTree = "<group>"; };
-		C95767951C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767961C081D0A00D30DAE /* leo_parsing.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = leo_parsing.ino; sourceTree = "<group>"; };
-		C95767981C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767991C081D0A00D30DAE /* locus_dumpbasic.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = locus_dumpbasic.pde; sourceTree = "<group>"; };
-		C957679B1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C957679C1C081D0A00D30DAE /* locus_erase.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = locus_erase.pde; sourceTree = "<group>"; };
-		C957679E1C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C957679F1C081D0A00D30DAE /* locus_start.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = locus_start.pde; sourceTree = "<group>"; };
-		C95767A11C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767A21C081D0A00D30DAE /* locus_status.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = locus_status.pde; sourceTree = "<group>"; };
-		C95767A41C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767A51C081D0A00D30DAE /* parsing.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = parsing.pde; sourceTree = "<group>"; };
-		C95767A71C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767A81C081D0A00D30DAE /* shield_sdlog.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = shield_sdlog.ino; sourceTree = "<group>"; };
-		C95767A91C081D0A00D30DAE /* library.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = library.properties; sourceTree = "<group>"; };
-		C95767AA1C081D0A00D30DAE /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
-		C95767AB1C081D0A00D30DAE /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		C95767AD1C081D0A00D30DAE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		C95767AE1C081D0A00D30DAE /* DueTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DueTimer.cpp; sourceTree = "<group>"; };
-		C95767AF1C081D0A00D30DAE /* DueTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DueTimer.h; sourceTree = "<group>"; };
-		C95767B21C081D0A00D30DAE /* AvaliableTimer.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = AvaliableTimer.pde; sourceTree = "<group>"; };
-		C95767B31C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767B41C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767B61C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767B71C081D0A00D30DAE /* MultipleTimers.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = MultipleTimers.pde; sourceTree = "<group>"; };
-		C95767B91C081D0A00D30DAE /* Icon */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Icon"; sourceTree = "<group>"; };
-		C95767BA1C081D0A00D30DAE /* SimpleTimer.pde */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleTimer.pde; sourceTree = "<group>"; };
-		C95767BB1C081D0A00D30DAE /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
-		C95767BC1C081D0A00D30DAE /* library.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = library.json; sourceTree = "<group>"; };
-		C95767BD1C081D0A00D30DAE /* library.properties */ = {isa = PBXFileReference; lastKnownFileType = text; path = library.properties; sourceTree = "<group>"; };
-		C95767BE1C081D0A00D30DAE /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		C95767BF1C081D0A00D30DAE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C95767C01C081D0A00D30DAE /* TimerCounter.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TimerCounter.md; sourceTree = "<group>"; };
-		C95767C21C081D0A00D30DAE /* HallEncoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HallEncoder.cpp; sourceTree = "<group>"; };
-		C95767C31C081D0A00D30DAE /* HallEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HallEncoder.h; sourceTree = "<group>"; };
-		C95767C51C081D0A00D30DAE /* MPU9250.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MPU9250.cpp; sourceTree = "<group>"; };
-		C95767C61C081D0A00D30DAE /* MPU9250.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPU9250.h; sourceTree = "<group>"; };
-		C95767C81C08227600D30DAE /* MyGPS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyGPS.cpp; sourceTree = "<group>"; };
-		C95767C91C08227600D30DAE /* MyGPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGPS.h; sourceTree = "<group>"; };
-		C95767CA1C08254100D30DAE /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utilities.cpp; path = ../libraries/Utitilies/Utilities.cpp; sourceTree = "<group>"; };
-		C95767CC1C08254700D30DAE /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../libraries/Utitilies/Utilities.h; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		C957675A1C0815E200D30DAE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		C95767541C0815E200D30DAE = {
-			isa = PBXGroup;
-			children = (
-				C95767CD1C08254F00D30DAE /* Utilities */,
-				C95767C71C08227600D30DAE /* MyGPS */,
-				C95767681C081D0A00D30DAE /* Adafruit-GPS */,
-				C95767AC1C081D0A00D30DAE /* DueTimer */,
-				C95767C11C081D0A00D30DAE /* HallEncoder */,
-				C95767C41C081D0A00D30DAE /* MPU9250 */,
-				C957675F1C0815E200D30DAE /* RoboQuasar1.0_Arduino */,
-				C957675E1C0815E200D30DAE /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		C957675E1C0815E200D30DAE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C957675D1C0815E200D30DAE /* RoboQuasar1.0_Arduino */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C957675F1C0815E200D30DAE /* RoboQuasar1.0_Arduino */ = {
-			isa = PBXGroup;
-			children = (
-				C95767671C0815FA00D30DAE /* RoboQuasar1.0_Arduino.ino */,
-			);
-			path = RoboQuasar1.0_Arduino;
-			sourceTree = "<group>";
-		};
-		C95767681C081D0A00D30DAE /* Adafruit-GPS */ = {
-			isa = PBXGroup;
-			children = (
-				C95767691C081D0A00D30DAE /* Adafruit_GPS.cpp */,
-				C957676A1C081D0A00D30DAE /* Adafruit_GPS.h */,
-				C957676B1C081D0A00D30DAE /* examples */,
-				C95767A91C081D0A00D30DAE /* library.properties */,
-				C95767AA1C081D0A00D30DAE /* license.txt */,
-				C95767AB1C081D0A00D30DAE /* README.txt */,
-			);
-			name = "Adafruit-GPS";
-			path = "../libraries/Adafruit-GPS";
-			sourceTree = "<group>";
-		};
-		C957676B1C081D0A00D30DAE /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				C957676C1C081D0A00D30DAE /* blank */,
-				C957676F1C081D0A00D30DAE /* due_parsing */,
-				C95767721C081D0A00D30DAE /* due_shield_sdlog */,
-				C95767751C081D0A00D30DAE /* echo */,
-				C95767781C081D0A00D30DAE /* flora_dumplog */,
-				C957677B1C081D0A00D30DAE /* flora_gpslog */,
-				C957677E1C081D0A00D30DAE /* flora_gpstest */,
-				C95767811C081D0A00D30DAE /* flora_parsing */,
-				C95767841C081D0A00D30DAE /* Icon */,
-				C95767851C081D0A00D30DAE /* leo_echo */,
-				C95767881C081D0A00D30DAE /* leo_locus_dumpbasic */,
-				C957678B1C081D0A00D30DAE /* leo_locus_erase */,
-				C957678E1C081D0A00D30DAE /* leo_locus_start */,
-				C95767911C081D0A00D30DAE /* leo_locus_status */,
-				C95767941C081D0A00D30DAE /* leo_parsing */,
-				C95767971C081D0A00D30DAE /* locus_dumpbasic */,
-				C957679A1C081D0A00D30DAE /* locus_erase */,
-				C957679D1C081D0A00D30DAE /* locus_start */,
-				C95767A01C081D0A00D30DAE /* locus_status */,
-				C95767A31C081D0A00D30DAE /* parsing */,
-				C95767A61C081D0A00D30DAE /* shield_sdlog */,
-			);
-			path = examples;
-			sourceTree = "<group>";
-		};
-		C957676C1C081D0A00D30DAE /* blank */ = {
-			isa = PBXGroup;
-			children = (
-				C957676D1C081D0A00D30DAE /* blank.pde */,
-				C957676E1C081D0A00D30DAE /* Icon */,
-			);
-			path = blank;
-			sourceTree = "<group>";
-		};
-		C957676F1C081D0A00D30DAE /* due_parsing */ = {
-			isa = PBXGroup;
-			children = (
-				C95767701C081D0A00D30DAE /* due_parsing.ino */,
-				C95767711C081D0A00D30DAE /* Icon */,
-			);
-			path = due_parsing;
-			sourceTree = "<group>";
-		};
-		C95767721C081D0A00D30DAE /* due_shield_sdlog */ = {
-			isa = PBXGroup;
-			children = (
-				C95767731C081D0A00D30DAE /* due_shield_sdlog.ino */,
-				C95767741C081D0A00D30DAE /* Icon */,
-			);
-			path = due_shield_sdlog;
-			sourceTree = "<group>";
-		};
-		C95767751C081D0A00D30DAE /* echo */ = {
-			isa = PBXGroup;
-			children = (
-				C95767761C081D0A00D30DAE /* echo.pde */,
-				C95767771C081D0A00D30DAE /* Icon */,
-			);
-			path = echo;
-			sourceTree = "<group>";
-		};
-		C95767781C081D0A00D30DAE /* flora_dumplog */ = {
-			isa = PBXGroup;
-			children = (
-				C95767791C081D0A00D30DAE /* flora_dumplog.ino */,
-				C957677A1C081D0A00D30DAE /* Icon */,
-			);
-			path = flora_dumplog;
-			sourceTree = "<group>";
-		};
-		C957677B1C081D0A00D30DAE /* flora_gpslog */ = {
-			isa = PBXGroup;
-			children = (
-				C957677C1C081D0A00D30DAE /* flora_gpslog.ino */,
-				C957677D1C081D0A00D30DAE /* Icon */,
-			);
-			path = flora_gpslog;
-			sourceTree = "<group>";
-		};
-		C957677E1C081D0A00D30DAE /* flora_gpstest */ = {
-			isa = PBXGroup;
-			children = (
-				C957677F1C081D0A00D30DAE /* flora_gpstest.ino */,
-				C95767801C081D0A00D30DAE /* Icon */,
-			);
-			path = flora_gpstest;
-			sourceTree = "<group>";
-		};
-		C95767811C081D0A00D30DAE /* flora_parsing */ = {
-			isa = PBXGroup;
-			children = (
-				C95767821C081D0A00D30DAE /* flora_parsing.ino */,
-				C95767831C081D0A00D30DAE /* Icon */,
-			);
-			path = flora_parsing;
-			sourceTree = "<group>";
-		};
-		C95767851C081D0A00D30DAE /* leo_echo */ = {
-			isa = PBXGroup;
-			children = (
-				C95767861C081D0A00D30DAE /* Icon */,
-				C95767871C081D0A00D30DAE /* leo_echo.ino */,
-			);
-			path = leo_echo;
-			sourceTree = "<group>";
-		};
-		C95767881C081D0A00D30DAE /* leo_locus_dumpbasic */ = {
-			isa = PBXGroup;
-			children = (
-				C95767891C081D0A00D30DAE /* Icon */,
-				C957678A1C081D0A00D30DAE /* leo_locus_dumpbasic.ino */,
-			);
-			path = leo_locus_dumpbasic;
-			sourceTree = "<group>";
-		};
-		C957678B1C081D0A00D30DAE /* leo_locus_erase */ = {
-			isa = PBXGroup;
-			children = (
-				C957678C1C081D0A00D30DAE /* Icon */,
-				C957678D1C081D0A00D30DAE /* leo_locus_erase.ino */,
-			);
-			path = leo_locus_erase;
-			sourceTree = "<group>";
-		};
-		C957678E1C081D0A00D30DAE /* leo_locus_start */ = {
-			isa = PBXGroup;
-			children = (
-				C957678F1C081D0A00D30DAE /* Icon */,
-				C95767901C081D0A00D30DAE /* leo_locus_start.ino */,
-			);
-			path = leo_locus_start;
-			sourceTree = "<group>";
-		};
-		C95767911C081D0A00D30DAE /* leo_locus_status */ = {
-			isa = PBXGroup;
-			children = (
-				C95767921C081D0A00D30DAE /* Icon */,
-				C95767931C081D0A00D30DAE /* leo_locus_status.ino */,
-			);
-			path = leo_locus_status;
-			sourceTree = "<group>";
-		};
-		C95767941C081D0A00D30DAE /* leo_parsing */ = {
-			isa = PBXGroup;
-			children = (
-				C95767951C081D0A00D30DAE /* Icon */,
-				C95767961C081D0A00D30DAE /* leo_parsing.ino */,
-			);
-			path = leo_parsing;
-			sourceTree = "<group>";
-		};
-		C95767971C081D0A00D30DAE /* locus_dumpbasic */ = {
-			isa = PBXGroup;
-			children = (
-				C95767981C081D0A00D30DAE /* Icon */,
-				C95767991C081D0A00D30DAE /* locus_dumpbasic.pde */,
-			);
-			path = locus_dumpbasic;
-			sourceTree = "<group>";
-		};
-		C957679A1C081D0A00D30DAE /* locus_erase */ = {
-			isa = PBXGroup;
-			children = (
-				C957679B1C081D0A00D30DAE /* Icon */,
-				C957679C1C081D0A00D30DAE /* locus_erase.pde */,
-			);
-			path = locus_erase;
-			sourceTree = "<group>";
-		};
-		C957679D1C081D0A00D30DAE /* locus_start */ = {
-			isa = PBXGroup;
-			children = (
-				C957679E1C081D0A00D30DAE /* Icon */,
-				C957679F1C081D0A00D30DAE /* locus_start.pde */,
-			);
-			path = locus_start;
-			sourceTree = "<group>";
-		};
-		C95767A01C081D0A00D30DAE /* locus_status */ = {
-			isa = PBXGroup;
-			children = (
-				C95767A11C081D0A00D30DAE /* Icon */,
-				C95767A21C081D0A00D30DAE /* locus_status.pde */,
-			);
-			path = locus_status;
-			sourceTree = "<group>";
-		};
-		C95767A31C081D0A00D30DAE /* parsing */ = {
-			isa = PBXGroup;
-			children = (
-				C95767A41C081D0A00D30DAE /* Icon */,
-				C95767A51C081D0A00D30DAE /* parsing.pde */,
-			);
-			path = parsing;
-			sourceTree = "<group>";
-		};
-		C95767A61C081D0A00D30DAE /* shield_sdlog */ = {
-			isa = PBXGroup;
-			children = (
-				C95767A71C081D0A00D30DAE /* Icon */,
-				C95767A81C081D0A00D30DAE /* shield_sdlog.ino */,
-			);
-			path = shield_sdlog;
-			sourceTree = "<group>";
-		};
-		C95767AC1C081D0A00D30DAE /* DueTimer */ = {
-			isa = PBXGroup;
-			children = (
-				C95767AD1C081D0A00D30DAE /* .gitignore */,
-				C95767AE1C081D0A00D30DAE /* DueTimer.cpp */,
-				C95767AF1C081D0A00D30DAE /* DueTimer.h */,
-				C95767B01C081D0A00D30DAE /* examples */,
-				C95767BB1C081D0A00D30DAE /* keywords.txt */,
-				C95767BC1C081D0A00D30DAE /* library.json */,
-				C95767BD1C081D0A00D30DAE /* library.properties */,
-				C95767BE1C081D0A00D30DAE /* LICENSE.txt */,
-				C95767BF1C081D0A00D30DAE /* README.md */,
-				C95767C01C081D0A00D30DAE /* TimerCounter.md */,
-			);
-			name = DueTimer;
-			path = ../libraries/DueTimer;
-			sourceTree = "<group>";
-		};
-		C95767B01C081D0A00D30DAE /* examples */ = {
-			isa = PBXGroup;
-			children = (
-				C95767B11C081D0A00D30DAE /* AvaliableTimer */,
-				C95767B41C081D0A00D30DAE /* Icon */,
-				C95767B51C081D0A00D30DAE /* MultipleTimers */,
-				C95767B81C081D0A00D30DAE /* SimpleTimer */,
-			);
-			path = examples;
-			sourceTree = "<group>";
-		};
-		C95767B11C081D0A00D30DAE /* AvaliableTimer */ = {
-			isa = PBXGroup;
-			children = (
-				C95767B21C081D0A00D30DAE /* AvaliableTimer.pde */,
-				C95767B31C081D0A00D30DAE /* Icon */,
-			);
-			path = AvaliableTimer;
-			sourceTree = "<group>";
-		};
-		C95767B51C081D0A00D30DAE /* MultipleTimers */ = {
-			isa = PBXGroup;
-			children = (
-				C95767B61C081D0A00D30DAE /* Icon */,
-				C95767B71C081D0A00D30DAE /* MultipleTimers.pde */,
-			);
-			path = MultipleTimers;
-			sourceTree = "<group>";
-		};
-		C95767B81C081D0A00D30DAE /* SimpleTimer */ = {
-			isa = PBXGroup;
-			children = (
-				C95767B91C081D0A00D30DAE /* Icon */,
-				C95767BA1C081D0A00D30DAE /* SimpleTimer.pde */,
-			);
-			path = SimpleTimer;
-			sourceTree = "<group>";
-		};
-		C95767C11C081D0A00D30DAE /* HallEncoder */ = {
-			isa = PBXGroup;
-			children = (
-				C95767C21C081D0A00D30DAE /* HallEncoder.cpp */,
-				C95767C31C081D0A00D30DAE /* HallEncoder.h */,
-			);
-			name = HallEncoder;
-			path = ../libraries/HallEncoder;
-			sourceTree = "<group>";
-		};
-		C95767C41C081D0A00D30DAE /* MPU9250 */ = {
-			isa = PBXGroup;
-			children = (
-				C95767C51C081D0A00D30DAE /* MPU9250.cpp */,
-				C95767C61C081D0A00D30DAE /* MPU9250.h */,
-			);
-			name = MPU9250;
-			path = ../libraries/MPU9250;
-			sourceTree = "<group>";
-		};
-		C95767C71C08227600D30DAE /* MyGPS */ = {
-			isa = PBXGroup;
-			children = (
-				C95767C81C08227600D30DAE /* MyGPS.cpp */,
-				C95767C91C08227600D30DAE /* MyGPS.h */,
-			);
-			name = MyGPS;
-			path = ../libraries/MyGPS;
-			sourceTree = "<group>";
-		};
-		C95767CD1C08254F00D30DAE /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				C95767CA1C08254100D30DAE /* Utilities.cpp */,
-				C95767CC1C08254700D30DAE /* Utilities.h */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		C957675C1C0815E200D30DAE /* RoboQuasar1.0_Arduino */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C95767641C0815E200D30DAE /* Build configuration list for PBXNativeTarget "RoboQuasar1.0_Arduino" */;
-			buildPhases = (
-				C95767591C0815E200D30DAE /* Sources */,
-				C957675A1C0815E200D30DAE /* Frameworks */,
-				C957675B1C0815E200D30DAE /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = RoboQuasar1.0_Arduino;
-			productName = RoboQuasar1.0_Arduino;
-			productReference = C957675D1C0815E200D30DAE /* RoboQuasar1.0_Arduino */;
-			productType = "com.apple.product-type.tool";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		C95767551C0815E200D30DAE /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = "Benjamin Warwick";
-				TargetAttributes = {
-					C957675C1C0815E200D30DAE = {
-						CreatedOnToolsVersion = 7.1.1;
-					};
-				};
-			};
-			buildConfigurationList = C95767581C0815E200D30DAE /* Build configuration list for PBXProject "RoboQuasar1.0_Arduino" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = C95767541C0815E200D30DAE;
-			productRefGroup = C957675E1C0815E200D30DAE /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				C957675C1C0815E200D30DAE /* RoboQuasar1.0_Arduino */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		C95767591C0815E200D30DAE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C95767CB1C08254100D30DAE /* Utilities.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin XCBuildConfiguration section */
-		C95767621C0815E200D30DAE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		C95767631C0815E200D30DAE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		C95767651C0815E200D30DAE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		C95767661C0815E200D30DAE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		C95767581C0815E200D30DAE /* Build configuration list for PBXProject "RoboQuasar1.0_Arduino" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C95767621C0815E200D30DAE /* Debug */,
-				C95767631C0815E200D30DAE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C95767641C0815E200D30DAE /* Build configuration list for PBXNativeTarget "RoboQuasar1.0_Arduino" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C95767651C0815E200D30DAE /* Debug */,
-				C95767661C0815E200D30DAE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = C95767551C0815E200D30DAE /* Project object */;
-}
