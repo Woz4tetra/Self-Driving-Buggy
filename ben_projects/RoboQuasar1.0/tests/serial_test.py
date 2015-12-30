@@ -33,9 +33,9 @@ if log_data:
 
 try:
     while True:
-        print((imu.data))
-        print((gps.data))
-        print((encoder.data))
+        print((imu._data))
+        print((gps._data))
+        print((encoder._data))
         print()
 
         time.sleep(0.25)

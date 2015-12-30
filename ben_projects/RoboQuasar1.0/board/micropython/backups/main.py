@@ -7,7 +7,7 @@ from data import *
 from comm import Communicator
 
 tmp36 = TMP36(0, pyb.Pin.board.Y12)
-mcp9808 = MCP9808(1, 1)
+mcp9808 = MCP9808(1, 2)
 accel = BuiltInAccel(2)
 gps = GPS(3)
 # orientation = Orientation(4, 1)

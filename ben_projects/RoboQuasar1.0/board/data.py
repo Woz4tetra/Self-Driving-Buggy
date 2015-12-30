@@ -45,7 +45,7 @@ class SensorPool(object):
                 sensor = self.sensors[sensor_id]
 
                 if sensor.data_len == len(data):
-                    sensor.data = sensor.parse(data)
+                    sensor._data = sensor.parse(data)
                     sensor.current_packet = packet
         else:
             print(("Invalid packet: " + repr(packet)))
@@ -84,7 +84,7 @@ def try_command(command_id, data_format, data=None):
     if data == None:
         data = random.randint(0, int((2 << (exp_command.data_len * 4 - 2)) - 1))
 
-    exp_command.data = data
+    exp_command._data = data
     return exp_command.get_packet()
 
 
@@ -111,9 +111,13 @@ class SerialObject(object):
         self.object_id = object_id
 
         self.data_len = 0
-        self.data = self.init_data(self.formats)
+        self._data = self.init_data(self.formats)
 
         self.current_packet = ""
+
+    @property
+    def data(self):
+        return self._data
 
     def init_data(self, formats):
         data = []
@@ -285,7 +289,7 @@ class Command(SerialObject):
         packet = self.to_hex(self.object_id, 2) + "\t"
         packet += self.to_hex(self.data_len, 2) + "\t"
 
-        packet += self.format_data(self.data, self.formats[0]) + "\r"
+        packet += self.format_data(self._data, self.formats[0]) + "\r"
 
         self.current_packet = packet
 

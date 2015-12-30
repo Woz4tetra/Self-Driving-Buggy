@@ -147,39 +147,39 @@ class IMU(Sensor):
 
     @property
     def accel_x(self):
-        return self.data[0]
+        return self._data[0]
 
     @property
     def accel_y(self):
-        return self.data[1]
+        return self._data[1]
 
     @property
     def accel_z(self):
-        return self.data[2]
+        return self._data[2]
 
     @property
     def gyro_x(self):
-        return self.data[3]
+        return self._data[3]
 
     @property
     def gyro_y(self):
-        return self.data[4]
+        return self._data[4]
 
     @property
     def gyro_z(self):
-        return self.data[5]
+        return self._data[5]
 
     @property
     def magnet_x(self):
-        return self.data[6]
+        return self._data[6]
 
     @property
     def magnet_y(self):
-        return self.data[7]
+        return self._data[7]
 
     @property
     def magnet_z(self):
-        return self.data[8]
+        return self._data[8]
 
     def get_orientation(self):
         roll = math.atan2(self.accel_y,
@@ -201,23 +201,23 @@ class GPS(Sensor):
 
     @property
     def long(self):
-        return self.data[0]
+        return self._data[0]
 
     @property
     def lat(self):
-        return self.data[1]
+        return self._data[1]
 
     @property
     def speed(self):
-        return self.data[2]
+        return self._data[2]
 
     @property
     def heading(self):
-        return self.data[3]
+        return self._data[3]
 
     @property
     def quality(self):
-        return self.data[4:]
+        return self._data[4:]
 
 
 class Encoder(Sensor):
@@ -229,7 +229,7 @@ class Encoder(Sensor):
 
     @property
     def distance(self):
-        return self.data[0]
+        return self._data[0]
 
     def get_xy(self, yaw):
         dist_change = self.distance - self.prev_dist
@@ -248,7 +248,7 @@ class Servo(Command):
     def position(self):
         # if we get the analog feedback servo, change this class to use two
         # other classes: a command servo and a sensor servo
-        return self.data
+        return self._data
 
 
 class Led13(Command):
@@ -257,4 +257,4 @@ class Led13(Command):
 
     @property
     def state(self):
-        return self.data
+        return self._data

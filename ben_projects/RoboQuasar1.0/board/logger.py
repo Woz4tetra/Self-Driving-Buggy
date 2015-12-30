@@ -24,13 +24,14 @@ import config
 
 
 class Recorder(object):
-    def __init__(self, file_name=None, directory=None):
+    def __init__(self, sensor_dict, file_name=None, directory=None):
         if directory == None:
             self.directory = config.get_dir(":logs")
         else:
             if directory[-1] != "/":
                 directory += "/"
             self.directory = directory
+
 
         if file_name == None or len(file_name) <= 4:
             self.file_name = time.strftime("%c").replace(":", ";") + ".csv"
@@ -45,25 +46,39 @@ class Recorder(object):
                                  quotechar='|',
                                  quoting=csv.QUOTE_MINIMAL)
 
+        self.sensor_dict = sensor_dict
+        self.sensor_indices = {}
+
+        name_row = ["time (sec)"]
+        data_name_row = [""]
+        for sensor_name, sensor_info in self.sensor_dict.items():
+            sensor = sensor_info[0]
+            data_name_row += sensor_info[1:]
+
+            self.sensor_indices[sensor_name] = len(name_row)
+            name_row.append("%s: %s" % (sensor_name, str(sensor.object_id)))
+            name_row += [""] * (len(sensor_info[1:]) - 1)
+
+        self.current_row = [""] * (len(name_row))
+
+        assert len(name_row) == len(data_name_row)
+        self.writer.writerow(name_row)
+        self.writer.writerow(data_name_row)
+
         self.time0 = time.time()
 
     def add_data(self, object_name, serial_object):
-        time_stamp = time.time() - self.time0
-
-        if type(serial_object.data) != list:
-            data = [serial_object.data]
-        elif serial_object.data != None:
-            data = serial_object.data
+        start_index = self.sensor_indices[object_name]
+        if type(serial_object.data) == list:
+            for index in range(len(serial_object.data)):
+                self.current_row[index + start_index] = serial_object.data[index]
         else:
-            data = []
+            self.current_row[start_index] = serial_object.data
 
-        print((repr(serial_object.current_packet)))
-        self.writer.writerow(
-            [str(time_stamp),
-             str(object_name),
-             str(serial_object.object_id),
-             str(serial_object.current_packet.strip("\n"))] + data
-        )
+    def end_row(self):
+        self.current_row[0] = time.time() - self.time0
+
+        self.writer.writerow(self.current_row)
 
     def close(self):
         self.csv_file.close()

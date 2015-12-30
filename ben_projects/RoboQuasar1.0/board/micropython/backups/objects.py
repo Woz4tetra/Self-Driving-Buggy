@@ -3,7 +3,8 @@ from pyb import I2C
 
 import math
 
-from sensors.micropyGPS import MicropyGPS
+from sensors.micro_gps import MicropyGPS
+from sensors.micro_encoder import MicroEncoder
 from sensors.orientation.bmp085 import Barometer
 from sensors.orientation.lsm303 import Accelerometer
 from sensors.orientation.lsm303 import Magnetometer
