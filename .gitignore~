@@ -43,9 +43,22 @@ Thumbs.db
 
 # Directories #
 ###############
-*.xcodeproj
 .idea/
 .pioenvs/
 .sconsign.dblite/
 ben_projects/Self-Driving\ Buggy\ Rev.\ 5/camera/Videos/
+ben_projects/RoboQuasar1.0/camera/Videos/
 __pycache__/
+
+# Xcode Project Files #
+#######################
+
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+
