@@ -3,13 +3,13 @@ from pyb import I2C
 
 import math
 
-from .sensors.micropyGPS import MicropyGPS
-from .sensors.orientation.bmp085 import Barometer
-from .sensors.orientation.lsm303 import Accelerometer
-from .sensors.orientation.lsm303 import Magnetometer
-from .sensors.orientation.l3gd20 import Gyroscope
+from sensors.micropyGPS import MicropyGPS
+from sensors.orientation.bmp085 import Barometer
+from sensors.orientation.lsm303 import Accelerometer
+from sensors.orientation.lsm303 import Magnetometer
+from sensors.orientation.l3gd20 import Gyroscope
 
-from .data import *
+from data import *
 
 
 class MCP9808(Sensor):
@@ -142,7 +142,7 @@ class Orientation(Sensor):
     def get_orientation(self):
         if self.mag == None: return
         if self.accel == None: return
-    
+
         roll = math.atan2(self.accel.y,
                           self.accel.z)
         if (self.accel.y * math.sin(roll) +
@@ -152,7 +152,7 @@ class Orientation(Sensor):
             pitch = math.atan(
                     -self.accel.x / self.accel.y * math.sin(
                             roll) + self.accel.y * math.cos(roll))
-    
+
         heading = math.atan2(self.mag.z * math.sin(
                 roll) - self.mag.y * math.cos(roll),
                              self.mag.x * math.cos(pitch) +
@@ -161,7 +161,7 @@ class Orientation(Sensor):
                              self.mag.z * math.sin(pitch) * math.cos(
                                      (roll)))
         return roll, pitch, heading
-    
+
     def update_data(self):
         self.accel.refresh()
         self.mag.refresh()

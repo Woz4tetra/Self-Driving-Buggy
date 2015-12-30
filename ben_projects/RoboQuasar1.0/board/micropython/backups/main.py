@@ -47,7 +47,7 @@ while True:
     communicator.write_packet()
     communicator.read_command()
     
-    leds[toggle_index + 1].toggle()
-    toggle_index = toggle_index % 4
-    
+    leds[toggle_index].toggle()
+    toggle_index = (toggle_index + 1) % 4
+
     pyb.delay(5)
