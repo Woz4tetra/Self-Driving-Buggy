@@ -1,6 +1,7 @@
 # main.py -- put your code here!
 
 import pyb
+from pyb import UART
 from objects import *
 from data import *
 from comm import Communicator
@@ -9,6 +10,7 @@ tmp36 = TMP36(0, pyb.Pin.board.Y12)
 mcp9808 = MCP9808(1, 1)
 accel = BuiltInAccel(2)
 gps = GPS(3)
+# orientation = Orientation(4, 1)
 
 servo1 = Servo(0, 1)
 
@@ -34,12 +36,8 @@ command_pool = CommandPool(servo1)
 communicator = Communicator(sensor_queue, command_pool)
 
 toggle_index = 0
-#servo_val = -90
 
 while True:
-#    print(tmp36.read(), mcp9808.read())
-#    print(accel.x(), accel.y(), accel.z())
-#    print(switch())
     if new_data:
         while uart.any():
             gps.update(chr(uart.readchar()))
@@ -49,7 +47,7 @@ while True:
     communicator.write_packet()
     communicator.read_command()
     
-    leds[toggle_index].toggle()
-    toggle_index = (toggle_index + 1) % 4
+    leds[toggle_index + 1].toggle()
+    toggle_index = toggle_index % 4
     
     pyb.delay(5)

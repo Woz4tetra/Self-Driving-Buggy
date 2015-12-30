@@ -39,9 +39,9 @@ try:
         print(gps.latitude, gps.longitude, gps.speed, gps.hdop, gps.heading)
 
         if servo_increase:
-            servo1.offset(5)
+            servo1.offset(1)
         else:
-            servo1.offset(-5)
+            servo1.offset(-1)
 
         if servo1.degrees == 90 or servo1.degrees == -90:
             servo_increase = not servo_increase

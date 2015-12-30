@@ -39,8 +39,11 @@
 ehthumbs.db
 Thumbs.db
 
+
+
 # Directories #
 ###############
+*.xcodeproj
 .idea/
 .pioenvs/
 .sconsign.dblite/
