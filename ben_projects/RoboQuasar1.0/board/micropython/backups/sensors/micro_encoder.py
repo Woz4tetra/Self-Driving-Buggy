@@ -7,7 +7,7 @@ import pyb
 ENC_STATES = (0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1, 0)
 
 
-class Encoder(object):
+class MicroEncoder(object):
     def __init__(self, pin_x, pin_y, pin_mode=pyb.Pin.PULL_NONE, scale=1,
                  min=0, max=100, reverse=False):
         self.pin_x = (pin_x if isinstance(pin_x, pyb.Pin) else
