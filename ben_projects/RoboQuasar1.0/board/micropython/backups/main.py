@@ -30,12 +30,17 @@ for index in range(1, 5):
     leds.append(pyb.LED(index))
 
 
-sensor_queue = SensorQueue(tmp36, mcp9808, accel, gps)
+sensor_queue = SensorQueue(tmp36,
+                           mcp9808,
+                           accel,
+                           gps
+                           )
 command_pool = CommandPool(servo1)
 
 communicator = Communicator(sensor_queue, command_pool)
 
-toggle_index = 0
+#toggle_index = 0
+leds[0].on()
 
 while True:
     if new_data:
@@ -47,7 +52,7 @@ while True:
     communicator.write_packet()
     communicator.read_command()
     
-    leds[toggle_index].toggle()
-    toggle_index = (toggle_index + 1) % 4
+#    leds[toggle_index].toggle()
+#    toggle_index = (toggle_index + 1) % 4
 
     pyb.delay(5)

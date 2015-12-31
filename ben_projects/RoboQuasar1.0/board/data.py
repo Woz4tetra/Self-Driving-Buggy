@@ -170,6 +170,14 @@ class SerialObject(object):
         else:
             return int(hex_format[len_start:])
 
+    def __str__(self):
+        return "%s" % (str(self.data))
+
+    def __repr__(self):
+        str_formats = str(self.formats)[1:-1]
+        return "%s(%s, %s)" % (self.__class__.__name__, self.object_id,
+                               str_formats)
+
 
 class Sensor(SerialObject):
     def __init__(self, sensor_id, *formats):
@@ -242,6 +250,14 @@ class Sensor(SerialObject):
         else:
             return data
 
+    def __repr__(self):
+        if len(self.formats) > 1:
+            str_formats = str(self.formats)
+        else:
+            str_formats = str(self.formats[0])
+        return "%s(%s): %s" % (self.__class__.__name__, self.object_id,
+                               str_formats)
+
 
 class Command(SerialObject):
     def __init__(self, command_id, format):
@@ -294,6 +310,14 @@ class Command(SerialObject):
         self.current_packet = packet
 
         return packet
+
+    def __repr__(self):
+        if len(self.formats) > 1:
+            str_formats = str(self.formats)
+        else:
+            str_formats = str(self.formats[0])
+        return "%s(%s): %s" % (self.__class__.__name__, self.object_id,
+                               str_formats)
 
 
 if __name__ == '__main__':
