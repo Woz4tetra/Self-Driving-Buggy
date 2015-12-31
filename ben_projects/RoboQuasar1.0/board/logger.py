@@ -17,6 +17,7 @@
 import csv
 import sys
 import time
+import os
 
 sys.path.insert(0, '../')
 
@@ -86,3 +87,34 @@ class Recorder(object):
 
     def close(self):
         self.csv_file.close()
+
+
+def is_float(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
+
+def parse(file_dir):
+    if not os.path.isdir(file_dir):
+        file_dir = config.get_dir(":logs") + file_dir
+
+    with open(file_dir, 'r') as csv_file:
+        data = []
+        reader = csv.reader(csv_file, delimiter=',',
+                            quotechar='|',
+                            quoting=csv.QUOTE_MINIMAL)
+        for row in reader:
+            parsed_row = []
+            for datum in row:
+                if is_float(datum):
+                    parsed_row.append(float(datum))
+                elif datum.isdigit():
+                    parsed_row.append(int(datum))
+                else:
+                    parsed_row.append(datum)
+
+            data.append(parsed_row)
+    return data

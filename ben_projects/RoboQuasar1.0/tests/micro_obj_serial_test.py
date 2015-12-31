@@ -76,5 +76,7 @@ try:
             # log.add_data(servo1)
             log.end_row()
 except:
+    if log_data == True:
+        log.close()
     traceback.print_exc()
     comm.exit_flag = True
