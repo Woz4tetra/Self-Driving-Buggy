@@ -13,7 +13,7 @@ tmp36 = TMP36(0)
 mcp9808 = MCP9808(1)
 # builtin_accel = BuiltinAccel(2)
 # gps = GPS(3)
-
+#
 # servo1 = Servo(0, -90)
 
 sensor_data = SensorPool(tmp36,
@@ -32,15 +32,17 @@ communicator.start()
 log_data = True
 log = None
 if log_data:
-    log = logger.Recorder({'tmp36': [tmp36, "temperature C"],
-                           'mcp9808': [mcp9808, "temperature C"],
-                           # 'builtin_accel': [builtin_accel, "accel x", "accel y",
-                           #                   "accel z"],
-                           # 'gps': [gps, "lat deg", "long deg", "lat min",
-                           #         "long min", "speed", "hdop", "heading"],
-                           # 'servo1': [servo1, "degrees"]
-                           }
-                          )
+    log = logger.Recorder()
+
+    log.add_sensor(tmp36, 'tmp36', "temperature C")
+    log.add_sensor(mcp9808, 'mcp9808', "temperature C")
+    # log.add_sensor(builtin_accel, 'builtin_accel', "accel x", "accel y",
+    #                "accel z")
+    # log.add_sensor(gps, 'gps', "lat deg", "long deg", "lat min", "long deg",
+    #                "speed", "hdop", "heading")
+    # log.add_sensor(servo1, 'servo1', "degrees")
+    log.end_init()
+
 time_stamp0 = 0
 
 try:
@@ -67,11 +69,11 @@ try:
             time_stamp0 = time_stamp1
             print(tmp36.data)
             print(mcp9808.data)
-            log.add_data('tmp36', tmp36)
-            log.add_data('mcp9808', mcp9808)
-            # log.add_data('builtin_accel', builtin_accel)
-            # log.add_data('gps', gps)
-            # log.add_data('servo1', servo1)
+            log.add_data(tmp36)
+            log.add_data(mcp9808)
+            # log.add_data(builtin_accel)
+            # log.add_data(gps)
+            # log.add_data(servo1)
             log.end_row()
 except:
     traceback.print_exc()

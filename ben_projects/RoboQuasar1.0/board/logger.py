@@ -24,7 +24,7 @@ import config
 
 
 class Recorder(object):
-    def __init__(self, sensor_dict, file_name=None, directory=None):
+    def __init__(self, file_name=None, directory=None):
         if directory == None:
             self.directory = config.get_dir(":logs")
         else:
@@ -46,29 +46,33 @@ class Recorder(object):
                                  quotechar='|',
                                  quoting=csv.QUOTE_MINIMAL)
 
-        self.sensor_dict = sensor_dict
+        self.current_row = ["timestamp"]
         self.sensor_indices = {}
-
-        name_row = ["time (sec)"]
-        data_name_row = [""]
-        for sensor_name, sensor_info in self.sensor_dict.items():
-            sensor = sensor_info[0]
-            data_name_row += sensor_info[1:]
-
-            self.sensor_indices[sensor_name] = len(name_row)
-            name_row.append("%s: %s" % (sensor_name, str(sensor.object_id)))
-            name_row += [""] * (len(sensor_info[1:]) - 1)
-
-        self.current_row = [""] * (len(name_row))
-
-        assert len(name_row) == len(data_name_row)
-        self.writer.writerow(name_row)
-        self.writer.writerow(data_name_row)
+        self.header_row = []
 
         self.time0 = time.time()
 
-    def add_data(self, object_name, serial_object):
-        start_index = self.sensor_indices[object_name]
+    def add_sensor(self, sensor, name, *data_names):
+        assert len(data_names) == len(sensor.formats)
+        self.header_row.append((sensor.object_id, name, sensor, data_names))
+
+    def end_init(self):
+        self.header_row.sort(key=lambda element: element[0])
+        names_row = [""]
+        for sensor_info in self.header_row:
+            object_id, sensor_name, sensor, data_names = sensor_info
+
+            self.sensor_indices[object_id] = len(self.current_row)
+
+            names_row.append(sensor_name)
+            names_row += [""] * (len(data_names) - 1)
+            self.current_row += data_names
+        self.writer.writerow(names_row)
+        self.writer.writerow(self.current_row)
+
+
+    def add_data(self, serial_object):
+        start_index = self.sensor_indices[serial_object.object_id]
         if type(serial_object.data) == list:
             for index in range(len(serial_object.data)):
                 self.current_row[index + start_index] = serial_object.data[index]
