@@ -13,7 +13,7 @@
 Adafruit_GPS GPS(&mySerial);
 
 const int gps_float_array_len = 4;
-gps_data* result;
+float gps_float_array[gps_float_array_len];
 
 // this keeps track of whether we're using the interrupt
 // off by default!
@@ -49,6 +49,7 @@ void useInterrupt(boolean v)
 }
 #endif
 
+
 void gps_setup()
 {
     // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
@@ -71,11 +72,10 @@ void gps_setup()
     useInterrupt(true);
 #endif
     
-    result = new gps_data;
     delay(1000);
 }
 
-gps_data* get_gps()
+void gps_update(uint8_t *input_array)
 {
     // in case you are not using the interrupt above, you'll
     // need to 'hand query' the GPS, not suggested :(
@@ -94,23 +94,17 @@ gps_data* get_gps()
 //            return;  // we can fail to parse a sentence in which case we should just wait for another
     }
     
-//    gps_float_array[0] = GPS.latitude;
-//    gps_float_array[1] = GPS.longitude;
-//    gps_float_array[2] = GPS.speed;
-//    gps_float_array[3] = GPS.angle;
+    gps_float_array[0] = GPS.latitude;
+    gps_float_array[1] = GPS.longitude;
+    gps_float_array[2] = GPS.speed;
+    gps_float_array[3] = GPS.angle;
     
-    result->data = new float[gps_float_array_len];
-    result->quality = new uint8_t[2];
+    input_array[16] = (uint8_t)GPS.satellites;
+    input_array[17] = (uint8_t)GPS.fixquality;
     
-    result->data[0] = GPS.latitude;
-    result->data[1] = GPS.longitude;
-    result->data[2] = GPS.speed;
-    result->data[3] = GPS.angle;
-    
-    result->quality[0] = (uint8_t)GPS.satellites;
-    result->quality[1] = (uint8_t)GPS.fixquality;
-    
-    return result;
+    for (uint8_t float_index = 0; float_index < gps_float_array_len; float_index++) {
+        to_hex(gps_float_array[float_index], input_array, float_index);
+    }
 }
 
 

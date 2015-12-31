@@ -51,11 +51,13 @@ void encoder_setup()
     
     Timer1.attachInterrupt(handler); //handler is a function pointer
     Timer1.start(ADC_POLLING_PERIOD_US);
+    
     interrupts();
 }
 
-unsigned long encoder_distance()
+uint64_t encoder_distance()
 {
-    return enc_distance;
+    uint64_t distance = (uint64_t)enc_distance;
+    return distance;
 }
 

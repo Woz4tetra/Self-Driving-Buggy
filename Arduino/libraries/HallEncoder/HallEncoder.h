@@ -13,6 +13,6 @@
 #define HallEncoder_h
 
 void encoder_setup();
-unsigned long* encoder_distance();
+uint64_t encoder_distance();
 
 #endif /* HallEncoder_h */

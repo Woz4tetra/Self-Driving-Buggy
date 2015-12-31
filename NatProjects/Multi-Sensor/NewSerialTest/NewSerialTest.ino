@@ -106,14 +106,30 @@ void loop()
 		gps_ms = GPS.milliseconds;
 		//GPS.parseNMEA(GPS.lastNMEA());
 	}
-	if (Serial.peek() != -1){
+  char ch = 0;
+  if (Serial.available())
+    ch = Serial.read();
+	if (ch == 'r'){
 		sprintf(serial_buf, ">%ld,%ld,%f,%f,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%lu\n",
 			micros(), gps_ms, lat, lon, ax, ay, az, gx, gy, gz, mx, my, mz, enc_distance);
 		Serial.write(serial_buf);
 		Serial.flush();
 	}
-  sprintf(serial_buf, ">%ld,%ld,%f,%f,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%lu\n",
-     micros(), gps_ms, lat, lon, ax, ay, az, gx, gy, gz, mx, my, mz, enc_distance);
-  Serial.write(serial_buf);
-	delay(1000);
+  if (ch == 's'){
+    Serial.println("entered servo handler");
+    char c;
+    int i = 0;
+    char buf[10];
+    while (Serial.available() > 0){
+      c = Serial.read();
+      buf[i++] = c;
+    }
+    buf[i] = '\0';
+    Serial.println(buf);
+    servo_pos = atoi(buf);
+    Serial.print("set servo to "); Serial.println(servo_pos);
+    servo1.write(servo_pos);
+    Serial.flush();
+  }
+	delay(10);
 }

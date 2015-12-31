@@ -71,13 +71,6 @@
 		C99F956C1BFC3D3F00D133B5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C99F956D1BFC3D3F00D133B5 /* TimerCounter.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TimerCounter.md; sourceTree = "<group>"; };
 		C99F95741BFC3D3F00D133B5 /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
-		C99F95881BFC443F00D133B5 /* __main__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; lineEnding = 0; path = __main__.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
-		C99F95891BFC443F00D133B5 /* arduino_object.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; lineEnding = 0; path = arduino_object.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
-		C99F958B1BFC443F00D133B5 /* common.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = common.py; sourceTree = "<group>"; };
-		C99F958D1BFC443F00D133B5 /* config.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = config.py; sourceTree = "<group>"; };
-		C99F958F1BFC443F00D133B5 /* file_generator.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = file_generator.py; sourceTree = "<group>"; };
-		C99F95911BFC443F00D133B5 /* serial_comm.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; lineEnding = 0; path = serial_comm.py; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.python; };
-		C99F95931BFC443F00D133B5 /* user_objects.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = user_objects.py; sourceTree = "<group>"; };
 		C9A2087F1BFE97CD00C5CE32 /* HallEncoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HallEncoder.cpp; sourceTree = "<group>"; };
 		C9A208801BFE97CD00C5CE32 /* HallEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HallEncoder.h; sourceTree = "<group>"; };
 		C9A208821BFE97CD00C5CE32 /* MPU9250.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = MPU9250.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -98,7 +91,6 @@
 		C99F94FE1BFC3B0700D133B5 = {
 			isa = PBXGroup;
 			children = (
-				C99F957F1BFC443F00D133B5 /* New Serial Test */,
 				C99F95141BFC3D3F00D133B5 /* libraries */,
 				C99F95051BFC3B0E00D133B5 /* NewSerialTest.ino */,
 			);
@@ -393,21 +385,6 @@
 				C99F95671BFC3D3F00D133B5 /* SimpleTimer.pde */,
 			);
 			path = SimpleTimer;
-			sourceTree = "<group>";
-		};
-		C99F957F1BFC443F00D133B5 /* New Serial Test */ = {
-			isa = PBXGroup;
-			children = (
-				C99F95881BFC443F00D133B5 /* __main__.py */,
-				C99F95891BFC443F00D133B5 /* arduino_object.py */,
-				C99F958B1BFC443F00D133B5 /* common.py */,
-				C99F958D1BFC443F00D133B5 /* config.py */,
-				C99F958F1BFC443F00D133B5 /* file_generator.py */,
-				C99F95911BFC443F00D133B5 /* serial_comm.py */,
-				C99F95931BFC443F00D133B5 /* user_objects.py */,
-			);
-			name = "New Serial Test";
-			path = "../../ben_projects/New Serial Test";
 			sourceTree = "<group>";
 		};
 		C9A2087E1BFE97CD00C5CE32 /* HallEncoder */ = {
