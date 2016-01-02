@@ -18,8 +18,8 @@ servo1 = Servo(0, -90)
 
 sensor_data = SensorPool(tmp36,
                          mcp9808,
-                         # builtin_accel,
-                         # gps
+                         builtin_accel,
+                         gps
                          )
 command_queue = CommandQueue()
 
@@ -58,16 +58,17 @@ try:
         # command_queue.put(servo1)
 
         time.sleep(0.005)
+        
+        print(tmp36)
+        print(mcp9808)
+        print(builtin_accel)
+        print(gps)
+        print(servo1)
 
         if log_data:
             time_stamp1 = int(time.time() - log.time0)
             if time_stamp1 != time_stamp0:
                 time_stamp0 = time_stamp1
-                print(tmp36)
-                print(mcp9808)
-                print(builtin_accel)
-                print(gps)
-                print(servo1)
                 log.add_data(tmp36)
                 log.add_data(mcp9808)
                 log.add_data(builtin_accel)

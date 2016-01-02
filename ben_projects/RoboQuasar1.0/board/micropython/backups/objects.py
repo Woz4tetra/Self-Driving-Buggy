@@ -5,6 +5,7 @@ import math
 
 from sensors.micro_gps import MicropyGPS
 from sensors.micro_encoder import MicroEncoder
+
 from sensors.orientation.bmp085 import Barometer
 from sensors.orientation.lsm303 import Accelerometer
 from sensors.orientation.lsm303 import Magnetometer
@@ -123,9 +124,9 @@ class GPS(Sensor):
 
 class Servo(Command):
     def __init__(self, command_id, pin_num):
-        self.servo_ref = pyb.Servo(pin_num)
-
         super().__init__(command_id, 'i8')
+        
+        self.servo_ref = pyb.Servo(pin_num)
 
     def callback(self, angle):
         self.servo_ref.angle(angle)
@@ -133,26 +134,22 @@ class Servo(Command):
 
 class Orientation(Sensor):
     def __init__(self, sensor_id, bus):
+        super().__init__(sensor_id, 'f', 'f', 'f', 'f', 'f', 'f', 'f')
+    
         self.accel = Accelerometer(bus)
         self.mag = Magnetometer(bus)
         self.gyro = Gyroscope(bus)
         self.bmp = Barometer(bus)
 
-        super().__init__(sensor_id, 'f', 'f', 'f', 'f', 'f', 'f', 'f')
-
     def get_orientation(self):
-        if self.mag == None: return
-        if self.accel == None: return
-
         roll = math.atan2(self.accel.y,
                           self.accel.z)
         if (self.accel.y * math.sin(roll) +
                     self.accel.z * math.cos(roll) == 0):
             pitch = math.pi / 2 if self.accel.x > 0 else -math.pi / 2
         else:
-            pitch = math.atan(
-                    -self.accel.x / self.accel.y * math.sin(
-                            roll) + self.accel.y * math.cos(roll))
+            pitch = math.atan(-self.accel.x / self.accel.y * math.sin(roll) +
+                              self.accel.y * math.cos(roll))
 
         heading = math.atan2(self.mag.z * math.sin(
                 roll) - self.mag.y * math.cos(roll),
@@ -174,3 +171,14 @@ class Orientation(Sensor):
 
         self.data = (roll, pitch, heading, self.bmp.altitude,
                      self.gyro.v_x, self.gyro.v_y, self.gyro.v_z)
+
+
+class Encoder(Sensor):
+    def __init__(self, sensor_id, pin_x, pin_y, pin_mode=pyb.Pin.PULL_NONE,
+                 scale=1, min=None, max=None, reverse=False):
+        super().__init__(sensor_id, 'i64')
+        
+        self.encoder = Encoder(pin_x, pin_y, pin_mode, scale, min, max, reverse)
+        
+    def update_data(self):
+        self.data = self.encoder.position
