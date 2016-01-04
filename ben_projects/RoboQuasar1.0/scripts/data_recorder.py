@@ -28,9 +28,9 @@ log = logger.Recorder()
 
 try:
     while True:
-        print((imu.data))
-        print((gps.data))
-        print((encoder.data))
+        print((imu._data))
+        print((gps._data))
+        print((encoder._data))
 
         log.add_data("imu", imu)
         log.add_data("gps", gps)

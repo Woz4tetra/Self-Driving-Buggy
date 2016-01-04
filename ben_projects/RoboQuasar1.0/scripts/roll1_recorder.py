@@ -45,9 +45,9 @@ try:
 
         servo_value = joystick_angle(joystick.mainStick)
 
-        print((imu.data))
-        print((gps.data))
-        print((encoder.data))
+        print((imu._data))
+        print((gps._data))
+        print((encoder._data))
 
         log.add_data("imu", imu)
         log.add_data("gps", gps)

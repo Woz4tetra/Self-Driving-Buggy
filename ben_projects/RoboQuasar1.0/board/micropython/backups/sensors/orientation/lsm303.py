@@ -127,7 +127,7 @@ class Magnetometer(DOFsensor):
             self.gauss_lsb_z = 205
 
     def read(self):
-        self.i2c_write_8(self.LSM303_REGISTER_MAG['OUT_X_H_M'])
+        self.i2c_send(self.LSM303_REGISTER_MAG['OUT_X_H_M'])
         xlo, xhi, ylo, yhi, zlo, zhi = self.i2c_recv(6)
 
         x = ((xlo | (xhi << 8)) >> 4)

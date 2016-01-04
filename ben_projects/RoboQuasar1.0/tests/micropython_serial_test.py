@@ -36,20 +36,20 @@ def servo_bound(value):
 
 try:
     while True:
-        millivolts = 3300.0 / 1024 * tmp36.data
+        millivolts = 3300.0 / 1024 * tmp36._data
         print((millivolts - 500) / 100)
         
-        temperature = mcp9808.data & 0x0fff
+        temperature = mcp9808._data & 0x0fff
         temperature /= 16.0
-        if mcp9808.data & 0x1000:
+        if mcp9808._data & 0x1000:
             temperature -= 0x100
         print(temperature)
         
-        print(builtin_accel.data)
+        print(builtin_accel._data)
         
-        print(gps.data)
+        print(gps._data)
         servo1_val = servo_bound(servo1_val + 5)
-        servo1.data = servo1_val
+        servo1._data = servo1_val
 
         command_queue.put(servo1)
         
