@@ -8,9 +8,6 @@
     Object wrappers for sensors and commands
     Each sensor handles its own data interpretation.
 
-    Usage
-    -----
-
     Dependencies
     ------------
     data.py
@@ -127,3 +124,23 @@ class Servo(Command):
 
     def offset(self, offset):
         self._data = self.bound(self._data + offset)
+
+class Encoder(Sensor):
+    def __init__(self, sensor_id, initial_value=0, wheel_radius=1):
+        super().__init__(sensor_id, 'i64')
+        self.prev_position = initial_value
+        self.radius = wheel_radius
+
+    @property
+    def data(self):
+        return self._data * 2 * math.pi * self.radius
+
+    @property
+    def position(self):
+        return self.data
+
+    @property
+    def delta(self):
+        return self.position - self.prev_position
+
+

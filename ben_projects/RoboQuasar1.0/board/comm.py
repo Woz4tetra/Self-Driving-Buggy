@@ -25,6 +25,8 @@ import glob
 import threading
 import random
 
+# Flag used to kill all running threads (mainly the serial thread in
+# Communicator)
 exit_flag = False
 
 
@@ -41,6 +43,12 @@ class Communicator(threading.Thread):
         super(Communicator, self).__init__()
 
     def run(self):
+        """
+        Runs and constantly, updates packets for different sensors, puts
+        command packets on command queue into serial.
+
+        :return: None
+        """
         while exit_flag == False:
             packet = bytearray()
             incoming = self.serialRef.read()
@@ -56,6 +64,12 @@ class Communicator(threading.Thread):
                     bytearray(self.command_queue.get(), 'ascii'))
 
     def _handshake(self):
+        """
+        Ensures communication between serial and arduino (or any microcontroller
+        that needs it, micropython does not)
+
+        :return: None
+        """
         read_flag = self.serialRef.read()
 
         print("Waiting for ready flag...")
@@ -70,6 +84,13 @@ class Communicator(threading.Thread):
         print("Arduino initialized!")
 
     def _findPort(self, baud_rate):
+        """
+        Tries all possible addresses as found by _possibleAddresses() until
+        a serial connection is established.
+
+        :param baud_rate: The baud rate of the serial connection
+        :return: serial.Serial - instance of the serial object
+        """
         address = None
         serial_ref = None
         for possible_address in self._possibleAddresses():

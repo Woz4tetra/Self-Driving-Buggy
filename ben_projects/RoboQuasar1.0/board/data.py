@@ -7,7 +7,20 @@
 
     Handles sensor data sorting, the command queue, and raw data storage.
 
+    Classes:
+        SensorPool - parses and sorts the incoming packet by giving it to the correct sensor
+        CommandQueue - A queue of Command objects. Use put to enqueue a command
+        SerialObject - Internal. The superclass of Sensor and Command.
+        Sensor - contains the sensor id, expected data format, and parsed sensor data
+        Command - contains the command id, data format, and last sent data
 
+    Functions:
+        try_sensor - given a list of formats and a hex string, this function
+            allows you to test what the output of your sensor would be
+            (try with python -i data.py)
+        try_command - given a single format (commands are single format)
+            and a python built-in type, this functions returns the packet that
+            would be written to serial
 """
 
 import struct

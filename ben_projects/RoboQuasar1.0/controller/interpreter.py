@@ -1,65 +1,97 @@
-# interprets sensor data from board/data.py to x, y, theta (current position)
+"""
+    Written by Jason Kagie (modified by Ben Warwick)
+
+    interpreter.py, written for RoboQuasar1.0
+    Version 1/4/2016
+    =========
+
+    Interprets sensor data from board/data.py to x, y, theta (current position).
+
+    Classes:
+        Filter - contains a kalman filter tailored for gps, encoder,
+            accelerometer and orientation input
+"""
 
 import numpy as np
 import pykalman
-from math import *
+import math
+import time
 
 
 class Filter(object):
-    def __init__(self, latitude, longitude, radius):
-        self.radius = radius
-        self.conversion_factor = 1
-        self.displacement_angle = 1
-        self.origin = [latitude, longitude]
-        self.filt_state_mean = np.array([0, 0, pi / 2, 0, 0, 0])
+    def __init__(self, latitude, longitude):
+        self.origin = latitude, longitude
+        self.filt_state_mean = np.array(
+                [0, 0, 0, 0, 0, 0])  # (x=0,y=0,vx=0,vy=0,ax=0,ay=0)
         self.filter = pykalman.KalmanFilter()
         self.covariance = np.identity(6)
-        self.observation_matrix = np.array([])
-        self.transition_matrix = np.array([])
+        self.dt = time.time()
 
-    def update(self, angle, latitude, longitude, num_traveled,
-               accel_x, accel_y, time):
-        phi = np.arctan2((angle[0] * angle[2] + angle[1] * angle[3]),
-                         (angle[1] * angle[2] - angle[0] * angle[3]))
+    def update(self, gps, encoder, accel, orientation) -> (float, float):
+        """
+        observation -> observation matrix:
+            x,y,N,ax,ay to x,y,vx,vy,ax,ay - given an angle phi and change in time,
+        encoder distance (N) can be converted to velocity.
 
-        # print(phi, "azimuth")
+        x_gps = x
+        y_gps = y
+        N = radius * time / cos(phi) * Vx (in other words Vx = N * cos(phi) / (radius*time))
+        accel_x = Ax
+        accel_y = Ay
 
-        dlat = latitude - self.origin[0]
-        dlong = longitude - self.origin[1]
-        # TODO: why aren't these variables used?
 
-        x_gps = (latitude - self.origin[0]) * self.conversion_factor
-        y_gps = (longitude - self.origin[1]) * self.conversion_factor
+        observation matrix 1 -> observation matrix 2
+        x,y,Vx,Vy,Ax,Ay to x,y,Vx,Vy,Ax,Ay - how does the error increase
+        with time?
+            A variance (how the data corrupts itself) of 1 means the
+        data cannot be trusted until the next measurement. These are the
+        diagonal values in the matrix. A variance that changes with time
+        implies the measurement drifts with time.
+            A covariance (how each sensor corrupts each other) of 0 implies
+        the sensors do not disrupt each other.
 
-        observation = np.array([x_gps, y_gps, num_traveled, accel_x, accel_y])
-        # TODO: what is num_traveled?
+        x'  = x  + time*Vx
+        y'  = y  + time*Vy
+        Vx' = Vx + time*Ax
+        Vy' = Vy + time*Ay
+        Ax' = Ax
+        Ay' = Ay
 
-        # x,y,N,ax,ay to x,y,vx,vy,ax,ay
-        self.observation_matrix = np.array(
+        :param gps: board.xxx_objects.GPS - contains raw gps data
+        :param encoder: board.xxx_objects.Encoder - contains encoder data
+        :param accel: board.xxx_objects.Accelerometer - contains raw accel data
+        :param orientation: board.xxx_objects.Orientation - contains heading data
+        :return: current x, y as determined by the kalman filter
+        """
+        self.dt = time.time() - self.dt
+
+        observation = np.array([gps.longitude, gps.latitude,
+                                encoder.position, accel.x, accel.y])
+
+        observation_matrix = np.array(
                 [[1, 0, 0, 0, 0, 0],
                  [0, 1, 0, 0, 0, 0],
-                 [0, 0, self.radius * time / cos(phi), 0, 0, 0],
+                 [0, 0,
+                  encoder.radius * self.dt / math.cos(orientation.heading),
+                  0, 0, 0],
                  [0, 0, 0, 0, 1, 0],
-                 [0, 0, 0, 0, 0, 1]])
-        # x,y,Vx,Vy,Ax,Ay 1 to x,y,Vx,Vy,Ax,Ay 2
-        self.transition_matrix = np.array([[1, 0, time, 0, 0, 0],
-                                           [0, 1, 0, time, 0, 0],
-                                           [0, 0, 1, 0, time, 0],
-                                           [0, 0, 0, 1, 0, time],
-                                           [0, 0, 0, 0, 1, 0],
-                                           [0, 0, 0, 0, 0, 1]])
-        # TODO: check: 0, (covariance) measurements don't corrupt each other
-        # TODO: check: 1, (variance) measurements are imperfect.
-        #              will have vary these with experience
+                 [0, 0, 0, 0, 0, 1]]
+        )
 
-        next_mean, next_covariance = self.filter.filter_update(
+        transition_matrix = np.array(
+                [[1, 0, self.dt, 0, 0, 0],
+                 [0, 1, 0, self.dt, 0, 0],
+                 [0, 0, 1, 0, self.dt, 0],
+                 [0, 0, 0, 1, 0, self.dt],
+                 [0, 0, 0, 0, 1, 0],
+                 [0, 0, 0, 0, 0, 1]]
+        )
+
+        self.filt_state_mean, self.covariance = self.filter.filter_update(
                 filtered_state_mean=self.filt_state_mean,
                 filtered_state_covariance=self.covariance,
                 observation=observation,
-                transition_matrix=self.transition_matrix,
-                observation_matrix=self.observation_matrix)
+                transition_matrix=transition_matrix,
+                observation_matrix=observation_matrix)
 
-        self.filt_state_mean = next_mean
-        self.covariance = next_covariance
-
-        return next_mean[0], next_mean[1]
+        return self.filt_state_mean[0], self.filt_state_mean[1]  # x, y
