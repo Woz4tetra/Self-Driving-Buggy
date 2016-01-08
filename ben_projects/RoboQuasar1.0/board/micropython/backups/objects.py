@@ -3,11 +3,13 @@ from pyb import I2C
 
 import math
 
-from sensors.micropyGPS import MicropyGPS
-from sensors.orientation.bmp085 import Barometer
-from sensors.orientation.lsm303 import Accelerometer
-from sensors.orientation.lsm303 import Magnetometer
-from sensors.orientation.l3gd20 import Gyroscope
+from libraries.micro_gps import MicropyGPS
+from libraries.micro_encoder import MicroEncoder
+
+from libraries.orientation.bmp085 import Barometer
+from libraries.orientation.lsm303 import Accelerometer
+from libraries.orientation.lsm303 import Magnetometer
+from libraries.orientation.l3gd20 import Gyroscope
 
 from data import *
 
@@ -122,9 +124,9 @@ class GPS(Sensor):
 
 class Servo(Command):
     def __init__(self, command_id, pin_num):
-        self.servo_ref = pyb.Servo(pin_num)
-
         super().__init__(command_id, 'i8')
+        
+        self.servo_ref = pyb.Servo(pin_num)
 
     def callback(self, angle):
         self.servo_ref.angle(angle)
@@ -132,26 +134,22 @@ class Servo(Command):
 
 class Orientation(Sensor):
     def __init__(self, sensor_id, bus):
+        super().__init__(sensor_id, 'f', 'f', 'f', 'f', 'f', 'f', 'f')
+    
         self.accel = Accelerometer(bus)
         self.mag = Magnetometer(bus)
         self.gyro = Gyroscope(bus)
         self.bmp = Barometer(bus)
 
-        super().__init__(sensor_id, 'f', 'f', 'f', 'f', 'f', 'f', 'f')
-
     def get_orientation(self):
-        if self.mag == None: return
-        if self.accel == None: return
-
         roll = math.atan2(self.accel.y,
                           self.accel.z)
         if (self.accel.y * math.sin(roll) +
                     self.accel.z * math.cos(roll) == 0):
             pitch = math.pi / 2 if self.accel.x > 0 else -math.pi / 2
         else:
-            pitch = math.atan(
-                    -self.accel.x / self.accel.y * math.sin(
-                            roll) + self.accel.y * math.cos(roll))
+            pitch = math.atan(-self.accel.x / self.accel.y * math.sin(roll) +
+                              self.accel.y * math.cos(roll))
 
         heading = math.atan2(self.mag.z * math.sin(
                 roll) - self.mag.y * math.cos(roll),
@@ -173,3 +171,92 @@ class Orientation(Sensor):
 
         self.data = (roll, pitch, heading, self.bmp.altitude,
                      self.gyro.v_x, self.gyro.v_y, self.gyro.v_z)
+
+
+class Encoder(Sensor):
+    def __init__(self, sensor_id, pin_x, pin_y, pin_mode=pyb.Pin.PULL_NONE,
+                 scale=1, min=None, max=None, reverse=False):
+        super().__init__(sensor_id, 'i64')
+        
+        self.encoder = Encoder(pin_x, pin_y, pin_mode, scale, min, max, reverse)
+        
+    def update_data(self):
+        self.data = self.encoder.position
+
+
+
+class Motor(Command):
+    # pin name: [(timer #, channel #), ...]
+    pin_channels = {
+        'X1': [(2, 1), (5, 1)],
+        'X2': [(2, 2), (5, 2)],
+        'X3': [(2, 3), (5, 3), (9, 1)],
+        'X4': [(2, 4), (5, 4), (9, 2)],
+        'X6': [(2, 1), (8, 1)],
+        'X7': [(13, 1)],
+        'X8': [(1, 1), (8, 1), (14, 1)],
+        'X9': [(4, 1)],
+        'X10': [(4, 2)],
+        'Y1': [(8, 1)],
+        'Y2': [(8, 2)],
+        'Y3': [(4, 3), (10, 1)],
+        'Y4': [(4, 4), (11, 1)],
+        'Y6': [(1, 1)],
+        'Y7': [(1, 2), (8, 2), (12, 1)],
+        'Y8': [(1, 3), (8, 3), (12, 2)],
+        'Y9': [(2, 3)],
+        'Y10': [(2, 4)],
+        'Y11': [(1, 2), (8, 2)],
+        'Y12': [(1, 3), (8, 3)]
+    }
+
+    def __init__(self, command_id, direction_pin, pwm_pin, min_speed=40, max_speed=100):
+        self.enable_pin = pyb.Pin(direction_pin, mode=pyb.Pin.OUT_PP)
+        self.timer, self.channel = self.init_timer_channel(pwm_pin, 100)
+
+        self.current_speed = 0
+        self.min_speed = min_speed
+        self.max_speed = max_speed
+
+        super().__init__(command_id, 'i8')
+
+    def init_timer_channel(self, pwm_pin, frequency):
+        if pwm_pin in self.pin_channels:
+            timer_num, channel_num = self.pin_channels[pwm_pin][0]
+
+            timer = pyb.Timer(timer_num, freq=frequency)
+            channel = timer.channel(channel_num, pyb.Timer.PWM, pin=pyb.Pin(pwm_pin))
+
+            return timer, channel
+        else:
+            raise Exception("Not valid pin: " + str(pwm_pin))
+
+    def constrain_speed_abs(self, value):
+        if value == 0:
+            return value
+
+        if abs(value) < self.min_speed:
+            return self.min_speed
+
+        if abs(value) > self.max_speed:
+            return self.max_speed
+
+        return abs(value)
+
+    def speed(self, value=None):
+        if value == None:
+            return self.current_speed
+        else:
+            if value == 0:
+                self.enable_pin.value(0)
+                self.channel.pulse_width_percent(0)
+            elif value < 0:
+                self.enable_pin.value(1)
+                self.channel.pulse_width_percent(
+                    100 - self.constrain_speed_abs(value))
+            else:
+                self.enable_pin.value(0)
+                self.channel.pulse_width_percent(
+                    self.constrain_speed_abs(value))
+            self.current_speed = value
+
