@@ -5,8 +5,12 @@
     Version 12/24/2015
     =========
 
+    See arduino_objects.py for a full explanation.
+
     Object wrappers for sensors and commands
     Each sensor handles its own data interpretation.
+
+
 
     Usage
     -----
@@ -20,7 +24,7 @@ import math
 from .data import Sensor
 from .data import Command
 
-
+# translate these numbers, and put them in variables, they are hardcoded...
 class TMP36(Sensor):
     def __init__(self, sensor_id):
         super().__init__(sensor_id, 'u16')

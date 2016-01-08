@@ -20,14 +20,14 @@ class SensorPool(object):
     def __init__(self, *sensors):
         self.sensor_index = 0
         self.sensors = {}
-
-        for sensor in sensors:
+        #add sensors to self.sensors with non-repeating sensor IDs
+        for sensor in sensors: 
             if sensor.object_id in list(self.sensors.keys()):
                 raise Exception(
                         "Sensor ID already taken: " + str(sensor.object_id))
             else:
                 self.sensors[sensor.object_id] = sensor
-
+    #is_packet makes sure the packet is the right format and was safely delivered
     def is_packet(self, packet):
         if len(packet) < 4: return False
         if packet[2] != "\t": return False
@@ -35,7 +35,7 @@ class SensorPool(object):
             return False
 
         return True
-
+    #updates the sensors' data when called and. if correct, parses and replaces the old sensor data
     def update(self, packet):
         packet = packet.decode('ascii')
         if self.is_packet(packet):
@@ -50,7 +50,7 @@ class SensorPool(object):
         else:
             print(("Invalid packet: " + repr(packet)))
 
-
+#CommandQueue creates a queue for all commands as a nice wrapper for using queues in Python
 class CommandQueue(object):
     def __init__(self):
         self.queue = []
@@ -92,19 +92,25 @@ class SerialObject(object):
     short_formats = {
         'u8': 'uint8', 'u16': 'uint16', 'u32': 'uint32', 'u64': 'uint64',
         'i8': 'int8', 'i16': 'int16', 'i32': 'int32', 'i64': 'int64',
-        'f': 'float', 'd': 'double',
+        'f': 'float', 
+        'd': 'double',
         'b': 'bool',
-        'h': 'hex', 'c': 'chr',
+        'h': 'hex', 
+        'c': 'chr',
     }
 
     format_len = {
         'uint8': 2, 'uint16': 4, 'uint32': 8, 'uint64': 16,
         'int8': 2, 'int16': 4, 'int32': 8, 'int64': 16,
-        'float': 8, 'double': 16,
+        'float': 8, 
+        'double': 16,
         'bool': 1,
-        'hex': None, 'chr': None,
+        'hex': None, 
+        'chr': None,
     }
 
+    #formats is the list of formats used by the serial object, 
+    #for this code, the sensors are the serial objects
     def __init__(self, object_id, formats):
         self.formats = self.init_formats(list(formats))
 
@@ -130,7 +136,7 @@ class SerialObject(object):
                 data.append(False)
             elif format[0] == 'h' or format[0] == 'c':
                 data.append('0')
-        if len(data) == 1:
+        if len(data) == 1: # in case data is not a list
             return data[0]
         else:
             return data
@@ -139,20 +145,20 @@ class SerialObject(object):
         for index in range(len(formats)):
             if not self.is_format(formats[index]):
                 raise Exception("Invalid format name: '%s'" % formats[index])
-
+            # assigns formats from the list of short formats if it is not hex or char
             if (formats[index] in self.short_formats and
                         self.get_len(formats[index]) == -1):
                 formats[index] = self.short_formats[formats[index]]
 
         return formats
-
+    #is_format makes sure the data format is correct
     def is_format(self, data_format):
         if data_format in list(self.short_formats.keys()): return True
         if data_format in list(self.format_len.keys()): return True
         if self.get_len(data_format) != -1: return True
 
         return False
-
+    #get_len gets the length of the format needed, returns -1 if it is not a hex or char
     def get_len(self, hex_format):
         if hex_format[0] == 'h' or hex_format[0] == 'c':
             if ('hex' in hex_format) or ('chr' in hex_format):
@@ -170,14 +176,14 @@ class SerialObject(object):
         else:
             return int(hex_format[len_start:])
 
-    def __str__(self):
+    #reformats the data as a string
+    def __str__(self): 
         return "%s" % (str(self.data))
 
     def __repr__(self):
         str_formats = str(self.formats)[1:-1]
         return "%s(%s, %s)" % (self.__class__.__name__, self.object_id,
                                str_formats)
-
 
 class Sensor(SerialObject):
     def __init__(self, sensor_id, *formats):
@@ -186,6 +192,7 @@ class Sensor(SerialObject):
         self.data_indices = self.make_indices(self.formats)
         self.data_len = self.data_indices[-1]
 
+    #makes it easier to access each format
     def make_indices(self, formats):
         indices = [0]
         for data_format in formats:
@@ -197,6 +204,8 @@ class Sensor(SerialObject):
 
         return indices
 
+    # formats each hex string according to what data format was given 
+    # (see SerialObject class for list of formats)
     def format_hex(self, hex_string, data_format):
         if data_format == 'bool':
             return bool(int(hex_string, 16))
@@ -221,18 +230,12 @@ class Sensor(SerialObject):
             return int(raw_int)
 
         elif data_format == 'float':
-            # assure length of 8
-            # input_str = bytes("0" * (8 - len(hex_string)) + hex_string,
-            #                   encoding='ascii')
-
             return struct.unpack('!f', bytes.fromhex(hex_string))[0]
-        elif data_format == 'double':
-            # assure length of 16
-            # input_str = bytes("0" * (16 - len(hex_string)) + hex_string,
-            #                   encoding='ascii')
 
+        elif data_format == 'double':
             return struct.unpack('!d', bytes.fromhex(hex_string))[0]
 
+    #a function to parse data, formatted into hex strings
     def parse(self, hex_string):
         data = []
         if len(hex_string) != self.data_len:
@@ -269,6 +272,7 @@ class Command(SerialObject):
         hex_format = "0.%sx" % length
         return ("%" + hex_format) % decimal
 
+    # formats data for sending over serial
     def format_data(self, data, data_format):
         if data_format == 'bool':
             return str(int(bool(data)))
@@ -301,6 +305,7 @@ class Command(SerialObject):
             raise Exception("Invalid data format: %s, %s" % str(data),
                             data_format)
 
+    # creates the packet to send
     def get_packet(self):
         packet = self.to_hex(self.object_id, 2) + "\t"
         packet += self.to_hex(self.data_len, 2) + "\t"
@@ -319,6 +324,11 @@ class Command(SerialObject):
         return "%s(%s): %s" % (self.__class__.__name__, self.object_id,
                                str_formats)
 
+#########################################################################################
+#########                               TEST CASES                                #######
+#########################################################################################
+
+# almost-equal is a function created to compare floats to assert the code is correct
 
 if __name__ == '__main__':
     def almost_equal(value1, value2, epsilon=0.0005):
