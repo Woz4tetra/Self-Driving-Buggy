@@ -13,6 +13,7 @@ gps = GPS(3)
 # orientation = Orientation(4, 1)
 
 servo1 = Servo(0, 1)
+motor_a = Motor(1, 'X2', 'X3')
 
 new_data = False
 def pps_callback(line):
@@ -24,18 +25,17 @@ pps_pin = pyb.Pin.board.X8
 extint = pyb.ExtInt(pps_pin, pyb.ExtInt.IRQ_FALLING,
                     pyb.Pin.PULL_UP, pps_callback)
 
-leds = []
-for index in range(1, 5):
-    pyb.LED(index).off()
-    leds.append(pyb.LED(index))
+indicator = pyb.LED(4)
+increase = True
 
-
-sensor_queue = SensorQueue(tmp36, mcp9808, accel, gps)
-command_pool = CommandPool(servo1)
+sensor_queue = SensorQueue(tmp36,
+                           mcp9808,
+                           accel,
+                           gps
+                           )
+command_pool = CommandPool(servo1, motor_a)
 
 communicator = Communicator(sensor_queue, command_pool)
-
-toggle_index = 0
 
 while True:
     if new_data:
@@ -47,7 +47,15 @@ while True:
     communicator.write_packet()
     communicator.read_command()
     
-    leds[toggle_index].toggle()
-    toggle_index = (toggle_index + 1) % 4
-
+    if increase:
+        indicator.intensity(indicator.intensity() + 5)
+    else:
+        indicator.intensity(indicator.intensity() - 5)
+    
+    if indicator.intensity() <= 0:
+        increase = True
+    elif indicator.intensity() >= 255:
+        increase = False
+    
+    
     pyb.delay(5)

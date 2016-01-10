@@ -36,7 +36,13 @@ class MicroEncoder(object):
         self._state = ENC_STATES[self._readings] * self.reverse
 
         if self._state:
-            self._pos = min(max(self.min, self._pos + self._state), self.max)
+            # self._pos = min(max(self.min, self._pos + self._state), self.max)
+            self._pos += self._state
+            if self.min != None and self._pos < self.min:
+                self._pos = self.min
+            if self.max != None and self._pos > self.max:
+                self._pos = self.max
+                
 
     def set_callbacks(self, callback=None):
         self.irq_x = pyb.ExtInt(self.pin_x, pyb.ExtInt.IRQ_RISING_FALLING,

@@ -8,8 +8,10 @@
     Allows for easy sensor and command data logging.
 
     This class integrates nicely with the Sensor and Command objects found in
-    data.py. It will take in the input object's data and write it to a csv file
-    free of charge!
+    data.py. 
+
+    Recorder will take in the input object's data and write it to a csv file.
+    It is formatted to be user-friendly and easy to interpret.
 
     Please refer to objects.py for proper usage tips.
 """
