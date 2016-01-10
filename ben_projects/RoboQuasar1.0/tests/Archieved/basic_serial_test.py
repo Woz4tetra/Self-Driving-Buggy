@@ -95,4 +95,3 @@ while True:
         servo_val = "00"
     led_val = not led_val
 
-    

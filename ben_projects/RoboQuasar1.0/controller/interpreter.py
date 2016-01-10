@@ -66,7 +66,7 @@ class Filter(object):
         self.dt = time.time() - self.dt
 
         observation = np.array([gps.longitude, gps.latitude,
-                                encoder.position, accel.x, accel.y])
+                                encoder.delta, accel.x, accel.y])
 
         observation_matrix = np.array(
                 [[1, 0, 0, 0, 0, 0],

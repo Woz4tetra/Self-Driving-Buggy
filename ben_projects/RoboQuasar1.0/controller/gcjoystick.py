@@ -4,6 +4,7 @@ import pygame
 
 
 class BuggyJoystick:
+    # TODO: add multiple joystick support
     def __init__(self):
         self.deadzoneStick = 0.15
         self.mainStick = [0, 0]
@@ -31,10 +32,10 @@ class BuggyJoystick:
 
         joysticks = [pygame.joystick.Joystick(x) for x in
                      range(pygame.joystick.get_count())]
-
         for joy in joysticks:
             joy.init()
-            print(joy.get_name(), joy.get_id(), joy.get_init(), joy.get_numaxes())
+            print(joy.get_name(), joy.get_id(), joy.get_init(),
+                  joy.get_numaxes())
 
     def update(self):
         event = pygame.event.poll()
@@ -106,8 +107,31 @@ class BuggyJoystick:
         elif event.button == 9:
             self.buttons["start"] = value
 
+    def __str__(self):
+        return "x: %s, y: %s\n" \
+               "cx: %s, cy: %s\n" \
+               "A: %s, B: %s, X: %s, Y: %s\n" \
+               "start: %s, Z: %s\n" \
+               "L: %s, R: %s" % (
+                   self.mainStick[0], self.mainStick[1],
+                   self.cStick[0], self.cStick[1],
+                   self.buttons["A"], self.buttons["B"], self.buttons["X"],
+                   self.buttons["Y"], self.buttons["start"], self.buttons["Z"],
+                   self.triggers[0], self.triggers[1])
+
+
 def init():
     pygame.display.init()
     pygame.joystick.init()
-    
+
     return BuggyJoystick()
+
+
+if __name__ == '__main__':
+    import time
+
+    joystick = init()
+    while True:
+        print(joystick)
+        joystick.update()
+        time.sleep(0.005)
