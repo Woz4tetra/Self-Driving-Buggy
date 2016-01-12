@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>037AC6CD-6156-447C-9A74-FDE4725CB5D9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>90F34C9ADF553032F2278E5EB62BE7EF920B26EC</key>
+		<string>https://github.com/Woz4tetra/Self-Driving-Buggy.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Ben's Projects/Test-OpenCV-iOS/OpenCVSwiftStitch-master/SwiftStitch.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>90F34C9ADF553032F2278E5EB62BE7EF920B26EC</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Woz4tetra/Self-Driving-Buggy.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>90F34C9ADF553032F2278E5EB62BE7EF920B26EC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>90F34C9ADF553032F2278E5EB62BE7EF920B26EC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Self-Driving-Buggy</string>
+		</dict>
+	</array>
+</dict>
+</plist>
