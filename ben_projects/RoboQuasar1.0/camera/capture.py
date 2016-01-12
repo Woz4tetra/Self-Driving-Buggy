@@ -428,7 +428,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         currentFrame = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
         self.setFrame(currentFrame - 1.8)
 
-    def saveFrame(self, frame, burst_mode=True):
+    def saveFrame(self, frame, burst_mode=True, directory=None):
         """
         Write the input frame to Camera/Images
 
@@ -443,8 +443,11 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         else:
             name = datetime.datetime.now().strftime(
                     "%a %b %d %H;%M;%S.%f %p, %Y") + ".png"
-
-        cv2.imwrite(config.get_dir(":images") + name, frame)
+        
+        if directory == None:
+            cv2.imwrite(config.get_dir(":images") + name, frame)
+        else:
+            cv2.imwrite(directory + name, frame)
 
     def increaseFPS(self):
         """

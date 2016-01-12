@@ -49,7 +49,7 @@ time_stamp0 = 0
 
 try:
     while True:
-        joystick.mainStick[0]
+        
         servo1.set(int(servo_val))
         command_queue.put(servo1)
         

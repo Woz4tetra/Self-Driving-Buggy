@@ -1,4 +1,4 @@
-'''
+"""
     Written by Ben Warwick
     
     video_maker.py, written for the Self-Driving Buggy Project
@@ -7,7 +7,7 @@
     
     A little script application that allows for easy OpenCV video recording
     and converting a collection of images to a video.
-'''
+"""
 
 import argparse
 import time
@@ -129,6 +129,7 @@ def video_from_camera(output_dir, fps, video_name,
             break
 
 if __name__ == '__main__':
+    print(__doc__)
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-s", "--source",

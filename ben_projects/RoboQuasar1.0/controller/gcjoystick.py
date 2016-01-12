@@ -1,7 +1,18 @@
-# Allows for out-of-the-box interface with a gamecube controller (connected with the mayflash gc adapter)
+"""
+Allows for out-of-the-box interface with a gamecube controller (connected with
+the mayflash gc adapter)
+
+x: -0.85...0.81 (left is negative)
+y: -0.82...0.80 (up is negative)
+
+cx: -0.76...0.70
+cy: -0.70...0.796
+
+L: -0.777...0.84 (negative is up)
+R: -0.809...0.809
+"""
 
 import pygame
-
 
 class BuggyJoystick:
     # TODO: add multiple joystick support
@@ -49,9 +60,9 @@ class BuggyJoystick:
                 elif event.axis == 1:
                     self.mainStick[1] = event.value
                 elif event.axis == 2:
-                    self.cStick[0] = event.value
-                elif event.axis == 3:
                     self.cStick[1] = event.value
+                elif event.axis == 3:
+                    self.cStick[0] = event.value
             else:
                 if event.axis == 4:
                     self.triggers[0] = event.value
@@ -112,12 +123,36 @@ class BuggyJoystick:
                "cx: %s, cy: %s\n" \
                "A: %s, B: %s, X: %s, Y: %s\n" \
                "start: %s, Z: %s\n" \
+               "L t: %s, R t: %s\n" \
                "L: %s, R: %s" % (
                    self.mainStick[0], self.mainStick[1],
                    self.cStick[0], self.cStick[1],
                    self.buttons["A"], self.buttons["B"], self.buttons["X"],
                    self.buttons["Y"], self.buttons["start"], self.buttons["Z"],
+                   self.buttons["L"], self.buttons["R"],
                    self.triggers[0], self.triggers[1])
+
+    def calibrate_triggers(self):
+        print("Calibrating triggers!\n"
+              "Let go of the triggers and push down when ready...")
+        time.sleep(0.5)
+        self.update()
+        left_top = self.triggers[0]
+        right_top = self.triggers[1]
+
+        print("OK. Push down now!")
+
+        left_bottom = None
+        right_bottom = None
+        while left_bottom is None or right_bottom is None:
+            self.update()
+            if self.buttons["L"]:
+                left_bottom = self.triggers[0]
+
+            if self.buttons["R"]:
+                right_bottom = self.triggers[1]
+
+        # TODO: Finish calibration functions
 
 
 def init():
