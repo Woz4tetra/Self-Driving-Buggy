@@ -1,6 +1,6 @@
 # handles all interfacing with OpenCV camera objects
 
-import copy
+import os
 import time
 import datetime
 import sys
@@ -150,8 +150,12 @@ class Capture(object):
         self.trackbarName = "Frame"
         self.dimensions = list(crop)
         self.video = None
-        self.frameSkip = frame_skip
         self.loopVideo = loop_video
+
+        if type(self.camSource) == int:
+            self.frameSkip = 0
+        else:
+            self.frameSkip = frame_skip
 
         if sys.platform.startswith('darwin'):  # OS X
             self.key_codes = self.mac_keys
@@ -381,7 +385,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :return: An integer closest to sizeByFPS in self.resolutions
         """
         possibleFPSs = numpy.array(list(self.resolutions.keys()))
-        minuend = copy.copy(possibleFPSs)
+        minuend = possibleFPSs.copy()
         minuend.fill(sizeByFPS)
         difference = possibleFPSs - minuend
         difference = numpy.absolute(difference)
@@ -450,9 +454,12 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             frame = self.frame
 
         if directory == None:
-            cv2.imwrite(config.get_dir(":images") + name, frame)
-        else:
-            cv2.imwrite(directory + name, frame)
+            directory = config.get_dir(":images")
+
+        if not os.path.isdir(directory):
+            os.makedirs(directory)
+
+        cv2.imwrite(directory + name, frame)
 
     def increaseFPS(self):
         """
@@ -581,6 +588,10 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             output_dir = config.get_dir(":videos") + video_name
         else:
             output_dir += "/" + video_name
+
+        if not os.path.isdir(output_dir):
+            os.makedirs(output_dir)
+
         fourcc = cv2.VideoWriter_fourcc(*codec)
         self.video = cv2.VideoWriter()
         self.video.open(output_dir, fourcc, fps,
@@ -625,22 +636,14 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if self.isRunning is False:
             self.stopCamera()
             return
-        # if readNextFrame is False:
-        #     self.decrementFrame()
+        if readNextFrame is False:
+            self.decrementFrame()
         if self.frameSkip > 0:
             if type(self.camSource) == str:
                 current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
                 self.camera.set(cv2.CAP_PROP_POS_FRAMES,
                                 current + self.frameSkip)
-        # else:
-        #         while int(
-        #                 self.camera.get(
-        #                     cv2.CAP_PROP_POS_FRAMES)) % self.frameSkip:
-        #             self.camera.grab()
-        #             # print "skipping frame", self.frameSkip, int(self.camera.get(cv2.CAP_PROP_POS_FRAMES))
-        # time0 = time.time()
         success, self.frame = self.camera.read()
-        # print "read:", (time.time() - time0)
 
         if success is False or self.frame is None:
             if type(self.camSource) == int:

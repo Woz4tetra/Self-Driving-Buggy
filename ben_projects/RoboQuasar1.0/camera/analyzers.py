@@ -122,29 +122,3 @@ class LineFollower:
             averaged_line = None, None
         return frame, self.difference((self.centerRho, self.centerTheta
                                        ), averaged_line, self.yBottom)
-
-
-class SampleSelector:
-    def __init__(self, camera):
-        self.top_left = [0, 0]
-        self.bottom_right = [0, 0]
-        self.frame = None
-
-        cv2.setMouseCallback(camera.windowName, SampleSelector.highlight_frame,
-                             [self.top_left, self.bottom_right, camera,
-                              self.frame])
-
-    @staticmethod
-    def highlight_frame(event, x, y, flags, params):
-        top_left, bottom_right, camera, frame = params
-        if event == cv2.EVENT_LBUTTONDOWN:
-            top_left[0], top_left[1] = x, y
-            bottom_right[0], bottom_right[1] = x, y
-
-        elif flags == cv2.EVENT_FLAG_LBUTTON:
-            bottom_right[0], bottom_right[1] = x, y
-            if frame != None:
-                frame = cv2.rectangle(frame, tuple(top_left),
-                                           tuple(bottom_right),
-                                           (255, 255, 255))
-                camera.showFrame(frame)
