@@ -132,7 +132,7 @@ class Servo(Command):
     def offset(self, offset):
         self._data = self.bound(self._data + offset)
 
-class Encoder(Sensor):
+class RotaryEncoder(Sensor):
     def __init__(self, sensor_id, initial_value=0, wheel_radius=1):
         super().__init__(sensor_id, 'i64')
         self.prev_position = initial_value
@@ -150,4 +150,8 @@ class Encoder(Sensor):
     def delta(self):
         return self.position - self.prev_position
 
+class HallEncoder(Sensor):
+    def __init__(self, sensor_id, analog_pin):
+        super().__init__(sensor_id, 'u64')
+    
 

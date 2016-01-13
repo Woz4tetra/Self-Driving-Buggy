@@ -31,7 +31,6 @@ class LineFollower:
             line_set = [occurance, line_set[0][0], line_set[0][1]]
         return line_set
 
-
     def findAverageLines(self, lines):
         '''
         findAvgLines is not supposed to draw; 
@@ -56,7 +55,8 @@ class LineFollower:
         if len(leftRho) != 0:
             avgLeftRho = np.median([leftRho])
             avgLeftTheta = np.median([leftTheta])
-        else: (avgLeftRho, avgLeftTheta) = (0, 0)
+        else:
+            (avgLeftRho, avgLeftTheta) = (0, 0)
 
         if len(rightRho) != 0:
             avgRightRho = np.median([rightRho])
@@ -67,7 +67,7 @@ class LineFollower:
         self.avgCenterTheta = (avgLeftTheta + avgRightTheta) / 2.0
 
         return [(avgLeftRho, avgLeftTheta), (avgRightRho, avgRightTheta)]
-    
+
     def findLineCoord(self, rho, theta):
         # turn avgLines into avgLinesCoord =[(x1, y1), (x2, y2)]
         a = np.cos(theta)
@@ -134,7 +134,6 @@ class LineFollower:
             '''
             idx = 0
             while idx < (maxNumLines/2 -1) and idx < len(linesDrawn):
-                print (idx, maxNumLines)
                 (rho, theta) = (linesDrawn[-1*idx][1], linesDrawn[-1*idx][2])
                 # used -1* here to reverse order; 
                 # .sort(reverse=True) somehow doesn't work
@@ -156,8 +155,8 @@ class LineFollower:
             averaged_line = self.findAverageLines(lines[:maxNumLines]) 
             (rho1, theta1) = (averaged_line)[0] 
             (rho2, theta2) = (averaged_line)[1]
-            (x1,y1,x2,y2) = self.findLineCoord(rho1, theta1)
-            (x3,y3,x4,y4) = self.findLineCoord(rho2, theta2)
+            (x1, y1, x2, y2) = self.findLineCoord(rho1, theta1)
+            (x3, y3, x4, y4) = self.findLineCoord(rho2, theta2)
 
             # get coordinates of lines before drawing
             if draw_avg:
@@ -167,4 +166,4 @@ class LineFollower:
         else:
             averaged_line = None, None
         return frame, self.difference((self.centerRho, self.centerTheta
-            ), averaged_line, self.yBottom)
+                                       ), averaged_line, self.yBottom)

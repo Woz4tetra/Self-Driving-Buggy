@@ -56,7 +56,7 @@ def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
         burst_mode=False,
     )
     
-    frame1 = camera1.updateFrame(readNextFrame=False)
+    frame1 = camera1.getFrame(readNextFrame=False)
     height, width = frame1.shape[0:2] 
 
     
@@ -67,7 +67,7 @@ def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
     while camera1.isRunning:
         if capture_properties['paused'] == False or capture_properties[
             'currentFrame'] != camera1.currentFrameNumber():
-            frame1 = camera1.updateFrame()
+            frame1 = camera1.getFrame()
             
             if frame1 is None:
                 continue
@@ -114,7 +114,7 @@ def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
                 print((
                     "Applying filters is " + str(
                         capture_properties['apply_filters'])))
-                frame1 = camera1.updateFrame(False)
+                frame1 = camera1.getFrame(False)
             elif key == "right":
                 camera1.incrementFrame()
             elif key == "left":

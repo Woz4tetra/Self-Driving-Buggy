@@ -1,6 +1,6 @@
 # handles all interfacing with OpenCV camera objects
 
-import copy
+import os
 import time
 import datetime
 import sys
@@ -150,8 +150,12 @@ class Capture(object):
         self.trackbarName = "Frame"
         self.dimensions = list(crop)
         self.video = None
-        self.frameSkip = frame_skip
         self.loopVideo = loop_video
+
+        if type(self.camSource) == int:
+            self.frameSkip = 0
+        else:
+            self.frameSkip = frame_skip
 
         if sys.platform.startswith('darwin'):  # OS X
             self.key_codes = self.mac_keys
@@ -224,11 +228,13 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         time2 = time.time()
         print((str(self.camSource) + " loaded in " + str(
-                time2 - time1) + " seconds. Capture size is " + \
+                time2 - time1) + " seconds. Capture size is " +
               str(int(self.width)) + "x" + str(int(self.height))))
 
         if start_frame > 0:
             self.setFrame(start_frame)
+
+        self.frame = numpy.zeros((self.height, self.width, 3))
 
     def cameraSelector(self):
         """
@@ -379,7 +385,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         :return: An integer closest to sizeByFPS in self.resolutions
         """
         possibleFPSs = numpy.array(list(self.resolutions.keys()))
-        minuend = copy.copy(possibleFPSs)
+        minuend = possibleFPSs.copy()
         minuend.fill(sizeByFPS)
         difference = possibleFPSs - minuend
         difference = numpy.absolute(difference)
@@ -428,7 +434,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         currentFrame = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
         self.setFrame(currentFrame - 1.8)
 
-    def saveFrame(self, frame, burst_mode=True):
+    def saveFrame(self, frame=None, default_name=True, directory=None):
         """
         Write the input frame to Camera/Images
 
@@ -436,7 +442,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 (shape = (height, width, 3))
         :return: None
         """
-        if not burst_mode:
+        if not default_name:
             name = time.strftime("%c").replace(":", ";") + ".png"
             print("Frame saved as " + str(name))
             print("in directory:\n" + config.get_dir(":images"))
@@ -444,7 +450,16 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             name = datetime.datetime.now().strftime(
                     "%a %b %d %H;%M;%S.%f %p, %Y") + ".png"
 
-        cv2.imwrite(config.get_dir(":images") + name, frame)
+        if frame is None:
+            frame = self.frame
+
+        if directory == None:
+            directory = config.get_dir(":images")
+
+        if not os.path.isdir(directory):
+            os.makedirs(directory)
+
+        cv2.imwrite(directory + name, frame)
 
     def increaseFPS(self):
         """
@@ -489,7 +504,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         """
         if frameIndex != self.currentFrameNumber():
             self.setFrame(frameIndex)
-            self.showFrame(self.updateFrame(False))
+            self.showFrame(self.getFrame(False))
 
     def getPressedKey(self, delay=1):
         """
@@ -512,7 +527,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         else:
             return key
 
-    def showFrame(self, frame):
+    def showFrame(self, frame=None):
         """
         Display the frame in the Capture's window using cv2.imshow
 
@@ -520,7 +535,11 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                 (shape = (height, width, 3))
         :return: None
         """
-        cv2.imshow(self.windowName, frame)
+        if frame is not None:
+            cv2.imshow(self.windowName, frame)
+        else:
+            cv2.imshow(self.windowName, self.frame)
+
 
     def currentFrameNumber(self):
         """
@@ -569,6 +588,10 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             output_dir = config.get_dir(":videos") + video_name
         else:
             output_dir += "/" + video_name
+
+        if not os.path.isdir(output_dir):
+            os.makedirs(output_dir)
+
         fourcc = cv2.VideoWriter_fourcc(*codec)
         self.video = cv2.VideoWriter()
         self.video.open(output_dir, fourcc, fps,
@@ -600,7 +623,7 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
             self.video.release()
             print("Video written to:\n" + self.videoOutputDir)
 
-    def updateFrame(self, readNextFrame=True):
+    def getFrame(self, readNextFrame=True):
         """
         A method to be used inside of a while loop. Reads frames from a video
         or a live capture.
@@ -613,37 +636,29 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
         if self.isRunning is False:
             self.stopCamera()
             return
-        # if readNextFrame is False:
-        #     self.decrementFrame()
+        if readNextFrame is False:
+            self.decrementFrame()
         if self.frameSkip > 0:
             if type(self.camSource) == str:
                 current = self.camera.get(cv2.CAP_PROP_POS_FRAMES)
                 self.camera.set(cv2.CAP_PROP_POS_FRAMES,
                                 current + self.frameSkip)
-        # else:
-        #         while int(
-        #                 self.camera.get(
-        #                     cv2.CAP_PROP_POS_FRAMES)) % self.frameSkip:
-        #             self.camera.grab()
-        #             # print "skipping frame", self.frameSkip, int(self.camera.get(cv2.CAP_PROP_POS_FRAMES))
-        # time0 = time.time()
-        success, frame = self.camera.read()
-        # print "read:", (time.time() - time0)
+        success, self.frame = self.camera.read()
 
-        if success is False or frame is None:
+        if success is False or self.frame is None:
             if type(self.camSource) == int:
                 raise Exception("Failed to read from camera!")
             elif self.loopVideo == True:
                 self.setFrame(0)
-                while success is False or frame is None:
-                    success, frame = self.camera.read()
+                while success is False or self.frame is None:
+                    success, self.frame = self.camera.read()
             else:
                 self.stopCamera()
                 return None  # it's a video. stop the loop
 
         if type(self.camSource) == str:
-            if frame.shape[0:2] != (self.height, self.width):
-                frame = cv2.resize(frame, (self.width, self.height),
+            if self.frame.shape[0:2] != (self.height, self.width):
+                self.frame = cv2.resize(self.frame, (self.width, self.height),
                                    interpolation=cv2.INTER_NEAREST)
 
             cv2.setTrackbarPos(self.trackbarName, self.windowName,
@@ -652,6 +667,6 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
 
         if self.dimensions is not None:
             x0, y0, x1, y1 = self.dimensions
-            frame = frame[y0:y1, x0:x1]
+            self.frame = self.frame[y0:y1, x0:x1]
 
-        return frame
+        return self.frame

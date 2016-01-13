@@ -173,16 +173,22 @@ class Orientation(Sensor):
                      self.gyro.v_x, self.gyro.v_y, self.gyro.v_z)
 
 
-class Encoder(Sensor):
+class RotaryEncoder(Sensor):
     def __init__(self, sensor_id, pin_x, pin_y, pin_mode=pyb.Pin.PULL_NONE,
                  scale=1, min=None, max=None, reverse=False):
         super().__init__(sensor_id, 'i64')
         
-        self.encoder = Encoder(pin_x, pin_y, pin_mode, scale, min, max, reverse)
+        self.encoder = MicroEncoder(pin_x, pin_y, pin_mode, scale, min, max, reverse)
         
     def update_data(self):
         self.data = self.encoder.position
 
+class HallEncoder(Sensor):
+    def __init__(self, sensor_id, analog_pin):
+        super().__init__(sensor_id, 'u64')
+    
+    def update_data(self):
+        self.data = 0
 
 
 class Motor(Command):
@@ -259,4 +265,7 @@ class Motor(Command):
                 self.channel.pulse_width_percent(
                     self.constrain_speed_abs(value))
             self.current_speed = value
+    
+    def callback(self, value):
+        self.speed(value)
 

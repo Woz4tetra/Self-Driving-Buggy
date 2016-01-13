@@ -22,10 +22,11 @@ class Filter(object):
     def __init__(self, latitude, longitude):
         self.origin = latitude, longitude
         self.filt_state_mean = np.array(
-                [0, 0, 0, 0, 0, 0])  # (x=0,y=0,vx=0,vy=0,ax=0,ay=0)
+                [0.0, 0.0, 0.0, 0.0, 0.0, 0.0])  # (x=0,y=0,vx=0,vy=0,ax=0,ay=0)
         self.filter = pykalman.KalmanFilter()
         self.covariance = np.identity(6)
-        self.dt = time.time()
+	self.time = time.time()
+	self.dt = 0.0
 
     def update(self, gps, encoder, accel, orientation) -> (float, float):
         """
@@ -63,10 +64,11 @@ class Filter(object):
         :param orientation: board.xxx_objects.Orientation - contains heading data
         :return: current x, y as determined by the kalman filter
         """
-        self.dt = time.time() - self.dt
+        self.dt = time.time() - self.time
+	self.time = time.time()
 
         observation = np.array([gps.longitude, gps.latitude,
-                                encoder.position, accel.x, accel.y])
+                                encoder.delta, accel.x, accel.y])
 
         observation_matrix = np.array(
                 [[1, 0, 0, 0, 0, 0],

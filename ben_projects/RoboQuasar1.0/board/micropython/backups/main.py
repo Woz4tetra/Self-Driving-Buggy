@@ -15,10 +15,14 @@ gps = GPS(3)
 servo1 = Servo(0, 1)
 motor_a = Motor(1, 'X2', 'X3')
 
+gps_indicator = pyb.LED(3)
+
 new_data = False
 def pps_callback(line):
-    global new_data
+    global new_data, gps_indicator
     new_data = True
+    gps_indicator.toggle()
+    
 
 uart = UART(6, 9600, read_buf_len=1000)
 pps_pin = pyb.Pin.board.X8
