@@ -3,6 +3,7 @@
 import numpy as np
 import cv2
 
+
 # commented out concatenate; 1 screen instd of 2 is shown
 
 class LineFollower:
@@ -10,7 +11,7 @@ class LineFollower:
         self.centerRho, self.centerTheta = expected
         self.width, self.height = width, height
         self.yBottom = y_bottom
-    
+
     def findAverageLines(self, lines):
         '''
         findAvgLines is not supposed to draw; 
@@ -24,13 +25,13 @@ class LineFollower:
         for currentLine in lines:
             # notes on indexing: currentline has format[[x1, y1]]
             # currentLine = lines[i]
-            (rho, theta)  = (currentLine[0][0], currentLine[0][1])
+            (rho, theta) = (currentLine[0][0], currentLine[0][1])
 
             # if theta == np.pi/2:
             #     #ignore horizontal line to prevent "division by zero" for m
             #     continue 
 
-            if theta > 0: 
+            if theta > 0:
                 # lines with negative gradient; (y increases downwards in frame) 
                 leftTheta.append(theta)
                 leftRho.append(rho)
@@ -42,14 +43,14 @@ class LineFollower:
         if len(leftRho) != 0:
             avgLeftRho = np.median([leftRho])
             avgLeftTheta = np.median([leftTheta])
-        else: (avgLeftRho, avgLeftTheta) = (0, 0)
+        else:
+            (avgLeftRho, avgLeftTheta) = (0, 0)
 
         if len(rightRho) != 0:
             avgRightRho = np.median([rightRho])
             avgRightTheta = np.median([rightTheta])
-        else: (avgRightRho, avgRightTheta) = (0, 0)
-
-
+        else:
+            (avgRightRho, avgRightTheta) = (0, 0)
 
         self.avgCenterRho = (avgLeftRho + avgRightRho) / 2.0
         self.avgCenterTheta = (avgLeftTheta + avgRightTheta) / 2.0
@@ -57,7 +58,6 @@ class LineFollower:
         # Return (rho, theta) for average line; 
         return [(avgLeftRho, avgLeftTheta), (avgRightRho, avgRightTheta)]
         # return [(self.avgCenterRho, self.avgCenterTheta)]
-    
 
     def findLineCoord(self, rho, theta):
         # turn avgLines into avgLinesCoord =[(x1, y1), (x2, y2)]
@@ -72,14 +72,13 @@ class LineFollower:
         y2 = int(y0 - 1000 * a)
         return (x1, y1, x2, y2)
 
-    
     def difference(self, expected, actual, y_bottom):
         return 0, 0  # distance difference, theta difference
         ''' need to filter out unneeded lines before taking avg'''
-    
+
     def update(self, frame, draw_avg=True, draw_all=True, tolerance=50):
         # crop_frame = frame[]
-        frame = frame[90:360,::]
+        frame = frame[90:360, ::]
         frame_lines = cv2.medianBlur(frame, 5)
         frame_lines = cv2.Canny(frame_lines, 1, 100)
 
@@ -99,20 +98,20 @@ class LineFollower:
                     y1 = int(y0 + 1000 * a)
                     x2 = int(x0 - 1000 * -b)
                     y2 = int(y0 - 1000 * a)
-                    
+
                     cv2.line(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
                     ''' Randomly drawing tolerance# of lines on screen'''
 
 
                     # frame = np.concatenate((frame, cv2.cvtColor(
                     #     np.uint8(frame_lines), cv2.COLOR_GRAY2BGR)), axis=0)
-    
+
         if lines is not None:
-            averaged_line = self.findAverageLines(lines[:tolerance]) 
-            (rho1, theta1) = (averaged_line)[0] 
+            averaged_line = self.findAverageLines(lines[:tolerance])
+            (rho1, theta1) = (averaged_line)[0]
             (rho2, theta2) = (averaged_line)[1]
-            (x1,y1,x2,y2) = self.findLineCoord(rho1, theta1)
-            (x3,y3,x4,y4) = self.findLineCoord(rho2, theta2)
+            (x1, y1, x2, y2) = self.findLineCoord(rho1, theta1)
+            (x3, y3, x4, y4) = self.findLineCoord(rho2, theta2)
 
             '''get coordinates of lines before drawing'''
             if draw_avg:
@@ -122,4 +121,30 @@ class LineFollower:
         else:
             averaged_line = None, None
         return frame, self.difference((self.centerRho, self.centerTheta
-            ), averaged_line, self.yBottom)
+                                       ), averaged_line, self.yBottom)
+
+
+class SampleSelector:
+    def __init__(self, camera):
+        self.top_left = [0, 0]
+        self.bottom_right = [0, 0]
+        self.frame = None
+
+        cv2.setMouseCallback(camera.windowName, SampleSelector.highlight_frame,
+                             [self.top_left, self.bottom_right, camera,
+                              self.frame])
+
+    @staticmethod
+    def highlight_frame(event, x, y, flags, params):
+        top_left, bottom_right, camera, frame = params
+        if event == cv2.EVENT_LBUTTONDOWN:
+            top_left[0], top_left[1] = x, y
+            bottom_right[0], bottom_right[1] = x, y
+
+        elif flags == cv2.EVENT_FLAG_LBUTTON:
+            bottom_right[0], bottom_right[1] = x, y
+            if frame != None:
+                frame = cv2.rectangle(frame, tuple(top_left),
+                                           tuple(bottom_right),
+                                           (255, 255, 255))
+                camera.showFrame(frame)

@@ -8,7 +8,7 @@
 *.a
 *.d
 *.so
-*pyc
+*.pyc
 
 # Packages #
 ############
@@ -48,6 +48,7 @@ Thumbs.db
 .sconsign.dblite/
 ben_projects/Self-Driving\ Buggy\ Rev.\ 5/camera/Videos/
 ben_projects/RoboQuasar1.0/camera/Videos/
+ben_projects/RoboQuasar1.0/camera/Images/
 __pycache__/
 
 # Xcode Project Files #

@@ -119,7 +119,7 @@ def video_from_camera(output_dir, fps, video_name,
                             includeTimestamp=add_timestamp)
     
     while True:
-        frame1 = camera1.updateFrame()
+        frame1 = camera1.getFrame()
         camera1.writeToVideo(frame1)
         camera1.showFrame(frame1)
         key = camera1.getPressedKey()

@@ -18,7 +18,7 @@ def run():
             '/Users/Woz4tetra/Downloads/opencv-3.1.0/data/haarcascades/haarcascade_eye.xml')
 
     while True:
-        frame1 = camera1.updateFrame()
+        frame1 = camera1.getFrame()
         gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, 1.5, 5)
 

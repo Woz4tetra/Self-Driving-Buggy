@@ -71,7 +71,7 @@ def run():
 #                cv2.imread(project_dir + "/camera/Images/" + file_name))
 #
 #    scene_tracker = analyzers.SceneTracker(scenes)
-    frame1 = camera1.updateFrame(readNextFrame=False)
+    frame1 = camera1.getFrame(readNextFrame=False)
     height, width = frame1.shape[0:2]
 
     time_start = time.time()
@@ -79,7 +79,7 @@ def run():
     while camera1.isRunning:
         if capture_properties['paused'] == False or capture_properties[
             'currentFrame'] != camera1.currentFrameNumber():
-            frame1 = camera1.updateFrame()
+            frame1 = camera1.getFrame()
             
             if frame1 == None:
                 continue
@@ -148,7 +148,7 @@ def run():
                 print(
                     "Applying filters is " + str(
                         capture_properties['apply_filters']))
-                frame1 = camera1.updateFrame(False)
+                frame1 = camera1.getFrame(False)
             elif key == "right":
                 camera1.incrementFrame()
             elif key == "left":

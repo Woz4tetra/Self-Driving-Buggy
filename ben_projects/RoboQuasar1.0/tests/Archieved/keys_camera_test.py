@@ -12,7 +12,7 @@ from camera import capture
 def run():
     camera1 = capture.Capture(window_name="camera", camera_type="ps3eye")
     while True:
-        frame1 = camera1.updateFrame()
+        frame1 = camera1.getFrame()
         camera1.showFrame(frame1)
         key = camera1.getPressedKey()
         if key > -1:
