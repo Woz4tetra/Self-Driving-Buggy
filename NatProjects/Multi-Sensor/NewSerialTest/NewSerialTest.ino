@@ -12,12 +12,12 @@ Servo servo1;
 int16_t ax, ay, az, gx, gy, gz, mx, my, mz;
 float lat, lon;
 uint16_t gps_ms;
-unsigned  long enc_value;
+unsigned  long enc_value = 0;
 int servo_pos;
 
 bool is_in_range; //if true, trigger when we see out-of-range value
 int last_rising_edge; //ms
-volatile unsigned long enc_distance; // counts of the encoder
+volatile unsigned int enc_distance = 0; // counts of the encoder
 
 #define HYST_TRIG_HIGH 950 //TODO: Tune these based on OBSERVED values
 #define HYST_TRIG_LOW 850
@@ -110,7 +110,7 @@ void loop()
   if (Serial.available())
     ch = Serial.read();
 	if (ch == 'r'){
-		sprintf(serial_buf, ">%ld,%ld,%f,%f,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%lu\n",
+		sprintf(serial_buf, ">%ld,%ld,%f,%f,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n",
 			micros(), gps_ms, lat, lon, ax, ay, az, gx, gy, gz, mx, my, mz, enc_distance);
 		Serial.write(serial_buf);
 		Serial.flush();
