@@ -2,27 +2,38 @@
 Allows for out-of-the-box interface with a gamecube controller (connected with
 the mayflash gc adapter)
 
-x: -0.85...0.81 (left is negative)
-y: -0.82...0.80 (up is negative)
+mainStick.x: -0.85...0.81 (left is negative)
+mainStick.y: -0.82...0.80 (up is negative)
 
-cx: -0.76...0.70
-cy: -0.70...0.796
+cStick.x: -0.76...0.70
+cStick.y: -0.70...0.796
 
 L: -0.777...0.84 (negative is up)
 R: -0.809...0.809
 """
 
 import pygame
+from dotable import Dotable
+
 
 class BuggyJoystick:
     # TODO: add multiple joystick support
     def __init__(self):
         self.deadzoneStick = 0.15
-        self.mainStick = [0, 0]
-        self.cStick = [0, 0]
-        self.triggers = [0, 0]
+        self.mainStick = Dotable({
+            'x': 0,
+            'y': 0
+        })
+        self.cStick = Dotable({
+            'x': 0,
+            'y': 0
+        })
+        self.triggers = Dotable({
+            'L': 0,
+            'R': 0
+        })
 
-        self.buttons = {
+        self.buttons = Dotable({
             "A": False,
             "B": False,
             "X": False,
@@ -31,14 +42,14 @@ class BuggyJoystick:
             "L": False,
             "R": False,
             "start": False,
-        }
+        })
 
-        self.dpad = {
+        self.dpad = Dotable({
             "left": False,
             "right": False,
             "up": False,
             "down": False,
-        }
+        })
         self.done = False
 
         joysticks = [pygame.joystick.Joystick(x) for x in
@@ -48,6 +59,7 @@ class BuggyJoystick:
             print(joy.get_name(), joy.get_id(), joy.get_init(),
                   joy.get_numaxes())
 
+
     def update(self):
         event = pygame.event.poll()
         if event.type == pygame.QUIT:
@@ -56,27 +68,27 @@ class BuggyJoystick:
         if event.type == pygame.JOYAXISMOTION:
             if event.axis <= 3:
                 if event.axis == 0:
-                    self.mainStick[0] = event.value
+                    self.mainStick.x = event.value
                 elif event.axis == 1:
-                    self.mainStick[1] = event.value
+                    self.mainStick.y = event.value
                 elif event.axis == 2:
-                    self.cStick[1] = event.value
+                    self.cStick.x = event.value
                 elif event.axis == 3:
-                    self.cStick[0] = event.value
+                    self.cStick.y = event.value
             else:
                 if event.axis == 4:
-                    self.triggers[0] = event.value
+                    self.triggers.L = event.value
                 elif event.axis == 5:
-                    self.triggers[1] = event.value
+                    self.triggers.R = event.value
 
-            if (abs(self.mainStick[0]) < self.deadzoneStick and
-                        abs(self.mainStick[1]) < self.deadzoneStick):
-                self.mainStick[0] = 0
-                self.mainStick[1] = 0
-            if (abs(self.cStick[0]) < self.deadzoneStick and
-                        abs(self.cStick[1]) < self.deadzoneStick):
-                self.cStick[0] = 0
-                self.cStick[1] = 0
+            if (abs(self.mainStick.x) < self.deadzoneStick and
+                        abs(self.mainStick.y) < self.deadzoneStick):
+                self.mainStick.x = 0
+                self.mainStick.y = 0
+            if (abs(self.cStick.x) < self.deadzoneStick and
+                        abs(self.cStick.y) < self.deadzoneStick):
+                self.cStick.x = 0
+                self.cStick.y = 0
         elif event.type == pygame.JOYBUTTONDOWN:
             self._updateButtons(event, True)
 
@@ -102,21 +114,21 @@ class BuggyJoystick:
 
     def _updateButtons(self, event, value):
         if event.button == 0:
-            self.buttons["X"] = value
+            self.buttons.X = value
         elif event.button == 1:
-            self.buttons["A"] = value
+            self.buttons.A = value
         elif event.button == 2:
-            self.buttons["B"] = value
+            self.buttons.B = value
         elif event.button == 3:
-            self.buttons["Y"] = value
+            self.buttons.Y = value
         elif event.button == 4:
-            self.buttons["L"] = value
+            self.buttons.L = value
         elif event.button == 5:
-            self.buttons["R"] = value
+            self.buttons.R = value
         elif event.button == 7:
-            self.buttons["Z"] = value
+            self.buttons.Z = value
         elif event.button == 9:
-            self.buttons["start"] = value
+            self.buttons.start = value
 
     def __str__(self):
         return "x: %s, y: %s\n" \
@@ -124,35 +136,16 @@ class BuggyJoystick:
                "A: %s, B: %s, X: %s, Y: %s\n" \
                "start: %s, Z: %s\n" \
                "L t: %s, R t: %s\n" \
+               "left: %s, right: %s, up: %s, down: %s\n" \
                "L: %s, R: %s" % (
-                   self.mainStick[0], self.mainStick[1],
-                   self.cStick[0], self.cStick[1],
-                   self.buttons["A"], self.buttons["B"], self.buttons["X"],
-                   self.buttons["Y"], self.buttons["start"], self.buttons["Z"],
-                   self.buttons["L"], self.buttons["R"],
-                   self.triggers[0], self.triggers[1])
-
-    def calibrate_triggers(self):
-        print("Calibrating triggers!\n"
-              "Let go of the triggers and push down when ready...")
-        time.sleep(0.5)
-        self.update()
-        left_top = self.triggers[0]
-        right_top = self.triggers[1]
-
-        print("OK. Push down now!")
-
-        left_bottom = None
-        right_bottom = None
-        while left_bottom is None or right_bottom is None:
-            self.update()
-            if self.buttons["L"]:
-                left_bottom = self.triggers[0]
-
-            if self.buttons["R"]:
-                right_bottom = self.triggers[1]
-
-        # TODO: Finish calibration functions
+                   self.mainStick.x, self.mainStick.y,
+                   self.cStick.x, self.cStick.y,
+                   self.buttons.A, self.buttons.B, self.buttons.X,
+                   self.buttons.Y, self.buttons.start, self.buttons.Z,
+                   self.buttons.L, self.buttons.R,
+                   self.dpad.left, self.dpad.right, self.dpad.up,
+                   self.dpad.down,
+                   self.triggers.L, self.triggers.R)
 
 
 def init():
@@ -167,6 +160,7 @@ if __name__ == '__main__':
 
     joystick = init()
     while True:
-        print(joystick)
+        # print(joystick)
         joystick.update()
+
         time.sleep(0.005)

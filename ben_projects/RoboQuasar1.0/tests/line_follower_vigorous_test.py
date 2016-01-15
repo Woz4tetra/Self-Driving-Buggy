@@ -39,15 +39,15 @@ sys.path.insert(0, '../')
 from camera import capture
 from camera import analyzers
 
-def run():
-    camera1 = capture.Capture(window_name="line follow test",
-                              cam_source='Ascension 10-17 roll 3-2.mov',
+def run_session(file, assert_fn, expected, y_bottom, loop_video=False):
+    camera1 = capture.Capture(window_name="line follow test: " + file,
+                              cam_source= 'Orca 10-10 roll 4.mov',
                               loop_video=False)
 
     capture_properties = dict(
         paused=False,
         apply_filters=True,
-        enable_draw=True,
+        enable_draw=enable_draw_global,
         draw_avg=True, 
         draw_all=False,
         currentFrame=camera1.currentFrameNumber(),
@@ -58,8 +58,9 @@ def run():
     
     frame1 = camera1.getFrame(readNextFrame=False)
     height, width = frame1.shape[0:2] 
+
     
-    line_follower = analyzers.LineFollower((0, 0), 0, width, height)
+    line_follower = analyzers.LineFollower(expected, y_bottom, width, height)
     
     time_start = time.time()
     
@@ -77,7 +78,11 @@ def run():
                 # ============================== #
                 # ===== line follower code ===== #
                 # ============================== #
-                frame1 = line_follower.update(frame1)
+                
+                frame1, result = line_follower.update(frame1, 
+                    capture_properties['draw_avg'], 
+                    capture_properties['draw_all'])
+                assert_fn(result, expected, capture_properties['currentFrame'])
 
             if capture_properties['enable_draw'] is True:
                 camera1.showFrame(frame1)
@@ -90,11 +95,12 @@ def run():
 
         if capture_properties['burst_mode'] == True and capture_properties[
                 'paused'] == False:
-            camera1.saveFrame(frame1, default_name=True)
+            camera1.saveFrame(frame1, burst_mode=True)
 
         if capture_properties['enable_draw'] is True:
             key = camera1.getPressedKey()
             if key == 'q' or key == "esc":
+                print("KEY TO STOP")
                 camera1.stopCamera()
             elif key == ' ':
                 if capture_properties['paused']:
@@ -136,7 +142,50 @@ def run():
                 print(("Burst mode is " + str(capture_properties['burst_mode'])))
             elif key == 'p':  # debug print
                 print("Frame #:", capture_properties['currentFrame'])
+
+def assert_result(xxx_todo_changeme, xxx_todo_changeme1, xxx_todo_changeme2):
+    (result_angle, result_x) = xxx_todo_changeme
+    (expected_angle, expected_x) = xxx_todo_changeme1
+    (error_angle, error_x) = xxx_todo_changeme2
+    if expected_angle != None and expected_x != None:
+        assert abs(result_angle - expected_angle) < error_angle and \
+            abs(result_x - expected_x) < error_x
+
+def test_blank(result, expected, frame_num):
+    assert_result(result, expected, (0, 0))
+
+def test_bw1(result, expected, frame_num):
+    expected[0] -= frame_num * 10  # rho decreases by 10 each frame
+    assert_result(result, expected, (math.pi / 180, 5))
+
+def test_bw2(result, expected, frame_num):
+    expected[0] -= frame_num * 10
+    assert_result(result, expected, (5 * math.pi / 180, 10))
+
+def test_bw3(result, expected, frame_num):
+    expected[1] -= 5 * math.pi / 180 * frame_num  # theta decreases by 5 degrees each frame
+    assert_result(result, expected, (0, 0))
+
+
+def test_all():
+    run_session("line_follow_test_blank.mov", test_blank,
+                (None, None), 360)
+#     run_session("line_follow_test_bw1.mov", test_blank,
+#                # (640 / 2, 0), 360)
+#                 (None, None), 360)
+#     run_session("line_follow_test_bw2.mov", test_blank,
+# #                (640 / 2, 0), 360)
+#                 (None, None), 360)
+#     run_session("line_follow_test_bw3.mov", test_blank,
+# #                (640 / 2, 0), 360, True)
+#                 (None, None), 360)
     
-if __name__ == '__main__':
-    print(__doc__)
-    run()
+
+# if __name__ == '__main__':
+#     print __doc__
+    
+#     enable_draw_global = True
+    
+#     test_all()
+enable_draw_global = True
+test_all()

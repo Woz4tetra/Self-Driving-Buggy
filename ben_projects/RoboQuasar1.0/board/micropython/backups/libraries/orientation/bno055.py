@@ -1,7 +1,11 @@
-from .dof_sensor import DOFsensor
+import struct
+
+# from .dof_sensor import DOFsensor
 import pyb
 
-class IMU(DOFsensor):
+
+
+class IMU(object):
     REGISTERS = dict(
             # Page id register definition
             BNO055_PAGE_ID_ADDR=0X07,
@@ -150,6 +154,14 @@ class IMU(DOFsensor):
             MAG_RADIUS_LSB_ADDR=0X69,
             MAG_RADIUS_MSB_ADDR=0X6A
     )
+    VECTORS = dict(
+            ACCELEROMETER="BNO055_ACCEL_DATA_X_LSB_ADDR",
+            MAGNETOMETER="BNO055_MAG_DATA_X_LSB_ADDR",
+            GYROSCOPE="BNO055_GYRO_DATA_X_LSB_ADDR",
+            EULER="BNO055_EULER_H_LSB_ADDR",
+            LINEARACCEL="BNO055_LINEAR_ACCEL_DATA_X_LSB_ADDR",
+            GRAVITY="BNO055_GRAVITY_DATA_X_LSB_ADDR"
+    )
 
     BNO055_ADDRESS_A = 0x28
     BNO055_ADDRESS_B = 0x29
@@ -157,11 +169,16 @@ class IMU(DOFsensor):
 
     def __init__(self, bus, use_address_a=True):
         if use_address_a:
-            address = self.BNO055_ADDRESS_A
+            self.address = self.BNO055_ADDRESS_A
         else:
-            address = self.BNO055_ADDRESS_B
+            self.address = self.BNO055_ADDRESS_B
 
-        super().__init__(bus, address)
+        self.bus = bus
+        self.i2c_ref = pyb.I2C(self.bus, pyb.I2C.MASTER)
+
+        addresses = self.i2c_ref.scan()
+        if self.address not in addresses:
+            raise Exception("Sensor '%s' not found!" % self.address)
 
         chip_id = self.i2c_read_8(self.REGISTERS["BNO055_CHIP_ID_ADDR"])
         if chip_id != self.BNO055_ID:
@@ -169,27 +186,66 @@ class IMU(DOFsensor):
             chip_id = self.i2c_read_8(self.REGISTERS["BNO055_CHIP_ID_ADDR"])
             if chip_id != self.BNO055_ID:
                 raise Exception("Chip ID invalid: " + str(chip_id))
-        
+
         self.quat_scale = 1.0 / (1 << 14)
-    
-    def get_vector(self, source):
+
+    def i2c_read_8(self, register):
+        raw_bytes = self.i2c_ref.mem_read(1, self.address, register)
+        return struct.unpack(">B", raw_bytes)[0]  # unsigned 8-bit
+
+    def i2c_read_16(self, register):
+        raw_bytes = self.i2c_ref.mem_read(2, self.address, register)
+        return struct.unpack(">H", raw_bytes)[0]  # unsigned 16-bit
+
+    def i2c_sread_16(self, register):
+        raw_bytes = self.i2c_ref.mem_read(2, self.address, register)
+        return struct.unpack(">h", raw_bytes)[0]  # signed 16-bit
+
+    def i2c_write_8(self, register, value):
+        self.i2c_ref.mem_write(value, self.address, register,
+                               timeout=10, addr_size=8)
+
+    def i2c_recv(self, num_bytes):
+        raw_bytes = self.i2c_ref.recv(num_bytes, self.address)
+        return struct.unpack(">%sb" % str(num_bytes), raw_bytes)
+
+    def i2c_send(self, data):
+        self.i2c_ref.send(data, self.address)
+
+    def get_vector(self, source, use_raw=False):
+        self.i2c_send(self.REGISTERS[self.VECTORS[source]])
         buffer = self.i2c_recv(6)
-        w = (buffer[1] << 8) | buffer[0]
-        x = (buffer[3] << 8) | buffer[2]
-        y = (buffer[5] << 8) | buffer[4]
-    
-    def get_quaternion(self):
+        x = (buffer[1] << 8) | buffer[0]
+        y = (buffer[3] << 8) | buffer[2]
+        z = (buffer[5] << 8) | buffer[4]
+
+        if use_raw:
+            if source == "MAGNETOMETER" or source == "EULER":
+                divisor = 16.0
+            elif source == "GYROSCOPE":
+                divisor = 900.0
+            elif source == "GRAVITY" or source == "ACCELEROMETER" or \
+                    source == "LINEARACCEL":
+                divisor = 100.0
+            else:
+                divisor = 1.0
+
+            return x / divisor, y / divisor, z / divisor
+        else:
+            return x, y, z
+
+    def get_quaternion(self, use_raw=False):
         buffer = self.i2c_recv(8)
         w = (buffer[1] << 8) | buffer[0]
         x = (buffer[3] << 8) | buffer[2]
         y = (buffer[5] << 8) | buffer[4]
         z = (buffer[7] << 8) | buffer[6]
-        
-        return (self.quat_scale * w,
-                self.quat_scale * x,
-                self.quat_scale * y,
-                self.quat_scale * z)
-    
-    def refresh(self):
-        
-        
+
+        if use_raw:
+            return (self.quat_scale * w,
+                    self.quat_scale * x,
+                    self.quat_scale * y,
+                    self.quat_scale * z)
+        else:
+            return w, x, y, z
+

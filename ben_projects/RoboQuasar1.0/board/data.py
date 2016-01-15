@@ -125,6 +125,7 @@ class SerialObject(object):
     #formats is the list of formats used by the serial object, 
     #for this code, the sensors are the serial objects
     def __init__(self, object_id, formats):
+        assert(type(object_id) == int)
         self.formats = self.init_formats(list(formats))
 
         self.object_id = object_id
@@ -137,6 +138,10 @@ class SerialObject(object):
     @property
     def data(self):
         return self._data
+
+    # @data.setter
+    # def data(self, new_data):
+    #     self._data = new_data
 
     def init_data(self, formats):
         data = []
@@ -200,7 +205,7 @@ class SerialObject(object):
 
 class Sensor(SerialObject):
     def __init__(self, sensor_id, *formats):
-        super(Sensor, self).__init__(sensor_id, formats)
+        super().__init__(sensor_id, formats)
 
         self.data_indices = self.make_indices(self.formats)
         self.data_len = self.data_indices[-1]

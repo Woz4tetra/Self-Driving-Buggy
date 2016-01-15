@@ -76,7 +76,8 @@ class Capture(object):
                  size_by_fps=None, camera_type=None,
                  frame_skip=0,
                  loop_video=True,
-                 start_frame=0):
+                 start_frame=0,
+                 quit_on_end=True):
         """
         The initializer for an opencv camera object. It holds all the methods
         required to read and write from a camera.
@@ -151,6 +152,7 @@ class Capture(object):
         self.dimensions = list(crop)
         self.video = None
         self.loopVideo = loop_video
+        self.quitOnEnd = quit_on_end
 
         if type(self.camSource) == int:
             self.frameSkip = 0
@@ -654,7 +656,11 @@ Please type help(Capture.resolutions) for a dictionary of available camera data.
                     success, self.frame = self.camera.read()
             else:
                 self.stopCamera()
-                return None  # it's a video. stop the loop
+                if not self.quitOnEnd:
+                    return None  # it's a video. stop the loop
+                else:
+                    print("Quitting...")
+                    quit()
 
         if type(self.camSource) == str:
             if self.frame.shape[0:2] != (self.height, self.width):

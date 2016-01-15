@@ -1,15 +1,13 @@
 import pyb
 from pyb import I2C
 
-import math
+import binascii
 
 from libraries.micro_gps import MicropyGPS
 from libraries.micro_encoder import MicroEncoder
 
-from libraries.orientation.bmp085 import Barometer
-from libraries.orientation.lsm303 import Accelerometer
-from libraries.orientation.lsm303 import Magnetometer
-from libraries.orientation.l3gd20 import Gyroscope
+# from libraries.orientation.bno055 import IMU
+from libraries.mpu6050 import MPU6050
 
 from data import *
 
@@ -125,70 +123,60 @@ class GPS(Sensor):
 class Servo(Command):
     def __init__(self, command_id, pin_num):
         super().__init__(command_id, 'i8')
-        
+
         self.servo_ref = pyb.Servo(pin_num)
 
     def callback(self, angle):
         self.servo_ref.angle(angle)
 
 
-class Orientation(Sensor):
-    def __init__(self, sensor_id, bus):
-        super().__init__(sensor_id, 'f', 'f', 'f', 'f', 'f', 'f', 'f')
-    
-        self.accel = Accelerometer(bus)
-        self.mag = Magnetometer(bus)
-        self.gyro = Gyroscope(bus)
-        self.bmp = Barometer(bus)
-
-    def get_orientation(self):
-        roll = math.atan2(self.accel.y,
-                          self.accel.z)
-        if (self.accel.y * math.sin(roll) +
-                    self.accel.z * math.cos(roll) == 0):
-            pitch = math.pi / 2 if self.accel.x > 0 else -math.pi / 2
-        else:
-            pitch = math.atan(-self.accel.x / self.accel.y * math.sin(roll) +
-                              self.accel.y * math.cos(roll))
-
-        heading = math.atan2(self.mag.z * math.sin(
-                roll) - self.mag.y * math.cos(roll),
-                             self.mag.x * math.cos(pitch) +
-                             self.mag.y * math.sin(pitch) * math.sin(
-                                     roll) +
-                             self.mag.z * math.sin(pitch) * math.cos(
-                                     (roll)))
-        return roll, pitch, heading
-
-    def update_data(self):
-        self.accel.refresh()
-        self.mag.refresh()
-
-        roll, pitch, heading = self.get_orientation()
-
-        self.bmp.refresh()
-        self.gyro.refresh()
-
-        self.data = (roll, pitch, heading, self.bmp.altitude,
-                     self.gyro.v_x, self.gyro.v_y, self.gyro.v_z)
-
-
 class RotaryEncoder(Sensor):
     def __init__(self, sensor_id, pin_x, pin_y, pin_mode=pyb.Pin.PULL_NONE,
                  scale=1, min=None, max=None, reverse=False):
         super().__init__(sensor_id, 'i64')
-        
-        self.encoder = MicroEncoder(pin_x, pin_y, pin_mode, scale, min, max, reverse)
-        
+
+        self.encoder = MicroEncoder(pin_x, pin_y, pin_mode, scale, min, max,
+                                    reverse)
+
     def update_data(self):
         self.data = self.encoder.position
+
 
 class HallEncoder(Sensor):
     def __init__(self, sensor_id, analog_pin):
         super().__init__(sensor_id, 'u64')
-    
+
     def update_data(self):
         self.data = 0
+
+
+# class BNO_IMU(Sensor):
+#     def __init__(self, sensor_id, bus):
+#         super().__init__(sensor_id,
+#                          'i16', 'i16', 'i16',
+#                          'i16', 'i16', 'i16',
+#                          'i16', 'i16', 'i16',
+#                          'i16', 'i16', 'i16', 'i16')
+#
+#         self.imu = IMU(bus)
+#
+#     def update_data(self):
+#         self.data = (self.imu.get_vector("ACCELEROMETER", use_raw=True) +
+#                      self.imu.get_vector("GYROSCOPE", use_raw=True) +
+#                      self.imu.get_vector("MAGNETOMETER", use_raw=True) +
+#                      self.imu.get_quaternion(use_raw=True))
+
+class MPU_IMU(Sensor):
+    def __init__(self, sensor_id, bus):
+        super().__init__(sensor_id,
+                         'u16', 'u16', 'u16',
+                         'u16', 'u16', 'u16')
+        self.imu = MPU6050(bus, False)
+
+    def update_data(self):
+        self.data = (
+        binascii.unhexlify(self.imu.get_accel_raw()).decode('utf-8') +
+        binascii.unhexlify(self.imu.get_gyro_raw()).decode('utf-8'))
 
 
 class Motor(Command):
@@ -216,7 +204,8 @@ class Motor(Command):
         'Y12': [(1, 3), (8, 3)]
     }
 
-    def __init__(self, command_id, direction_pin, pwm_pin, min_speed=40, max_speed=100):
+    def __init__(self, command_id, direction_pin, pwm_pin, min_speed=40,
+                 max_speed=100):
         self.enable_pin = pyb.Pin(direction_pin, mode=pyb.Pin.OUT_PP)
         self.timer, self.channel = self.init_timer_channel(pwm_pin, 100)
 
@@ -231,7 +220,8 @@ class Motor(Command):
             timer_num, channel_num = self.pin_channels[pwm_pin][0]
 
             timer = pyb.Timer(timer_num, freq=frequency)
-            channel = timer.channel(channel_num, pyb.Timer.PWM, pin=pyb.Pin(pwm_pin))
+            channel = timer.channel(channel_num, pyb.Timer.PWM,
+                                    pin=pyb.Pin(pwm_pin))
 
             return timer, channel
         else:
@@ -259,13 +249,12 @@ class Motor(Command):
             elif value < 0:
                 self.enable_pin.value(1)
                 self.channel.pulse_width_percent(
-                    100 - self.constrain_speed_abs(value))
+                        100 - self.constrain_speed_abs(value))
             else:
                 self.enable_pin.value(0)
                 self.channel.pulse_width_percent(
-                    self.constrain_speed_abs(value))
+                        self.constrain_speed_abs(value))
             self.current_speed = value
-    
+
     def callback(self, value):
         self.speed(value)
-

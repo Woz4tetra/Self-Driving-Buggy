@@ -13,21 +13,27 @@ tmp36 = TMP36(0)
 mcp9808 = MCP9808(1)
 builtin_accel = BuiltinAccel(2)
 gps = GPS(3)
+imu = MPU6050(4)
+compass = HMC5883L(5)
+encoder_right = RotaryEncoder(6)
 
 servo1 = Servo(0, -90)
 
-sensor_data = SensorPool(tmp36,
-                         mcp9808,
-                         builtin_accel,
-                         gps
-                         )
+sensor_data = SensorPool(
+        tmp36,
+        mcp9808,
+        builtin_accel,
+        gps,
+        imu,
+        compass
+)
 command_queue = CommandQueue()
 
 communicator = comm.Communicator(115200, command_queue, sensor_data,
                                  use_handshake=False)
 communicator.start()
 
-# servo_increase = True
+servo_increase = True
 
 log_data = False
 log = None
@@ -54,16 +60,19 @@ try:
         #
         # if servo1.degrees == 90 or servo1.degrees == -90:
         #     servo_increase = not servo_increase
-
+        #
         # command_queue.put(servo1)
 
         time.sleep(0.005)
-        
-        print(tmp36)
-        print(mcp9808)
-        print(builtin_accel)
-        print(gps)
-        print(servo1)
+
+        # print(tmp36)
+        # print(mcp9808)
+        # print(builtin_accel)
+        # print(gps)
+        # print(servo1)
+        # print(imu)
+        # print(compass)
+        print(encoder_right)
 
         if log_data:
             time_stamp1 = int(time.time() - log.time0)

@@ -60,13 +60,15 @@ from camera import capture
 drag_start = None
 selection = None
 camera1 = capture.Capture(window_name="camera",
-                          cam_source="Ascension 10-17 roll 3-2.mov",
+                          cam_source="Equinox 10-18 roll 4-2.mov",
                           # width=720, height=450,
                           # width=427, height=240,
                           frame_skip=25,
-                          # loop_video=True,
-                          # start_frame=1035
+                          loop_video=False,
+                          start_frame=31000,
+                          quit_on_end=True
                           )
+current_image = 1
 
 def on_mouse(event, x, y, flags, param):
     global drag_start, selection
@@ -101,8 +103,9 @@ def update_rect():
 def run():
     paused = True
     jump_dist = 1
-    write_negatives = False
-    image_shape = (36, 24)  # None
+    write_negatives = True
+    image_shape = None
+    global current_image
 
     print("write_negatives is " + str(write_negatives))
 
@@ -121,10 +124,9 @@ def run():
                 else:
                     frame = camera1.frame
                 camera1.saveFrame(frame,
-                    directory=config.get_dir(":images") + "negatives/")
+                                  directory=config.get_dir(
+                                      ":images") + "negatives/")
 
-        if camera1.frame is None:
-            continue
 
         key = camera1.getPressedKey()
         if key == 'q' or key == "esc":
@@ -145,6 +147,18 @@ def run():
             else:
                 jump_dist = 1
                 print("Short jump for selection rectangle set")
+        if key == "1":
+            current_image = 1
+            print("current image is", current_image)
+        elif key == "2":
+            current_image = 2
+            print("current image is", current_image)
+        elif key == "3":
+            current_image = 3
+            print("current image is", current_image)
+        elif key == "4":
+            current_image = 4
+            print("current image is", current_image)
 
         if paused:
             if key == 'enter':
@@ -152,8 +166,29 @@ def run():
                                         selection[0]: selection[2]]
                 if image_shape is not None:
                     cropped = cv2.resize(cropped, image_shape)
-                camera1.saveFrame(cropped,
-                        directory=config.get_dir(":images") + "positives/")
+                print("current image is", current_image)
+                if current_image == 1:
+                    print("1")
+                    camera1.saveFrame(cropped,
+                                      directory=config.get_dir(
+                                          ":images") + "positives1/")
+                elif current_image == 2:
+                    print("2")
+                    camera1.saveFrame(cropped,
+                                      directory=config.get_dir(
+                                              ":images") + "positives2/")
+                elif current_image == 3:
+                    print("3")
+                    camera1.saveFrame(cropped,
+                                      directory=config.get_dir(
+                                              ":images") + "positives3/")
+                elif current_image == 4:
+                    print("4 ")
+                    camera1.saveFrame(cropped,
+                                      directory=config.get_dir(
+                                              ":images") + "positives4/")
+                #camera1.saveFrame(cropped,
+                #        directory=config.get_dir(":images") + "positives/")
                 camera1.incrementFrame()
 
                 camera1.getFrame()

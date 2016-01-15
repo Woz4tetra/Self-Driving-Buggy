@@ -153,5 +153,42 @@ class RotaryEncoder(Sensor):
 class HallEncoder(Sensor):
     def __init__(self, sensor_id, analog_pin):
         super().__init__(sensor_id, 'u64')
-    
 
+
+class MPU6050(Sensor):
+    def __init__(self, sensor_id):
+        super().__init__(sensor_id,
+                         'f', 'f', 'f',
+                         'f', 'f', 'f')
+
+    @property
+    def accel_x(self):
+        return self.data[0]
+
+    @property
+    def accel_y(self):
+        return self.data[1]
+
+    @property
+    def accel_z(self):
+        return self.data[2]
+
+    @property
+    def gyro_x(self):
+        return self.data[3]
+
+    @property
+    def gyro_y(self):
+        return self.data[4]
+
+    @property
+    def gyro_z(self):
+        return self.data[5]
+
+class HMC5883L(Sensor):
+    def __init__(self, sensor_id):
+        super().__init__(sensor_id, 'f')
+
+    @property
+    def heading(self):
+        return self.data

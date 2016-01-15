@@ -14,77 +14,72 @@
 
 import numpy as np
 import pykalman
-import math
 import time
+import math
 
 
-class Filter(object):
-    def __init__(self, latitude, longitude):
-        self.origin = latitude, longitude
-        self.filt_state_mean = np.array(
-                [0.0, 0.0, 0.0, 0.0, 0.0, 0.0])  # (x=0,y=0,vx=0,vy=0,ax=0,ay=0)
-        self.filter = pykalman.KalmanFilter()
-        self.covariance = np.identity(6)
-	self.time = time.time()
-	self.dt = 0.0
+class MainFilter(object):
+    def __init__(self, latitude, longitude, circum, heading):
+        self.headingKalman = headingKalman()
+        self.placeKalman = placeKalman((latitude, longitude), circum, heading)
+        self.time = time.time()
+        self.dt = 0
 
-    def update(self, gps, encoder, accel, orientation) -> (float, float):
-        """
-        observation -> observation matrix:
-            x,y,N,ax,ay to x,y,vx,vy,ax,ay - given an angle phi and change in time,
-        encoder distance (N) can be converted to velocity.
-
-        x_gps = x
-        y_gps = y
-        N = radius * time / cos(phi) * Vx (in other words Vx = N * cos(phi) / (radius*time))
-        accel_x = Ax
-        accel_y = Ay
-
-
-        observation matrix 1 -> observation matrix 2
-        x,y,Vx,Vy,Ax,Ay to x,y,Vx,Vy,Ax,Ay - how does the error increase
-        with time?
-            A variance (how the data corrupts itself) of 1 means the
-        data cannot be trusted until the next measurement. These are the
-        diagonal values in the matrix. A variance that changes with time
-        implies the measurement drifts with time.
-            A covariance (how each sensor corrupts each other) of 0 implies
-        the sensors do not disrupt each other.
-
-        x'  = x  + time*Vx
-        y'  = y  + time*Vy
-        Vx' = Vx + time*Ax
-        Vy' = Vy + time*Ay
-        Ax' = Ax
-        Ay' = Ay
-
-        :param gps: board.xxx_objects.GPS - contains raw gps data
-        :param encoder: board.xxx_objects.Encoder - contains encoder data
-        :param accel: board.xxx_objects.Accelerometer - contains raw accel data
-        :param orientation: board.xxx_objects.Orientation - contains heading data
-        :return: current x, y as determined by the kalman filter
-        """
+    def update(self, gps, encoder, imu, compass):
         self.dt = time.time() - self.time
-	self.time = time.time()
+        self.time = time.time()
+        phi = self.headingKalman.update(compass, imu, self.dt)
+        x, y = self.placeKalman.update(gps, encoder, imu, phi, self.dt)
+        return x, y, phi
 
-        observation = np.array([gps.longitude, gps.latitude,
-                                encoder.delta, accel.x, accel.y])
 
+class headingKalman(object):
+    def __init__(self):
+        self.filter = pykalman.KalmanFilter()
+        self.filt_state_mean = np.array([0.0, 0.0])  # phi0 = 0, Vang0 = 0
+        self.covariance = np.identity(2)
+        self.obs_matrix = np.identity(2)
+
+    def update(self, compass, imu, dt):
+        trans_matrix = np.array([[1, dt],
+                                 [0, 1]])
+        obs = np.array([compass.heading, imu.gyro_z])
+        self.filt_state_mean, self.covariance = self.filter.filter_update(
+                filtered_state_mean=self.filt_state_mean,
+                filtered_state_covariance=self.covariance,
+                observation=obs,
+                transition_matrix=trans_matrix,
+                observation_matrix=self.obs_matrix)
+
+        return self.filt_state_mean
+
+
+class placeKalman(object):
+    def __init__(self, origin, circum, start_heading):
+        self.origin = origin
+        self.circum = circum
+        self.filter = pykalman.KalmanFilter()
+        self.filt_state_mean = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        self.covariance = np.identity(6)
+        self.displacement_angle = start_heading
+
+    def update(self, gps, encoder, imu, phi, dt):
+        (dist, x_gps, y_gps) = self.geo_dist(gps.latitude, gps.longitude)
+        observation = np.array([x_gps, y_gps,
+                                encoder, imu.accel_x, imu.accel_y])
         observation_matrix = np.array(
                 [[1, 0, 0, 0, 0, 0],
                  [0, 1, 0, 0, 0, 0],
-                 [0, 0,
-                  encoder.radius * self.dt / math.cos(orientation.heading),
-                  0, 0, 0],
+                 [0, 0, 0.5 * self.circum * dt / math.cos(phi),
+                  0.5 * self.circum * dt / math.sin(phi), 0, 0],
                  [0, 0, 0, 0, 1, 0],
-                 [0, 0, 0, 0, 0, 1]]
-        )
+                 [0, 0, 0, 0, 0, 1]])
 
         transition_matrix = np.array(
-                [[1, 0, self.dt, 0, 0, 0],
-                 [0, 1, 0, self.dt, 0, 0],
-                 [0, 0, 1, 0, self.dt, 0],
-                 [0, 0, 0, 1, 0, self.dt],
+                [[1, 0, dt, 0, 0, 0],
+                 [0, 1, 0, dt, 0, 0],
+                 [0, 0, 1, 0, dt, 0],
+                 [0, 0, 0, 1, 0, dt],
                  [0, 0, 0, 0, 1, 0],
                  [0, 0, 0, 0, 0, 1]]
         )
@@ -95,5 +90,24 @@ class Filter(object):
                 observation=observation,
                 transition_matrix=transition_matrix,
                 observation_matrix=observation_matrix)
-
         return self.filt_state_mean[0], self.filt_state_mean[1]  # x, y
+
+    def geo_dist(self, latitude, longitude):
+        '''assuming the latitude and lontitude are given in degrees'''
+        dLat = latitude - self.origin[0]
+        dLong = longitude - self.origin[1]
+        if dLat == 0:
+            angle = 0
+        else:
+            angle = np.arctan(dLong / dLat)
+        radius = 6378.137  # radius of Earth in km
+        dLat *= math.pi / 180
+        dLong *= math.pi / 180
+        a = (math.sin(dLat / 2) * math.sin(dLat / 2) +
+             math.sin(dLong / 2) * math.sin(dLong / 2) * math.cos(self.origin[0]) * math.cos(
+                     self.origin[1]))
+        c = 2 * np.arctan2(math.sqrt(a), math.sqrt(1 - a))
+        dist = radius * c * 1000
+        dx = dist * math.cos(angle + self.displacement_angle)
+        dy = dist * math.sin(angle + self.displacement_angle)
+        return dist, dx, dy
